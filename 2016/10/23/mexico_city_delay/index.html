@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Integer Programming," />
+  <meta name="keywords" content="Queuing Theory,Traffic Flow," />
 
 
 
@@ -84,16 +84,18 @@
 
 
 
-<meta name="description" content="Unbalanced Branching and EncodingConsider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in">
+<meta name="description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Integer Programming Note III: Encoding & Embedding">
-<meta property="og:url" content="http://hanqiu92.github.io/2016/10/04/IP3/index.html">
+<meta property="og:title" content="Case Study: Delay in Mexico City">
+<meta property="og:url" content="http://hanqiu92.github.io/2016/10/23/mexico_city_delay/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="Unbalanced Branching and EncodingConsider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in">
-<meta property="og:updated_time" content="2016-10-04T16:08:04.000Z">
+<meta property="og:description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
+<meta property="og:image" content="http://hanqiu92.github.io/images/mexico_city_map.png">
+<meta property="og:image" content="http://hanqiu92.github.io/images/mm1.png">
+<meta property="og:updated_time" content="2016-10-23T04:43:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Integer Programming Note III: Encoding & Embedding">
-<meta name="twitter:description" content="Unbalanced Branching and EncodingConsider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in">
+<meta name="twitter:title" content="Case Study: Delay in Mexico City">
+<meta name="twitter:description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
 
 
 
@@ -114,9 +116,9 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/2016/10/04/IP3/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/2016/10/23/mexico_city_delay/"/>
 
-  <title> Integer Programming Note III: Encoding & Embedding | Han's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Case Study: Delay in Mexico City | Han's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -246,7 +248,7 @@
             
             
               
-                Integer Programming Note III: Encoding & Embedding
+                Case Study: Delay in Mexico City
               
             
           </h1>
@@ -258,8 +260,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-04T12:00:00-04:00" content="2016-10-04">
-              2016-10-04
+            <time itemprop="dateCreated" datetime="2016-10-23T00:00:00-04:00" content="2016-10-23">
+              2016-10-23
             </time>
           </span>
 
@@ -272,8 +274,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Lecture-Notes/" itemprop="url" rel="index">
-                    <span itemprop="name">Lecture Notes</span>
+                  <a href="/categories/Case-Study/" itemprop="url" rel="index">
+                    <span itemprop="name">Case Study</span>
                   </a>
                 </span>
 
@@ -288,8 +290,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/04/IP3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/04/IP3/" itemprop="commentsCount"></span>
+                <a href="/2016/10/23/mexico_city_delay/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/23/mexico_city_delay/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -312,34 +314,36 @@
       
 
       
-        <h2 id="Unbalanced-Branching-and-Encoding"><a href="#Unbalanced-Branching-and-Encoding" class="headerlink" title="Unbalanced Branching and Encoding"></a>Unbalanced Branching and Encoding</h2><p>Consider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in standard MIP solver, $x_i$ is first relaxed into continuous variable, and then forced to be integer with B&amp;B. For the constraint above, when we branch on a fractional $x_i$, we have two choices, $x_i=1$ or $x_i=0$, but the result of each branch is different. With $x_i=1$, we immediate know $x_j=0, \forall j\neq i$, even though they are still assumed continuous. But with $x_i=0$, the optimal solution might still contain another fractional $x_j$ and further branching is needed. In extreme case, we need to branch $n-1$ times to locate the optimal integer solution.</p>
+        <p>This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about how to model and solve this problem. In last several days, I realized the tools we needed were no more than high school arithmetics.</p>
 <a id="more"></a>
-<p>The basic idea to deal with such unbalanced branching is to encode each $x_i$ and design more efficient branching trees. In the above case, we can consider encoding</p>
-<p>$$\begin{aligned} \sum b_ix_i &amp;= y\\  \sum x_i&amp;= 1\\ y \ &amp;\in \{0,1\}^m, \end{aligned}$$</p>
-<p>in which $b_i\in \{0,1\}^m$ is the encoding for $x_i$.</p>
-<p>Notice that, if we let $m=n$ and $b_i=e_i$, we will recover the original constraint  $\sum_i x_i= 1, x_i\in \{0,1\}$. This encoding is called unary encoding; we already know it is inefficient. What other encoding can we use?</p>
-<p>In practice, two encoding are widely used: binary encoding and incremental encoding. In binary encoding, $m=\lceil log_2n \rceil$ and $b_i$ is selected to be mutually different and balanced in number for each row. An example for $n=4$ is</p>
-<p>$$\begin{pmatrix}0 &amp; 0 &amp; 1 &amp; 1\\0 &amp; 1 &amp; 1&amp; 0 \end{pmatrix} \begin{pmatrix} x_1\\x_2\\x_3\\x_4 \end{pmatrix}=\begin{pmatrix}y_1\\y_2\end{pmatrix}$$</p>
-<p>Now, assume in root LP the optimal solution has $y_1$ fractional. When we branch on $y_1$, we find the branching tree is more balanced: if $y_1=1$, then $x_1$ and $x_2$ are forced to be $0$; if $y_1=0$, then $x_3$ and $x_4$ are forced to be $0$. For $y_2$, the situation is similar. In extreme case, we only need to branch $m$ times, which is much better than unary encoding.</p>
-<p>Incremental encoding is slightly different. We have $m=n-1$, but with $b_i=\sum_{j&lt;i} e_j$. An example for $n=4$ is</p>
-<p>$$\begin{pmatrix}0 &amp; 1 &amp; 1&amp; 1\\ 0 &amp; 0 &amp; 1 &amp; 1\\ 0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix} \begin{pmatrix} x_1\\x_2\\x_3\\x_4 \end{pmatrix}=\begin{pmatrix}y_1\\y_2\\y_3\end{pmatrix}$$</p>
-<p>This encoding implies that $y_1\geqslant y_2\geqslant y_3$. In extreme case (branching from $y_1$ to $y_{n-1}$), we might still need to branch $n-1$ times; but if the problem has good structure, incremental encoding might even be better than binary encoding. For example, consider problem $\min |x|, x\in\{\alpha_i\}$ with both positive and negative $\alpha_i$. If $\alpha_i$ is perfectly ordered $\alpha_1&lt;\alpha_2&lt;\cdots&lt;\alpha_n$ , and we branch on $y_j$ with $\alpha_j&lt;0&lt;\alpha_{j+1}$ , then this branch can lead us to global optimal solution.</p>
-<p>In practice, if you have a good understanding of you problem, you might be able to design an appropriate encoding to speed up branching; but generally binary encoding or incremental encoding will work. In case of SOS1/2 constraints, it is better to define them as “SOS1/2” if you are using CPLEX or Gurobi, since there might be some other black magic to speed up.</p>
-<h2 id="Embedding"><a href="#Embedding" class="headerlink" title="Embedding"></a>Embedding</h2><p>In above discussion, we try to use encoding to improve branching efficiency for certain constraints. Such idea can actually be extended for union of polytope $P=\cup_i P_i$. Consider encoding $H$: $h_i\in\{0,1\}^m$ for each $P_i$. By embedding, we can turn focus to object</p>
-<p>$$P_i’=P_i\times\{h_i\},$$</p>
-<p>Notice that after embedding, $Q=conv(\cup_i P_i’)$ is ideal ($h_i$ characterizes the “extreme” part). So branching is not a major concern if there is no additional constraint. Then what else should we consider?</p>
-<p>Remember that we still need to have a representation of $Q$, and its size (in terms of $H$-representation, the number of constraints) has great impact on LP efficiency. To understand the significance of encoding on size, we consider a simple example $P=\{0\}\cup [1,2]\cup [a,a+0.5]\cup [a+1,a+2.5]$ and binary encoding $H\subseteq \{0,1\}^2$. Now, if we do the embedding</p>
-<p>$$P’=\{0\}\times \{0,0\} \cup [1,2]\times \{0,1\} \cup [a,a+0.5] \times \{1,0\} \cup [a+1,a+2.5] \times \{1,1\} ,$$</p>
-<p>the convex hull $Q$ is a nicely shaped polyhedron. But in case</p>
-<p>$$P’=\{0\}\times \{0,0\} \cup [1,2]\times \{1,1\} \cup [a,a+0.5] \times \{1,0\} \cup [a+1,a+2.5] \times \{0,1\} ,$$</p>
-<p>the convex hull is more complex.</p>
-<p>As dimension grows, such difference becomes more significant. If we select a random encoding to embed, it is possible to have exponential number of constraints. So, we want to use an encoding $H$ that $Q(H)$ has a small number of facet:</p>
-<p>$$H=\arg\min_H(size(Q(H)))$$</p>
-<p>Generally, design of such embedding is ad-hoc and general construction is not viable (think of permutations of $\{P_i\}$). But when $P_i$ admits a natural ordering, we might be able to conclude some techniques in designing embedding. One interesting example is piecewise linear function on $R^1$ (which induces the SOS2 constraints) or $R^2$. It is shown that with proper meshing and ordering, an encoding method called gray code can achieve the logarithm size in $n$. Some related papers can be found in the reference.</p>
-<p>In summary, the advantage of using embedding is that we don’t need to create copies of original variables, which is similar to the non-extended formulations in last post. If the problem and $P_i$ are well defined, embedding provide an efficient way to make those non-extend formulations ideal. For example, to model piecewise linear function on $R^1$, unary embedding is exactly the ideal extension of non-extended $V$-formulation, which is only sharp. But generally such idea is hard to implement.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Vielma, J. P. (2015). Embedding Formulations and Complexity for Unions of Polyhedra. arXiv:1506.01417. Available at: <a href="http://arxiv.org/pdf/1506.01417v2.pdf" target="_blank" rel="external">http://arxiv.org/pdf/1506.01417v2.pdf</a></p>
-<p>Yıldız, S., &amp; Vielma, J. P. (2013). Incremental and encoding formulations for mixed integer programming. Operations Research Letters, 41(6), 654-658.</p>
-<p>Vielma, J. P., &amp; Nemhauser, G. L. (2011). Modeling disjunctive constraints with a logarithmic number of binary variables and constraints. Mathematical Programming, 128(1-2), 49-72.</p>
+<h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h2><p>Here is the actual experience: we were in a taxi going to airport via Cto. Interior. We encountered a heavy rain, and several lower points were flooded (indicated as red circles in the following pic).</p>
+<p><img src="/images/mexico_city_map.png" alt="mexico city map"></p>
+<p>During the trip, Google Maps kept refreshing the estimated travel time, and the estimated delay for going through those bottlenecks were always increasing. When we arrived, we cost nearly one more hour than the initial estimated travel time.   </p>
+<p>So how can Google Maps be such inaccurate? And if provided with the information that the capacity in these points will be low for several hours, can we have better estimates?</p>
+<h2 id="A-Queuing-Model-without-Knowledge-in-Queues"><a href="#A-Queuing-Model-without-Knowledge-in-Queues" class="headerlink" title="A Queuing Model without Knowledge in Queues"></a>A Queuing Model without Knowledge in Queues</h2><p>It is almost straightforward to think about a queuing model. To simplify, we consider a serial connection of M/M/1 units and free flow road segments (which can also be seen as M/M/1 unit with $\mu\to\infty$). Following is a visualization of M/M/1 unit (By Tsaitgaist - <a href="https://commons.wikimedia.org/w/index.php?curid=7037566" target="_blank" rel="external">Mm1.png</a>, CC BY-SA 3.0).</p>
+<p><img src="/images/mm1.png" alt="M/M/1"></p>
+<p>With elementary understanding of queuing theory, I only considered stable case ($\lambda &lt; \ mu$) at first and got into trouble. When the process become stationary, it is impossible to have increasing travel time! In this case, we are actually more likely in an unstable situation: if the capacity remains low forever, the length of the queue will surely explode.</p>
+<p>So we just make our first assumption: $\lambda &gt; \mu$. Now, when the difference between $\lambda$ and $\mu$ is not trivial, even with Poisson process as input, we can well assume them as deterministic (constant), since it is unlikely the queue will be empty and we can avoid the nasty analysis in stable case. Or we can argue like this: as $T\to\infty$, total arrival $\sim Poi(\lambda T)$ and total serviced $\sim Poi(\mu T)$, so when $T$ is large enough, the probability to have total serviced amount greater than total arrival is extremely low.</p>
+<p>Now we introduce another parameter $\theta$ to describe enter and exit ratios for each road segments between two flooded points. This is quite realistic since people can leave or enter the expressway through ramps. Also, without some inflows we will never have enough arrival to block the next M/M/1 units!</p>
+<p>So what is the arrival rate for the middle M/M/1 units? We have $(1-\theta)\mu$ from last unit, and $\theta\lambda$ new inflows. The arrival rate is just the sum of the two. We can also calculate a delay rate $\rho$, which represent how fast delay increases:</p>
+<p>$$\rho = \frac{\theta(\lambda - \mu)}{\mu}$$</p>
+<p>Now we can summarize our model: we have $n$ M/M/1 units (with same $\lambda$ and $\mu$) with $n-1$ road segments (with same $\theta$ and travel time $T_t$) connecting them in a serial way. We further assume that as we enter this system, every unit already has delay time $T_d$. We further use $T_T$ to denote the sum of $T_t$ and $T_d$.</p>
+<h2 id="Calculations"><a href="#Calculations" class="headerlink" title="Calculations"></a>Calculations</h2><p>Now it is time to do some high school arithmetics.</p>
+<p>Step 0. Upon arrived at the first M/M/1 unit, we are at time $T_1 = 0$, and the queue delay time is $D_1 = T_d$.</p>
+<p>Step 1. When arrived at the second M/M/1 unit, we are at time $T_2 = T_1 + D_1 + T_t = T_T$, and the queue delay time at his unit is $D_2 = T_d + \rho T_2 = T_d + \rho T_T = (1+\rho)T_T - T_t$.</p>
+<p>Step 2. When arrived at the third M/M/1 unit, we are at time $T_3 = T_2 + D_2 + T_t = (2+\rho)T_T$, and the queue delay time at his unit is $D_3 = T_d + \rho T_3 = (1+\rho)^2 T_T - T_t$.</p>
+<p>…</p>
+<p>So with induction, it is easy to find total travel time is $T = \frac{(1+\rho)^n-1}{\rho}T_T - T_t$. And the naive initial estimated travel time is $T’ = nT_T - T_t$.</p>
+<p>Now let’s replace them with some actual values. First we estimate those parameters:</p>
+<p>$$\lambda = 3\text{ lanes}\times 60\text{ km/h} \times 20\text{ veh/km} = 60\text{ veh/min}$$</p>
+<p>$$\mu = 1\text{ lanes}\times 4\text{ km/h} \times 300\text{ veh/km} = 20\text{ veh/min}$$</p>
+<p>$$\theta = 0.5$$</p>
+<p>So</p>
+<p>$$\rho = \frac{0.5\times 40}{20} = 1$$</p>
+<p>Let $n = 3$ (as in the Mexico City map), we then have $T = 7T_T - T_t$, while $T’ = 3T_T - T_t$; delay is more than 4/3 of the initial estimated travel time! And this is quite similar to what we experienced that afternoon.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>So what can we learn from this case study? First, never trust Google Maps in similar situation (which you might only encounter in Mexico City…) and do not take expressway.</p>
+<p>Second, stationary results of queuing theory has its limits for application. As we can see, these results are not really useful for this problem, since we are focusing on short term dynamics. We can also explain why so many people find the famous nonlinear time-utilization plot counterintuitive: as utilization $\lambda/\mu\to 1$, the time required to get to the stationary status increase nonlinearly, and in short term dynamics (which is what most people can visualize in their minds) such relationship does not hold! For those who are interested in the asymptotic behavior of the system when $\lambda/\mu\to 1$, you might find the key word <a href="https://www.google.com/#q=heavy+traffic+approximation" target="_blank" rel="external">heavy traffic approximation</a> useful.</p>
+<p>So when should we apply those stationary results? The answer is in planning process, when the arrival variance is large and expected service time is almost infinity. In other cases, simulation is always the safest way to start.</p>
 
       
     </div>
@@ -362,7 +366,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Integer-Programming/" rel="tag">#Integer Programming</a>
+            <a href="/tags/Queuing-Theory/" rel="tag">#Queuing Theory</a>
+          
+            <a href="/tags/Traffic-Flow/" rel="tag">#Traffic Flow</a>
           
         </div>
       
@@ -371,17 +377,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/04/IP2/" rel="next" title="Integer Programming Note II: Formulation Strength & Size">
-                <i class="fa fa-chevron-left"></i> Integer Programming Note II: Formulation Strength & Size
+              <a href="/2016/10/04/IP5/" rel="next" title="Integer Programming Note V: Decomposition">
+                <i class="fa fa-chevron-left"></i> Integer Programming Note V: Decomposition
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/04/IP4/" rel="prev" title="Integer Programming Note IV: Cuts">
-                Integer Programming Note IV: Cuts <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -513,7 +515,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unbalanced-Branching-and-Encoding"><span class="nav-number">1.</span> <span class="nav-text">Unbalanced Branching and Encoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Embedding"><span class="nav-number">2.</span> <span class="nav-text">Embedding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-Description"><span class="nav-number">1.</span> <span class="nav-text">Problem Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Queuing-Model-without-Knowledge-in-Queues"><span class="nav-number">2.</span> <span class="nav-text">A Queuing Model without Knowledge in Queues</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calculations"><span class="nav-number">3.</span> <span class="nav-text">Calculations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
             
           </div>
         </section>
@@ -633,9 +635,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'hanqiu92';
-      var disqus_identifier = '2016/10/04/IP3/';
-      var disqus_title = "Integer Programming Note III: Encoding & Embedding";
-      var disqus_url = 'http://hanqiu92.github.io/2016/10/04/IP3/';
+      var disqus_identifier = '2016/10/23/mexico_city_delay/';
+      var disqus_title = "Case Study: Delay in Mexico City";
+      var disqus_url = 'http://hanqiu92.github.io/2016/10/23/mexico_city_delay/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
