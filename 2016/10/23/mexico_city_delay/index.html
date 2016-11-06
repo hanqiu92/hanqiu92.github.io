@@ -92,7 +92,7 @@
 <meta property="og:description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
 <meta property="og:image" content="http://hanqiu92.github.io/images/mexico_city_map.png">
 <meta property="og:image" content="http://hanqiu92.github.io/images/mm1.png">
-<meta property="og:updated_time" content="2016-10-23T04:43:31.000Z">
+<meta property="og:updated_time" content="2016-11-06T04:04:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Case Study: Delay in Mexico City">
 <meta name="twitter:description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
@@ -316,11 +316,11 @@
       
         <p>This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about how to model and solve this problem. In last several days, I realized the tools we needed were no more than high school arithmetics.</p>
 <a id="more"></a>
-<h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h2><p>Here is the actual experience: we were in a taxi going to airport via Cto. Interior. We encountered a heavy rain, and several lower points were flooded (indicated as red circles in the following pic).</p>
+<h2 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h2><p>Here is the actual experience: we were in a taxi going to airport via Cto. Interior. We encountered a heavy rain, and several lower points were flooded (indicated as red circles in the following pic).</p>
 <p><img src="/images/mexico_city_map.png" alt="mexico city map"></p>
 <p>During the trip, Google Maps kept refreshing the estimated travel time, and the estimated delay for going through those bottlenecks were always increasing. When we arrived, we cost nearly one more hour than the initial estimated travel time.   </p>
 <p>So how can Google Maps be such inaccurate? And if provided with the information that the capacity in these points will be low for several hours, can we have better estimates?</p>
-<h2 id="A-Queuing-Model-without-Knowledge-in-Queues"><a href="#A-Queuing-Model-without-Knowledge-in-Queues" class="headerlink" title="A Queuing Model without Knowledge in Queues"></a>A Queuing Model without Knowledge in Queues</h2><p>It is almost straightforward to think about a queuing model. To simplify, we consider a serial connection of M/M/1 units and free flow road segments (which can also be seen as M/M/1 unit with $\mu\to\infty$). Following is a visualization of M/M/1 unit (By Tsaitgaist - <a href="https://commons.wikimedia.org/w/index.php?curid=7037566" target="_blank" rel="external">Mm1.png</a>, CC BY-SA 3.0).</p>
+<h2 id="A-queuing-model-without-knowledge-in-queues"><a href="#A-queuing-model-without-knowledge-in-queues" class="headerlink" title="A queuing model without knowledge in queues"></a>A queuing model without knowledge in queues</h2><p>It is almost straightforward to think about a queuing model. To simplify, we consider a serial connection of M/M/1 units and free flow road segments (which can also be seen as M/M/1 unit with $\mu\to\infty$). Following is a visualization of M/M/1 unit (By Tsaitgaist - <a href="https://commons.wikimedia.org/w/index.php?curid=7037566" target="_blank" rel="external">Mm1.png</a>, CC BY-SA 3.0).</p>
 <p><img src="/images/mm1.png" alt="M/M/1"></p>
 <p>With elementary understanding of queuing theory, I only considered stable case ($\lambda &lt; \ mu$) at first and got into trouble. When the process become stationary, it is impossible to have increasing travel time! In this case, we are actually more likely in an unstable situation: if the capacity remains low forever, the length of the queue will surely explode.</p>
 <p>So we just make our first assumption: $\lambda &gt; \mu$. Now, when the difference between $\lambda$ and $\mu$ is not trivial, even with Poisson process as input, we can well assume them as deterministic (constant), since it is unlikely the queue will be empty and we can avoid the nasty analysis in stable case. Or we can argue like this: as $T\to\infty$, total arrival $\sim Poi(\lambda T)$ and total serviced $\sim Poi(\mu T)$, so when $T$ is large enough, the probability to have total serviced amount greater than total arrival is extremely low.</p>
@@ -384,6 +384,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/05/latent_class_category_variable/" rel="prev" title="Case Study: Latent Classes in Quebec Energy consumption">
+                Case Study: Latent Classes in Quebec Energy consumption <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -458,7 +462,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -475,7 +479,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -515,7 +519,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-Description"><span class="nav-number">1.</span> <span class="nav-text">Problem Description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Queuing-Model-without-Knowledge-in-Queues"><span class="nav-number">2.</span> <span class="nav-text">A Queuing Model without Knowledge in Queues</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calculations"><span class="nav-number">3.</span> <span class="nav-text">Calculations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-description"><span class="nav-number">1.</span> <span class="nav-text">Problem description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-queuing-model-without-knowledge-in-queues"><span class="nav-number">2.</span> <span class="nav-text">A queuing model without knowledge in queues</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calculations"><span class="nav-number">3.</span> <span class="nav-text">Calculations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
             
           </div>
         </section>

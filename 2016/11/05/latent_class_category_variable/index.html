@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Integer Programming," />
+  <meta name="keywords" content="Discrete Choice Model,Inference," />
 
 
 
@@ -84,16 +84,19 @@
 
 
 
-<meta name="description" content="Cuts are important tools to strengthen your formulation and improve computation efficiency. In this post, I will introduce two kind of cuts: geometric cuts, which consider the geometric property of th">
+<meta name="description" content="Last semester, in course 1.202 Demand Modeling, there is an interesting case study of Quebec energy consumption. Exploratory data analysis indicates that there are potential market segments, and subse">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Integer Programming Note IV: Cuts">
-<meta property="og:url" content="http://hanqiu92.github.io/2016/10/04/IP4/index.html">
+<meta property="og:title" content="Case Study: Latent Classes in Quebec Energy consumption">
+<meta property="og:url" content="http://hanqiu92.github.io/2016/11/05/latent_class_category_variable/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="Cuts are important tools to strengthen your formulation and improve computation efficiency. In this post, I will introduce two kind of cuts: geometric cuts, which consider the geometric property of th">
-<meta property="og:updated_time" content="2016-10-04T16:06:45.000Z">
+<meta property="og:description" content="Last semester, in course 1.202 Demand Modeling, there is an interesting case study of Quebec energy consumption. Exploratory data analysis indicates that there are potential market segments, and subse">
+<meta property="og:image" content="http://hanqiu92.github.io/images/latent_class_1.png">
+<meta property="og:image" content="http://hanqiu92.github.io/images/latent_class_2.png">
+<meta property="og:image" content="http://hanqiu92.github.io/images/latent_class_3.png">
+<meta property="og:updated_time" content="2016-11-06T04:25:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Integer Programming Note IV: Cuts">
-<meta name="twitter:description" content="Cuts are important tools to strengthen your formulation and improve computation efficiency. In this post, I will introduce two kind of cuts: geometric cuts, which consider the geometric property of th">
+<meta name="twitter:title" content="Case Study: Latent Classes in Quebec Energy consumption">
+<meta name="twitter:description" content="Last semester, in course 1.202 Demand Modeling, there is an interesting case study of Quebec energy consumption. Exploratory data analysis indicates that there are potential market segments, and subse">
 
 
 
@@ -114,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/2016/10/04/IP4/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/2016/11/05/latent_class_category_variable/"/>
 
-  <title> Integer Programming Note IV: Cuts | Han's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Case Study: Latent Classes in Quebec Energy consumption | Han's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -246,7 +249,7 @@
             
             
               
-                Integer Programming Note IV: Cuts
+                Case Study: Latent Classes in Quebec Energy consumption
               
             
           </h1>
@@ -258,8 +261,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-04T12:05:00-04:00" content="2016-10-04">
-              2016-10-04
+            <time itemprop="dateCreated" datetime="2016-11-05T12:00:00-04:00" content="2016-11-05">
+              2016-11-05
             </time>
           </span>
 
@@ -272,8 +275,8 @@
               <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Lecture-Notes/" itemprop="url" rel="index">
-                    <span itemprop="name">Lecture Notes</span>
+                  <a href="/categories/Case-Study/" itemprop="url" rel="index">
+                    <span itemprop="name">Case Study</span>
                   </a>
                 </span>
 
@@ -288,8 +291,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/04/IP4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/04/IP4/" itemprop="commentsCount"></span>
+                <a href="/2016/11/05/latent_class_category_variable/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/05/latent_class_category_variable/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -312,34 +315,22 @@
       
 
       
-        <p>Cuts are important tools to strengthen your formulation and improve computation efficiency. In this post, I will introduce two kind of cuts: geometric cuts, which consider the geometric property of the polyhedron and have general application, and implicit cuts, which are more problem specific but potentially can lead to very strong formulation.</p>
+        <p>Last semester, in course 1.202 Demand Modeling, there is an interesting case study of Quebec energy consumption. Exploratory data analysis indicates that there are potential market segments, and subsequent computation shows that multinomial logit models estimated from separate datasets have a better total log likelihood than the one from the whole dataset. An interesting question then arises: can we discover latent classes efficiently on high dimensional data?</p>
 <a id="more"></a>
-<h2 id="Geometric-cuts-Gomory-cut-and-split-cut"><a href="#Geometric-cuts-Gomory-cut-and-split-cut" class="headerlink" title="Geometric cuts: Gomory cut and split cut"></a>Geometric cuts: Gomory cut and split cut</h2><p>Assume that we are given $P=\{x\in Z^n: Ax\leqslant b\}$ with $A\in R^{m\times n}$ and $b\in R^m$. If we can find a hyperplane $\{x: c^Tx\leqslant d\}\supseteq P$ with $c\in Z^n$ and $d\notin Z$, based on the integrality we immediately know $\{x: c^Tx\leqslant \lfloor d \rfloor\}$ is also a valid constraint for $P$. Sometimes (e.g. extreme point is not integral and the local boundary is not very flat), adding proper Gomory cuts can lead to much stronger formulation.</p>
-<p>Notice that by Farkas’ lemma, $\{x: c^Tx\leqslant d\}\supseteq P$ is equivalent to $\exists \mu\in R^m_+$ s.t. $c=A^T\mu, d\geqslant b^T\mu$. So a general idea to construct Gomory cut is to find $\mu\in R^m_+$ s.t. $A^T\mu\in Z^n$, and add cut</p>
-<p>$$\mu^TAx\leqslant \lfloor \mu^Tb \rfloor.$$</p>
-<p>For mixed integer case $P=\{(x,y)\in Z^{n_1}\times R^{n_2} : Ax+By\leqslant b\}$, again by Farkas’ lemma all valid cuts (for the LP relaxation) are in form</p>
-<p>$$\mu^TAx+\mu^TBy\leqslant \mu^Tb$$</p>
-<p>for some $\mu\in R^m_+$. A way to avoid the messy continuous variables $y$ is to focus on $\mu$ s.t. $\mu^TB=0$. That is, in case of $\mu\in R^m_+: \mu^TB=0, \mu^TA\in R^n$, we have</p>
-<p>$$\mu^TAx\leqslant \lfloor \mu^Tb \rfloor.$$</p>
-<p>Gomory cut only considers improvement on the boundary. Split cut takes a step ahead by splitting the polyhedron into two (or more) and construct shared boundary cut (or even Gomory cut) for both parts. Again, consider mixed integer case: $P=\{(x,y)\in Z^{n_1}\times R^{n_2} : Ax+By\leqslant b\}$ with $A\in R^{m\times n_1}, B\in R^{m\times n_2}, b\in R^m$. We first use split $\Pi x\leqslant \Pi_0$ and $\Pi x\geqslant \Pi_0+1$ with $\Pi\in Z^{n_1}$ and $\Pi_0\in Z$ to separate $P$. Then, by Farkas’ lemma, a valid cut $ c^Tx+d^Ty\leqslant h$ for system $Ax+By\leqslant b, \Pi x\leqslant \Pi_0$ is in form</p>
-<p>$$\begin{aligned} \begin{pmatrix} A^T&amp; \Pi^T\\ B^T&amp; 0 \end{pmatrix} \begin{pmatrix}\mu \\ \alpha \end{pmatrix} &amp; = \begin{pmatrix}c \\ d \end{pmatrix} \\ \begin{pmatrix} b^T&amp; \Pi_0 \end{pmatrix} \begin{pmatrix}\mu \\ \alpha \end{pmatrix} &amp; \leqslant  h \end{aligned} $$</p>
-<p>with $\mu \in R^m_+$ and $\alpha \in R_+$. Similarly, for the other system, the same cut should satisfy</p>
-<p>$$\begin{aligned} \begin{pmatrix} A^T&amp; -\Pi^T\\ B^T&amp; 0 \end{pmatrix} \begin{pmatrix}\lambda \\ \beta \end{pmatrix} &amp; = \begin{pmatrix}c \\ d \end{pmatrix} \\ \begin{pmatrix} b^T&amp; -\Pi_0-1 \end{pmatrix} \begin{pmatrix}\lambda \\ \beta \end{pmatrix} &amp; \leqslant  h \end{aligned} $$</p>
-<p>with $\lambda \in R^m_+$ and $\beta \in R_+$. And the remaining task is to find non-negative $\alpha,\beta,\mu,\lambda$ that satisfy above equations.</p>
-<p>Following same ideas, these geometric cuts can also be extended to nonlinear settings, even though the formulations are usually more complex. But if you have a good outer approximation (which will be introduced in next post), above characterization can again be applied.</p>
-<h2 id="Implicit-cuts"><a href="#Implicit-cuts" class="headerlink" title="Implicit cuts"></a>Implicit cuts</h2><p>For many problems (especially combinatoric ones), we can construct simple formulations easily, but these formulations are usually weak. One possible problem is that the formulation is constructed in aggregate level and has to use a large big-$M$. For example, consider single source fixed charge uncapacitated multi-commodity flow problem. Assume root source $r$ has outflow $f_r$ and sink $s_i$ has inflow $f_{s_i}$, and if an arc $(u,v)$ has positive flow, there is a fixed charge $c_{uv}$. Now, it seems straightforward to use continuous variables $y_{uv}$ to model the flow in arc $(u,v)$ and binary variables $x_{uv}$ to model whether there is positive flow. Unfortunately, in this case the connection between $y_{uv}$ and $x_{uv}$ is weak:</p>
-<p>$$y_{uv}\leqslant |f_r|x_{uv}.$$</p>
-<p>An easy way to strengthen this formulation is to decompose each $y_{uv}$ into sum of $y_{uv}^i$, which is the flow in arc $(u,v)$ for pair $(r,s_i)$. Then we have much stronger bound on $x_{uv}$:</p>
-<p>$$y_{uv}^i\leqslant |f_{s_i}|x_{uv}, \forall i.$$</p>
-<p>Such decomposition technique can be applied to a wide range of combinatorial problems.</p>
-<p>Another technique I want to discuss is to impose redundancy. Assume you have a problem in $P=\{x: Ax\leqslant b, f(x)\leqslant g\}$. If you have an good (e.g., ideal) extended formulation for $\{f(x)\leqslant g\}$, it will be beneficial to add some redundant cut based on $\{Ax\leqslant b\}$ and auxillary variables $y$. For example, suppose for variables $x_{ij}\in\{0,1\}$ and $p_k\in [0,1]$, we want to use auxiliary variables $u_{ijk}$ to model $x_{ij}p_k$ with constraints $\sum_j x_{ij}\leqslant 1$. An ideal formulation of $u_{ijk}$ is</p>
-<p>$$\begin{aligned} 0\leqslant u_{ijk}\leqslant p_k\\ p_k+x_{ij}-1\leqslant u_{ijk}\leqslant x_{ij} \end{aligned}$$</p>
-<p>Then, by multiplying $p_k$ and $1-p_k$ to $\sum_j x_{ij}\leqslant 1$, we have redundant cuts</p>
-<p>$$\begin{aligned} \sum_j u_{ijk}&amp;\leqslant p_k\\  \sum_ju_{ijk}-\sum_j x_{ij}&amp;\geqslant p_k-1 \end{aligned}$$</p>
-<p>Clearly, these “redundant” cuts are much stronger than the locally ideal formulation above.</p>
-<p>Generally, such cuts will work well if $\{x: Ax\leqslant b\}$ is significantly tighter than $\{x: f(x)\leqslant g\}$ and the ranges of auxiliary variables $y$ depend on $x$, since these redundant cuts can effectively restrict the ranges of auxiliary variables, comparing with simple intersection of $\{x: Ax\leqslant b\}$ and ideal formulation of $\{x: f(x)\leqslant g\}$.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Vanderbeck, F., &amp; Wolsey, L. A. (2010). Reformulation and decomposition of integer programs. In 50 Years of Integer Programming 1958-2008 (pp. 431-502). Springer Berlin Heidelberg.</p>
-<p>Tawarmalani, M., Ahmed, S., &amp; Sahinidis, N. V. (2002). Global optimization of 0-1 hyperbolic programs. Journal of Global Optimization, 24(4), 385-416.</p>
+<h2 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h2><p>Assume we have $m$ customers and $n$ options. For each customer, there are personal attributes $X_{p,i}\in R^{d_1}(i\in\{1,\cdots,m\})$ and option-specific attributes $X_{o,i,j}\in R^{d_2} (i\in\{1,\cdots,m\}, j\in\{1,\cdots,n\})$. We want to estimate parameters $\beta_{j}\in R^{d_1+d_2} (j\in\{1,\cdots,n\})$ in the following choice model:</p>
+<p>$$p(j|X_{p,i},X_{o,i,j})=\frac{\exp(\beta_j^TX_j)}{\sum_i \exp(\beta_i^TX_i)}$$</p>
+<p>where $X_j=(X_{p,i},X_{o,i,j})$.</p>
+<p>If we know the whole dataset comes from a single class, the estimation is simple: we use write the log likelihood function and optimize it using standard optimization package. But in many cases this might not be true.</p>
+<p>For example, in the Quebec energy case, we observe the following:</p>
+<p><img src="/images/latent_class_1.png" alt="two_segments"></p>
+<p>There are clearly two classes. If we separate them and plot histograms of other attributes respectively, we find that for some variables the difference is quite significant, which indicating a potential market segments.</p>
+<p><img src="/images/latent_class_2.png" alt="segment_1"></p>
+<p><img src="/images/latent_class_3.png" alt="segment_2"></p>
+<p>So, in more general cases, how can we discover such patterns if exploration is not always feasible? Moreover, how can we make sure our segmentation will improve the model performance?</p>
+<h2 id="An-initial-approach"><a href="#An-initial-approach" class="headerlink" title="An initial approach"></a>An initial approach</h2><p>Our target is to separate the dataset to improve our objective function; so why not look at the final gradients? Even though the sum of gradients will be close to 0, they might not be homogenous small and uniformly distributed. If we can find some hyperplanes to separate the dataset in such a way that the sum of gradients in each region is significant, we can then improve our estimates on each subset by driving the parameters into different directions.</p>
+<p>As an initial approach, we will consider the simplest case: regression tree on categorical variables. In each iteration, we solve the MLE problem, obtain the gradient at each data point, and then for each categorical variable, we search for a cutoff value that best ‘separate’ the set of gradients, or, that makes the difference between the sum of two subset greatest. Finally, we compare these differences across variables and select the most influential one. We will stop once the improvement is negligible.</p>
+<p>We implement this idea and test it on the Quebec dataset. The code (in ipython notebook) can be find <a href="https://github.com/hanqiu92/latent_class_choice_model/blob/master/categorical_variable/categorical_variable.ipynb" target="_blank" rel="external">here</a>. Since gradients in logit model can have great scale, we normalize them in each step to stabilize the algorithm. It is shown that the code successfully finds the variable ‘constr_year’ and the cutoff value 7. The total log likelihood improves a lot, while the segmentation is quite balance (561 v.s. 499).</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In this small case study, we purpose a simple algorithm to find latent classes in a choice dataset. It is clear that our approach is quite limited since we only consider categorical variables and the approach to find cutoff value can be highly unstable. Nevertheless, this approach can be a good start in exploring potential segmentation and support future analysis. Next, we will try to solve the problem from another perspective: can we include latent class directly in our inference model and design efficient estimation algorithm?</p>
 
       
     </div>
@@ -362,7 +353,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Integer-Programming/" rel="tag">#Integer Programming</a>
+            <a href="/tags/Discrete-Choice-Model/" rel="tag">#Discrete Choice Model</a>
+          
+            <a href="/tags/Inference/" rel="tag">#Inference</a>
           
         </div>
       
@@ -371,17 +364,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/04/IP3/" rel="next" title="Integer Programming Note III: Encoding & Embedding">
-                <i class="fa fa-chevron-left"></i> Integer Programming Note III: Encoding & Embedding
+              <a href="/2016/10/23/mexico_city_delay/" rel="next" title="Case Study: Delay in Mexico City">
+                <i class="fa fa-chevron-left"></i> Case Study: Delay in Mexico City
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/04/IP5/" rel="prev" title="Integer Programming Note V: Decomposition">
-                Integer Programming Note V: Decomposition <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -513,7 +502,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Geometric-cuts-Gomory-cut-and-split-cut"><span class="nav-number">1.</span> <span class="nav-text">Geometric cuts: Gomory cut and split cut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implicit-cuts"><span class="nav-number">2.</span> <span class="nav-text">Implicit cuts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-description"><span class="nav-number">1.</span> <span class="nav-text">Problem description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#An-initial-approach"><span class="nav-number">2.</span> <span class="nav-text">An initial approach</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
             
           </div>
         </section>
@@ -633,9 +622,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'hanqiu92';
-      var disqus_identifier = '2016/10/04/IP4/';
-      var disqus_title = "Integer Programming Note IV: Cuts";
-      var disqus_url = 'http://hanqiu92.github.io/2016/10/04/IP4/';
+      var disqus_identifier = '2016/11/05/latent_class_category_variable/';
+      var disqus_title = "Case Study: Latent Classes in Quebec Energy consumption";
+      var disqus_url = 'http://hanqiu92.github.io/2016/11/05/latent_class_category_variable/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
