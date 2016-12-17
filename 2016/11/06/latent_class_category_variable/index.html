@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://hanqiu92.github.io/images/latent_class_1.png">
 <meta property="og:image" content="http://hanqiu92.github.io/images/latent_class_2.png">
 <meta property="og:image" content="http://hanqiu92.github.io/images/latent_class_3.png">
-<meta property="og:updated_time" content="2016-11-06T04:41:45.000Z">
+<meta property="og:updated_time" content="2016-11-21T23:41:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Case Study: Latent Classes in Quebec Energy consumption">
 <meta name="twitter:description" content="Last semester, in course 1.202 Demand Modeling, there is an interesting case study of Quebec energy consumption. Exploratory data analysis indicates that there are potential market segments, and subse">
@@ -330,7 +330,7 @@
 <p>So, in more general cases, how can we discover such patterns if exploration is not always feasible? Moreover, how can we make sure our segmentation will improve the model performance?</p>
 <h2 id="An-initial-approach"><a href="#An-initial-approach" class="headerlink" title="An initial approach"></a>An initial approach</h2><p>Our target is to separate the dataset to improve our objective function; so why not look at the final gradients? Even though the sum of gradients will be close to 0, they might not be homogenous small and uniformly distributed. If we can find some hyperplanes to separate the dataset in such a way that the sum of gradients in each region is significant, we can then improve our estimates on each subset by driving the parameters into different directions.</p>
 <p>As an initial approach, we will consider the simplest case: regression tree on categorical variables. In each iteration, we solve the MLE problem, obtain the gradient at each data point, and then for each categorical variable, we search for a cutoff value that best ‘separate’ the set of gradients, or, that makes the difference between the sum of two subset greatest. Finally, we compare these differences across variables and select the most influential one. We will stop once the improvement is negligible.</p>
-<p>We implement this idea and test it on the Quebec dataset. The code (in ipython notebook) can be find <a href="https://github.com/hanqiu92/latent_class_choice_model/blob/master/categorical_variable/categorical_variable.ipynb" target="_blank" rel="external">here</a>. Since gradients in logit model can have great scale, we normalize them in each step to stabilize the algorithm. It is shown that the code successfully finds the variable ‘constr_year’ and the cutoff value 7. The total log likelihood improves a lot, while the segmentation is quite balance (561 v.s. 499).</p>
+<p>We implement this idea and test it on the Quebec dataset. The code can be find <a href="https://github.com/hanqiu92/latent_class_choice_model/blob/master/categorical_variable.py" target="_blank" rel="external">here</a>. Since gradients in logit model can have great scale, we normalize them in each step to stabilize the algorithm. It is shown that the code successfully finds the variable ‘constr_year’ and the cutoff value 7. The total log likelihood improves a lot, while the segmentation is quite balance (561 v.s. 499).</p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In this small case study, we purpose a simple algorithm to find latent classes in a choice dataset. It is clear that our approach is quite limited since we only consider categorical variables and the approach to find cutoff value can be highly unstable. Nevertheless, this approach can be a good start in exploring potential segmentation and support future analysis. Next, we will try to solve the problem from another perspective: can we include latent class directly in our inference model and design efficient estimation algorithm?</p>
 
       
@@ -372,6 +372,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/17/reflection_on_simple_queue/" rel="prev" title="Reflection on Simple Queues">
+                Reflection on Simple Queues <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -446,7 +450,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

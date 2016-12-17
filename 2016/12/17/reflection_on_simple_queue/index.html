@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Integer Programming," />
+  <meta name="keywords" content="Queuing Theory,Traffic Flow," />
 
 
 
@@ -84,16 +84,17 @@
 
 
 
-<meta name="description" content="In this post, I will briefly review some basic ideas in polyhedral theory, which are the building blocks for more advanced MIP techniques.">
+<meta name="description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Integer Programming Note I: Polyhedral Theory">
-<meta property="og:url" content="http://hanqiu92.github.io/2016/10/04/IP1/index.html">
+<meta property="og:title" content="Reflection on Simple Queues">
+<meta property="og:url" content="http://hanqiu92.github.io/2016/12/17/reflection_on_simple_queue/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="In this post, I will briefly review some basic ideas in polyhedral theory, which are the building blocks for more advanced MIP techniques.">
-<meta property="og:updated_time" content="2016-10-04T16:07:51.000Z">
+<meta property="og:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
+<meta property="og:image" content="http://hanqiu92.github.io/images/MM1_queue_state_space.png">
+<meta property="og:updated_time" content="2016-12-17T23:37:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Integer Programming Note I: Polyhedral Theory">
-<meta name="twitter:description" content="In this post, I will briefly review some basic ideas in polyhedral theory, which are the building blocks for more advanced MIP techniques.">
+<meta name="twitter:title" content="Reflection on Simple Queues">
+<meta name="twitter:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
 
 
 
@@ -114,10 +115,10 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/2016/10/04/IP1/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/2016/12/17/reflection_on_simple_queue/"/>
 
 
-  <title> Integer Programming Note I: Polyhedral Theory | Han's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Reflection on Simple Queues | Han's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="en">
@@ -247,7 +248,7 @@
             
             
               
-                Integer Programming Note I: Polyhedral Theory
+                Reflection on Simple Queues
               
             
           </h1>
@@ -259,8 +260,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-10-04T11:00:00-04:00" content="2016-10-04">
-              2016-10-04
+            <time itemprop="dateCreated" datetime="2016-12-17T12:00:00-05:00" content="2016-12-17">
+              2016-12-17
             </time>
           </span>
 
@@ -289,8 +290,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/04/IP1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/04/IP1/" itemprop="commentsCount"></span>
+                <a href="/2016/12/17/reflection_on_simple_queue/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/17/reflection_on_simple_queue/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -313,28 +314,35 @@
       
 
       
-        <p>In this post, I will briefly review some basic ideas in polyhedral theory, which are the building blocks for more advanced MIP techniques.</p>
+        <p>This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite capacity always have a steady state, but no proof is given in the class. In this post, I will discuss the dynamical system approach for this problem, and suggest several extensions.</p>
 <a id="more"></a>
-<h2 id="H-representation-V-representation-and-Minkowski-Weyl-Theorem"><a href="#H-representation-V-representation-and-Minkowski-Weyl-Theorem" class="headerlink" title="$H$-representation, $V$-representation, and Minkowski-Weyl Theorem"></a>$H$-representation, $V$-representation, and Minkowski-Weyl Theorem</h2><p>$H$-formulation, or hyperplane formulation, uses finitely many linear constraints (hyperplane) to describe a polyhedron. The simplest $H$-formulation is like:</p>
-<p>$$P=\{x:Ax\leqslant b\}.$$</p>
-<p>$V$-formulation, on the other hand, tries to characterize a polyhedron with extreme points and extreme rays. In simple words, extreme points depict the corner of a polyhedron $P$, while extreme rays define the directions of some boundary edges of $P$ extending to $\infty$.</p>
-<p>Now, assume for $P$ we have set of extreme points $V$ and set of extreme rays $R$. A $V$-formulation is like:</p>
-<p>$$P=Conv(V)+Cone(R)$$</p>
-<p>where $Conv$ is the convex hull and $Cone$ is the cone hull.</p>
-<p>Naturally, these two formulations should be the same. Minkowski-Weyl Theorem formally states that, the $V$-formulation and the $H$-formulation are equivalent. Thus, for a given polyhedron $P$, we have two different ways to describe it. But which one is better?</p>
-<p>Intuitively, $H$-formulation has more concise form, but the expression is not unique and redundancy is possible. $V$-formulation is usually far more complex (e.g. having exponential number of extreme points), but the expression is unique and uniform. Later we will see that, these two formulations provide not only different formulation performance, but also different approach methodology to MIP problems (inner approximation v.s. outer approximation).</p>
-<h2 id="Farkas’-lemma-and-Fundamental-Theorem-of-Linear-Inequality"><a href="#Farkas’-lemma-and-Fundamental-Theorem-of-Linear-Inequality" class="headerlink" title="Farkas’ lemma and Fundamental Theorem of Linear Inequality"></a>Farkas’ lemma and Fundamental Theorem of Linear Inequality</h2><p>The famous Farkas’ lemma states the following:</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One of the two following systems is feasible:</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a) $\{x\in R^n: Ax=b,x\geqslant 0\}$;</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b) $\{y\in R^m: y^TA\geqslant 0, y^Tb&lt;0\}$</p>
-<p>From a geometric point of view, the first system says that $b$ is in the cone generated by columns of $A$: $b\in cone(A)$, while the second system says that we can find a hyperplane $y^Tx=0$ to separate $b$ from $cone(A)$. But can we find a good $y$ with more properties? Fundamental theorem of linear inequality shows that we can efficiently depict the boundary of the set of these $y$:</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If $\{a_i\}_n,b\in R^m$ and $dim(L(a_1,\cdots,a_n,b))=m$, then one of the two following statements holds:</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a) $b\in cone(\{a_i\}_n)$;</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b) $\exists c\in R^m$ s.t. $c^Tb&gt;0, c^Ta_i\leqslant 0$, and $c^Ta_j=0$ for $m-1$ independent $a_j$.</p>
-<p>One reason why I mention Farkas’ lemma here is that it provides us ways to construct valid constraints. For example, let $P=\{x\in R^n: Ax\leqslant b\}$. Then, by Farkas’ lemma,</p>
-<p>$P\subseteq\{x\in R^n: c^Tx\leqslant d\}$ iff $c=A^T\mu, d\geqslant b^T\mu$ for some $\mu\in R^m_+$.</p>
-<p>In integer case, some of these cuts (Gomory cuts in this case) can be improved to $c^Tx\leqslant \lfloor d \rfloor$, and leads to stronger formulation.</p>
-<p>Similarly, with same technique we can analyze the size of projection $Proj_x(P)$ where $P$ is extended formulation $P=\{(x,z): Ax+Dz\leqslant b\}$. I will discuss this in a later post (on extended formulation).</p>
+<h2 id="Modeling-the-Dynamics"><a href="#Modeling-the-Dynamics" class="headerlink" title="Modeling the Dynamics"></a>Modeling the Dynamics</h2><p>Let us consider the easiest $M$/$M$/1/$k$ queue, where $k$ is a finite number. Following is a picture of the temporal transition (By Gareth Jones - <a href="https://commons.wikimedia.org/w/index.php?curid=17204982" target="_blank" rel="external">MM1_queue_state_space.png</a>, CC BY-SA 3.0)</p>
+<p><img src="/images/MM1_queue_state_space.png" alt="two_segments"></p>
+<p>The state transition matrix is then given by</p>
+<p>$$A^T = \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ \mu &amp; -(\mu+\lambda) &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; \mu &amp; -\mu \end{pmatrix} $$</p>
+<p>It is taught from the class that to steady state probability $\pi$ can be obtained from solving equation $A\pi = 0$. But why is so?</p>
+<p>Let us think about how to obtain the transition diagram. We consider a small time slice $dt$, and find the first order derivative of transition probabilities between states. That means, the dynamical system on the probability of states can be described by the following linear ODE:</p>
+<p>$$ \frac{d}{dt}\pi = A\pi.$$</p>
+<p>It is obvious that this system is well defined since operator $A$ projects one probability distribution to another probability distribution. And now, we can analyze the queuing system using the tools for more general differential dynamical systems.</p>
+<p>The general solution of the ODE above is</p>
+<p>$$\pi_t = e^{At} \pi_0.$$</p>
+<p>Clearly, since $\pi_t$ will always satisfy the regularity condition as a probability distribution, $e^{At}$ will not have any eigenvalue with positive real part greater than 1. We can also prove this in a more formal way. Notice that $M = I + A$ is a Markov matrix on the graph of states and it is strongly connected, we know that $M$ is <a href="https://en.wikipedia.org/wiki/Irreducibility_(mathematics" target="_blank" rel="external">irreducible</a>. Then by Perron-Frobenius Theorem, we know that there is a maximal eigenvalue $\lambda_{max}$ such that the corresponding eigenvector $\pi^*$ is positive, and any non-negative eigenvector $\pi$ is a multiple of $\pi^*$. But since $A^Te = 0$, we know the left eigenvector $e$ exists and $\lambda_{max}$ must be 1. Then it is clear that the maximal eigenvalue of $e^{At}$ must be 1, the corresponding eigenvector $\pi^*$ exists and must be stable, and $\pi_t\to\pi^*$.</p>
+<h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><p>It seems that the analysis above uses complicate approach to validate a simple statement. But under the same framework, we can deal with systems with varying arrival and service rate, which is common in practice. For example, let us consider a varying arrival rate $\lambda_t$ along with the transition matrix $A_t$ and the ODE</p>
+<p>$$ \frac{d}{dt}\pi = A_t\pi.$$</p>
+<p>Now, the general solution can be expressed as</p>
+<p>$$\pi_t = e^{\int_0^t A_s ds} \pi_0 = e^{t\bar{A}_t} \pi_0,$$</p>
+<p>where $\bar{A}_t = \frac{1}{t}\int_0^tA_s ds$ is the time average of the transition matrix and is the transition matrix corresponding to average arrival rate $\bar{\lambda}_t = \frac{1}{t}\int_0^t\lambda_s ds$. If $\lambda_t$ is periodic with period $T$, by applying the same technique (informally) on $\bar{A}_T$ we know that there is a stable trajectory $\pi_T^*$ on $S^k \times [0,T]$ and $\pi_{nT+t}\to\pi_T^*(\cdot,t)$ as $n\to\infty$.</p>
+<p>To go one step further, we might be able to consider different arrival/service process. For example, consider a $M$/$D$/1/$k$ queue, in which the service process is deterministic. Now we have two matrices, the transient arrival</p>
+<p>$$A^T = \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -\lambda &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -\lambda &amp; \lambda \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \end{pmatrix} $$</p>
+<p>and the deterministic service with period $T=1/\mu$</p>
+<p>$$B^T = \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -1 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; -1 \end{pmatrix} $$</p>
+<p>So within period $T$ the dynamics is</p>
+<p>$$\pi_t = e^{tA} \pi_0,$$</p>
+<p>and at time $T$ we have</p>
+<p>$$\pi_T = Be^{TA} \pi_0.$$</p>
+<p>Then, to analyze the long term behavior of this system, we only need to know the spectral property of matrix $F=Be^{TA}$.</p>
+<p>We can also consider queues with infinity capacity. In this case, we need to define transition operator $A$ on $S^{\infty}$, the set of all discrete probability distribution, and analyze the spectrum of $A$. This is somewhat complicate so currently I will not discuss it. But one interesting question is, whether can we extend this notion into general probability distribution case and consider dynamics on the corresponding set/space.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this post I briefly review some simple queuing systems from the perspective of dynamical system. It is shown that this framework is powerful and can be generalized in many different settings. Moreover, we might be able to not only focus on steady state but also analyze the transient dynamics, which can be helpful for subsequent simulation design.</p>
 
       
     </div>
@@ -357,7 +365,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Integer-Programming/" rel="tag">#Integer Programming</a>
+            <a href="/tags/Queuing-Theory/" rel="tag">#Queuing Theory</a>
+          
+            <a href="/tags/Traffic-Flow/" rel="tag">#Traffic Flow</a>
           
         </div>
       
@@ -366,13 +376,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/11/06/latent_class_category_variable/" rel="next" title="Case Study: Latent Classes in Quebec Energy consumption">
+                <i class="fa fa-chevron-left"></i> Case Study: Latent Classes in Quebec Energy consumption
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/04/IP2/" rel="prev" title="Integer Programming Note II: Formulation Strength & Size">
-                Integer Programming Note II: Formulation Strength & Size <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -504,7 +514,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#H-representation-V-representation-and-Minkowski-Weyl-Theorem"><span class="nav-number">1.</span> <span class="nav-text">$H$-representation, $V$-representation, and Minkowski-Weyl Theorem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Farkas’-lemma-and-Fundamental-Theorem-of-Linear-Inequality"><span class="nav-number">2.</span> <span class="nav-text">Farkas’ lemma and Fundamental Theorem of Linear Inequality</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeling-the-Dynamics"><span class="nav-number">1.</span> <span class="nav-text">Modeling the Dynamics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extensions"><span class="nav-number">2.</span> <span class="nav-text">Extensions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">3.</span> <span class="nav-text">Summary</span></a></li></ol></div>
             
           </div>
         </section>
@@ -624,9 +634,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'hanqiu92';
-      var disqus_identifier = '2016/10/04/IP1/';
-      var disqus_title = "Integer Programming Note I: Polyhedral Theory";
-      var disqus_url = 'http://hanqiu92.github.io/2016/10/04/IP1/';
+      var disqus_identifier = '2016/12/17/reflection_on_simple_queue/';
+      var disqus_title = "Reflection on Simple Queues";
+      var disqus_url = 'http://hanqiu92.github.io/2016/12/17/reflection_on_simple_queue/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
