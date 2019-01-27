@@ -247,6 +247,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/2019/01/27/reflection_on_decision_making_modeling_201901/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avtar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Han's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/27/reflection_on_decision_making_modeling_201901/" itemprop="url">A Note on Decision Behavior Modeling</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-27T00:00:00-05:00">
+                2019-01-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reflection/" itemprop="url" rel="index">
+                    <span itemprop="name">Reflection</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在这篇短文中，我将基于过去一年中的研究经验，简单地分享一下我目前对行为决策建模的见解。</p>
+<p>In this post, I will briefly discuss some of my current thoughts on decision behavior modeling based on my research experience over the past year.</p>
+<p>抽象地来看，决策行为即在给定决策信息$s$（下称状态）的情况下，通过某种策略$\pi$采取动作$a$</p>
+<p>From an abstract point of view, decision making is to take an action $a$ according to a certain strategy $\pi$ given decision information $s$ (hereinafter referred to as the state)</p>
+<p>$$a \sim \pi(s).$$</p>
+<p>而行为决策建模，则希望根据观察数据$\mathcal{D} = \{(s,a)\}_n$，获取决策机制$\pi$的相关信息。</p>
+<p>While decision behavior modeling attempts to infer the strategy $\pi$ from observations $\mathcal{D} = \{(s,a)\}_n$.</p>
+<p>由于数据集$\mathcal{D}$是有限的，能够很好地拟合该数据集的$\pi$可能有无穷多个。因此，研究者通常需要对$\pi$的形式做出额外假设。而一个最基础且核心的假设是$\pi$服从<strong>效用最大化原理</strong>。</p>
+<p>Because the dataset $\mathcal{D}$ has finite datapoints, there can be an infinite number of $\pi$ that fits well into the dataset. Therefore, researchers often need to make additional assumptions about the form of $\pi$. And one of the most fundamental assumptions is that $\pi$ follows the <strong>utility-maximization principle</strong>.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/27/reflection_on_decision_making_modeling_201901/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/2018/09/01/gan_irl_methods/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1551,155 +1705,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/2016/10/04/IP1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avtar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Han's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/04/IP1/" itemprop="url">Integer Programming Note I: Polyhedral Theory</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-04T11:00:00-04:00">
-                2016-10-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Lecture-Notes/" itemprop="url" rel="index">
-                    <span itemprop="name">Lecture Notes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>In this post, I will briefly review some basic ideas in polyhedral theory, which are the building blocks for more advanced MIP techniques.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/10/04/IP1/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1747,7 +1759,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1816,7 +1828,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
