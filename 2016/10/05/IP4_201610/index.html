@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Integer Programming," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Cuts are important tools to strengthen your formulation and improve computation efficiency. In this post, I will introduce two kind of cuts: geometric cuts, which consider the geometric property of th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Integer Programming Note IV: Cuts">
+<meta property="og:url" content="http://hanqiu92.github.io/2016/10/05/IP4_201610/index.html">
+<meta property="og:site_name" content="Han's Blog">
+<meta property="og:description" content="Cuts are important tools to strengthen your formulation and improve computation efficiency. In this post, I will introduce two kind of cuts: geometric cuts, which consider the geometric property of th">
+<meta property="og:updated_time" content="2019-06-01T11:16:10.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Integer Programming Note IV: Cuts">
+<meta name="twitter:description" content="Cuts are important tools to strengthen your formulation and improve computation efficiency. In this post, I will introduce two kind of cuts: geometric cuts, which consider the geometric property of th">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hanqiu92.github.io/2016/10/05/IP4_201610/"/>
+
+
+
+
+
+  <title>Integer Programming Note IV: Cuts | Han's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Han's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">About human behavior, reinforcement learning, and optimization.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/2016/10/05/IP4_201610/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/pics/1.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Han's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Integer Programming Note IV: Cuts</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-05T00:05:00+08:00">
+                2016-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Study-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Study Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Cuts are important tools to strengthen your formulation and improve computation efficiency. In this post, I will introduce two kind of cuts: geometric cuts, which consider the geometric property of the polyhedron and have general application, and implicit cuts, which are more problem specific but potentially can lead to very strong formulation.</p>
+<a id="more"></a>
+<h2 id="Geometric-cuts-Gomory-cut-and-split-cut"><a href="#Geometric-cuts-Gomory-cut-and-split-cut" class="headerlink" title="Geometric cuts: Gomory cut and split cut"></a>Geometric cuts: Gomory cut and split cut</h2><p>Assume that we are given $P=\{x\in Z^n: Ax\leqslant b\}$ with $A\in R^{m\times n}$ and $b\in R^m$. If we can find a hyperplane $\{x: c^Tx\leqslant d\}\supseteq P$ with $c\in Z^n$ and $d\notin Z$, based on the integrality we immediately know $\{x: c^Tx\leqslant \lfloor d \rfloor\}$ is also a valid constraint for $P$. Sometimes (e.g. extreme point is not integral and the local boundary is not very flat), adding proper Gomory cuts can lead to much stronger formulation.</p>
+<p>Notice that by Farkas’ lemma, $\{x: c^Tx\leqslant d\}\supseteq P$ is equivalent to $\exists \mu\in R^m_+$ s.t. $c=A^T\mu, d\geqslant b^T\mu$. So a general idea to construct Gomory cut is to find $\mu\in R^m_+$ s.t. $A^T\mu\in Z^n$, and add cut</p>
+<p>$$\mu^TAx\leqslant \lfloor \mu^Tb \rfloor.$$</p>
+<p>For mixed integer case $P=\{(x,y)\in Z^{n_1}\times R^{n_2} : Ax+By\leqslant b\}$, again by Farkas’ lemma all valid cuts (for the LP relaxation) are in form</p>
+<p>$$\mu^TAx+\mu^TBy\leqslant \mu^Tb$$</p>
+<p>for some $\mu\in R^m_+$. A way to avoid the messy continuous variables $y$ is to focus on $\mu$ s.t. $\mu^TB=0$. That is, in case of $\mu\in R^m_+: \mu^TB=0, \mu^TA\in R^n$, we have</p>
+<p>$$\mu^TAx\leqslant \lfloor \mu^Tb \rfloor.$$</p>
+<p>Gomory cut only considers improvement on the boundary. Split cut takes a step ahead by splitting the polyhedron into two (or more) and construct shared boundary cut (or even Gomory cut) for both parts. Again, consider mixed integer case: $P=\{(x,y)\in Z^{n_1}\times R^{n_2} : Ax+By\leqslant b\}$ with $A\in R^{m\times n_1}, B\in R^{m\times n_2}, b\in R^m$. We first use split $\Pi x\leqslant \Pi_0$ and $\Pi x\geqslant \Pi_0+1$ with $\Pi\in Z^{n_1}$ and $\Pi_0\in Z$ to separate $P$. Then, by Farkas’ lemma, a valid cut $ c^Tx+d^Ty\leqslant h$ for system $Ax+By\leqslant b, \Pi x\leqslant \Pi_0$ is in form</p>
+<p>$$\begin{aligned} \begin{pmatrix} A^T&amp; \Pi^T\\ B^T&amp; 0 \end{pmatrix} \begin{pmatrix}\mu \\ \alpha \end{pmatrix} &amp; = \begin{pmatrix}c \\ d \end{pmatrix} \\ \begin{pmatrix} b^T&amp; \Pi_0 \end{pmatrix} \begin{pmatrix}\mu \\ \alpha \end{pmatrix} &amp; \leqslant  h \end{aligned} $$</p>
+<p>with $\mu \in R^m_+$ and $\alpha \in R_+$. Similarly, for the other system, the same cut should satisfy</p>
+<p>$$\begin{aligned} \begin{pmatrix} A^T&amp; -\Pi^T\\ B^T&amp; 0 \end{pmatrix} \begin{pmatrix}\lambda \\ \beta \end{pmatrix} &amp; = \begin{pmatrix}c \\ d \end{pmatrix} \\ \begin{pmatrix} b^T&amp; -\Pi_0-1 \end{pmatrix} \begin{pmatrix}\lambda \\ \beta \end{pmatrix} &amp; \leqslant  h \end{aligned} $$</p>
+<p>with $\lambda \in R^m_+$ and $\beta \in R_+$. And the remaining task is to find non-negative $\alpha,\beta,\mu,\lambda$ that satisfy above equations.</p>
+<p>Following same ideas, these geometric cuts can also be extended to nonlinear settings, even though the formulations are usually more complex. But if you have a good outer approximation (which will be introduced in next post), above characterization can again be applied.</p>
+<h2 id="Implicit-cuts"><a href="#Implicit-cuts" class="headerlink" title="Implicit cuts"></a>Implicit cuts</h2><p>For many problems (especially combinatoric ones), we can construct simple formulations easily, but these formulations are usually weak. One possible problem is that the formulation is constructed in aggregate level and has to use a large big-$M$. For example, consider single source fixed charge uncapacitated multi-commodity flow problem. Assume root source $r$ has outflow $f_r$ and sink $s_i$ has inflow $f_{s_i}$, and if an arc $(u,v)$ has positive flow, there is a fixed charge $c_{uv}$. Now, it seems straightforward to use continuous variables $y_{uv}$ to model the flow in arc $(u,v)$ and binary variables $x_{uv}$ to model whether there is positive flow. Unfortunately, in this case the connection between $y_{uv}$ and $x_{uv}$ is weak:</p>
+<p>$$y_{uv}\leqslant |f_r|x_{uv}.$$</p>
+<p>An easy way to strengthen this formulation is to decompose each $y_{uv}$ into sum of $y_{uv}^i$, which is the flow in arc $(u,v)$ for pair $(r,s_i)$. Then we have much stronger bound on $x_{uv}$:</p>
+<p>$$y_{uv}^i\leqslant |f_{s_i}|x_{uv}, \forall i.$$</p>
+<p>Such decomposition technique can be applied to a wide range of combinatorial problems.</p>
+<p>Another technique I want to discuss is to impose redundancy. Assume you have a problem in $P=\{x: Ax\leqslant b, f(x)\leqslant g\}$. If you have an good (e.g., ideal) extended formulation for $\{f(x)\leqslant g\}$, it will be beneficial to add some redundant cut based on $\{Ax\leqslant b\}$ and auxillary variables $y$. For example, suppose for variables $x_{ij}\in\{0,1\}$ and $p_k\in [0,1]$, we want to use auxiliary variables $u_{ijk}$ to model $x_{ij}p_k$ with constraints $\sum_j x_{ij}\leqslant 1$. An ideal formulation of $u_{ijk}$ is</p>
+<p>$$\begin{aligned} 0\leqslant u_{ijk}\leqslant p_k\\ p_k+x_{ij}-1\leqslant u_{ijk}\leqslant x_{ij} \end{aligned}$$</p>
+<p>Then, by multiplying $p_k$ and $1-p_k$ to $\sum_j x_{ij}\leqslant 1$, we have redundant cuts</p>
+<p>$$\begin{aligned} \sum_j u_{ijk}&amp;\leqslant p_k\\  \sum_ju_{ijk}-\sum_j x_{ij}&amp;\geqslant p_k-1 \end{aligned}$$</p>
+<p>Clearly, these “redundant” cuts are much stronger than the locally ideal formulation above.</p>
+<p>Generally, such cuts will work well if $\{x: Ax\leqslant b\}$ is significantly tighter than $\{x: f(x)\leqslant g\}$ and the ranges of auxiliary variables $y$ depend on $x$, since these redundant cuts can effectively restrict the ranges of auxiliary variables, comparing with simple intersection of $\{x: Ax\leqslant b\}$ and ideal formulation of $\{x: f(x)\leqslant g\}$.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Vanderbeck, F., &amp; Wolsey, L. A. (2010). Reformulation and decomposition of integer programs. In 50 Years of Integer Programming 1958-2008 (pp. 431-502). Springer Berlin Heidelberg.</p>
+<p>Tawarmalani, M., Ahmed, S., &amp; Sahinidis, N. V. (2002). Global optimization of 0-1 hyperbolic programs. Journal of Global Optimization, 24(4), 385-416.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Integer-Programming/" rel="tag"># Integer Programming</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/05/IP3_201610/" rel="next" title="Integer Programming Note III: Encoding & Embedding">
+                <i class="fa fa-chevron-left"></i> Integer Programming Note III: Encoding & Embedding
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/05/IP5_201610/" rel="prev" title="Integer Programming Note V: Decomposition">
+                Integer Programming Note V: Decomposition <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/pics/1.JPG"
+                alt="Han Qiu" />
+            
+              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hanqiu92" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Geometric-cuts-Gomory-cut-and-split-cut"><span class="nav-number">1.</span> <span class="nav-text">Geometric cuts: Gomory cut and split cut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implicit-cuts"><span class="nav-number">2.</span> <span class="nav-text">Implicit cuts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qiu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://hanqiu92.github.io/2016/10/05/IP4_201610/';
+          this.page.identifier = '2016/10/05/IP4_201610/';
+          this.page.title = 'Integer Programming Note IV: Cuts';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hanqiu92.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
