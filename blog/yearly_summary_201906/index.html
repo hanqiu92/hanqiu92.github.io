@@ -89,8 +89,8 @@
 <meta property="og:url" content="http://hanqiu92.github.io/blog/yearly_summary_201906/index.html">
 <meta property="og:site_name" content="Han's Blog">
 <meta property="og:description" content="In the past year, I have been in the ride-hailing industry and have encountered many interesting problems. In this post, I would like to summarize my experience in formulating and tackling these probl">
-<meta property="og:image" content="http://hanqiu92.github.io/blog/images/yearly_summaries/opt_result_201906.png">
-<meta property="og:updated_time" content="2019-06-23T14:03:27.493Z">
+<meta property="og:image" content="http://hanqiu92.github.io/blog/blog/images/yearly_summaries/opt_result_201906.png">
+<meta property="og:updated_time" content="2019-06-25T14:29:01.662Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="What I've Learned in the Past Year (Year 2018-19)">
 <meta name="twitter:description" content="In the past year, I have been in the ride-hailing industry and have encountered many interesting problems. In this post, I would like to summarize my experience in formulating and tackling these probl">
@@ -193,7 +193,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/blog/categories" rel="section">
             
             Categories
           </a>
@@ -201,7 +201,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/blog/archives" rel="section">
             
             Archives
           </a>
@@ -209,7 +209,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/blog/tags" rel="section">
             
             Tags
           </a>
@@ -253,7 +253,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/pics/1.JPG">
+      <meta itemprop="image" content="/blog/images/pics/1.JPG">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -373,7 +373,7 @@
 <p>To model noises in the estimations, we consider the following $\sim 10\%$ perturbation for each input $r_{ij}$ or $c_{ij}$</p>
 <p>$$x’ = e^z\cdot x, z\sim N(0,0.1).$$</p>
 <p>The following figure shows the simulation results averaged over 20 runs; it is shown that the dual approach (2.3), which corresponds the data point above the tick “all”, is not robust to estimation noises (with a $2\%$ loss compared with the background optimal solution).</p>
-<p><img width="500" src="/images/yearly_summaries/opt_result_201906.png"></p>
+<p><img width="500" src="/blog/images/yearly_summaries/opt_result_201906.png"></p>
 <p>A simple way to improve the robustness of approach (2.3) is to do clustering. As an illustration, in the same simulation experiment, I first apply PCA to map the $(r_i,c_i)$ tuple for each user $i$ into a three-dimensional vector, and then apply k-means clustering to map the users into $N_G$ groups, where $N_G \in \{10,50,100,500,1000,5000\}$. In the same figure above, we can see that by selecting an appropriate $N_G$ (in our case, $N_G = 500$), we can do slightly better than the direct dual approach. (<strong>Remark:</strong> one should notice that this quantitative result on $N_G$ is case-dependent; for example, one can investigate what would happen if the estimations of costs $c$ are much less noisy, e.g., with a $\sim 1\%$ perturbation.)</p>
 <p>Though the above case is simple, the techniques considered can be readily applied to more complex settings. For example, when a dual solution $\lambda$ is determined, the operator can provide personalized recommendations in an online manner: when a user $i$ submits a request, the operator can make a choice from available options immediately by maximizing $r_{ij} - \sum_k \lambda_k c_{ij}^{k}$. Moreover, if we further notice that the dual approach (2.3) resembles the following stochastic program</p>
 <p>$$\min_{\lambda \geq 0} E_{r,c \sim F(\cdot)} \max_j \{ r_{j} - \sum_k \lambda_k c_{j}^{k} \}, \tag{2.4}$$</p>
@@ -526,7 +526,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/pics/1.JPG"
+                src="/blog/images/pics/1.JPG"
                 alt="Han Qiu" />
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
@@ -538,7 +538,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives">
+                <a href="/blog/archives">
               
                   <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
@@ -576,9 +576,21 @@
             <div class="links-of-author motion-element">
                 
                   <span class="links-of-author-item">
+                    <a href="https://hanqiu92.github.io" target="_blank" title="HomePage">
+                      
+                        <i class="fa fa-fw fa-globe"></i>HomePage</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
                     <a href="https://github.com/hanqiu92" target="_blank" title="Github">
                       
-                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                        <i class="fa fa-fw fa-github"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:qiuhan9212@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                   </span>
                 
             </div>

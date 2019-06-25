@@ -89,8 +89,8 @@
 <meta property="og:url" content="http://hanqiu92.github.io/blog/simple_queue_dynamic_201612/index.html">
 <meta property="og:site_name" content="Han's Blog">
 <meta property="og:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
-<meta property="og:image" content="http://hanqiu92.github.io/blog/images/MM1_queue_state_space.png">
-<meta property="og:updated_time" content="2019-06-01T11:16:33.566Z">
+<meta property="og:image" content="http://hanqiu92.github.io/blog/blog/images/MM1_queue_state_space.png">
+<meta property="og:updated_time" content="2019-06-25T14:33:33.753Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reflection on Simple Queues">
 <meta name="twitter:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
@@ -193,7 +193,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/blog/categories" rel="section">
             
             Categories
           </a>
@@ -201,7 +201,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/blog/archives" rel="section">
             
             Archives
           </a>
@@ -209,7 +209,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/blog/tags" rel="section">
             
             Tags
           </a>
@@ -253,7 +253,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/pics/1.JPG">
+      <meta itemprop="image" content="/blog/images/pics/1.JPG">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -340,7 +340,7 @@
         <p>This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite capacity always have a steady state, but no proof is given in the class. In this post, I will discuss the dynamical system approach for this problem, and suggest several extensions.</p>
 <a id="more"></a>
 <h2 id="Modeling-the-Dynamics"><a href="#Modeling-the-Dynamics" class="headerlink" title="Modeling the Dynamics"></a>Modeling the Dynamics</h2><p>Let us consider the easiest $M$/$M$/1/$k$ queue, where $k$ is a finite number. Following is a picture of the temporal transition (By Gareth Jones - <a href="https://commons.wikimedia.org/w/index.php?curid=17204982" target="_blank" rel="external">MM1_queue_state_space.png</a>, CC BY-SA 3.0)</p>
-<p><img src="/images/MM1_queue_state_space.png" alt="two_segments"></p>
+<p><img src="/blog/images/MM1_queue_state_space.png" alt="two_segments"></p>
 <p>The state transition matrix is then given by</p>
 <p>$$A^T = \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ \mu &amp; -(\mu+\lambda) &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; \mu &amp; -\mu \end{pmatrix} $$</p>
 <p>It is taught from the class that to steady state probability $\pi$ can be obtained from solving equation $A\pi = 0$. But why is so?</p>
@@ -487,7 +487,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/pics/1.JPG"
+                src="/blog/images/pics/1.JPG"
                 alt="Han Qiu" />
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
@@ -499,7 +499,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives">
+                <a href="/blog/archives">
               
                   <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
@@ -537,9 +537,21 @@
             <div class="links-of-author motion-element">
                 
                   <span class="links-of-author-item">
+                    <a href="https://hanqiu92.github.io" target="_blank" title="HomePage">
+                      
+                        <i class="fa fa-fw fa-globe"></i>HomePage</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
                     <a href="https://github.com/hanqiu92" target="_blank" title="Github">
                       
-                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                        <i class="fa fa-fw fa-github"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:qiuhan9212@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                   </span>
                 
             </div>
