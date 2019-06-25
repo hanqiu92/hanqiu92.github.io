@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/blog/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Integer Programming," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Unbalanced Branching and EncodingConsider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Integer Programming Note III: Encoding & Embedding">
+<meta property="og:url" content="http://hanqiu92.github.io/blog/IP3_201610/index.html">
+<meta property="og:site_name" content="Han's Blog">
+<meta property="og:description" content="Unbalanced Branching and EncodingConsider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in">
+<meta property="og:updated_time" content="2019-06-01T11:16:06.379Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Integer Programming Note III: Encoding & Embedding">
+<meta name="twitter:description" content="Unbalanced Branching and EncodingConsider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hanqiu92.github.io/blog/IP3_201610/"/>
+
+
+
+
+
+  <title>Integer Programming Note III: Encoding & Embedding | Han's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Han's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">About human behavior, reinforcement learning, and optimization.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/IP3_201610/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/pics/1.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Han's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Integer Programming Note III: Encoding & Embedding</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-05T00:00:00+08:00">
+                2016-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Study-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Study Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Unbalanced-Branching-and-Encoding"><a href="#Unbalanced-Branching-and-Encoding" class="headerlink" title="Unbalanced Branching and Encoding"></a>Unbalanced Branching and Encoding</h2><p>Consider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in standard MIP solver, $x_i$ is first relaxed into continuous variable, and then forced to be integer with B&amp;B. For the constraint above, when we branch on a fractional $x_i$, we have two choices, $x_i=1$ or $x_i=0$, but the result of each branch is different. With $x_i=1$, we immediate know $x_j=0, \forall j\neq i$, even though they are still assumed continuous. But with $x_i=0$, the optimal solution might still contain another fractional $x_j$ and further branching is needed. In extreme case, we need to branch $n-1$ times to locate the optimal integer solution.</p>
+<a id="more"></a>
+<p>The basic idea to deal with such unbalanced branching is to encode each $x_i$ and design more efficient branching trees. In the above case, we can consider encoding</p>
+<p>$$\begin{aligned} \sum b_ix_i &amp;= y\\  \sum x_i&amp;= 1\\ y \ &amp;\in \{0,1\}^m, \end{aligned}$$</p>
+<p>in which $b_i\in \{0,1\}^m$ is the encoding for $x_i$.</p>
+<p>Notice that, if we let $m=n$ and $b_i=e_i$, we will recover the original constraint  $\sum_i x_i= 1, x_i\in \{0,1\}$. This encoding is called unary encoding; we already know it is inefficient. What other encoding can we use?</p>
+<p>In practice, two encoding are widely used: binary encoding and incremental encoding. In binary encoding, $m=\lceil log_2n \rceil$ and $b_i$ is selected to be mutually different and balanced in number for each row. An example for $n=4$ is</p>
+<p>$$\begin{pmatrix}0 &amp; 0 &amp; 1 &amp; 1\\0 &amp; 1 &amp; 1&amp; 0 \end{pmatrix} \begin{pmatrix} x_1\\x_2\\x_3\\x_4 \end{pmatrix}=\begin{pmatrix}y_1\\y_2\end{pmatrix}$$</p>
+<p>Now, assume in root LP the optimal solution has $y_1$ fractional. When we branch on $y_1$, we find the branching tree is more balanced: if $y_1=1$, then $x_1$ and $x_2$ are forced to be $0$; if $y_1=0$, then $x_3$ and $x_4$ are forced to be $0$. For $y_2$, the situation is similar. In extreme case, we only need to branch $m$ times, which is much better than unary encoding.</p>
+<p>Incremental encoding is slightly different. We have $m=n-1$, but with $b_i=\sum_{j&lt;i} e_j$. An example for $n=4$ is</p>
+<p>$$\begin{pmatrix}0 &amp; 1 &amp; 1&amp; 1\\ 0 &amp; 0 &amp; 1 &amp; 1\\ 0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix} \begin{pmatrix} x_1\\x_2\\x_3\\x_4 \end{pmatrix}=\begin{pmatrix}y_1\\y_2\\y_3\end{pmatrix}$$</p>
+<p>This encoding implies that $y_1\geqslant y_2\geqslant y_3$. In extreme case (branching from $y_1$ to $y_{n-1}$), we might still need to branch $n-1$ times; but if the problem has good structure, incremental encoding might even be better than binary encoding. For example, consider problem $\min |x|, x\in\{\alpha_i\}$ with both positive and negative $\alpha_i$. If $\alpha_i$ is perfectly ordered $\alpha_1&lt;\alpha_2&lt;\cdots&lt;\alpha_n$ , and we branch on $y_j$ with $\alpha_j&lt;0&lt;\alpha_{j+1}$ , then this branch can lead us to global optimal solution.</p>
+<p>In practice, if you have a good understanding of you problem, you might be able to design an appropriate encoding to speed up branching; but generally binary encoding or incremental encoding will work. In case of SOS1/2 constraints, it is better to define them as “SOS1/2” if you are using CPLEX or Gurobi, since there might be some other black magic to speed up.</p>
+<h2 id="Embedding"><a href="#Embedding" class="headerlink" title="Embedding"></a>Embedding</h2><p>In above discussion, we try to use encoding to improve branching efficiency for certain constraints. Such idea can actually be extended for union of polytope $P=\cup_i P_i$. Consider encoding $H$: $h_i\in\{0,1\}^m$ for each $P_i$. By embedding, we can turn focus to object</p>
+<p>$$P_i’=P_i\times\{h_i\},$$</p>
+<p>Notice that after embedding, $Q=conv(\cup_i P_i’)$ is ideal ($h_i$ characterizes the “extreme” part). So branching is not a major concern if there is no additional constraint. Then what else should we consider?</p>
+<p>Remember that we still need to have a representation of $Q$, and its size (in terms of $H$-representation, the number of constraints) has great impact on LP efficiency. To understand the significance of encoding on size, we consider a simple example $P=\{0\}\cup [1,2]\cup [a,a+0.5]\cup [a+1,a+2.5]$ and binary encoding $H\subseteq \{0,1\}^2$. Now, if we do the embedding</p>
+<p>$$P’=\{0\}\times \{0,0\} \cup [1,2]\times \{0,1\} \cup [a,a+0.5] \times \{1,0\} \cup [a+1,a+2.5] \times \{1,1\} ,$$</p>
+<p>the convex hull $Q$ is a nicely shaped polyhedron. But in case</p>
+<p>$$P’=\{0\}\times \{0,0\} \cup [1,2]\times \{1,1\} \cup [a,a+0.5] \times \{1,0\} \cup [a+1,a+2.5] \times \{0,1\} ,$$</p>
+<p>the convex hull is more complex.</p>
+<p>As dimension grows, such difference becomes more significant. If we select a random encoding to embed, it is possible to have exponential number of constraints. So, we want to use an encoding $H$ that $Q(H)$ has a small number of facet:</p>
+<p>$$H=\arg\min_H(size(Q(H)))$$</p>
+<p>Generally, design of such embedding is ad-hoc and general construction is not viable (think of permutations of $\{P_i\}$). But when $P_i$ admits a natural ordering, we might be able to conclude some techniques in designing embedding. One interesting example is piecewise linear function on $R^1$ (which induces the SOS2 constraints) or $R^2$. It is shown that with proper meshing and ordering, an encoding method called gray code can achieve the logarithm size in $n$. Some related papers can be found in the reference.</p>
+<p>In summary, the advantage of using embedding is that we don’t need to create copies of original variables, which is similar to the non-extended formulations in last post. If the problem and $P_i$ are well defined, embedding provide an efficient way to make those non-extend formulations ideal. For example, to model piecewise linear function on $R^1$, unary embedding is exactly the ideal extension of non-extended $V$-formulation, which is only sharp. But generally such idea is hard to implement.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Vielma, J. P. (2015). Embedding Formulations and Complexity for Unions of Polyhedra. arXiv:1506.01417. Available at: <a href="http://arxiv.org/pdf/1506.01417v2.pdf" target="_blank" rel="external">http://arxiv.org/pdf/1506.01417v2.pdf</a></p>
+<p>Yıldız, S., &amp; Vielma, J. P. (2013). Incremental and encoding formulations for mixed integer programming. Operations Research Letters, 41(6), 654-658.</p>
+<p>Vielma, J. P., &amp; Nemhauser, G. L. (2011). Modeling disjunctive constraints with a logarithmic number of binary variables and constraints. Mathematical Programming, 128(1-2), 49-72.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Integer-Programming/" rel="tag"># Integer Programming</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/IP2_201610/" rel="next" title="Integer Programming Note II: Formulation Strength & Size">
+                <i class="fa fa-chevron-left"></i> Integer Programming Note II: Formulation Strength & Size
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/IP4_201610/" rel="prev" title="Integer Programming Note IV: Cuts">
+                Integer Programming Note IV: Cuts <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/pics/1.JPG"
+                alt="Han Qiu" />
+            
+              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hanqiu92" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unbalanced-Branching-and-Encoding"><span class="nav-number">1.</span> <span class="nav-text">Unbalanced Branching and Encoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Embedding"><span class="nav-number">2.</span> <span class="nav-text">Embedding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qiu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://hanqiu92.github.io/blog/IP3_201610/';
+          this.page.identifier = 'IP3_201610/';
+          this.page.title = 'Integer Programming Note III: Encoding & Embedding';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hanqiu92.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

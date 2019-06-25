@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/blog/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Behavior Modeling,Reinforcement Learning," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在这篇短文中，我将基于过去一年中的研究经验，简单地分享一下我目前对行为决策建模的见解。
+In this post, I will briefly discuss some of my current thoughts on decision behavior modeling based on my research experience over the past year.
+抽象地来看，决策行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Note on Decision Behavior Modeling">
+<meta property="og:url" content="http://hanqiu92.github.io/blog/decision_making_modeling_201901/index.html">
+<meta property="og:site_name" content="Han's Blog">
+<meta property="og:description" content="在这篇短文中，我将基于过去一年中的研究经验，简单地分享一下我目前对行为决策建模的见解。
+In this post, I will briefly discuss some of my current thoughts on decision behavior modeling based on my research experience over the past year.
+抽象地来看，决策行">
+<meta property="og:updated_time" content="2019-04-27T08:25:38.216Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A Note on Decision Behavior Modeling">
+<meta name="twitter:description" content="在这篇短文中，我将基于过去一年中的研究经验，简单地分享一下我目前对行为决策建模的见解。
+In this post, I will briefly discuss some of my current thoughts on decision behavior modeling based on my research experience over the past year.
+抽象地来看，决策行">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hanqiu92.github.io/blog/decision_making_modeling_201901/"/>
+
+
+
+
+
+  <title>A Note on Decision Behavior Modeling | Han's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Han's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">About human behavior, reinforcement learning, and optimization.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/decision_making_modeling_201901/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/pics/1.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Han's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">A Note on Decision Behavior Modeling</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-27T13:00:00+08:00">
+                2019-01-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Reflection/" itemprop="url" rel="index">
+                    <span itemprop="name">Reflection</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在这篇短文中，我将基于过去一年中的研究经验，简单地分享一下我目前对行为决策建模的见解。</p>
+<p>In this post, I will briefly discuss some of my current thoughts on decision behavior modeling based on my research experience over the past year.</p>
+<p>抽象地来看，决策行为即在给定决策信息$s$（下称状态）的情况下，通过某种策略$\pi$采取动作$a$</p>
+<p>From an abstract point of view, decision making is to take an action $a$ according to a certain strategy $\pi$ given decision information $s$ (hereinafter referred to as the state)</p>
+<p>$$a \sim \pi(s).$$</p>
+<p>而行为决策建模，则希望根据观察数据$\mathcal{D} = \{(s,a)\}_n$，获取决策机制$\pi$的相关信息。</p>
+<p>While decision behavior modeling attempts to infer the strategy $\pi$ from observations $\mathcal{D} = \{(s,a)\}_n$.</p>
+<p>由于数据集$\mathcal{D}$是有限的，能够很好地拟合该数据集的$\pi$可能有无穷多个。因此，研究者通常需要对$\pi$的形式做出额外假设。而一个最基础且核心的假设是$\pi$服从<strong>效用最大化原理</strong>。</p>
+<p>Because the dataset $\mathcal{D}$ has finite datapoints, there can be an infinite number of $\pi$ that fits well into the dataset. Therefore, researchers often need to make additional assumptions about the form of $\pi$. And one of the most fundamental assumptions is that $\pi$ follows the <strong>utility-maximization principle</strong>.</p>
+<a id="more"></a>
+<h2 id="效用最大化原理-The-Utility-maximization-Principle"><a href="#效用最大化原理-The-Utility-maximization-Principle" class="headerlink" title="效用最大化原理 The Utility-maximization Principle"></a>效用最大化原理 The Utility-maximization Principle</h2><p>效用最大化原理指出，决策者在面对决策问题时所表现出的行为应与最大化自身效用的行为相一致。通过该原理，行为决策建模问题可以被转换为效用函数估计问题。相比于直接使用统计或机器学习模型等描述性手段对策略$\pi$进行拟合，这种<strong>规范性</strong>（normative）建模方式考虑了我们对行为规律的先验认知（即理性决策行为），因此更适用于提供解释和<strong>反事实</strong>（counterfactual）判断。同时，由于该原理对行为模式有较强的正则化约束效果，基于此得到的行为模型具有较强的泛化和迁移能力（即不同场景下的一致性）。</p>
+<p>The utility-maximization principle (UM) states that the behavior of a decision maker (DM) should be consistent with the behavior that maximizes her utility. Through this principle, decision behavior modeling problems can be transformed into utility function estimation problems. Compared to the direct use of descriptive methods, such as statistical or machine-learning models, to fit the strategy $\pi$, this <strong>normative</strong> approach takes into account our prior understanding of behavior (i.e., rationality) and is therefore more suitable for providing explanations and <strong>counterfactual</strong> judgments. At the same time, because of the regularization of the UM principle, the resulted behavior model has strong generalization and transfer ability (i.e., consistency in different scenarios).</p>
+<p>然而，效用最大化原理隐含了以下假设：决策者具有“高超”的优化问题求解能力，无论决策问题有多复杂都能准确给出最优解。由于该假设并不完全符合直觉，效用最大化原理在过去的数十年中受到了很多质疑：大量学者通过进行实验或是分析实际经济数据，指出人们通常会做出次优决策；另外在理论方面还有许多学者提出了符合有限理性假设的行为模型，并通过实际数据比较说明这些模型的解释能力好于基于效用最大化原理的模型。</p>
+<p>However, the UM principle implies the following assumption: the DM has an “excellent” optimization capability to provide the optimal solution accurately regardless of the complexity of the underlying decision problem. Because this assumption is not intuitively solid, many doubts have been cast on the UM principle in the past few decades: a large number of scholars, by conducting labotory experiments or analyzing real-world economic data, have pointed out that people usually make sub-optimal decisions; in addition, many scholars have proposed behavioral models within the bounded rationality framework and illustrate with real-world data that these models have better explanation power than the model from the UM principle.</p>
+<p>遗憾的是，这些新的理论并不能够彻底取代效用最大化原理：它们从某些特定角度改进了原始效用最大化原理的缺陷，但是仍处于“决策优化”的框架内。事实上，一方面，在<strong>最优性</strong>以外我们并没有很多合乎直觉的从决策问题到策略机制的映射关系以供选择；另一方面，对任何决策行为，我们总能通过补充缺失信息的方式令其达到最优性（当然，这可能会损失某些不同行为之间的一致性；关于这方面的讨论属于(公理化)决策论的范畴，有兴趣的读者可以从Kreps的Notes on the Theory of Choice[1]读起）。因此，在我看来，与其通过“创造”有限理性理论来修正效用最大化原理，倒不如通过<strong>修正决策问题的设定</strong>来拓展效用最大化原理的应用面。更具体地，我们应该关注：决策者是在何种场景下、基于何种信息、对何种效用目标进行判断，从而作出相应行为？或者说，对于决策行为</p>
+<p>Unfortunately, these new theories cannot completely overthrow the UM principle: they improve it from some specific perspectives, but are still within the “decision optimization” framework. In fact, on the one hand, besides <strong>optimality</strong>, we do not have much choice on the mapping from decision-making problems to strategies. On the other hand, for any decision-making behavior, we can always make it optimal in some decision-making problems by supplementing some missing information (of course, this may result in a loss of consistency among behaviors; discussions on this aspect fall into the field of axiomatic decision theory, and interested readers can refer to Kreps’ Notes on the Theory of Choice[1] for more details). Therefore, in my opinion, instead of aiming at “creating” new bounded rationality models to “correct” the UM principle, it is better to expand the applicability of the UM principle by <strong>reformulating the underlying decision problems</strong>. More specifically, we should consider the following question: under what circumstances and based on what information and utility function did the DM take the observed action? In other words, for action</p>
+<p>$$a \sim \pi(s),$$</p>
+<p>研究者是否考虑了正确的决策信息$s$？</p>
+<p>does the researcher consider the correct decision information $s$?</p>
+<h2 id="有限理性与不完全信息-Bounded-Rationality-and-Incomplete-Information"><a href="#有限理性与不完全信息-Bounded-Rationality-and-Incomplete-Information" class="headerlink" title="有限理性与不完全信息 Bounded Rationality and Incomplete Information"></a>有限理性与不完全信息 Bounded Rationality and Incomplete Information</h2><p>前面的讨论中提到，大量对效用最大化原理进行修正的工作都是关于决策者的有限理性的。虽然“有限理性”这个词常被用来支持“决策者缺乏最优决策能力”这一论断，但在我看来，有限理性可能恰好反映了决策者在求解决策问题时的理性行为。正如优化工作者通常需要权衡求解精度和计算开销，对于复杂的决策问题决策者如果要寻找效用最大化的行为，可能需要付出很高的时间代价（或者说，未来效用的损失）。在这种情况下，使用启发式方法（heuristics）去优化行为通常会带来更好的整体收益。当然，具体有哪些可以考虑的启发式方法、每种方法又有多高的时间成本因问题而异。</p>
+<p>As mentioned in previous discussions, many works on “correcting” the UM principle is about the bounded rationality of the DM. Although the term “bounded rationality” is often used to support the argument that “the DM lacks optimization capability”, in my opinion, it may actually reflect the rational behavior of the DM in solving decision problems. Just as practitioners in optimization often need to balance between the solution accuracy and the computational overhead, for complex decision-making problems, the DM will pay a high cost of time (or loss of future utility) if she looks for utility-maximizing behavior. In this case, using heuristics to optimize behavior usually leads to better overall utilities (of course, the set of feasible heuristics to be considered and the corresponding costs of time varies from problem to problem).</p>
+<p>从另一个角度上看，求解决策问题的复杂度实际上反映了决策者对于最优行为所拥有的信息量：问题越难求解，意味着决策者对最优行为的信息越少、搜寻代价越高。这种思路可以进一步拓展到一般的不完全信息场景：事实上，在很多情况下，决策问题的相关信息较多，决策者在一开始可能只拥有一小部分信息。此时，在作出最终决策之前，决策者通常需要决定是否以及如何获取更多信息。例如，我们可以考虑一个经典的汽车购置决策问题。对于一个消费者来说，他不太可能了解市面上的所有在售车型；但是他可以通过上网搜索、参加车展、试驾等一系列方式获取更多信息。然而，不同的信息获取方式各有优劣：比如说，进行试驾能够获得对一款车型非常深入的了解，但是花费的时间成本较大；而阅读汽车杂志、观看广告等行为只需要少量时间即可获得多种车型的基本信息。因此，这个汽车购置决策问题还包含一个汽车信息获取的决策子问题。在过去十年中，已经有大量的理论和实证工作对这种信息处理机制进行了深入的讨论。有兴趣的读者可以参考Sims[2]，Gabaix[3]，以及Masatlioglu and Nakajima[4]。</p>
+<p>From another perspective, the complexity of the solution to the decision problem actually reflects the amount of information that the DM has for optimal behavior: the more difficult the problem is to solve, the less information the DM has for the optimal behavior and the higher cost of information collecting. This view can be further extended to general scenarios with incomplete information: in fact, in many cases, the decision-making problem has much relevant information, but the DM may only have a small fraction of it at the beginning. In this case, the DM often needs to decide whether and how to obtain more information before making the final decision. For example, let us consider the problem of buying a car. For a customer, she is unlikely to be familiar with all available models on the market; but she can obtain more information through searching methods such as online search, auto shows, and test drive. However, these methods have their own advantages and disadvantages: for example, through test drive, the DM can obtain a very deep understanding of a model, but it costs a lot of time; while by reading car magazines and watching ads, the DM can obtain basic (and only basic!) information on a wide range of models in a short period of time. Therefore, this car purchase problem also includes a car information acquisition subproblem. In the past decade, many theoretical and empirical studies have discussed this information acquisition mechanism in depth. Interested readers can refer to Sims [2], Gabaix [3], and Masatlioglu and Nakajima [4].</p>
+<p>在上述讨论中，我都只考虑了决策问题的“当前”信息。但是，决策问题通常（在时间维度上）都不是孤立的，决策者的决策行为很有可能依赖于其<strong>对历史信息的归纳</strong>和<strong>对未来的期望</strong>。在下面两节中，我将就这两方面因素进行更详细的讨论。</p>
+<p>In the above discussion, I have only considered the “immediate” information of the decision problem. However, decision-making problems are usually not isolated/independent in the time dimension, and the behavior of the DM is likely to depend on the DM’s <strong>summaries of past information</strong> and <strong>expectations for the future</strong>. In the next two sections, I will discuss these two aspects in more detail.</p>
+<h2 id="决策序列与动态学习过程-Decision-Sequences-and-Learning-Dynamics"><a href="#决策序列与动态学习过程-Decision-Sequences-and-Learning-Dynamics" class="headerlink" title="决策序列与动态学习过程 Decision Sequences and Learning Dynamics"></a>决策序列与动态学习过程 Decision Sequences and Learning Dynamics</h2><p>在日常生活中，许多问题需要进行多期决策。例如，我们可以考虑一个经典的多期消费决策问题：给定当期生产产出与前期投资的关系，决策者需要决定如何对每期的产出分配消费和投资比例以最大化（从消费中获得的）总效用。相比单阶段决策行为，多阶段决策行为相对更难分析，因为在给定效用函数的情况下，对最优决策行为的求解仍然很复杂（注：在这种场景下要找到<strong>时间维度上一致的</strong>有限理性/次优决策解释也是很困难的！）。不过，在过去的数十年中，计量经济学家和计算机科学家仍然对此类问题（两派学者分别称之为动态离散选择和逆向强化学习问题）进行了非常深入的研究，提出了包括嵌套不动点算法（Rust[5]）在内的一系列效用估计和行为建模方案。关于动态离散选择方面的工作，有兴趣的读者可以参考Aguirregabiria and Mira[6]和Heckman and Navarro[7]。对于逆向强化学习方面的进展，有兴趣的读者可以参考我<a href="https://hanqiu92.github.io/2018/09/01/gan_irl_methods/">最近一篇短文</a>。</p>
+<p>In our daily life, there are many problems that require multi-period decisions. For example, in a multi-period consumption problem, the DM needs to allocate her credit (from production) to consumption and investment in each period to maximize her total utility from consumption, given the relationship between the production output in a period and investments from previous periods. Multi-period decision-making behavior is relatively more difficult to analyze than single-period decision-making behavior, because even when the (single-period) utility function is explicitly given the optimal strategy can still be very complicated (note: in this case, finding a <strong> time consistent </strong> bounded rationality/suboptimality explanation can also be very difficult!). Nevertheless, in the past few decades, econometricians and computer scientists have conducted in-depth research on such issues (the two groups called these problems “dynamic discrete choice” and “inverse reinforcement learning”, respectively) and suggested a series of utility estimation and behavioral modeling methods, including the nested fixed-point algorithm (Rust [5]). For work on the dynamic discrete choice problem, interested readers can refer to Aguirregabiria and Mira [6] and Heckman and Navarro [7]. For recent progress in inverse reinforcement learning, interested readers can refer to <a href="https://hanqiu92.github.io/2018/09/01/gan_irl_methods/">my recent post</a>.</p>
+<p>然而，这些工作都是建立在“决策者对于相应的多阶段决策问题有完全信息”这一假设上的。正如上一节所讨论的，决策者很有可能缺乏关于决策问题和最优策略的信息。这意味着我们可以考虑从以下两个角度对已有的工作进行拓展：决策者对演化机制/环境反馈的不确定性，以及决策者不完美的远期规划能力。下面我将指出，这两点都可以通过<strong>学习过程</strong>来进行描述。</p>
+<p>However, these works had all assumed that “the DM has complete information about the underlying multi-period decision problem”. As discussed in the previous section, the DM is likely to lack information about the decision problem and the optimal strategy. This means that we can consider extending the existing work from two perspectives: the DM’s uncertainty of the state transition mechanism/environmental feedback, and the DM’s imperfect (long-term) planning capabilities. As I will illustrate below, both of these can be described by the <strong>learning dynamics</strong>.</p>
+<p>一方面，最优长期决策的求解计算开销大，决策者通常不能在合适的时间内给出决策问题的最优解，因此依照上述讨论的方式，我们可以认为次优行为是对计算开销和求解精度的权衡结果。但是对于序列决策过程，不同时间点发生的决策问题具有相似的解结构，因此在求解当前决策问题时决策者可以复用此前的计算结果，而不需要从零开始。又注意到最优长期决策的求解通常涉及迭代过程（例如，对于经典的无限期的动态规划问题，我们可以使用值函数迭代或策略迭代的方式进行求解），我们可以认为决策者在求解当前决策问题时主要是在利用此前迭代中获得的关于最优解的信息。这意味着序列决策中的次优行为可以被看作是优化迭代过程中的副产物。</p>
+<p>On the one hand, to solve for the optimal strategy has a large computational cost, so the DM usually cannot find the optimal action in a reasonable time. Therefore, according to the above discussion, we can view the suboptimal behavior as a result of the tradeoff between computational costs and accuracies. However, for the sequential decision process, the decision problems in different periods have a similar structure, so when she tries to solve a decision problem in the future the DM can reuse her previous calculation results rather than start from scratch. Also notice that algorithms for the optimal long-term strategy usually involve iterative processes (for example, we can solve the classical infinite-time dynamic programming problems by value function iterations or policy iterations), we can think that in solving the current decision problem the DM mainly relies on her information about the optimal solution obtained from previous iterations. This means that suboptimal behavior in sequential decisions can be seen as a by-product of the iterative process.</p>
+<p>另一方面，对于演化机制的不确定性，我们应注意到强化学习问题并没有假设决策者对演化机制有完全信息，而仅假设演化机制在学习过程中保持不变；决策者是在学习过程中通过不断的尝试和反馈来更新对演化机制的认知和对策略进行迭代。这意味着在给定未来演化机制不变的预期下，在每个具体时间点上决策者对演化机制的信息都可以通过历史经验来描述。（注：如果我们同样采用<strong>过程</strong>而非<strong>结果</strong>的角度来审视“未来演化机制不变”这一预期，我们可以使用关于这一预期的历史信息和某种一致性/不变性假设来描述在每个具体时间点上决策者对于这一预期成立的预期；这一递推过程可以无限进行下去，直到得到最终不变的不变性假设/预期。个人感觉可以用集合/测度论语言对其进行描述，或者考虑多层循环神经网络（RNN）进行建模。）</p>
+<p>On the other hand, for the uncertainty of the state transition, we should notice that in reinforcement learning problems we generally do not assume the DM has complete information about the state transition function, but only assume that the state transition remains unchanged during the learning process. In the learning process, the DM updates her perception of the state transition mechanism and her strategies through continuous trials and errors. This means that given the expectation of an invariant state transition function in the future, the DM’s knowledge of the state transition in each period can all be described by her experience in previous periods. (Note: Regarding the “invariant state transition” expectation, if we think of the <strong>process</strong> rather than the <strong>result</strong>, we can also use some invariant assumptions and the DM’s previous information on this expectation to describe her current knowledge of this expectation. This recursive process can go on until we obtain the final invariant assumption/expectation. I think that this can be described by the language of set/measure theory, or modeled by a multi-layer recurrent neural network (RNN).)</p>
+<p>综合上面两点，我认为序列决策中决策者的行为更有可能来自于一个动态学习（优化）过程，而非优化结果。在该视角下，决策者的行为不仅依赖于其在真实环境中的状态，还受其行为历史的影响。在下一节中，我将基于这些理解进一步讨论决策者的历史信息处理机制。</p>
+<p>Combining these two points, I think that the DM’s behavior in a sequential decision process is more likely to come from a dynamic learning (optimization) process than an optimized result. From this perspective, the behavior of DM depends not only on her state in the actual environment but also on her history. In the next section, I will discuss the DM’s processing mechanisms of past information in more details.</p>
+<h2 id="历史信息处理与策略迭代-Processing-of-Past-Information-and-Policy-Iterations"><a href="#历史信息处理与策略迭代-Processing-of-Past-Information-and-Policy-Iterations" class="headerlink" title="历史信息处理与策略迭代 Processing of Past Information and Policy Iterations"></a>历史信息处理与策略迭代 Processing of Past Information and Policy Iterations</h2><p>在上面的讨论中我提到，决策者在作出决策行为时可能会考虑历史信息（下记$s^h$）。一种简单的在决策行为中引入历史信息$s^h$的方法是将其作为策略的输入变量</p>
+<p>In the above discussion, I mentioned that when making a decision the DM may consider historical information (hereinafter $s^h$). A simple way to introduce $s^h$ into the formulation of the decision-making problem is to include it as an input to the strategy</p>
+<p>$$a \sim \pi(s,s^h).$$</p>
+<p>然而，上式隐含了“策略$\pi$与历史信息$s^h$相独立”这一假设，而这一假设在很多现实场景、特别是在上面提及的动态学习过程中并不成立：策略本身也应随着历史信息的更新而在不断迭代。要解决这一问题，我们可以从更抽象的视角上考虑迭代机制$F$，并将策略$\pi$也作为迭代过程的一部分</p>
+<p>However, the above formulation implies an assumption that “strategy $\pi$ is independent of historical information $s^h$”, even though this assumption is not valid in many real-world scenarios, including the aforementioned dynamic learning process: as historical information accumulates, the strategy itself should also be updated. To resolve this problem, we can consider an iterative mechanism $F$ which including the strategy $\pi$ in the iterative process</p>
+<p>$$ a_t,(\pi,s^h)_t \sim F(s_t,(\pi,s^h)_{t-1}), $$</p>
+<p>其中$t\in N^+$代表时间点。（注意到上式与循环神经网络具有相似的结构：$s_t$可以看做时间$t$时系统新增的输入，$a_t$为输出，而$(\pi,s^h)$则是不断更新的隐状态变量。）</p>
+<p>where $t\in N^+$ represents the time period. (Note that the above formulation has a similar structure to the recurrent neural network: $s_t$ can be seen as the input to the system at time $t$, $a_t$ the output, and $(\pi,s^h)$ the state variables.)</p>
+<p>现在，一个新的问题是要确定$F$的形式：从规范性的角度出发，$F$应代表某种优化机制，但要找到一种合适的表达形式并不容易；而如果使用表达能力强的模型（例如LSTM）表示$F$，则估计结果很可能缺乏解释性。下面，我将尝试从现有的在线学习和强化学习算法中提取一些<strong>基本建模元素</strong>。</p>
+<p>Now, a new question is to determine the form of $F$: from a normative point of view, $F$ should represent an optimization mechanism, but it is nontrivial to find a suitable form; and if we consider models with high capacities (such as LSTM) for $F$, the estimation can be short of explanation power. Next, I will briefly review some of the existing online learning and reinforcement learning algorithms and try to distill some <strong>basic elements for modeling</strong>.</p>
+<p>我们首先关注策略$\pi_t$的形式（假设决策行为仍然服从$a_t \sim \pi_t(s_t)$）。从现有的强化学习方向看，如果学习过程是基于策略的，那么策略$\pi_t$本身可以被参数化；如果学习过程是基于值函数（效用）$Q_t$的，那么策略可以表示为一个最大化运算与参数化值函数的复合$\pi_t = \arg\max_{a\in A}Q_t(\cdot,a)$。在两种情况下，策略都可以表示成<strong>参数化形式</strong>$\pi_t = \pi(\cdot,\theta_t)$。</p>
+<p>We first look at the form of the strategy $\pi_t$ (assuming that the decision behavior still follows $a_t \sim \pi_t(s_t)$). According to the existing reinforcement learning algorithms, if the learning process is policy-based, the strategy $\pi_t$ is parameterized; if the learning process is value-based, the strategy can be expressed as the compound of the maximum operator and a parameterized value function $Q_t$: $\pi_t = \arg\max_{a\in A}Q_t(\cdot,a)$. In both cases, the strategy can be represented by a <strong>parameterized form</strong> $\pi_t = \pi(\cdot,\theta_t)$.</p>
+<p>接下来我们考虑隐状态$s^h$中的元素，以及相应的迭代机制：</p>
+<p>Next we consider the elements in the hidden state $s^h$ and the corresponding iterative mechanism:</p>
+<p>1) 对于经典的（在线）随机梯度下降算法，状态$s_t$可以表示为特征和目标的组合$(x_t,y_t)$，动作$a_t$则为模型参数$\theta_t$（策略$\pi_t$是平凡的相等函数）。$\theta_t$可以表示为前一阶段参数$\theta_{t-1}$和当前梯度$g_t=g(\theta_{t-1},s_t|f)$的加权和</p>
+<p>1) For the classical (online) stochastic gradient descent algorithm, the state $s_t$ can be expressed as a combination of features and the label $(x_t, y_t)$, and the action $a_t$ is the model parameter $\theta_t$ (strategy $\pi_t$ is an trivial equality function). $\theta_t$ can be expressed as the weighted sum of the parameter $\theta_{t-1}$ in the previous stage and the current gradient $g_t=g(\theta_{t-1}, s_t|f)$</p>
+<p>$$\theta_t = \theta_{t-1} + \alpha g(\theta_{t-1},s_t|f),$$</p>
+<p>其中$f$是目标模型。注意在这种情况下我们不需要考虑$s^h$。</p>
+<p>where $f$ is the target model. Note that in this case we don’t need to consider $s^h$.</p>
+<p>2) 对于无模型强化学习，一种常用的稳定训练过程的方法是<strong>经验回放</strong>：梯度$g_t$是从历史样本中采样计算所得，而不是依赖当前样本。在该情况中，历史状态$s^h$即为经验池；而在迭代过程$F$中我们还需要考虑从经验池中进行采样的方法$f_{sample}$（均匀采样、优先级采样等）。</p>
+<p>2) For model-free reinforcement learning algorithms, a commonly used method to stabilize the training process is <strong>experience replay</strong>: The gradient $g_t$ is calculated from the historical sample rather than the current one. In this case, the historical state $s^h$ is the experience pool; and in formulating the iteration process $F$ we also need to consider the sampling method $f_{sample}$ (e.g., uniform sampling, prioritized sampling).</p>
+<p>3) 对于基于模型的强化学习，历史状态$s^h$为模型$M_t$；策略参数$\theta_t$的训练迭代是通过对模型$M_t$进行仿真采样实现的。</p>
+<p>3) For model-based reinforcement learning algorithms, the historical state $s^h$ is the model $M_t$; the update of the strategy parameter $\theta_t$ follows the gradients computed by simulating the model $M_t$.</p>
+<p>综合以上几点，我们可以暂且认为隐状态$s^h$主要包含由过去决策行为组成的<strong>经验池</strong>和通过过去决策行为训练得到的<strong>模型</strong>。这些信息实际上刻画了决策者对潜在演化机制/环境反馈的了解，同时又基本决定了策略的迭代方式。由于$s^h$也包括了决策者对演化机制的不确定性，我们还可以使用这套框架来描述一些考虑探索-利用平衡的方法（例如bootstrapped DQN[8]），因为这类方法本质上是对不确定性度量的系统性利用。</p>
+<p>Based on the above discussion, we can temporarily assume that the hidden state $s^h$ mainly contains an <strong>experience pool</strong> of past decision behaviors and the <strong>models</strong> trained from past decision behaviors. These elements both describe the DM’s understanding of the underlying state transition mechanisms/environmental feedback and largely determine the update process of the strategy. Since $s^h$ also considers the DM’s uncertainty of the state transition, we can use this framework to describe methods that consider the exploration-exploitation tradeoff (such as bootstrapped DQN[8]), because the essence of such methods is the systematic exploitation of knowledge of uncertainty.</p>
+<p>通过上面的讨论，我们只是大致能够确定迭代机制$F$中所需要考虑的元素，而这些元素之间具体应该如何互相影响目前还不清楚。因此，后续还需要进行大量工作。下面是一些我认为可以尝试的方向：从规范视角出发，尝试建立决策者的<strong>最小化遗憾值</strong>（regret minimization）序列决策问题（对单任务场景）或<strong>元学习</strong>问题（对多任务场景）以求解最优信息处理机制；从描述视角出发，探索和利用生理上的<strong>记忆机制</strong>与已有迭代学习（优化）算法的异同。</p>
+<p>Through the above discussion, we are able to roughly determine the elements that need to be considered in $F$, but is not clear about how these elements should interact with each other. Therefore, more works are needed in the future. Following are some interesting future directions: from the normative perspective, we can attempt to formulate optimization problems for the information processing mechanisms, in the form of <strong>regret minimization</strong> (for scenarios with a single task) or <strong>meta learning</strong> (for scenarios with multiple tasks); from the description perspective, we can explore and exploit the similarities and differences between the <strong>memory mechanism</strong> in our brains and the existing iterative learning (optimization) algorithms.</p>
+<h2 id="总结-Summary"><a href="#总结-Summary" class="headerlink" title="总结 Summary"></a>总结 Summary</h2><p>在这篇短文中，我尝试从更高的视角出发对决策行为进行分析。总体来说，我认为在建立决策者的效用最大化问题时可以进一步考虑决策者对历史信息的归纳和对未来的规划。但后者在本质上也是由前者所决定的，因此问题的关键在于找到合理的<strong>对历史信息处理机制的表示</strong>。不过，这里的讨论只是提出了一种分析视角，而并没有给出具体解决方案。（注：事实上，我认为要提出一套统一的建模框架可能是十分困难的。）</p>
+<p>In this post, I try to analyze decision-making behavior from a more general perspective. I think that in formulating the DM’s decision problem, we can further consider the DM’s summaries of past information and expectations for the future. But because the latter is essentially determined by the former, the key to a good formulation is to find an appropriate representation of the <strong>historical information processing mechanism</strong>. However, the discussion here only presents a perspective for analysis and does not provide any practical solution. (Note: In fact, I think it may be very difficult to propose a unified modeling framework for this problem.)</p>
+<p>至于在实际应用方面，我认为还是应该根据<strong>奥卡姆剃刀原则</strong>，先从基础的效用估计方法入手；根据经验，很多情况下并不需要使用过于复杂的建模元素。但我相信随着研究者信息获取和处理能力的提升、以及决策者面临的决策问题变得越来越复杂，在未来应该会涌现更多这方面的工作。</p>
+<p>As for applications, I think we should follow the <strong>principle of Occam’s razor</strong> and start with the basic utility estimation methods; according to my experience, in many cases, it is not necessary to use complex modeling elements. But I believe that as researchers’ ability to acquire and process information increases and the decision problems faced by the DM become more complex, more work in this area should emerge in the future.</p>
+<h2 id="参考文献-References"><a href="#参考文献-References" class="headerlink" title="参考文献 References"></a>参考文献 References</h2><p>[1] Kreps, D. (2018). Notes on the Theory of Choice. Routledge.</p>
+<p>[2] Sims, C. A. (2003). Implications of rational inattention. Journal of monetary Economics, 50(3), 665-690.</p>
+<p>[3] Gabaix, X. (2014). A sparsity-based model of bounded rationality. The Quarterly Journal of Economics, 129(4), 1661-1710.</p>
+<p>[4] Masatlioglu, Y., &amp; Nakajima, D. (2013). Choice by iterative search. Theoretical Economics, 8(3), 701-728.</p>
+<p>[5] Rust, J. (1987). Optimal replacement of GMC bus engines: An empirical model of Harold Zurcher. Econometrica: Journal of the Econometric Society, 999-1033.</p>
+<p>[6] Aguirregabiria, V., &amp; Mira, P. (2010). Dynamic discrete choice structural models: A survey. Journal of Econometrics, 156(1), 38-67.</p>
+<p>[7] Heckman, J. J., &amp; Navarro, S. (2007). Dynamic discrete choice and dynamic treatment effects. Journal of Econometrics, 136(2), 341-396.</p>
+<p>[8] Osband, I., Blundell, C., Pritzel, A., &amp; Van Roy, B. (2016). Deep exploration via bootstrapped DQN. In Advances in neural information processing systems (pp. 4026-4034).</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Behavior-Modeling/" rel="tag"># Behavior Modeling</a>
+          
+            <a href="/blog/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/GAN_IRL_201808/" rel="next" title="A Discussion on GAN-based IRL methods">
+                <i class="fa fa-chevron-left"></i> A Discussion on GAN-based IRL methods
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/SP1_201905/" rel="prev" title="Stochastic Process Note I: Introduction and Basic Concepts">
+                Stochastic Process Note I: Introduction and Basic Concepts <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/pics/1.JPG"
+                alt="Han Qiu" />
+            
+              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hanqiu92" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#效用最大化原理-The-Utility-maximization-Principle"><span class="nav-number">1.</span> <span class="nav-text">效用最大化原理 The Utility-maximization Principle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有限理性与不完全信息-Bounded-Rationality-and-Incomplete-Information"><span class="nav-number">2.</span> <span class="nav-text">有限理性与不完全信息 Bounded Rationality and Incomplete Information</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策序列与动态学习过程-Decision-Sequences-and-Learning-Dynamics"><span class="nav-number">3.</span> <span class="nav-text">决策序列与动态学习过程 Decision Sequences and Learning Dynamics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#历史信息处理与策略迭代-Processing-of-Past-Information-and-Policy-Iterations"><span class="nav-number">4.</span> <span class="nav-text">历史信息处理与策略迭代 Processing of Past Information and Policy Iterations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结-Summary"><span class="nav-number">5.</span> <span class="nav-text">总结 Summary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献-References"><span class="nav-number">6.</span> <span class="nav-text">参考文献 References</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qiu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://hanqiu92.github.io/blog/decision_making_modeling_201901/';
+          this.page.identifier = 'decision_making_modeling_201901/';
+          this.page.title = 'A Note on Decision Behavior Modeling';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hanqiu92.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

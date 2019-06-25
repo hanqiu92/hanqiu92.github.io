@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/blog/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Queuing Theory,Stochastic Process," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reflection on Simple Queues">
+<meta property="og:url" content="http://hanqiu92.github.io/blog/simple_queue_dynamic_201612/index.html">
+<meta property="og:site_name" content="Han's Blog">
+<meta property="og:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
+<meta property="og:image" content="http://hanqiu92.github.io/blog/images/MM1_queue_state_space.png">
+<meta property="og:updated_time" content="2019-06-01T11:16:33.566Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Reflection on Simple Queues">
+<meta name="twitter:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hanqiu92.github.io/blog/simple_queue_dynamic_201612/"/>
+
+
+
+
+
+  <title>Reflection on Simple Queues | Han's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Han's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">About human behavior, reinforcement learning, and optimization.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/simple_queue_dynamic_201612/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/pics/1.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Han's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Reflection on Simple Queues</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-18T01:00:00+08:00">
+                2016-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Reflection/" itemprop="url" rel="index">
+                    <span itemprop="name">Reflection</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite capacity always have a steady state, but no proof is given in the class. In this post, I will discuss the dynamical system approach for this problem, and suggest several extensions.</p>
+<a id="more"></a>
+<h2 id="Modeling-the-Dynamics"><a href="#Modeling-the-Dynamics" class="headerlink" title="Modeling the Dynamics"></a>Modeling the Dynamics</h2><p>Let us consider the easiest $M$/$M$/1/$k$ queue, where $k$ is a finite number. Following is a picture of the temporal transition (By Gareth Jones - <a href="https://commons.wikimedia.org/w/index.php?curid=17204982" target="_blank" rel="external">MM1_queue_state_space.png</a>, CC BY-SA 3.0)</p>
+<p><img src="/images/MM1_queue_state_space.png" alt="two_segments"></p>
+<p>The state transition matrix is then given by</p>
+<p>$$A^T = \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ \mu &amp; -(\mu+\lambda) &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; \mu &amp; -\mu \end{pmatrix} $$</p>
+<p>It is taught from the class that to steady state probability $\pi$ can be obtained from solving equation $A\pi = 0$. But why is so?</p>
+<p>Let us think about how to obtain the transition diagram. We consider a small time slice $dt$, and find the first order derivative of transition probabilities between states. That means, the dynamical system on the probability of states can be described by the following linear ODE:</p>
+<p>$$ \frac{d}{dt}\pi = A\pi.$$</p>
+<p>It is obvious that this system is well defined since operator $A$ projects one probability distribution to another probability distribution. And now, we can analyze the queuing system using the tools for more general differential dynamical systems.</p>
+<p>The general solution of the ODE above is</p>
+<p>$$\pi_t = e^{At} \pi_0.$$</p>
+<p>Clearly, since $\pi_t$ will always satisfy the regularity condition as a probability distribution, $e^{At}$ will not have any eigenvalue with positive real part greater than 1. We can also prove this in a more formal way. Notice that $M = I + A$ is a Markov matrix on the graph of states and it is strongly connected, we know that $M$ is <a href="https://en.wikipedia.org/wiki/Irreducibility_(mathematics" target="_blank" rel="external">irreducible</a>. Then by Perron-Frobenius Theorem, we know that there is a maximal eigenvalue $\lambda_{max}$ such that the corresponding eigenvector $\pi^*$ is positive, and any non-negative eigenvector $\pi$ is a multiple of $\pi^*$. But since $A^Te = 0$, we know the left eigenvector $e$ exists and $\lambda_{max}$ must be 1. Then it is clear that the maximal eigenvalue of $e^{At}$ must be 1, the corresponding eigenvector $\pi^*$ exists and must be stable, and $\pi_t\to\pi^*$.</p>
+<h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><p>It seems that the analysis above uses complicate approach to validate a simple statement. But under the same framework, we can deal with systems with varying arrival and service rate, which is common in practice. For example, let us consider a varying arrival rate $\lambda_t$ along with the transition matrix $A_t$ and the ODE</p>
+<p>$$ \frac{d}{dt}\pi = A_t\pi.$$</p>
+<p>Now, the general solution can be expressed as</p>
+<p>$$\pi_t = e^{\int_0^t A_s ds} \pi_0 = e^{t\bar{A}_t} \pi_0,$$</p>
+<p>where $\bar{A}_t = \frac{1}{t}\int_0^tA_s ds$ is the time average of the transition matrix and is the transition matrix corresponding to average arrival rate $\bar{\lambda}_t = \frac{1}{t}\int_0^t\lambda_s ds$. If $\lambda_t$ is periodic with period $T$, by applying the same technique (informally) on $\bar{A}_T$ we know that there is a stable trajectory $\pi_T^*$ on $S^k \times [0,T]$ and $\pi_{nT+t}\to\pi_T^*(\cdot,t)$ as $n\to\infty$.</p>
+<p>To go one step further, we might be able to consider different arrival/service process. For example, consider a $M$/$D$/1/$k$ queue, in which the service process is deterministic. Now we have two matrices, the transient arrival</p>
+<p>$$A^T = \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -\lambda &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -\lambda &amp; \lambda \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \end{pmatrix} $$</p>
+<p>and the deterministic service with period $T=1/\mu$</p>
+<p>$$B^T = \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -1 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; -1 \end{pmatrix} $$</p>
+<p>So within period $T$ the dynamics is</p>
+<p>$$\pi_t = e^{tA} \pi_0,$$</p>
+<p>and at time $T$ we have</p>
+<p>$$\pi_T = Be^{TA} \pi_0.$$</p>
+<p>Then, to analyze the long term behavior of this system, we only need to know the spectral property of matrix $F=Be^{TA}$.</p>
+<p>We can also consider queues with infinity capacity. In this case, we need to define transition operator $A$ on $S^{\infty}$, the set of all discrete probability distribution, and analyze the spectrum of $A$. This is somewhat complicate so currently I will not discuss it. But one interesting question is, whether can we extend this notion into general probability distribution case and consider dynamics on the corresponding set/space.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this post I briefly review some simple queuing systems from the perspective of dynamical system. It is shown that this framework is powerful and can be generalized in many different settings. Moreover, we might be able to not only focus on steady state but also analyze the transient dynamics, which can be helpful for subsequent simulation design.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Queuing-Theory/" rel="tag"># Queuing Theory</a>
+          
+            <a href="/blog/tags/Stochastic-Process/" rel="tag"># Stochastic Process</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/latent_class_category_variable_201611/" rel="next" title="Case Study: Latent Classes in Quebec Energy consumption">
+                <i class="fa fa-chevron-left"></i> Case Study: Latent Classes in Quebec Energy consumption
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/shared_mobility_cn_201801/" rel="prev" title="关于共享出行">
+                关于共享出行 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/pics/1.JPG"
+                alt="Han Qiu" />
+            
+              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hanqiu92" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Github</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeling-the-Dynamics"><span class="nav-number">1.</span> <span class="nav-text">Modeling the Dynamics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extensions"><span class="nav-number">2.</span> <span class="nav-text">Extensions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">3.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qiu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://hanqiu92.github.io/blog/simple_queue_dynamic_201612/';
+          this.page.identifier = 'simple_queue_dynamic_201612/';
+          this.page.title = 'Reflection on Simple Queues';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hanqiu92.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
