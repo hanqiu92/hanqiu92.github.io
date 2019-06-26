@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Shared Mobility," />
+  <meta name="keywords" content="Queuing Theory,Stochastic Process," />
 
 
 
@@ -83,16 +83,17 @@
 
 
 
-<meta name="description" content="交通即人与物在时空上的流动。从本质来看，交通系统的设计是为这种流动提供可靠的载体。在交通系统设计不能得到改进的情况下，在提高出行能力（即满足更多的出行需求）与缓解城市拥堵之间必然存在着取舍。这种在出行能力与拥堵之间的取舍平衡，在下面的讨论中中将统一称为系统供需平衡。我这一年在交通方面的研究，主要就是关注于各类共享出行服务（shared mobility）对这种系统供需平衡的影响。">
+<meta name="description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于共享出行">
-<meta property="og:url" content="http://hanqiu92.github.io/blog/shared_mobility_cn_201801/index.html">
+<meta property="og:title" content="Reflection on Simple Queues">
+<meta property="og:url" content="http://hanqiu92.github.io/blog/2016/simple_queue_dynamic_201612/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="交通即人与物在时空上的流动。从本质来看，交通系统的设计是为这种流动提供可靠的载体。在交通系统设计不能得到改进的情况下，在提高出行能力（即满足更多的出行需求）与缓解城市拥堵之间必然存在着取舍。这种在出行能力与拥堵之间的取舍平衡，在下面的讨论中中将统一称为系统供需平衡。我这一年在交通方面的研究，主要就是关注于各类共享出行服务（shared mobility）对这种系统供需平衡的影响。">
-<meta property="og:updated_time" content="2017-12-28T16:30:23.991Z">
+<meta property="og:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
+<meta property="og:image" content="http://hanqiu92.github.io/blog/blog/images/MM1_queue_state_space.png">
+<meta property="og:updated_time" content="2019-06-25T14:33:33.753Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于共享出行">
-<meta name="twitter:description" content="交通即人与物在时空上的流动。从本质来看，交通系统的设计是为这种流动提供可靠的载体。在交通系统设计不能得到改进的情况下，在提高出行能力（即满足更多的出行需求）与缓解城市拥堵之间必然存在着取舍。这种在出行能力与拥堵之间的取舍平衡，在下面的讨论中中将统一称为系统供需平衡。我这一年在交通方面的研究，主要就是关注于各类共享出行服务（shared mobility）对这种系统供需平衡的影响。">
+<meta name="twitter:title" content="Reflection on Simple Queues">
+<meta name="twitter:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
 
 
 
@@ -122,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blog/shared_mobility_cn_201801/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blog/2016/simple_queue_dynamic_201612/"/>
 
 
 
 
 
-  <title>关于共享出行 | Han's Blog</title>
+  <title>Reflection on Simple Queues | Han's Blog</title>
   
 
 
@@ -247,7 +248,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/shared_mobility_cn_201801/">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/2016/simple_queue_dynamic_201612/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
@@ -264,7 +265,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关于共享出行</h1>
+          <h1 class="post-title" itemprop="name headline">Reflection on Simple Queues</h1>
         
 
         <div class="post-meta">
@@ -276,8 +277,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-28T01:00:00+08:00">
-                2017-12-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-18T01:00:00+08:00">
+                2016-12-17
               </time>
             
 
@@ -336,23 +337,35 @@
       
 
       
-        <p>交通即人与物在时空上的流动。从本质来看，交通系统的设计是为这种流动提供可靠的载体。在交通系统设计不能得到改进的情况下，在提高出行能力（即满足更多的出行需求）与缓解城市拥堵之间必然存在着取舍。这种在出行能力与拥堵之间的取舍平衡，在下面的讨论中中将统一称为系统供需平衡。我这一年在交通方面的研究，主要就是关注于各类共享出行服务（shared mobility）对这种系统供需平衡的影响。</p>
+        <p>This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite capacity always have a steady state, but no proof is given in the class. In this post, I will discuss the dynamical system approach for this problem, and suggest several extensions.</p>
 <a id="more"></a>
-<p>需要注意的是，在对交通系统资源的利用中，广泛地存在着负外部性的影响。这意味着，从个人目标出发达到的博弈均衡，一般较从整体出发的全局最优情况要差。例如，研究表明交通道路的通行时间一般随着车流密度非线性增长；若所有人都选择了均衡情况下的最短路径，那么一些主干道路会被过度使用，导致社会总体出行时间上升。目前，我认为主要需要考虑两种负外部性：出行车辆增加对社会道路资源的占用，以及保有车辆对社会土地资源的占用。考虑到当前的共享出行服务都是以提高出行能力为目标，在从系统角度分析这些服务的时候，这些负外部性将有不可忽略的影响。</p>
-<p>目前，从共享出行服务的形式来说，主要分为两类：约车服务和共享车服务（包括自行车和汽车）。相比于其他出行模式（mode），约车服务和出租车服务都提供了灵活的出发-目的地（OD）选择。但为了满足这些需求，相关的服务车辆需要进行一定比例的空驶，过多地占用了道路资源，产生了相应的负外部性。讽刺的是，国内出租车公司对司机征收的高额运营费用，从某种程度上内部化了这些负外部性，促使出租车司机降低空驶比例。而约车服务为了吸引广大的自有车辆群体，很难主动地考虑这种措施。由于自有车辆的运营成本较低，相比出租车它们只需要满足更少的日内出行量即可收回成本，进而造成两方面问题：一是自有车辆降低空驶的动机不足，二是自由车辆有更大的激励进入城市道路系统。这在相当程度上增加了负外部性，加剧了城市拥堵。然而，如果约车平台针对乘客和司机之间的匹配服务能够根据精确的实时和历史位置信息提高司乘匹配几率、降低出租车的空驶比例，就能改进系统供需平衡，部分地缓解道路资源的紧缺程度。当然，这部分改进能否完全修正前述的负外部性，还是需要进一步的实证或仿真研究的。</p>
-<p>与网约车不同，共享车一般不会空驶、过多地占用道路资源；但从直觉来说，共享车服务很难激励人们降低购车需求，因此需要另外开辟停车位、占用了土地资源。进一步地，虽然共享车的周转率一般要高于自有车辆，但考虑到出行需求在时空上的灵活性，共享车服务一般需要增大供给以保证服务质量，因此很难判断共享车辆相比于自有车辆是否能够节省规划空间。这意味着土地相比于车辆本身成为共享车服务发展的最主要制约因素。如果共享车与自有车辆共享公用停车位，则服务质量受制于整体停车位供需情况；如果拥有私有停车位，则需要较高的土地成本，且保证停车位私有性的执法成本不低。</p>
-<p>综合以上几点，我认为以下的研究方向还是比较有趣且有现实意义的：</p>
-<ol>
-<li><p>通过拼车服务提高系统供需平衡。我之前的研究表明，在同时提高出行能力和降低拥堵情况上，系统总体车辆出行量是一个重要指标。如果一味提高拼车率，则容易降低平均拼车里程，而短程拼车容易导致绕路比例过高，反而不利于改善拥堵。后续研究可以针对一些市场上已经出现的策略，包括设置共同上车点、对于时间敏感度低的出行需求提供预约服务，进行进一步分析，或是设计更有针对性的策略。</p>
-</li>
-<li><p>约车服务管理的机制设计。在当前各类约车平台中，管理方、平台方、司机方的利益并不完全一致，而管理机制的不健全往往使相互间的博弈指向一个各方利益都受损的结果。从管理方的角度出发，可以研究设计更为合理的管理目标及相应机制（例如道路资源使用成本内部化）。</p>
-</li>
-<li><p>改善土地利用方式的共享汽车服务模式。从目前的经验看，全面铺开、分散式的网点设置会带来较大的不确定性，不但影响了服务质量，也增加了运营成本。从直觉上看，以大型网点为基础、辅以高效的需求管理的运营体系，似乎能够克服这种缺陷。</p>
-</li>
-<li><p>无人车服务的各种可能性。无人车兼具约车服务的灵活性与共享车的私密性，自然也就分享了相应的优缺点。例如，无人车服务也会面临大量的空驶，如何分配其中的道路资源使用成本是需要进行研究的。同样，无人车也会遇到与共享车一样、车内环境无法有效控制的问题，如果能通过运营机制和助推手段对使用人群进行有效区分、进而提升整体服务质量，也是很有意义的。</p>
-</li>
-</ol>
-<p>当然，随着这些共享出行服务平台的发展，它们很可能已经超出了交通服务的范围，而需要承担更大的社会责任，在技术革新上的兴趣或者能力会有所消减。个人认为，未来交通系统革命性的发展，还是取决于硬件方面的突破。</p>
+<h2 id="Modeling-the-Dynamics"><a href="#Modeling-the-Dynamics" class="headerlink" title="Modeling the Dynamics"></a>Modeling the Dynamics</h2><p>Let us consider the easiest $M$/$M$/1/$k$ queue, where $k$ is a finite number. Following is a picture of the temporal transition (By Gareth Jones - <a href="https://commons.wikimedia.org/w/index.php?curid=17204982" target="_blank" rel="external">MM1_queue_state_space.png</a>, CC BY-SA 3.0)</p>
+<p><img src="/blog/images/MM1_queue_state_space.png" alt="two_segments"></p>
+<p>The state transition matrix is then given by</p>
+<p>$$A^T = \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ \mu &amp; -(\mu+\lambda) &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; \mu &amp; -\mu \end{pmatrix} $$</p>
+<p>It is taught from the class that to steady state probability $\pi$ can be obtained from solving equation $A\pi = 0$. But why is so?</p>
+<p>Let us think about how to obtain the transition diagram. We consider a small time slice $dt$, and find the first order derivative of transition probabilities between states. That means, the dynamical system on the probability of states can be described by the following linear ODE:</p>
+<p>$$ \frac{d}{dt}\pi = A\pi.$$</p>
+<p>It is obvious that this system is well defined since operator $A$ projects one probability distribution to another probability distribution. And now, we can analyze the queuing system using the tools for more general differential dynamical systems.</p>
+<p>The general solution of the ODE above is</p>
+<p>$$\pi_t = e^{At} \pi_0.$$</p>
+<p>Clearly, since $\pi_t$ will always satisfy the regularity condition as a probability distribution, $e^{At}$ will not have any eigenvalue with positive real part greater than 1. We can also prove this in a more formal way. Notice that $M = I + A$ is a Markov matrix on the graph of states and it is strongly connected, we know that $M$ is <a href="https://en.wikipedia.org/wiki/Irreducibility_(mathematics" target="_blank" rel="external">irreducible</a>. Then by Perron-Frobenius Theorem, we know that there is a maximal eigenvalue $\lambda_{max}$ such that the corresponding eigenvector $\pi^*$ is positive, and any non-negative eigenvector $\pi$ is a multiple of $\pi^*$. But since $A^Te = 0$, we know the left eigenvector $e$ exists and $\lambda_{max}$ must be 1. Then it is clear that the maximal eigenvalue of $e^{At}$ must be 1, the corresponding eigenvector $\pi^*$ exists and must be stable, and $\pi_t\to\pi^*$.</p>
+<h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><p>It seems that the analysis above uses complicate approach to validate a simple statement. But under the same framework, we can deal with systems with varying arrival and service rate, which is common in practice. For example, let us consider a varying arrival rate $\lambda_t$ along with the transition matrix $A_t$ and the ODE</p>
+<p>$$ \frac{d}{dt}\pi = A_t\pi.$$</p>
+<p>Now, the general solution can be expressed as</p>
+<p>$$\pi_t = e^{\int_0^t A_s ds} \pi_0 = e^{t\bar{A}_t} \pi_0,$$</p>
+<p>where $\bar{A}_t = \frac{1}{t}\int_0^tA_s ds$ is the time average of the transition matrix and is the transition matrix corresponding to average arrival rate $\bar{\lambda}_t = \frac{1}{t}\int_0^t\lambda_s ds$. If $\lambda_t$ is periodic with period $T$, by applying the same technique (informally) on $\bar{A}_T$ we know that there is a stable trajectory $\pi_T^*$ on $S^k \times [0,T]$ and $\pi_{nT+t}\to\pi_T^*(\cdot,t)$ as $n\to\infty$.</p>
+<p>To go one step further, we might be able to consider different arrival/service process. For example, consider a $M$/$D$/1/$k$ queue, in which the service process is deterministic. Now we have two matrices, the transient arrival</p>
+<p>$$A^T = \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -\lambda &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -\lambda &amp; \lambda \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \end{pmatrix} $$</p>
+<p>and the deterministic service with period $T=1/\mu$</p>
+<p>$$B^T = \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -1 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; -1 \end{pmatrix} $$</p>
+<p>So within period $T$ the dynamics is</p>
+<p>$$\pi_t = e^{tA} \pi_0,$$</p>
+<p>and at time $T$ we have</p>
+<p>$$\pi_T = Be^{TA} \pi_0.$$</p>
+<p>Then, to analyze the long term behavior of this system, we only need to know the spectral property of matrix $F=Be^{TA}$.</p>
+<p>We can also consider queues with infinity capacity. In this case, we need to define transition operator $A$ on $S^{\infty}$, the set of all discrete probability distribution, and analyze the spectrum of $A$. This is somewhat complicate so currently I will not discuss it. But one interesting question is, whether can we extend this notion into general probability distribution case and consider dynamics on the corresponding set/space.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this post I briefly review some simple queuing systems from the perspective of dynamical system. It is shown that this framework is powerful and can be generalized in many different settings. Moreover, we might be able to not only focus on steady state but also analyze the transient dynamics, which can be helpful for subsequent simulation design.</p>
 
       
     </div>
@@ -370,7 +383,9 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/Shared-Mobility/" rel="tag"># Shared Mobility</a>
+            <a href="/blog/tags/Queuing-Theory/" rel="tag"># Queuing Theory</a>
+          
+            <a href="/blog/tags/Stochastic-Process/" rel="tag"># Stochastic Process</a>
           
         </div>
       
@@ -383,8 +398,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/simple_queue_dynamic_201612/" rel="next" title="Reflection on Simple Queues">
-                <i class="fa fa-chevron-left"></i> Reflection on Simple Queues
+              <a href="/blog/2016/latent_class_category_variable_201611/" rel="next" title="Case Study: Latent Classes in Quebec Energy consumption">
+                <i class="fa fa-chevron-left"></i> Case Study: Latent Classes in Quebec Energy consumption
               </a>
             
           </div>
@@ -393,8 +408,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/GAN_IRL_201808/" rel="prev" title="A Discussion on GAN-based IRL methods">
-                A Discussion on GAN-based IRL methods <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2017/shared_mobility_cn_201801/" rel="prev" title="关于共享出行">
+                关于共享出行 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -457,8 +472,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -544,6 +568,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeling-the-Dynamics"><span class="nav-number">1.</span> <span class="nav-text">Modeling the Dynamics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extensions"><span class="nav-number">2.</span> <span class="nav-text">Extensions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">3.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -699,9 +739,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://hanqiu92.github.io/blog/shared_mobility_cn_201801/';
-          this.page.identifier = 'shared_mobility_cn_201801/';
-          this.page.title = '关于共享出行';
+          this.page.url = 'http://hanqiu92.github.io/blog/2016/simple_queue_dynamic_201612/';
+          this.page.identifier = '2016/simple_queue_dynamic_201612/';
+          this.page.title = 'Reflection on Simple Queues';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://hanqiu92.disqus.com/embed.js';

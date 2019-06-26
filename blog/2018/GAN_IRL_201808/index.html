@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Queuing Theory,Stochastic Process," />
+  <meta name="keywords" content="Behavior Modeling,Reinforcement Learning," />
 
 
 
@@ -83,17 +83,16 @@
 
 
 
-<meta name="description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
+<meta name="description" content="IntroductionInverse reinforcement learning (IRL) is the dual of reinforcement learning (RL) and aims at recovering the reward function that the agent optimizes with. Compared with supervised learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Reflection on Simple Queues">
-<meta property="og:url" content="http://hanqiu92.github.io/blog/simple_queue_dynamic_201612/index.html">
+<meta property="og:title" content="A Discussion on GAN-based IRL methods">
+<meta property="og:url" content="http://hanqiu92.github.io/blog/2018/GAN_IRL_201808/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
-<meta property="og:image" content="http://hanqiu92.github.io/blog/blog/images/MM1_queue_state_space.png">
-<meta property="og:updated_time" content="2019-06-25T14:33:33.753Z">
+<meta property="og:description" content="IntroductionInverse reinforcement learning (IRL) is the dual of reinforcement learning (RL) and aims at recovering the reward function that the agent optimizes with. Compared with supervised learning">
+<meta property="og:updated_time" content="2019-06-01T11:16:01.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reflection on Simple Queues">
-<meta name="twitter:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
+<meta name="twitter:title" content="A Discussion on GAN-based IRL methods">
+<meta name="twitter:description" content="IntroductionInverse reinforcement learning (IRL) is the dual of reinforcement learning (RL) and aims at recovering the reward function that the agent optimizes with. Compared with supervised learning">
 
 
 
@@ -123,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blog/simple_queue_dynamic_201612/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blog/2018/GAN_IRL_201808/"/>
 
 
 
 
 
-  <title>Reflection on Simple Queues | Han's Blog</title>
+  <title>A Discussion on GAN-based IRL methods | Han's Blog</title>
   
 
 
@@ -248,7 +247,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/simple_queue_dynamic_201612/">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/2018/GAN_IRL_201808/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
@@ -265,7 +264,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Reflection on Simple Queues</h1>
+          <h1 class="post-title" itemprop="name headline">A Discussion on GAN-based IRL methods</h1>
         
 
         <div class="post-meta">
@@ -277,8 +276,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-18T01:00:00+08:00">
-                2016-12-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-01T00:06:00+08:00">
+                2018-08-31
               </time>
             
 
@@ -300,8 +299,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Reflection/" itemprop="url" rel="index">
-                    <span itemprop="name">Reflection</span>
+                  <a href="/blog/categories/Study-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Study Notes</span>
                   </a>
                 </span>
 
@@ -337,35 +336,58 @@
       
 
       
-        <p>This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite capacity always have a steady state, but no proof is given in the class. In this post, I will discuss the dynamical system approach for this problem, and suggest several extensions.</p>
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Inverse reinforcement learning (IRL) is the dual of reinforcement learning (RL) and aims at recovering the reward function that the agent optimizes with. Compared with supervised learning (behavior cloning, BC), IRL imposes more restrictive regularity conditions on the set of policies and is more appropriate in cases with inadequate expert demonstrations and for robust estimations. For example, consider a routing problem on a grid network: the optimal actions taken by the agent are geographically correlated. In this case, compared with BC, IRL has a higher chance of recovering the internal reward structure and leads to more consistent actions across space.</p>
+<p>In this post, I will briefly introduce several recent works using the generative adversarial network (GAN) for IRL and discuss their connections.</p>
 <a id="more"></a>
-<h2 id="Modeling-the-Dynamics"><a href="#Modeling-the-Dynamics" class="headerlink" title="Modeling the Dynamics"></a>Modeling the Dynamics</h2><p>Let us consider the easiest $M$/$M$/1/$k$ queue, where $k$ is a finite number. Following is a picture of the temporal transition (By Gareth Jones - <a href="https://commons.wikimedia.org/w/index.php?curid=17204982" target="_blank" rel="external">MM1_queue_state_space.png</a>, CC BY-SA 3.0)</p>
-<p><img src="/blog/images/MM1_queue_state_space.png" alt="two_segments"></p>
-<p>The state transition matrix is then given by</p>
-<p>$$A^T = \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ \mu &amp; -(\mu+\lambda) &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; \mu &amp; -\mu \end{pmatrix} $$</p>
-<p>It is taught from the class that to steady state probability $\pi$ can be obtained from solving equation $A\pi = 0$. But why is so?</p>
-<p>Let us think about how to obtain the transition diagram. We consider a small time slice $dt$, and find the first order derivative of transition probabilities between states. That means, the dynamical system on the probability of states can be described by the following linear ODE:</p>
-<p>$$ \frac{d}{dt}\pi = A\pi.$$</p>
-<p>It is obvious that this system is well defined since operator $A$ projects one probability distribution to another probability distribution. And now, we can analyze the queuing system using the tools for more general differential dynamical systems.</p>
-<p>The general solution of the ODE above is</p>
-<p>$$\pi_t = e^{At} \pi_0.$$</p>
-<p>Clearly, since $\pi_t$ will always satisfy the regularity condition as a probability distribution, $e^{At}$ will not have any eigenvalue with positive real part greater than 1. We can also prove this in a more formal way. Notice that $M = I + A$ is a Markov matrix on the graph of states and it is strongly connected, we know that $M$ is <a href="https://en.wikipedia.org/wiki/Irreducibility_(mathematics" target="_blank" rel="external">irreducible</a>. Then by Perron-Frobenius Theorem, we know that there is a maximal eigenvalue $\lambda_{max}$ such that the corresponding eigenvector $\pi^*$ is positive, and any non-negative eigenvector $\pi$ is a multiple of $\pi^*$. But since $A^Te = 0$, we know the left eigenvector $e$ exists and $\lambda_{max}$ must be 1. Then it is clear that the maximal eigenvalue of $e^{At}$ must be 1, the corresponding eigenvector $\pi^*$ exists and must be stable, and $\pi_t\to\pi^*$.</p>
-<h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><p>It seems that the analysis above uses complicate approach to validate a simple statement. But under the same framework, we can deal with systems with varying arrival and service rate, which is common in practice. For example, let us consider a varying arrival rate $\lambda_t$ along with the transition matrix $A_t$ and the ODE</p>
-<p>$$ \frac{d}{dt}\pi = A_t\pi.$$</p>
-<p>Now, the general solution can be expressed as</p>
-<p>$$\pi_t = e^{\int_0^t A_s ds} \pi_0 = e^{t\bar{A}_t} \pi_0,$$</p>
-<p>where $\bar{A}_t = \frac{1}{t}\int_0^tA_s ds$ is the time average of the transition matrix and is the transition matrix corresponding to average arrival rate $\bar{\lambda}_t = \frac{1}{t}\int_0^t\lambda_s ds$. If $\lambda_t$ is periodic with period $T$, by applying the same technique (informally) on $\bar{A}_T$ we know that there is a stable trajectory $\pi_T^*$ on $S^k \times [0,T]$ and $\pi_{nT+t}\to\pi_T^*(\cdot,t)$ as $n\to\infty$.</p>
-<p>To go one step further, we might be able to consider different arrival/service process. For example, consider a $M$/$D$/1/$k$ queue, in which the service process is deterministic. Now we have two matrices, the transient arrival</p>
-<p>$$A^T = \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -\lambda &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -\lambda &amp; \lambda \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \end{pmatrix} $$</p>
-<p>and the deterministic service with period $T=1/\mu$</p>
-<p>$$B^T = \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -1 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; -1 \end{pmatrix} $$</p>
-<p>So within period $T$ the dynamics is</p>
-<p>$$\pi_t = e^{tA} \pi_0,$$</p>
-<p>and at time $T$ we have</p>
-<p>$$\pi_T = Be^{TA} \pi_0.$$</p>
-<p>Then, to analyze the long term behavior of this system, we only need to know the spectral property of matrix $F=Be^{TA}$.</p>
-<p>We can also consider queues with infinity capacity. In this case, we need to define transition operator $A$ on $S^{\infty}$, the set of all discrete probability distribution, and analyze the spectrum of $A$. This is somewhat complicate so currently I will not discuss it. But one interesting question is, whether can we extend this notion into general probability distribution case and consider dynamics on the corresponding set/space.</p>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this post I briefly review some simple queuing systems from the perspective of dynamical system. It is shown that this framework is powerful and can be generalized in many different settings. Moreover, we might be able to not only focus on steady state but also analyze the transient dynamics, which can be helpful for subsequent simulation design.</p>
+<h2 id="Equivalence-of-IRL-formulations"><a href="#Equivalence-of-IRL-formulations" class="headerlink" title="Equivalence of IRL formulations"></a>Equivalence of IRL formulations</h2><p>In the literature, there are two IRL formulations:</p>
+<p>$$\min_r [\max_{\pi} E_{\rho_{\pi}} (r(s,a) - \log(a|s)) - E_{\rho_{\pi_E}} r(s,a)],$$</p>
+<p>or</p>
+<p>$$\max_r E_{\rho_{\pi_E}} \log p(a|s),$$</p>
+<p>where $\rho_{\pi}(s,a)$ in the first formulation is the expected (discounted) occurrence of state-action $(s,a)$ pair when we sample with policy $\pi$ and in the second formulation refers to the sampling process of the expert demonstrations, and $p(a|s)$ is the action choice probability under the assumption that $\pi_E$ follows the entropy-regularized optimal policy. The first formulation above means that we should find a reward $r$ such that the expected total value from expert policy $\pi_E$ is closest to the entropy-regularized optimal policy $\pi_H$, while the second formulation is to maximize the log likelihood of expert demonstrations with $r$. Next, we show that the two formulations are equivalent when the two sampling processes $\rho$ are consistent (this seems trivial but DO have important implications in how each paper builds up their specific IRL algorithms).</p>
+<p>Assume we are given with some reward function $r$. We denote the value function under the entropy-regularized optimal policy as $V$; that is, we have</p>
+<p>$$\max_{\pi} E_{\rho_{\pi}} (r(s,a) - \log p(a|s)) = \sum_s p_0(s) V(s).$$</p>
+<p>Now, we can show that</p>
+<p>$$\begin{aligned} Q(s,a) &amp; = r(s,a) + \gamma \sum_{s’} p(s’|s,a) V(s’) \\<br>e^{V(s)} &amp; = \sum_a e^{Q(s,a)} \\<br>p(a|s) &amp; = e^{Q(s,a) - V(s)}, \end{aligned}$$</p>
+<p>where $\gamma$ is the discount factor. Such characterization is also available in Ziebart (2010).</p>
+<p>(Note: If one is familiar with discrete choice modeling, she will find that the form of dynamic MNL model is quite similar with the above characterization of entropy-regularized optimal action.)</p>
+<p>So if $\pi_E$ follows the entropy-regularized optimal policy, we have</p>
+<p>$$\begin{aligned} E_{\rho_{\pi_E}} \log p(a|s) &amp; = E_{\rho_{\pi_E}} Q(a,s) - E_{\rho_{\pi_E}} V(s) \\<br>&amp; = E_{\rho_{\pi_E}} r(a,s) + \gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) - E_{\rho_{\pi_E}} V(s). \\ \end{aligned}$$</p>
+<p>Therefore, we remain to show that</p>
+<p>$$\gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) - E_{\rho_{\pi_E}} V(s) = -\sum_s p_0(s) V(s)$$</p>
+<p>when the $\rho_E$ in the two formulations refer to the same thing. The major implication of such equivalence is that the expert demonstrations should be sampled exactly as dictated by the expected discounted occurrence. Why is this so important? Notice that when the problem under discussion is an infinite time MDP, we cannot sample each single expert trajectory into distant future and there must be some stopping mechanisms. The above equivalence restricts our choices: we should stop according to the discount factor $\gamma$. That is, for each sampled trajectory $\tau$ with length $T+1$ (a $(s,a)$ pair is of length $1$), we have probability</p>
+<p>$$p(\tau) = (1-\gamma) \gamma^T p_0(s_0)\pi_E(a_0|s_0) p(s_1|s_0,a_0)\cdots p(s_T|s_{T-1},a_{T-1})\pi_E(a_T|s_T).$$</p>
+<p>The expected discounted occurrence of state-action pair $(s,a)$, in both formulations, is the same as</p>
+<p>$$\rho_{\pi_E}(s,a) = \sum_{T}\sum_{\tau:l(\tau)=T,\tau_{-1} = (s,a)} p(\tau),$$</p>
+<p>where $l(\tau)$ is the length of the trajectory $\tau$ and $\tau_{-1}$ is the last state-action pair in the trajectory. If we further define $p(\tau,s) = \gamma p(\tau)p(s|\tau_{-1})$ for $l(\tau) &gt; 0$ and $p(\tau,s) = p_0(s)$ for for $l(\tau) = 0$, we have, on one hand,</p>
+<p>$$\begin{aligned}\gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) &amp; = \gamma \sum_{s,a} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T,\tau_{-1} = (s,a)} p(\tau) \sum_{s’} p(s’|s,a) V(s’) \\<br>&amp; = \sum_{s,a} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T,\tau_{-1} = (s,a)}\sum_{s’} p(\tau,s’) V(s’)\\<br>&amp; = \sum_{s’}\sum_{T &gt; 0}\sum_{\tau:l(\tau)=T} p(\tau,s’) V(s’), \end{aligned}$$</p>
+<p>and, on the other hand,</p>
+<p>$$\begin{aligned}E_{\rho_{\pi_E}} V(s) &amp; = \sum_{s,a} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T,\tau_{-1} = (s,a)} p(\tau) V(s) \\<br>&amp; = \sum_{s} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T-1}p(\tau,s)\sum_{a} \pi_E(a|s)  V(s) \\<br>&amp; = \sum_{s} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T-1} p(\tau,s) V(s) \\<br>&amp; = \sum_{s} \sum_{T \geq 0}\sum_{\tau:l(\tau)=T} p(\tau,s) V(s). \end{aligned}$$</p>
+<p>Therefore, we have</p>
+<p>$$\gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) - E_{\rho_{\pi_E}} V(s) = -\sum_{s} \sum_{\tau:l(\tau)=0} p(\tau,s) V(s) = -\sum_s p_0(s) V(s). $$</p>
+<p>Now we have shown that the (min-max) performance gap formulation and the maximum log likelihood formulation are consistent. Next, we illustrate how to obtain a GAN-based IRL method with the min-max formulation.</p>
+<h2 id="A-GAN-based-IRL-method"><a href="#A-GAN-based-IRL-method" class="headerlink" title="A GAN-based IRL method"></a>A GAN-based IRL method</h2><p>Assume in the min-max formulation, the inner problem is solved by RL and we have the entropy-regularized optimal policy $\pi_H$ for some $r$. For the outer problem</p>
+<p>$$\min_r E_{\rho_{\pi_H}} r(s,a) - E_{\rho_{\pi_E}} r(s,a),$$</p>
+<p>If we consider transformation $D(s,a) = \sigma (r(s,a) - \log\pi_H(a|s)) \in (0,1)$ with $\sigma$ being the sigmoid function, the equation above can be written as</p>
+<p>$$\min_r E_{\rho_{\pi_H}} [\log D(s,a) - \log(1 - D(s,a))] - E_{\rho_{\pi_E}} [\log D(s,a) - \log(1 - D(s,a))],$$</p>
+<p>or</p>
+<p>$$\max_D [E_{\rho_{\pi_H}} \log(1 - D(s,a)) + E_{\rho_{\pi_E}} \log D(s,a)] - [E_{\rho_{\pi_H}} \log D(s,a) + E_{\rho_{\pi_E}} (1 - \log D(s,a))].$$</p>
+<p>The whole thing is hard to optimize, and we can drop the last part and only maximize</p>
+<p>$$E_{\rho_{\pi_H}} \log(1 - D(s,a)) + E_{\rho_{\pi_E}} \log D(s,a).$$</p>
+<p>Now we recover the GAIL method (Ho &amp; Ermon (2016)) and AIRL method (Fu et al. (2017))! In fact, with the min-max structure, we can iterate between finding the optimal $\pi_H$ and the best discriminator $D$; this is what we mean by “GAN-based”.</p>
+<p>Now we finally have enough knowledge to comment on some recent works on GAN-based IRL methods.</p>
+<h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2><p>Ho &amp; Ermon (2016) is the first to “rediscover” the duality between RL and IRL and show that RL under IRL leads to a policy that matches the expected discounted occurrence $\rho$ with the expert demonstrations $\pi_E$ under some regularization $\psi$. They then choose a specific $\psi$ which reduces the occurrence matching problem to the above binary classification problem. However, in GAIL the RL step finds a policy with respect to $r = \log D$, while in our’s and AIRL the reward is $r = \log D - \log (1 - D)$. Such difference comes from the fact that GAIL actually is not an IRL method and the quasi-reward $r = \log D$ is only used as a helper to obtain policy $\pi$.</p>
+<p>Two later works, Finn et al. (2016) and Fu et al. (2017), do develop IRL methods; but their theoretical developments are problematic. They try to tackle the problem from the max log likelihood side, but directly assume that trajectory $\tau$ has the probability</p>
+<p>$$p(\tau) \propto e^{\sum_t \gamma^t r(s_t,a_t)}.$$</p>
+<p>If we look at the form of the value function $V$ above or read Ziebart (2010) carefully, we should see that this assumption is consistent with the entropy-regularized optimal behavior only when the underlying MDP is deterministic and has no discount ($\gamma = 1$). Therefore, their setup is more likely to assume that the expert follows the entropy-regularized myopic behavior $\pi’$. (This might be the reality, though.)</p>
+<p>Finally, I will go through the development of AIRL as there is much ambiguity in the original paper. They first show that the gradient to the LL is</p>
+<p>$$E_{\rho_{\pi_E}} \partial r(s,a) - E_{\rho_{\pi’}} \partial r(s,a),$$</p>
+<p>and then consider the following approximation</p>
+<p>$$\begin{aligned}E_{\rho_{\pi’}} \partial r(s,a) &amp; = E_{0.5\rho_{\pi_H} + 0.5\rho_{\pi_E}} \frac{\rho_{\pi’}}{0.5\rho_{\pi_H} + 0.5\rho_{\pi_E}}\partial r(s,a) \\<br>&amp; \approx E_{0.5\rho_{\pi_H} + 0.5\rho_{\pi_E}} \frac{\rho_{\pi’}}{0.5\rho_{\pi_H} + 0.5\rho_{\pi’}}\partial r(s,a).\end{aligned}$$</p>
+<p>This then leads to the above binary classification formulation. We can now see that in our development, by dropping the part $[E_{\rho_{\pi_H}} \log D(s,a) + E_{\rho_{\pi_E}} (1 - \log D(s,a))]$, we introduce the risk of interpreting expert demonstrations in myopic ways.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Ziebart, B. D. (2010). Modeling purposeful adaptive behavior with the principle of maximum causal entropy. PhD thesis, Carnegie Mellon University.</p>
+<p>Finn, C., Christiano, P., Abbeel, P., &amp; Levine, S. (2016). A connection between generative adversarial networks, inverse reinforcement learning, and energy-based models. arXiv preprint arXiv:1611.03852.</p>
+<p>Ho, J., &amp; Ermon, S. (2016). Generative adversarial imitation learning. In Advances in Neural Information Processing Systems (pp. 4565-4573).</p>
+<p>Fu, J., Luo, K., &amp; Levine, S. (2017). Learning Robust Rewards with Adversarial Inverse Reinforcement Learning. arXiv preprint arXiv:1710.11248.</p>
 
       
     </div>
@@ -383,9 +405,9 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/Queuing-Theory/" rel="tag"># Queuing Theory</a>
+            <a href="/blog/tags/Behavior-Modeling/" rel="tag"># Behavior Modeling</a>
           
-            <a href="/blog/tags/Stochastic-Process/" rel="tag"># Stochastic Process</a>
+            <a href="/blog/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
           
         </div>
       
@@ -398,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/latent_class_category_variable_201611/" rel="next" title="Case Study: Latent Classes in Quebec Energy consumption">
-                <i class="fa fa-chevron-left"></i> Case Study: Latent Classes in Quebec Energy consumption
+              <a href="/blog/2017/shared_mobility_cn_201801/" rel="next" title="关于共享出行">
+                <i class="fa fa-chevron-left"></i> 关于共享出行
               </a>
             
           </div>
@@ -408,8 +430,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/shared_mobility_cn_201801/" rel="prev" title="关于共享出行">
-                关于共享出行 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2019/decision_making_modeling_201901/" rel="prev" title="A Note on Decision Behavior Modeling">
+                A Note on Decision Behavior Modeling <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -578,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeling-the-Dynamics"><span class="nav-number">1.</span> <span class="nav-text">Modeling the Dynamics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extensions"><span class="nav-number">2.</span> <span class="nav-text">Extensions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">3.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Equivalence-of-IRL-formulations"><span class="nav-number">2.</span> <span class="nav-text">Equivalence of IRL formulations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-GAN-based-IRL-method"><span class="nav-number">3.</span> <span class="nav-text">A GAN-based IRL method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Discussion"><span class="nav-number">4.</span> <span class="nav-text">Discussion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
@@ -739,9 +761,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://hanqiu92.github.io/blog/simple_queue_dynamic_201612/';
-          this.page.identifier = 'simple_queue_dynamic_201612/';
-          this.page.title = 'Reflection on Simple Queues';
+          this.page.url = 'http://hanqiu92.github.io/blog/2018/GAN_IRL_201808/';
+          this.page.identifier = '2018/GAN_IRL_201808/';
+          this.page.title = 'A Discussion on GAN-based IRL methods';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://hanqiu92.disqus.com/embed.js';

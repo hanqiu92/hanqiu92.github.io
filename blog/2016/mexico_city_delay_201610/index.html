@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Behavior Modeling,Reinforcement Learning," />
+  <meta name="keywords" content="Queuing Theory,Stochastic Process," />
 
 
 
@@ -83,16 +83,18 @@
 
 
 
-<meta name="description" content="IntroductionInverse reinforcement learning (IRL) is the dual of reinforcement learning (RL) and aims at recovering the reward function that the agent optimizes with. Compared with supervised learning">
+<meta name="description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A Discussion on GAN-based IRL methods">
-<meta property="og:url" content="http://hanqiu92.github.io/blog/GAN_IRL_201808/index.html">
+<meta property="og:title" content="Case Study: Delay in Mexico City">
+<meta property="og:url" content="http://hanqiu92.github.io/blog/2016/mexico_city_delay_201610/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="IntroductionInverse reinforcement learning (IRL) is the dual of reinforcement learning (RL) and aims at recovering the reward function that the agent optimizes with. Compared with supervised learning">
-<meta property="og:updated_time" content="2019-06-01T11:16:01.044Z">
+<meta property="og:description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
+<meta property="og:image" content="http://hanqiu92.github.io/blog/blog/images/mexico_city_map.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blog/blog/images/mm1.png">
+<meta property="og:updated_time" content="2019-06-25T14:33:27.967Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Discussion on GAN-based IRL methods">
-<meta name="twitter:description" content="IntroductionInverse reinforcement learning (IRL) is the dual of reinforcement learning (RL) and aims at recovering the reward function that the agent optimizes with. Compared with supervised learning">
+<meta name="twitter:title" content="Case Study: Delay in Mexico City">
+<meta name="twitter:description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blog/GAN_IRL_201808/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blog/2016/mexico_city_delay_201610/"/>
 
 
 
 
 
-  <title>A Discussion on GAN-based IRL methods | Han's Blog</title>
+  <title>Case Study: Delay in Mexico City | Han's Blog</title>
   
 
 
@@ -247,7 +249,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/GAN_IRL_201808/">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/2016/mexico_city_delay_201610/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
@@ -264,7 +266,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">A Discussion on GAN-based IRL methods</h1>
+          <h1 class="post-title" itemprop="name headline">Case Study: Delay in Mexico City</h1>
         
 
         <div class="post-meta">
@@ -276,8 +278,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-01T00:06:00+08:00">
-                2018-08-31
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-23T12:00:00+08:00">
+                2016-10-23
               </time>
             
 
@@ -299,8 +301,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Study-Notes/" itemprop="url" rel="index">
-                    <span itemprop="name">Study Notes</span>
+                  <a href="/blog/categories/Case-Study/" itemprop="url" rel="index">
+                    <span itemprop="name">Case Study</span>
                   </a>
                 </span>
 
@@ -336,58 +338,36 @@
       
 
       
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Inverse reinforcement learning (IRL) is the dual of reinforcement learning (RL) and aims at recovering the reward function that the agent optimizes with. Compared with supervised learning (behavior cloning, BC), IRL imposes more restrictive regularity conditions on the set of policies and is more appropriate in cases with inadequate expert demonstrations and for robust estimations. For example, consider a routing problem on a grid network: the optimal actions taken by the agent are geographically correlated. In this case, compared with BC, IRL has a higher chance of recovering the internal reward structure and leads to more consistent actions across space.</p>
-<p>In this post, I will briefly introduce several recent works using the generative adversarial network (GAN) for IRL and discuss their connections.</p>
+        <p>This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about how to model and solve this problem. In last several days, I realized the tools we needed were no more than high school arithmetics.</p>
 <a id="more"></a>
-<h2 id="Equivalence-of-IRL-formulations"><a href="#Equivalence-of-IRL-formulations" class="headerlink" title="Equivalence of IRL formulations"></a>Equivalence of IRL formulations</h2><p>In the literature, there are two IRL formulations:</p>
-<p>$$\min_r [\max_{\pi} E_{\rho_{\pi}} (r(s,a) - \log(a|s)) - E_{\rho_{\pi_E}} r(s,a)],$$</p>
-<p>or</p>
-<p>$$\max_r E_{\rho_{\pi_E}} \log p(a|s),$$</p>
-<p>where $\rho_{\pi}(s,a)$ in the first formulation is the expected (discounted) occurrence of state-action $(s,a)$ pair when we sample with policy $\pi$ and in the second formulation refers to the sampling process of the expert demonstrations, and $p(a|s)$ is the action choice probability under the assumption that $\pi_E$ follows the entropy-regularized optimal policy. The first formulation above means that we should find a reward $r$ such that the expected total value from expert policy $\pi_E$ is closest to the entropy-regularized optimal policy $\pi_H$, while the second formulation is to maximize the log likelihood of expert demonstrations with $r$. Next, we show that the two formulations are equivalent when the two sampling processes $\rho$ are consistent (this seems trivial but DO have important implications in how each paper builds up their specific IRL algorithms).</p>
-<p>Assume we are given with some reward function $r$. We denote the value function under the entropy-regularized optimal policy as $V$; that is, we have</p>
-<p>$$\max_{\pi} E_{\rho_{\pi}} (r(s,a) - \log p(a|s)) = \sum_s p_0(s) V(s).$$</p>
-<p>Now, we can show that</p>
-<p>$$\begin{aligned} Q(s,a) &amp; = r(s,a) + \gamma \sum_{s’} p(s’|s,a) V(s’) \\<br>e^{V(s)} &amp; = \sum_a e^{Q(s,a)} \\<br>p(a|s) &amp; = e^{Q(s,a) - V(s)}, \end{aligned}$$</p>
-<p>where $\gamma$ is the discount factor. Such characterization is also available in Ziebart (2010).</p>
-<p>(Note: If one is familiar with discrete choice modeling, she will find that the form of dynamic MNL model is quite similar with the above characterization of entropy-regularized optimal action.)</p>
-<p>So if $\pi_E$ follows the entropy-regularized optimal policy, we have</p>
-<p>$$\begin{aligned} E_{\rho_{\pi_E}} \log p(a|s) &amp; = E_{\rho_{\pi_E}} Q(a,s) - E_{\rho_{\pi_E}} V(s) \\<br>&amp; = E_{\rho_{\pi_E}} r(a,s) + \gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) - E_{\rho_{\pi_E}} V(s). \\ \end{aligned}$$</p>
-<p>Therefore, we remain to show that</p>
-<p>$$\gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) - E_{\rho_{\pi_E}} V(s) = -\sum_s p_0(s) V(s)$$</p>
-<p>when the $\rho_E$ in the two formulations refer to the same thing. The major implication of such equivalence is that the expert demonstrations should be sampled exactly as dictated by the expected discounted occurrence. Why is this so important? Notice that when the problem under discussion is an infinite time MDP, we cannot sample each single expert trajectory into distant future and there must be some stopping mechanisms. The above equivalence restricts our choices: we should stop according to the discount factor $\gamma$. That is, for each sampled trajectory $\tau$ with length $T+1$ (a $(s,a)$ pair is of length $1$), we have probability</p>
-<p>$$p(\tau) = (1-\gamma) \gamma^T p_0(s_0)\pi_E(a_0|s_0) p(s_1|s_0,a_0)\cdots p(s_T|s_{T-1},a_{T-1})\pi_E(a_T|s_T).$$</p>
-<p>The expected discounted occurrence of state-action pair $(s,a)$, in both formulations, is the same as</p>
-<p>$$\rho_{\pi_E}(s,a) = \sum_{T}\sum_{\tau:l(\tau)=T,\tau_{-1} = (s,a)} p(\tau),$$</p>
-<p>where $l(\tau)$ is the length of the trajectory $\tau$ and $\tau_{-1}$ is the last state-action pair in the trajectory. If we further define $p(\tau,s) = \gamma p(\tau)p(s|\tau_{-1})$ for $l(\tau) &gt; 0$ and $p(\tau,s) = p_0(s)$ for for $l(\tau) = 0$, we have, on one hand,</p>
-<p>$$\begin{aligned}\gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) &amp; = \gamma \sum_{s,a} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T,\tau_{-1} = (s,a)} p(\tau) \sum_{s’} p(s’|s,a) V(s’) \\<br>&amp; = \sum_{s,a} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T,\tau_{-1} = (s,a)}\sum_{s’} p(\tau,s’) V(s’)\\<br>&amp; = \sum_{s’}\sum_{T &gt; 0}\sum_{\tau:l(\tau)=T} p(\tau,s’) V(s’), \end{aligned}$$</p>
-<p>and, on the other hand,</p>
-<p>$$\begin{aligned}E_{\rho_{\pi_E}} V(s) &amp; = \sum_{s,a} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T,\tau_{-1} = (s,a)} p(\tau) V(s) \\<br>&amp; = \sum_{s} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T-1}p(\tau,s)\sum_{a} \pi_E(a|s)  V(s) \\<br>&amp; = \sum_{s} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T-1} p(\tau,s) V(s) \\<br>&amp; = \sum_{s} \sum_{T \geq 0}\sum_{\tau:l(\tau)=T} p(\tau,s) V(s). \end{aligned}$$</p>
-<p>Therefore, we have</p>
-<p>$$\gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) - E_{\rho_{\pi_E}} V(s) = -\sum_{s} \sum_{\tau:l(\tau)=0} p(\tau,s) V(s) = -\sum_s p_0(s) V(s). $$</p>
-<p>Now we have shown that the (min-max) performance gap formulation and the maximum log likelihood formulation are consistent. Next, we illustrate how to obtain a GAN-based IRL method with the min-max formulation.</p>
-<h2 id="A-GAN-based-IRL-method"><a href="#A-GAN-based-IRL-method" class="headerlink" title="A GAN-based IRL method"></a>A GAN-based IRL method</h2><p>Assume in the min-max formulation, the inner problem is solved by RL and we have the entropy-regularized optimal policy $\pi_H$ for some $r$. For the outer problem</p>
-<p>$$\min_r E_{\rho_{\pi_H}} r(s,a) - E_{\rho_{\pi_E}} r(s,a),$$</p>
-<p>If we consider transformation $D(s,a) = \sigma (r(s,a) - \log\pi_H(a|s)) \in (0,1)$ with $\sigma$ being the sigmoid function, the equation above can be written as</p>
-<p>$$\min_r E_{\rho_{\pi_H}} [\log D(s,a) - \log(1 - D(s,a))] - E_{\rho_{\pi_E}} [\log D(s,a) - \log(1 - D(s,a))],$$</p>
-<p>or</p>
-<p>$$\max_D [E_{\rho_{\pi_H}} \log(1 - D(s,a)) + E_{\rho_{\pi_E}} \log D(s,a)] - [E_{\rho_{\pi_H}} \log D(s,a) + E_{\rho_{\pi_E}} (1 - \log D(s,a))].$$</p>
-<p>The whole thing is hard to optimize, and we can drop the last part and only maximize</p>
-<p>$$E_{\rho_{\pi_H}} \log(1 - D(s,a)) + E_{\rho_{\pi_E}} \log D(s,a).$$</p>
-<p>Now we recover the GAIL method (Ho &amp; Ermon (2016)) and AIRL method (Fu et al. (2017))! In fact, with the min-max structure, we can iterate between finding the optimal $\pi_H$ and the best discriminator $D$; this is what we mean by “GAN-based”.</p>
-<p>Now we finally have enough knowledge to comment on some recent works on GAN-based IRL methods.</p>
-<h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2><p>Ho &amp; Ermon (2016) is the first to “rediscover” the duality between RL and IRL and show that RL under IRL leads to a policy that matches the expected discounted occurrence $\rho$ with the expert demonstrations $\pi_E$ under some regularization $\psi$. They then choose a specific $\psi$ which reduces the occurrence matching problem to the above binary classification problem. However, in GAIL the RL step finds a policy with respect to $r = \log D$, while in our’s and AIRL the reward is $r = \log D - \log (1 - D)$. Such difference comes from the fact that GAIL actually is not an IRL method and the quasi-reward $r = \log D$ is only used as a helper to obtain policy $\pi$.</p>
-<p>Two later works, Finn et al. (2016) and Fu et al. (2017), do develop IRL methods; but their theoretical developments are problematic. They try to tackle the problem from the max log likelihood side, but directly assume that trajectory $\tau$ has the probability</p>
-<p>$$p(\tau) \propto e^{\sum_t \gamma^t r(s_t,a_t)}.$$</p>
-<p>If we look at the form of the value function $V$ above or read Ziebart (2010) carefully, we should see that this assumption is consistent with the entropy-regularized optimal behavior only when the underlying MDP is deterministic and has no discount ($\gamma = 1$). Therefore, their setup is more likely to assume that the expert follows the entropy-regularized myopic behavior $\pi’$. (This might be the reality, though.)</p>
-<p>Finally, I will go through the development of AIRL as there is much ambiguity in the original paper. They first show that the gradient to the LL is</p>
-<p>$$E_{\rho_{\pi_E}} \partial r(s,a) - E_{\rho_{\pi’}} \partial r(s,a),$$</p>
-<p>and then consider the following approximation</p>
-<p>$$\begin{aligned}E_{\rho_{\pi’}} \partial r(s,a) &amp; = E_{0.5\rho_{\pi_H} + 0.5\rho_{\pi_E}} \frac{\rho_{\pi’}}{0.5\rho_{\pi_H} + 0.5\rho_{\pi_E}}\partial r(s,a) \\<br>&amp; \approx E_{0.5\rho_{\pi_H} + 0.5\rho_{\pi_E}} \frac{\rho_{\pi’}}{0.5\rho_{\pi_H} + 0.5\rho_{\pi’}}\partial r(s,a).\end{aligned}$$</p>
-<p>This then leads to the above binary classification formulation. We can now see that in our development, by dropping the part $[E_{\rho_{\pi_H}} \log D(s,a) + E_{\rho_{\pi_E}} (1 - \log D(s,a))]$, we introduce the risk of interpreting expert demonstrations in myopic ways.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Ziebart, B. D. (2010). Modeling purposeful adaptive behavior with the principle of maximum causal entropy. PhD thesis, Carnegie Mellon University.</p>
-<p>Finn, C., Christiano, P., Abbeel, P., &amp; Levine, S. (2016). A connection between generative adversarial networks, inverse reinforcement learning, and energy-based models. arXiv preprint arXiv:1611.03852.</p>
-<p>Ho, J., &amp; Ermon, S. (2016). Generative adversarial imitation learning. In Advances in Neural Information Processing Systems (pp. 4565-4573).</p>
-<p>Fu, J., Luo, K., &amp; Levine, S. (2017). Learning Robust Rewards with Adversarial Inverse Reinforcement Learning. arXiv preprint arXiv:1710.11248.</p>
+<h2 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h2><p>Here is the actual experience: we were in a taxi going to airport via Cto. Interior. We encountered a heavy rain, and several lower points were flooded (indicated as red circles in the following pic).</p>
+<p><img src="/blog/images/mexico_city_map.png" alt="mexico city map"></p>
+<p>During the trip, Google Maps kept refreshing the estimated travel time, and the estimated delay for going through those bottlenecks were always increasing. When we arrived, we cost nearly one more hour than the initial estimated travel time.</p>
+<p>So how can Google Maps be such inaccurate? And if provided with the information that the capacity in these points will be low for several hours, can we have better estimates?</p>
+<h2 id="A-queuing-model-without-knowledge-in-queues"><a href="#A-queuing-model-without-knowledge-in-queues" class="headerlink" title="A queuing model without knowledge in queues"></a>A queuing model without knowledge in queues</h2><p>It is almost straightforward to think about a queuing model. To simplify, we consider a serial connection of M/M/1 units and free flow road segments (which can also be seen as M/M/1 unit with $\mu\to\infty$). Following is a visualization of M/M/1 unit (By Tsaitgaist - <a href="https://commons.wikimedia.org/w/index.php?curid=7037566" target="_blank" rel="external">Mm1.png</a>, CC BY-SA 3.0).</p>
+<p><img src="/blog/images/mm1.png" alt="M/M/1"></p>
+<p>With elementary understanding of queuing theory, I only considered stable case ($\lambda &lt; \ mu$) at first and got into trouble. When the process become stationary, it is impossible to have increasing travel time! In this case, we are actually more likely in an unstable situation: if the capacity remains low forever, the length of the queue will surely explode.</p>
+<p>So we just make our first assumption: $\lambda &gt; \mu$. Now, when the difference between $\lambda$ and $\mu$ is not trivial, even with Poisson process as input, we can well assume them as deterministic (constant), since it is unlikely the queue will be empty and we can avoid the nasty analysis in stable case. Or we can argue like this: as $T\to\infty$, total arrival $\sim Poi(\lambda T)$ and total serviced $\sim Poi(\mu T)$, so when $T$ is large enough, the probability to have total serviced amount greater than total arrival is extremely low.</p>
+<p>Now we introduce another parameter $\theta$ to describe enter and exit ratios for each road segments between two flooded points. This is quite realistic since people can leave or enter the expressway through ramps. Also, without some inflows we will never have enough arrival to block the next M/M/1 units!</p>
+<p>So what is the arrival rate for the middle M/M/1 units? We have $(1-\theta)\mu$ from last unit, and $\theta\lambda$ new inflows. The arrival rate is just the sum of the two. We can also calculate a delay rate $\rho$, which represent how fast delay increases:</p>
+<p>$$\rho = \frac{\theta(\lambda - \mu)}{\mu}$$</p>
+<p>Now we can summarize our model: we have $n$ M/M/1 units (with same $\lambda$ and $\mu$) with $n-1$ road segments (with same $\theta$ and travel time $T_t$) connecting them in a serial way. We further assume that as we enter this system, every unit already has delay time $T_d$. We further use $T_T$ to denote the sum of $T_t$ and $T_d$.</p>
+<h2 id="Calculations"><a href="#Calculations" class="headerlink" title="Calculations"></a>Calculations</h2><p>Now it is time to do some high school arithmetics.</p>
+<p>Step 0. Upon arrived at the first M/M/1 unit, we are at time $T_1 = 0$, and the queue delay time is $D_1 = T_d$.</p>
+<p>Step 1. When arrived at the second M/M/1 unit, we are at time $T_2 = T_1 + D_1 + T_t = T_T$, and the queue delay time at his unit is $D_2 = T_d + \rho T_2 = T_d + \rho T_T = (1+\rho)T_T - T_t$.</p>
+<p>Step 2. When arrived at the third M/M/1 unit, we are at time $T_3 = T_2 + D_2 + T_t = (2+\rho)T_T$, and the queue delay time at his unit is $D_3 = T_d + \rho T_3 = (1+\rho)^2 T_T - T_t$.</p>
+<p>…</p>
+<p>So with induction, it is easy to find total travel time is $T = \frac{(1+\rho)^n-1}{\rho}T_T - T_t$. And the naive initial estimated travel time is $T’ = nT_T - T_t$.</p>
+<p>Now let’s replace them with some actual values. First we estimate those parameters:</p>
+<p>$$\lambda = 3\text{ lanes}\times 60\text{ km/h} \times 20\text{ veh/km} = 60\text{ veh/min}$$</p>
+<p>$$\mu = 1\text{ lanes}\times 4\text{ km/h} \times 300\text{ veh/km} = 20\text{ veh/min}$$</p>
+<p>$$\theta = 0.5$$</p>
+<p>So</p>
+<p>$$\rho = \frac{0.5\times 40}{20} = 1$$</p>
+<p>Let $n = 3$ (as in the Mexico City map), we then have $T = 7T_T - T_t$, while $T’ = 3T_T - T_t$; delay is more than 4/3 of the initial estimated travel time! And this is quite similar to what we experienced that afternoon.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>So what can we learn from this case study? First, never trust Google Maps in similar situation (which you might only encounter in Mexico City…) and do not take expressway.</p>
+<p>Second, stationary results of queuing theory has its limits for application. As we can see, these results are not really useful for this problem, since we are focusing on short term dynamics. We can also explain why so many people find the famous nonlinear time-utilization plot counterintuitive: as utilization $\lambda/\mu\to 1$, the time required to get to the stationary status increase nonlinearly, and in short term dynamics (which is what most people can visualize in their minds) such relationship does not hold! For those who are interested in the asymptotic behavior of the system when $\lambda/\mu\to 1$, you might find the key word <a href="https://www.google.com/#q=heavy+traffic+approximation" target="_blank" rel="external">heavy traffic approximation</a> useful.</p>
+<p>So when should we apply those stationary results? The answer is in planning process, when the arrival variance is large and expected service time is almost infinity. In other cases, simulation is always the safest way to start.</p>
 
       
     </div>
@@ -405,9 +385,9 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/Behavior-Modeling/" rel="tag"># Behavior Modeling</a>
+            <a href="/blog/tags/Queuing-Theory/" rel="tag"># Queuing Theory</a>
           
-            <a href="/blog/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+            <a href="/blog/tags/Stochastic-Process/" rel="tag"># Stochastic Process</a>
           
         </div>
       
@@ -420,8 +400,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/shared_mobility_cn_201801/" rel="next" title="关于共享出行">
-                <i class="fa fa-chevron-left"></i> 关于共享出行
+              <a href="/blog/2016/IP5_201610/" rel="next" title="Integer Programming Note V: Decomposition">
+                <i class="fa fa-chevron-left"></i> Integer Programming Note V: Decomposition
               </a>
             
           </div>
@@ -430,8 +410,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/decision_making_modeling_201901/" rel="prev" title="A Note on Decision Behavior Modeling">
-                A Note on Decision Behavior Modeling <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2016/latent_class_category_variable_201611/" rel="prev" title="Case Study: Latent Classes in Quebec Energy consumption">
+                Case Study: Latent Classes in Quebec Energy consumption <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -600,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Equivalence-of-IRL-formulations"><span class="nav-number">2.</span> <span class="nav-text">Equivalence of IRL formulations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-GAN-based-IRL-method"><span class="nav-number">3.</span> <span class="nav-text">A GAN-based IRL method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Discussion"><span class="nav-number">4.</span> <span class="nav-text">Discussion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-description"><span class="nav-number">1.</span> <span class="nav-text">Problem description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-queuing-model-without-knowledge-in-queues"><span class="nav-number">2.</span> <span class="nav-text">A queuing model without knowledge in queues</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calculations"><span class="nav-number">3.</span> <span class="nav-text">Calculations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
             
 
           </div>
@@ -761,9 +741,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://hanqiu92.github.io/blog/GAN_IRL_201808/';
-          this.page.identifier = 'GAN_IRL_201808/';
-          this.page.title = 'A Discussion on GAN-based IRL methods';
+          this.page.url = 'http://hanqiu92.github.io/blog/2016/mexico_city_delay_201610/';
+          this.page.identifier = '2016/mexico_city_delay_201610/';
+          this.page.title = 'Case Study: Delay in Mexico City';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://hanqiu92.disqus.com/embed.js';

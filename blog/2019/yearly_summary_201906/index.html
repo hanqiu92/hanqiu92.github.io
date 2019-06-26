@@ -86,11 +86,11 @@
 <meta name="description" content="In the past year, I have been in the ride-hailing industry and have encountered many interesting problems. In this post, I would like to summarize my experience in formulating and tackling these probl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="What I've Learned in the Past Year (Year 2018-19)">
-<meta property="og:url" content="http://hanqiu92.github.io/blog/yearly_summary_201906/index.html">
+<meta property="og:url" content="http://hanqiu92.github.io/blog/2019/yearly_summary_201906/index.html">
 <meta property="og:site_name" content="Han's Blog">
 <meta property="og:description" content="In the past year, I have been in the ride-hailing industry and have encountered many interesting problems. In this post, I would like to summarize my experience in formulating and tackling these probl">
 <meta property="og:image" content="http://hanqiu92.github.io/blog/blog/images/yearly_summaries/opt_result_201906.png">
-<meta property="og:updated_time" content="2019-06-25T14:29:01.662Z">
+<meta property="og:updated_time" content="2019-06-26T01:09:31.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="What I've Learned in the Past Year (Year 2018-19)">
 <meta name="twitter:description" content="In the past year, I have been in the ride-hailing industry and have encountered many interesting problems. In this post, I would like to summarize my experience in formulating and tackling these probl">
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blog/yearly_summary_201906/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blog/2019/yearly_summary_201906/"/>
 
 
 
@@ -248,7 +248,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/yearly_summary_201906/">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/2019/yearly_summary_201906/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
@@ -361,7 +361,7 @@
 <h2 id="Personalized-Choice-Problem"><a href="#Personalized-Choice-Problem" class="headerlink" title="Personalized Choice Problem"></a>Personalized Choice Problem</h2><p>In the above, I mention the importance of exploiting heterogeneous information. However, in general, the use of this information is complex and requires context-based modeling. Nevertheless, in reality, there are many decision-making problems (not restricted to the ride-hailing context!) that can be modeled in a way that I call “personalized choice problems”: the operator’s decision is to provide/recommend options to users and the decisions to different users are only loosely dependent. In fact, in some contexts, even if the control variables are in a continuum, the users’ limited attention and preference structure require the operator to choose from only a finite set of representative options. (Simply imagine you receive a coupon that can save you $3.14.) In this subsection, I will first introduce basic techniques and major issues to be concerned through a simple problem; then, I will generalize these techniques to some of the more practical contexts.</p>
 <p>Deterministic choices from finite sets are generally referred to as SOS1 (special ordered set of type one) constraints: for a user $i$, the decision to choose an option $j$ from the set $\{1,\cdots,M\}$ can be modeled as</p>
 <p>$$\sum_j x_{ij} = 1, \ x_{ij} \in \{0,1\}. \tag{2.1}$$</p>
-<p>In equation (2.1), the decision variable $x_{ij}$ indicates whether the operator should recommend option $j$ to user $i$. I have discussed this type of constraints in details in <a href="https://hanqiu92.github.io/2016/10/05/IP3_201610/">one of my previous posts</a>. However, in many real-world applications, deterministic decisions are not required because the operator does not need constraints other than the regular ones $\sum_j x_{ij} = 1$ to hold in the ex-post sense. For example, suppose the operator wants to control the budget of one resource by the amount $c_0$: $\sum_{ij} x_{ij}c_{ij}\leq c_0$, but she faces the same kind of decisions every day during a very long period (say, one month) and she only need to control the total budget. In this case, it is fine to relax the integer program to a linear program and consider stochastic decisions. Moreover, in situations that explorations are encouraged, stochastic decisions are preferred because they have less entropy. Therefore, in the following discussion, I will focus on stochastic decisions and linear programs.</p>
+<p>In equation (2.1), the decision variable $x_{ij}$ indicates whether the operator should recommend option $j$ to user $i$. I have discussed this type of constraints in details in <a href="https://hanqiu92.github.io/blog/2016/IP3_201610/">one of my previous posts</a>. However, in many real-world applications, deterministic decisions are not required because the operator does not need constraints other than the regular ones $\sum_j x_{ij} = 1$ to hold in the ex-post sense. For example, suppose the operator wants to control the budget of one resource by the amount $c_0$: $\sum_{ij} x_{ij}c_{ij}\leq c_0$, but she faces the same kind of decisions every day during a very long period (say, one month) and she only need to control the total budget. In this case, it is fine to relax the integer program to a linear program and consider stochastic decisions. Moreover, in situations that explorations are encouraged, stochastic decisions are preferred because they have less entropy. Therefore, in the following discussion, I will focus on stochastic decisions and linear programs.</p>
 <p>Now, let us start with a very simple case: we want to maximize our total gain $r$ while satisfying budget constraints on $K$ independent resources $c^{k}$:</p>
 <p>$$\begin{aligned} \max &amp; \sum_{ij} x_{ij}r_{ij} \\  s.t. &amp; \sum_{ij} x_{ij}c_{ij}^{k}\leq 0 \\ &amp; \sum_j x_{ij} = 1, \ \forall i \\ &amp; x_{ij} \geq 0 \end{aligned} \tag{2.2}$$</p>
 <p>To solve the problem (2.2) efficiently in cases when the number of users $N$ is huge, we can consider its dual problem</p>
@@ -441,7 +441,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/SP1_201905/" rel="next" title="Stochastic Process Note I: Introduction and Basic Concepts">
+              <a href="/blog/2019/SP1_201905/" rel="next" title="Stochastic Process Note I: Introduction and Basic Concepts">
                 <i class="fa fa-chevron-left"></i> Stochastic Process Note I: Introduction and Basic Concepts
               </a>
             
@@ -778,8 +778,8 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://hanqiu92.github.io/blog/yearly_summary_201906/';
-          this.page.identifier = 'yearly_summary_201906/';
+          this.page.url = 'http://hanqiu92.github.io/blog/2019/yearly_summary_201906/';
+          this.page.identifier = '2019/yearly_summary_201906/';
           this.page.title = 'What I\'ve Learned in the Past Year (Year 2018-19)';
         };
         var d = document, s = d.createElement('script');

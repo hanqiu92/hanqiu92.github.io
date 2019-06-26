@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Behavior Modeling," />
+  <meta name="keywords" content="Integer Programming," />
 
 
 
@@ -83,19 +83,19 @@
 
 
 
-<meta name="description" content="Last semester, in course 1.202 Demand Modeling, there is an interesting case study of Quebec energy consumption. Exploratory data analysis indicates that there are potential market segments, and subse">
+<meta name="description" content="Inner Approximation: $V$-representation, Dantzig-Wolfe decomposition, and Branch and PriceAssume we are given problem
+$$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant b_1 \\  &amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Case Study: Latent Classes in Quebec Energy consumption">
-<meta property="og:url" content="http://hanqiu92.github.io/blog/latent_class_category_variable_201611/index.html">
+<meta property="og:title" content="Integer Programming Note V: Decomposition">
+<meta property="og:url" content="http://hanqiu92.github.io/blog/2016/IP5_201610/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="Last semester, in course 1.202 Demand Modeling, there is an interesting case study of Quebec energy consumption. Exploratory data analysis indicates that there are potential market segments, and subse">
-<meta property="og:image" content="http://hanqiu92.github.io/blog/blog/images/latent_class_1.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blog/blog/images/latent_class_2.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blog/blog/images/latent_class_3.png">
-<meta property="og:updated_time" content="2019-06-25T14:33:19.822Z">
+<meta property="og:description" content="Inner Approximation: $V$-representation, Dantzig-Wolfe decomposition, and Branch and PriceAssume we are given problem
+$$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant b_1 \\  &amp;">
+<meta property="og:updated_time" content="2019-06-01T11:16:13.775Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Case Study: Latent Classes in Quebec Energy consumption">
-<meta name="twitter:description" content="Last semester, in course 1.202 Demand Modeling, there is an interesting case study of Quebec energy consumption. Exploratory data analysis indicates that there are potential market segments, and subse">
+<meta name="twitter:title" content="Integer Programming Note V: Decomposition">
+<meta name="twitter:description" content="Inner Approximation: $V$-representation, Dantzig-Wolfe decomposition, and Branch and PriceAssume we are given problem
+$$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant b_1 \\  &amp;">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blog/latent_class_category_variable_201611/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blog/2016/IP5_201610/"/>
 
 
 
 
 
-  <title>Case Study: Latent Classes in Quebec Energy consumption | Han's Blog</title>
+  <title>Integer Programming Note V: Decomposition | Han's Blog</title>
   
 
 
@@ -250,7 +250,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/latent_class_category_variable_201611/">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/2016/IP5_201610/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
@@ -267,7 +267,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Case Study: Latent Classes in Quebec Energy consumption</h1>
+          <h1 class="post-title" itemprop="name headline">Integer Programming Note V: Decomposition</h1>
         
 
         <div class="post-meta">
@@ -279,8 +279,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-06T12:00:00+08:00">
-                2016-11-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-05T00:06:00+08:00">
+                2016-10-04
               </time>
             
 
@@ -302,8 +302,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Case-Study/" itemprop="url" rel="index">
-                    <span itemprop="name">Case Study</span>
+                  <a href="/blog/categories/Study-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Study Notes</span>
                   </a>
                 </span>
 
@@ -339,22 +339,42 @@
       
 
       
-        <p>Last semester, in course 1.202 Demand Modeling, there is an interesting case study of Quebec energy consumption. Exploratory data analysis indicates that there are potential market segments, and subsequent computation shows that multinomial logit models estimated from separate datasets have a better total log likelihood than the one from the whole dataset. An interesting question then arises: can we discover latent classes efficiently on high dimensional data?</p>
+        <h2 id="Inner-Approximation-V-representation-Dantzig-Wolfe-decomposition-and-Branch-and-Price"><a href="#Inner-Approximation-V-representation-Dantzig-Wolfe-decomposition-and-Branch-and-Price" class="headerlink" title="Inner Approximation: $V$-representation, Dantzig-Wolfe decomposition, and Branch and Price"></a>Inner Approximation: $V$-representation, Dantzig-Wolfe decomposition, and Branch and Price</h2><p>Assume we are given problem</p>
+<p>$$\begin{aligned} z_I =\max &amp; \ c^Tx \\ s.t. &amp; \ A_1 x \leqslant b_1 \\  &amp; \ A_2 x \leqslant b_2\\ &amp; \ x \in R^{n_1} \times Z^{n_2} \end{aligned}$$</p>
+<p>and we know that LP relaxation for $Q=\{A_2 x \leqslant b_2, x \in R^{n_1} \times Z^{n_2}\}$ is tight but that for the whole problem is weak. One can then think of dual approach utilizing the tighter local constraint structure:</p>
 <a id="more"></a>
-<h2 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h2><p>Assume we have $m$ customers and $n$ options. For each customer, there are personal attributes $X_{p,i}\in R^{d_1}(i\in\{1,\cdots,m\})$ and option-specific attributes $X_{o,i,j}\in R^{d_2} (i\in\{1,\cdots,m\}, j\in\{1,\cdots,n\})$. We want to estimate parameters $\beta_{j}\in R^{d_1+d_2} (j\in\{1,\cdots,n\})$ in the following choice model:</p>
-<p>$$p(j|X_{p,i},X_{o,i,j})=\frac{\exp(\beta_j^TX_j)}{\sum_i \exp(\beta_i^TX_i)}$$</p>
-<p>where $X_j=(X_{p,i},X_{o,i,j})$.</p>
-<p>If we know the whole dataset comes from a single class, the estimation is simple: we use write the log likelihood function and optimize it using standard optimization package. But in many cases this might not be true.</p>
-<p>For example, in the Quebec energy case, we observe the following:</p>
-<p><img src="/blog/images/latent_class_1.png" alt="two_segments"></p>
-<p>There are clearly two classes. If we separate them and plot histograms of other attributes respectively, we find that for some variables the difference is quite significant, which indicating a potential market segments.</p>
-<p><img src="/blog/images/latent_class_2.png" alt="segment_1"></p>
-<p><img src="/blog/images/latent_class_3.png" alt="segment_2"></p>
-<p>So, in more general cases, how can we discover such patterns if exploration is not always feasible? Moreover, how can we make sure our segmentation will improve the model performance?</p>
-<h2 id="An-initial-approach"><a href="#An-initial-approach" class="headerlink" title="An initial approach"></a>An initial approach</h2><p>Our target is to separate the dataset to improve our objective function; so why not look at the final gradients? Even though the sum of gradients will be close to 0, they might not be homogenous small and uniformly distributed. If we can find some hyperplanes to separate the dataset in such a way that the sum of gradients in each region is significant, we can then improve our estimates on each subset by driving the parameters into different directions.</p>
-<p>As an initial approach, we will consider the simplest case: regression tree on categorical variables. In each iteration, we solve the MLE problem, obtain the gradient at each data point, and then for each categorical variable, we search for a cutoff value that best ‘separate’ the set of gradients, or, that makes the difference between the sum of two subset greatest. Finally, we compare these differences across variables and select the most influential one. We will stop once the improvement is negligible.</p>
-<p>We implement this idea and test it on the Quebec dataset. The code can be find <a href="https://github.com/hanqiu92/latent_class_choice_model/blob/master/categorical_variable.py" target="_blank" rel="external">here</a>. Since gradients in logit model can have great scale, we normalize them in each step to stabilize the algorithm. It is shown that the code successfully finds the variable ‘constr_year’ and the cutoff value 7. The total log likelihood improves a lot, while the segmentation is quite balance (561 v.s. 499).</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In this small case study, we purpose a simple algorithm to find latent classes in a choice dataset. It is clear that our approach is quite limited since we only consider categorical variables and the approach to find cutoff value can be highly unstable. Nevertheless, this approach can be a good start in exploring potential segmentation and support future analysis. Next, we will try to solve the problem from another perspective: can we include latent class directly in our inference model and design efficient estimation algorithm?</p>
+<p>$$z_{D}=\min \{z_{LR}(\lambda): \lambda\in R^{m_1}_+\}$$</p>
+<p>with</p>
+<p>$$z_{LR}(\lambda)=\max_{x\in Q} \{c^Tx+\lambda^T(b_1-A_1x)\geqslant z_I\},$$</p>
+<p>which implies (by LP duality)</p>
+<p>$$z_{D}=\max \{c^Tx: A_1x\leqslant b_1, x\in conv(Q)\}.$$</p>
+<p>Assume we have set of extreme points $\{v_i\}_k$ for $conv(Q)$. Then</p>
+<p>$$z_{LR}(\lambda)=\lambda^Tb_1+\max_i (c^T-\lambda^TA_1)v_i$$</p>
+<p>is a piecewise linear function of $\lambda$ and thus $z_{D}$ can be obtained by dynamically finding better $v_i$. Notice that this is exactly the same as the column generation method with Dantzig-Wolfe decomposition of $conv(Q)$ for $z_D$.</p>
+<p>Now, we can solve $z_I$ by branch and price: at each node in the branching tree, we keep solving the pricing problem, i.e, to find better extreme point $v_i$, and adding these new $v_i$ to the master problem until we reach the optimal $z_D$; then we do branch and bound on $x$ until $x\in Q$.</p>
+<p>The above approach can be seen as inner approximation, since we use a subset of extreme points to approximate the polyhedron. But it is paradoxical that in branching process, we are actually using outer approximation. So in general branch and price is not straightforward and easy to implement. But for problems with natural approach for pricing subproblem, e.g., airline scheduling, or there is no good way to use $H$-representation of the feasible region, branch and price is still a good option.</p>
+<h2 id="Outer-Approximation-H-representation-and-Benders-decomposition"><a href="#Outer-Approximation-H-representation-and-Benders-decomposition" class="headerlink" title="Outer Approximation: $H$-representation and Benders decomposition"></a>Outer Approximation: $H$-representation and Benders decomposition</h2><p>Compared to inner approximation, outer approximation aims at approximating the feasible region with fewer and simpler constraints. Then, valid cuts are generated dynamically by subproblem to push the optimum towards feasibility. Such approach is useful when not all constraints can be given explicitly. For example, consider the following problem:</p>
+<p>$$\begin{aligned} z_I =\min &amp; \ c^Tx + d^Ty \\ s.t. &amp; \ A x + B y \geqslant b \\  &amp; \ x \in P_1\subseteq Z^{n_1} \\  &amp; \ y \in P_2\subseteq R^{n_2} \end{aligned}$$</p>
+<p>and we want to decouple $y$ from $x$. We can define</p>
+<p>$$\begin{aligned} g(x)= \min &amp; \ d^Ty\\ s.t. &amp; \ By\geqslant b-Ax\\ &amp; \ y\in P_2\\ \end{aligned}$$</p>
+<p>then the problem will be transformed into</p>
+<p>$$\begin{aligned} z_I= \min &amp; \ c^Tx+\theta\\ s.t. &amp; \ x\in Proj_x(\{(x,y): Ax+By\geqslant b\})\cup P_1\\ &amp; \ (x,\theta)\in epi(g)\\ \end{aligned}$$</p>
+<p>In this case, both $Proj_x(\{Ax+By\geqslant b\})$ and $epi(g)$ can be very complex and no explicit $H$-representation is available. But recall that</p>
+<p>$$Proj_x(\{(x,y): Ax+By\geqslant b\})=\{x: \mu^T(Ax-b)\geqslant 0, \forall \mu\in ray(C)\}$$</p>
+<p>with $C=\{\mu\in R_+^m: B^T\mu=0\}$, while $g$ can be expressed in dual form</p>
+<p>$$g(x)=\max \{v^T(b-Ax): v\in ext (Q)\}$$</p>
+<p>with $Q=\{\mu\in R_+^m: B^T\mu=d\}$; so both set can be approximated by a collection of cuts (in same format). Thus, we can consider following outer approximation</p>
+<p>$$\begin{aligned} z_I= \min &amp; \ c^Tx+\theta \\ s.t. &amp; \ u_i^T(b-Ax)\leqslant 0 \\ &amp; \ v_j^T(b-Ax)\leqslant \theta \\ \end{aligned}$$</p>
+<p>with $u_i$ and $v_j$ can be generated dynamically by solving subproblem</p>
+<p>$$\max \{v^T(b-Ax^*): v\in ext (Q)\}.$$</p>
+<p>Notice that this is exactly the same as the Benders decomposition and row generation in LP.</p>
+<h2 id="Nonlinear-MIP"><a href="#Nonlinear-MIP" class="headerlink" title="Nonlinear MIP"></a>Nonlinear MIP</h2><p>In the end, I briefly introduce nonlinear MIP, which is related to the approximation methods above. The first step to solve nonlinear MIP is to transform nonlinear objective into nonlinear constraints. Nonlinear objective is not preferred since normally in that case the optimum is located in the interior and branching is very complex. Then, there are three kinds of approach:</p>
+<p>1) NLP based approach: at each branching node, solve the NLP directly with interior point method, and perform next branching if necessary. This kind of approach is common in standard NLP solvers.</p>
+<p>2) LP based approach: this approach is similar to the outer approximation introduced above. The feasible region is approximated by many linear constraints, and in the solving process the optimal solution will get closer and closer to the feasible region. But this method may have slow convergence rate.</p>
+<p>3) Lifted LP based approach: this approach also consider linear approximation, but after the nonlinear feasible region being lifted to higher dimensional space. The advantage of doing this is that fewer linear cuts is needed to achieve the same approximation ratio (recall the gain in formulation size of extended formulation). Currently this approach is widely applied in many MINLP solvers.</p>
+<p>In general, if you have an MINLP problem, the first thing to check is whether the problem can be formulated with second order cone, which can be efficiently dealt with in CPLEX/Gurobi. Then, if the problem is convex in a disciplined way, you may try cvx or Pajarito (links can be found in the reference). For other cases, you can try NLP solvers or design ad-hoc heuristics, but no general performance can be guaranteed.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Lubin, M., Yamangil, E., Bent, R., &amp; Vielma, J. P. (2015). Extended Formulations in Mixed-integer Convex Programming. arXiv:1511.06710. Available at: <a href="http://arxiv.org/pdf/1511.06710v3.pdf" target="_blank" rel="external">http://arxiv.org/pdf/1511.06710v3.pdf</a>.</p>
+<p>Grant, M., Boyd, S., &amp; Ye, Y. (2008). CVX: Matlab software for disciplined convex programming. Available at: <a href="http://cvxr.com/cvx/" target="_blank" rel="external">http://cvxr.com/cvx/</a></p>
 
       
     </div>
@@ -372,7 +392,7 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/Behavior-Modeling/" rel="tag"># Behavior Modeling</a>
+            <a href="/blog/tags/Integer-Programming/" rel="tag"># Integer Programming</a>
           
         </div>
       
@@ -385,8 +405,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/mexico_city_delay_201610/" rel="next" title="Case Study: Delay in Mexico City">
-                <i class="fa fa-chevron-left"></i> Case Study: Delay in Mexico City
+              <a href="/blog/2016/IP4_201610/" rel="next" title="Integer Programming Note IV: Cuts">
+                <i class="fa fa-chevron-left"></i> Integer Programming Note IV: Cuts
               </a>
             
           </div>
@@ -395,8 +415,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/simple_queue_dynamic_201612/" rel="prev" title="Reflection on Simple Queues">
-                Reflection on Simple Queues <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2016/mexico_city_delay_201610/" rel="prev" title="Case Study: Delay in Mexico City">
+                Case Study: Delay in Mexico City <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -565,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-description"><span class="nav-number">1.</span> <span class="nav-text">Problem description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#An-initial-approach"><span class="nav-number">2.</span> <span class="nav-text">An initial approach</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Inner-Approximation-V-representation-Dantzig-Wolfe-decomposition-and-Branch-and-Price"><span class="nav-number">1.</span> <span class="nav-text">Inner Approximation: $V$-representation, Dantzig-Wolfe decomposition, and Branch and Price</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Outer-Approximation-H-representation-and-Benders-decomposition"><span class="nav-number">2.</span> <span class="nav-text">Outer Approximation: $H$-representation and Benders decomposition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nonlinear-MIP"><span class="nav-number">3.</span> <span class="nav-text">Nonlinear MIP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
@@ -726,9 +746,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://hanqiu92.github.io/blog/latent_class_category_variable_201611/';
-          this.page.identifier = 'latent_class_category_variable_201611/';
-          this.page.title = 'Case Study: Latent Classes in Quebec Energy consumption';
+          this.page.url = 'http://hanqiu92.github.io/blog/2016/IP5_201610/';
+          this.page.identifier = '2016/IP5_201610/';
+          this.page.title = 'Integer Programming Note V: Decomposition';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://hanqiu92.disqus.com/embed.js';
