@@ -19,7 +19,7 @@
 
   
   
-  <link rel="stylesheet" media="all" href="/blog/lib/Han/dist/han.min.css?v=3.3">
+  <link rel="stylesheet" media="all" href="/blogs/lib/Han/dist/han.min.css?v=3.3">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -52,9 +52,9 @@
 
 
 
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/blog/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/blogs/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
@@ -86,7 +86,7 @@
 <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Han's Blog">
-<meta property="og:url" content="http://hanqiu92.github.io/blog/page/2/index.html">
+<meta property="og:url" content="http://hanqiu92.github.io/blogs/page/2/index.html">
 <meta property="og:site_name" content="Han's Blog">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -98,7 +98,7 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blog/',
+    root: '/blogs/',
     scheme: 'Muse',
     version: '5.1.3',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -121,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blog/page/2/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/page/2/"/>
 
 
 
@@ -156,7 +156,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blog/"  class="brand" rel="start">
+      <a href="/blogs/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -192,7 +192,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/blog/categories" rel="section">
+          <a href="/blogs/categories" rel="section">
             
             Categories
           </a>
@@ -200,7 +200,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives" rel="section">
+          <a href="/blogs/archives" rel="section">
             
             Archives
           </a>
@@ -208,7 +208,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/blog/tags" rel="section">
+          <a href="/blogs/tags" rel="section">
             
             Tags
           </a>
@@ -247,12 +247,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/2016/IP3_201610/">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2016/IP3_201610/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/pics/1.JPG">
+      <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -266,7 +266,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2016/IP3_201610/" itemprop="url">Integer Programming Note III: Encoding & Embedding</a></h1>
+                <a class="post-title-link" href="/blogs/2016/IP3_201610/" itemprop="url">Integer Programming Note III: Encoding & Embedding</a></h1>
         
 
         <div class="post-meta">
@@ -301,7 +301,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Study-Notes/" itemprop="url" rel="index">
+                  <a href="/blogs/categories/Study-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Study Notes</span>
                   </a>
                 </span>
@@ -342,7 +342,7 @@
           <h2 id="Unbalanced-Branching-and-Encoding"><a href="#Unbalanced-Branching-and-Encoding" class="headerlink" title="Unbalanced Branching and Encoding"></a>Unbalanced Branching and Encoding</h2><p>Consider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in standard MIP solver, $x_i$ is first relaxed into continuous variable, and then forced to be integer with B&amp;B. For the constraint above, when we branch on a fractional $x_i$, we have two choices, $x_i=1$ or $x_i=0$, but the result of each branch is different. With $x_i=1$, we immediate know $x_j=0, \forall j\neq i$, even though they are still assumed continuous. But with $x_i=0$, the optimal solution might still contain another fractional $x_j$ and further branching is needed. In extreme case, we need to branch $n-1$ times to locate the optimal integer solution.</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/IP3_201610/#more" rel="contents">
+            <a class="btn" href="/blogs/2016/IP3_201610/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -393,12 +393,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/2016/IP2_201610/">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2016/IP2_201610/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/pics/1.JPG">
+      <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -412,7 +412,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2016/IP2_201610/" itemprop="url">Integer Programming Note II: Formulation Strength & Size</a></h1>
+                <a class="post-title-link" href="/blogs/2016/IP2_201610/" itemprop="url">Integer Programming Note II: Formulation Strength & Size</a></h1>
         
 
         <div class="post-meta">
@@ -447,7 +447,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Study-Notes/" itemprop="url" rel="index">
+                  <a href="/blogs/categories/Study-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Study Notes</span>
                   </a>
                 </span>
@@ -488,7 +488,7 @@
           <p>Assume we need to solve a mixed integer linear program (MILP), and the feasible region is $S\subseteq R^{n_1}\times Z^{n_2}$.  For some reasons we don’t have a simple formulation of $S$, and we want to use some polyhedron $P=\{(x,y)\in R^{n_1+n_2}\times R^{m_1+m_2}: Ax+By\leqslant b\}$ and its subset $P_I=P\cap R^{n_1}\times Z^{n_2}\times R^{m_1}\times Z^{m_2}$ to represent $S$. Notice that we can use auxiliary variables $y$; these representation are called extended (sometimes we MUST have some integer variables $y$ to construct a valid formulation; in this case, the formulation is not extended). One important question is: what is a good representation?</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/IP2_201610/#more" rel="contents">
+            <a class="btn" href="/blogs/2016/IP2_201610/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -539,12 +539,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blog/blog/2016/IP1_201610/">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2016/IP1_201610/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/pics/1.JPG">
+      <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -558,7 +558,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2016/IP1_201610/" itemprop="url">Integer Programming Note I: Polyhedral Theory</a></h1>
+                <a class="post-title-link" href="/blogs/2016/IP1_201610/" itemprop="url">Integer Programming Note I: Polyhedral Theory</a></h1>
         
 
         <div class="post-meta">
@@ -593,7 +593,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Study-Notes/" itemprop="url" rel="index">
+                  <a href="/blogs/categories/Study-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Study Notes</span>
                   </a>
                 </span>
@@ -634,7 +634,7 @@
           <p>In this post, I will briefly review some basic ideas in polyhedral theory, which are the building blocks for more advanced MIP techniques.</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/IP1_201610/#more" rel="contents">
+            <a class="btn" href="/blogs/2016/IP1_201610/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -712,7 +712,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/blog/images/pics/1.JPG"
+                src="/blogs/images/pics/1.JPG"
                 alt="Han Qiu" />
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
@@ -724,7 +724,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blog/archives">
+                <a href="/blogs/archives">
               
                   <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
@@ -736,7 +736,7 @@
               
               
               <div class="site-state-item site-state-categories">
-                <a href="/blog/categories/index.html">
+                <a href="/blogs/categories/index.html">
                   <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
@@ -747,7 +747,7 @@
               
               
               <div class="site-state-item site-state-tags">
-                <a href="/blog/tags/index.html">
+                <a href="/blogs/tags/index.html">
                   <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
@@ -884,53 +884,53 @@
 
   
   
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+    <script type="text/javascript" src="/blogs/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+    <script type="text/javascript" src="/blogs/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+    <script type="text/javascript" src="/blogs/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <script type="text/javascript" src="/blogs/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
 
   
 
 
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/blogs/js/src/utils.js?v=5.1.3"></script>
 
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/blogs/js/src/motion.js?v=5.1.3"></script>
 
 
 
   
-  
-
   
 
   
 
+  
 
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/blogs/js/src/bootstrap.js?v=5.1.3"></script>
 
 
 
