@@ -1,3 +1,11 @@
-# Welcome to Han QIU's HomePage
+### Blogs
 
-You can find the pdf version of my resume here, as well as my contact info. [Han QIU's resume](resume/hqiu-cv.pdf)
+The main entrance to my blog is https://hanqiu92.github.io/blogs/.
+
+### Resume
+
+[English version](resume/hqiu-cv.pdf)
+
+[中文版本](resume/hqiu-cv-cn.pdf)
+
+### Publications
