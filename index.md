@@ -4,8 +4,8 @@ layout: default
 
 <!-- self intro -->
 
-I am currently a software engineer @ Meituan-Dianping. 
-My major research interests are to understand, model, and optimize decision-making behaviors of individuals and corporates, with applications in urban systems. 
+Hi! I am currently a software engineer @ Meituan-Dianping. 
+My major research interests are to understand, model, and optimize decision-making behaviors of individuals and corporates, with applications in urban systems.
 I also have great interests in studying sequential objects such as time series and stochastic processes.
 
 ### Blog
@@ -16,7 +16,7 @@ I regularly summarize my studies, research ideas, and thoughts in [my blog](http
 
 You can find the pdf version of my CV at the following links:
 
-[English Version](resume/hqiu-cv.pdf)  
+[English Version](resume/hqiu-cv.pdf)
 [中文版本](resume/hqiu-cv-cn.pdf)
 
 ### Selected Publications & Preprints
@@ -32,4 +32,3 @@ Qiu, H., Li, R., & Liu, H. (2016). Integrated model for traffic flow forecasting
 ### Others
 
 I am married to Xiaoqing Dai, who holds a Ph.D. degree from Tongji University and is currently an urban planner. You can find some interesting visualizations about her research at [her blog](https://xiaoqingdai.github.io/). You can also subscribe to her [wechat public account](others/wechat_public_account_QRcode.png) for articles about our past travels.
-
