@@ -92,7 +92,7 @@ In the previous post, I discussed how to use structural information about c">
 <meta property="og:description" content="在上一篇文章中，我介绍了如何根据关于条件期望的结构性信息（具体来说，条件期望的单调性）来推导一些理论性质和计算一些随机变量的期望值。在这一篇文章中，我将更进一步，讨论如何利用关于条件概率测度$P$的结构性信息。具体来说，我将关注具有以下形式的$P$
 In the previous post, I discussed how to use structural information about c">
 <meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/SP/markov_property.png">
-<meta property="og:updated_time" content="2019-08-18T11:57:02.793Z">
+<meta property="og:updated_time" content="2019-08-25T01:17:04.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Stochastic Process Note III: Markov Chains">
 <meta name="twitter:description" content="在上一篇文章中，我介绍了如何根据关于条件期望的结构性信息（具体来说，条件期望的单调性）来推导一些理论性质和计算一些随机变量的期望值。在这一篇文章中，我将更进一步，讨论如何利用关于条件概率测度$P$的结构性信息。具体来说，我将关注具有以下形式的$P$
@@ -368,11 +368,11 @@ In the previous post, I discussed how to use structural information about c">
 <p><strong>Theorem 1.1:</strong> The coordinate maps $\{X_n\}$ with respect to the probability measure $P_{\mu}$ is a Markov chain with transition probability $p$.</p>
 <p><strong>定理1.2：</strong>一个以$\mu$为初始分布、$p$为转移概率的马尔科夫链$\{X_n\}$的有限维概率分布服从式(1.2)的形式。</p>
 <p><strong>Theorem 1.2:</strong> If a Markov chain $\{X_n\}$ has transition probability $p$ and initial distribution $\mu$, then its finite-dimensional probability distributions are given by equation (1.2).</p>
-<h2 id="马尔科夫性质-Markov-Properties"><a href="#马尔科夫性质-Markov-Properties" class="headerlink" title="马尔科夫性质 Markov Properties"></a>马尔科夫性质 Markov Properties</h2><p>通过上一节的讨论，我们已经对马尔科夫链的结构有了初步的了解。在这一节中，我将进一步讨论马尔科夫性质(1.1)。具体来说，我将对式(1.1)中隐含的<strong>无记忆性</strong>这一性质进行更严谨地表述，并将其延拓到更一般的场景中。为此，我们需要（基于上述序列空间$(\Omega_o,\mathcal{F})$的定义）引入平移算子$\theta_n$：</p>
-<p>Through the discussion in the previous section, we should have a basic understanding of Markov chains. In this section, I will further discuss the Markov property (1.1). In particular, I will provide a rigorous description of the <strong>memoryless</strong> nature implied in equation (1.1) and extend it to more general scenarios. To do so, we need to introduce the shift operator $\theta_n$ (with respect to the definition of the sequence space $(\Omega_o,\mathcal{F})$):</p>
+<h2 id="马尔科夫性质-Markov-Properties"><a href="#马尔科夫性质-Markov-Properties" class="headerlink" title="马尔科夫性质 Markov Properties"></a>马尔科夫性质 Markov Properties</h2><p>通过上一节的讨论，我们已经对马尔科夫链的结构有了初步的了解。在这一节中，我将进一步讨论马尔科夫条件(1.1)。具体来说，我将对式(1.1)中隐含的<strong>无记忆性</strong>这一性质进行更严谨地表述，并将其延拓到更一般的场景中。为此，我们需要（基于上述序列空间$(\Omega_o,\mathcal{F})$的定义）引入平移算子$\theta_n$：</p>
+<p>Through the discussion in the previous section, we should have a basic understanding of Markov chains. In this section, I will further discuss the Markov condition (1.1). In particular, I will provide a rigorous description of the <strong>memoryless</strong> nature implied in equation (1.1) and extend it to more general scenarios. To do so, we need to introduce the shift operator $\theta_n$ (with respect to the definition of the sequence space $(\Omega_o,\mathcal{F})$):</p>
 <p>$$\theta_n(\omega) = (\omega_{n},\omega_{n+1},\cdots).$$</p>
-<h3 id="基本定理-Fundamental-Theorems"><a href="#基本定理-Fundamental-Theorems" class="headerlink" title="基本定理 Fundamental Theorems"></a>基本定理 Fundamental Theorems</h3><p>首先，我们可以将性质(1.1)从简单事件$\{X_{n+1}\in B\}$推广到更一般的关于未来的有界函数$h(X_{n+1},X_{n+2},\cdots)$上：</p>
-<p>First, we can generalize the property (1.1) from the simple event $\{X_{n+1}\in B\}$ to the more general bounded function $h(X_{n+1}, X_{n+2}, \cdots)$ about the future:</p>
+<h3 id="基本定理-Fundamental-Theorems"><a href="#基本定理-Fundamental-Theorems" class="headerlink" title="基本定理 Fundamental Theorems"></a>基本定理 Fundamental Theorems</h3><p>首先，我们可以将条件(1.1)从简单事件$\{X_{n+1}\in B\}$推广到更一般的关于未来的有界函数$h(X_{n+1},X_{n+2},\cdots)$上：</p>
+<p>First, we can generalize the condition (1.1) from the simple event $\{X_{n+1}\in B\}$ to the more general bounded function $h(X_{n+1}, X_{n+2}, \cdots)$ about the future:</p>
 <p><strong>定理2.1（马尔科夫性）：</strong>假设$Y: \Omega_o \to \mathbb{R}$是一个可测有界函数，则有</p>
 <p><strong>Theorem 2.1 (Markov property):</strong> Suppose $Y: \Omega_o \to \mathbb{R}$ is a bounded measurable function. Then we have</p>
 <p>$$E_{\mu} (Y\circ \theta_m|\mathcal{F}_m) = E_{X_m}Y. \tag{2.1.1}$$</p>
@@ -583,6 +583,10 @@ In the previous post, I discussed how to use structural information about c">
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/blogs/2019/SP4_201909/" rel="prev" title="Stochastic Process Note IV: Ergodicity">
+                Stochastic Process Note IV: Ergodicity <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -672,7 +676,7 @@ In the previous post, I discussed how to use structural information about c">
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -683,7 +687,7 @@ In the previous post, I discussed how to use structural information about c">
               
               <div class="site-state-item site-state-categories">
                 <a href="/blogs/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
