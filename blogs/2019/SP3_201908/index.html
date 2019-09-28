@@ -92,7 +92,7 @@ In the previous post, I discussed how to use structural information about c">
 <meta property="og:description" content="在上一篇文章中，我介绍了如何根据关于条件期望的结构性信息（具体来说，条件期望的单调性）来推导一些理论性质和计算一些随机变量的期望值。在这一篇文章中，我将更进一步，讨论如何利用关于条件概率测度$P$的结构性信息。具体来说，我将关注具有以下形式的$P$
 In the previous post, I discussed how to use structural information about c">
 <meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/SP/markov_property.png">
-<meta property="og:updated_time" content="2019-08-25T01:17:04.922Z">
+<meta property="og:updated_time" content="2019-09-25T13:20:23.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Stochastic Process Note III: Markov Chains">
 <meta name="twitter:description" content="在上一篇文章中，我介绍了如何根据关于条件期望的结构性信息（具体来说，条件期望的单调性）来推导一些理论性质和计算一些随机变量的期望值。在这一篇文章中，我将更进一步，讨论如何利用关于条件概率测度$P$的结构性信息。具体来说，我将关注具有以下形式的$P$
@@ -348,7 +348,7 @@ In the previous post, I discussed how to use structural information about c">
 <a id="more"></a>
 <h2 id="马尔科夫链的定义-Definition-of-Markov-Chains"><a href="#马尔科夫链的定义-Definition-of-Markov-Chains" class="headerlink" title="马尔科夫链的定义 Definition of Markov Chains"></a>马尔科夫链的定义 Definition of Markov Chains</h2><p>首先，我将给出（离散）马尔科夫链的严格定义。假设$(S,\mathcal{S})$是一个可测空间，随机变量$X_n$是从样本空间$\Omega$到$S$上可测映射。若存在函数$p$使得</p>
 <p>First, I will give a formal definition of (discrete) Markov chains. Suppose $(S,\mathcal{S})$ is a measurable space, and the random variable $X_n$ is a measurable mapping from the sample space $\Omega$ to $S$. If there exists a function $p$ such that</p>
-<p>$$P(X_{n+1}\in B|\mathcal{F}_{n}) = p(X_{n},B), \tag{1.1}$$</p>
+<p>$$P(X_{n+1}\in A|\mathcal{F}_{n}) = p(X_{n},A), \tag{1.1}$$</p>
 <p>那么序列$\{X_n\}$则被认为是一个（相对于$p$的）马尔科夫链。为保证该定义是良定的，函数$p: S\times \mathcal{S} \to R$还需要满足下述条件：</p>
 <p>then the sequence $\{X_n\}$ is called a Markov chain (with respect to $p$). To ensure this is well-defined, the function $p: S\times \mathcal{S} \to R$ needs to satisfy the following regular conditions:</p>
 <p>1) 对任意$x\in S$，映射$A\to p(x,A)$是空间$(S,\mathcal{S})$上的概率测度；<br>2) 对任意$A\in \mathcal{S}$，映射$x\to p(x,A)$是一个可测函数。</p>
@@ -676,7 +676,7 @@ In the previous post, I discussed how to use structural information about c">
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

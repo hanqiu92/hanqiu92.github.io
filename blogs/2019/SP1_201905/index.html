@@ -95,7 +95,7 @@ Stochasticity is pervasive in our daily lives and is related to phenomena like">
 <meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/SP/filtration.png">
 <meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/SP/cond_expectation.png">
 <meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/SP/stop_time.png">
-<meta property="og:updated_time" content="2019-08-24T08:23:34.160Z">
+<meta property="og:updated_time" content="2019-09-22T08:07:33.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Stochastic Process Note I: Introduction and Basic Concepts">
 <meta name="twitter:description" content="随机性在我们的日常生活中随处可见：股票价格的涨跌，天气的变化以及交通拥堵的产生等现象都与其有关。随机过程理论则提供了一系列简洁有力的工具，不仅能够对这些现象进行建模解释，还为大量工程领域的奠定了分析基础，例如排队系统、最优控制、衍生品定价等。
@@ -353,8 +353,8 @@ Stochasticity is pervasive in our daily lives and is related to phenomena like">
 <h2 id="随机过程的定义-Definition-of-Stochastic-Processes"><a href="#随机过程的定义-Definition-of-Stochastic-Processes" class="headerlink" title="随机过程的定义 Definition of Stochastic Processes"></a>随机过程的定义 Definition of Stochastic Processes</h2><p>首先，让我们回顾一下随机变量的定义。假设有一个由（可能不可观测）的结果$\omega$组成的空间$\Omega$，且在该空间上定义了一个事件集合$\mathcal{F}$和一个概率测度$P$。例如，投掷一枚公平硬币的结果可以描述为</p>
 <p>First, let us recall the definition of random variables. Suppose there is a space $\Omega$ consisting of (possibly unobservable) outcomes $\omega$, and this space is equipped with an event set $\mathcal{F}$ and a probability measure $P$. For example, the outcome of a fair coin toss can be described as</p>
 <p>$$\omega \in \Omega = \{H,T\}, P(\omega\in \{T\}) = P(\omega\in \{H\}) = 0.5.$$</p>
-<p>一个随机变量$X$可以被认为是这些结果在某些可观测空间的投影。换句话说，假设我们的观测值落在空间$S$内，则$X$可以描述为从$\Omega$到$S$的（相对于$\mathcal{F}$的）可测映射。例如，假设Alice与Bob正在对投掷一枚公平硬币的结果进行打赌：如果是正面朝上，Alice能从Bob那里获得一元，反之Alice需要给Bob一元。此时，Alice的收入就是一个关于硬币投掷结果的随机变量$X:\Omega \to \mathbb{R}$，其中$X(H)=1,X(T)=-1$.</p>
-<p>A random variable (r.v.) $X$ can be interpreted as a projection of these outcomes onto an observable space. In other words, assuming our observations take places in the space $S$, $X$ can be described as a measurable mapping (with respect to $\mathcal{F}$) from $\Omega$ to $S$. For example, suppose that Alice and Bob are betting on the outcome of a fair coin toss: if it is head, Bob should give Alice \$1 and vice versa. Then, Alice’s income is an r.v. $X:\Omega \to \mathbb{R}$ with $X(H)=1,X(T)=-1$.</p>
+<p>一个随机变量$X$可以被认为是这些结果在某些可观测空间的投影。换句话说，假设我们的观测值落在空间$S$内，则$X$可以描述为从$\Omega$到$S$的（适应于$\mathcal{F}$的）可测映射。例如，假设Alice与Bob正在对投掷一枚公平硬币的结果进行打赌：如果是正面朝上，Alice能从Bob那里获得一元，反之Alice需要给Bob一元。此时，Alice的收入就是一个关于硬币投掷结果的随机变量$X:\Omega \to \mathbb{R}$，其中$X(H)=1,X(T)=-1$.</p>
+<p>A random variable (r.v.) $X$ can be interpreted as a projection of these outcomes onto an observable space. In other words, assuming our observations take places in the space $S$, $X$ can be described as a measurable mapping (adapted to $\mathcal{F}$) from $\Omega$ to $S$. For example, suppose that Alice and Bob are betting on the outcome of a fair coin toss: if it is head, Bob should give Alice \$1 and vice versa. Then, Alice’s income is an r.v. $X:\Omega \to \mathbb{R}$ with $X(H)=1,X(T)=-1$.</p>
 <p>下图是对一般实值随机变量的一种可视化展示：</p>
 <p>The following figure is a simple visual illustration of general real-valued r.v.s:</p>
 <p><img width="450" src="/blogs/images/SP/random_vars_real.png"></p>
@@ -394,8 +394,8 @@ Stochasticity is pervasive in our daily lives and is related to phenomena like">
 <p>$$P(B|A) = \frac{P(A\cap B)}{P(A)},$$</p>
 <p>而这正是条件概率的初等定义。</p>
 <p>which is the elementary definition of conditional probability.</p>
-<h2 id="停时-Stopping-Time"><a href="#停时-Stopping-Time" class="headerlink" title="停时 Stopping Time"></a>停时 Stopping Time</h2><p>另外一个非常重要的概念是停时。一个（离散时间过程上的）停时是一个定义在$\mathbb{N} \cup \{+\infty\}$上的随机变量，且对应“停”在某些事件发生的时刻。例如，我们可以考虑停时$T=\inf\{n|X_n = H, n \geq 0\}$，它代表着在连续投掷一枚公平硬币的过程中首次出现正面的时间。严谨地来说，一个（离散时间的）定义在滤子$\{\mathcal{F}_n\}$上的停时$T$是满足以下条件的一个随机变量：$T: \Omega \to \mathbb{N} \cup \{+\infty \}$，且对于任意$n \in \mathbb{N}$，我们有$\{ T = n\} \in \mathcal{F}_n$。这就是说，选择在时刻$n$停下这一决策是根据时刻$n$已获得的信息$\mathcal{F}_n$作出的，而且不能含有超出$\mathcal{F}_n$范围的信息。</p>
-<p>Another very important concept is the stopping time. Intuitively, a stopping time (on discrete-time processes) is a random time, i.e., r.v. on $\mathbb{N} \cup \{+\infty\}$, that “stops” at the (first) occurrence of certain events. For example, we can consider the stopping time $T$ that is the first time to get a head during sequential tosses of a fair coin $T=\inf\{n|X_n = H, n \geq 0\}$. Formally, a (discrete-time) stopping time $T$ with respect to the filtration $\{\mathcal{F}_n\}$ is an r.v. $T: \Omega \to \mathbb{N} \cup \{+\infty \}$ that for every $n \in \mathbb{N}$ we have $\{ T = n\} \in \mathcal{F}_n$. That is, the decision to stop at time $n$ is made with respect to information $\mathcal{F}_n$ accumulated up to time $n$ and cannot contain more information than $\mathcal{F}_n$.</p>
+<h2 id="停时-Stopping-Times"><a href="#停时-Stopping-Times" class="headerlink" title="停时 Stopping Times"></a>停时 Stopping Times</h2><p>另外一个非常重要的概念是停时。一个（离散时间过程上的）停时是一个定义在$\mathbb{N} \cup \{+\infty\}$上的随机变量，且对应“停”在某些事件发生的时刻。例如，我们可以考虑停时$T=\inf\{n|X_n = H, n \geq 0\}$，它代表着在连续投掷一枚公平硬币的过程中首次出现正面的时间。严谨地来说，一个（离散时间的）适应于滤子$\{\mathcal{F}_n\}$的停时$T$是满足以下条件的一个随机变量：$T: \Omega \to \mathbb{N} \cup \{+\infty \}$，且对于任意$n \in \mathbb{N}$，我们有$\{ T = n\} \in \mathcal{F}_n$。这就是说，选择在时刻$n$停下这一决策是根据时刻$n$已获得的信息$\mathcal{F}_n$作出的，而且不能含有超出$\mathcal{F}_n$范围的信息。</p>
+<p>Another very important concept is the stopping time. Intuitively, a stopping time (on discrete-time processes) is a random time, i.e., r.v. on $\mathbb{N} \cup \{+\infty\}$, that “stops” at the (first) occurrence of certain events. For example, we can consider the stopping time $T$ that is the first time to get a head during sequential tosses of a fair coin $T=\inf\{n|X_n = H, n \geq 0\}$. Formally, a (discrete-time) stopping time $T$ adapted to the filtration $\{\mathcal{F}_n\}$ is an r.v. $T: \Omega \to \mathbb{N} \cup \{+\infty \}$ that for every $n \in \mathbb{N}$ we have $\{ T = n\} \in \mathcal{F}_n$. That is, the decision to stop at time $n$ is made with respect to information $\mathcal{F}_n$ accumulated up to time $n$ and cannot contain more information than $\mathcal{F}_n$.</p>
 <p>现在，一个自然的问题是如何确定我们在时刻$T$时拥有的信息$\mathcal{F}_T$。明显，如果我们停在了时刻$n$，那么此时我们拥有的信息应该是$\sigma$-代数$\mathcal{F}_{n,T}=\{A\cap \{T=n\}|A\in \mathcal{F}_n\}$。由于事件$\{T=n\}$形成了样本空间$\Omega$的一个划分，信息$\mathcal{F}_T$可以表示为各个划分内子集的并$\{\bigcup A_n|A_n\in \mathcal{F}_n, \ \forall n \in \mathbb{N}\cup \{+\infty\} \}$。然而，一个等价但更简洁的定义是令$\mathcal{F}_T$为$\{A\in \mathcal{F}_{\infty}|A \cap \{ T = n\} \in \mathcal{F}_n, \forall n \in \mathbb{N}\}$。下图简单地展示了上述两种定义方式：</p>
 <p>Now, a natural question is to specify the information we have at time $T$, $\mathcal{F}_T$. Obviously, if we stop at time $n$, the information we have is the $\sigma$-algebra $\mathcal{F}_{n,T}=\{A\cap \{T=n\}|A\in \mathcal{F}_n\}$. Since events $\{T=n\}$ form a partition of $\Omega$, $\mathcal{F}_T$ can be expressed as $\{\bigcup A_n|A_n\in \mathcal{F}_n, \ \forall n \in \mathbb{N}\cup \{+\infty\} \}$. An equivalent, but more elegant way is to define $\mathcal{F}_T$ as $\{A\in \mathcal{F}_{\infty}|A \cap \{ T = n\} \in \mathcal{F}_n, \forall n \in \mathbb{N}\}$. The following figure should provide a clear illustration of these two definitions:</p>
 <p><img src="/blogs/images/SP/stop_time.png" alt="stop_time"></p>
@@ -450,8 +450,8 @@ Stochasticity is pervasive in our daily lives and is related to phenomena like">
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blogs/2019/yearly_summary_201906/" rel="prev" title="What I've Learned in the Past Year (Year 2018-19)">
-                What I've Learned in the Past Year (Year 2018-19) <i class="fa fa-chevron-right"></i>
+              <a href="/blogs/2019/yearly_summary_201906/" rel="prev" title="What I've Learned in the Past Year (2018-19)">
+                What I've Learned in the Past Year (2018-19) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -543,7 +543,7 @@ Stochasticity is pervasive in our daily lives and is related to phenomena like">
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -620,7 +620,7 @@ Stochasticity is pervasive in our daily lives and is related to phenomena like">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#随机过程的定义-Definition-of-Stochastic-Processes"><span class="nav-number">1.</span> <span class="nav-text">随机过程的定义 Definition of Stochastic Processes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滤子与条件期望-Filtrations-and-Conditional-Expectations"><span class="nav-number">2.</span> <span class="nav-text">滤子与条件期望 Filtrations and Conditional Expectations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#停时-Stopping-Time"><span class="nav-number">3.</span> <span class="nav-text">停时 Stopping Time</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#随机过程的定义-Definition-of-Stochastic-Processes"><span class="nav-number">1.</span> <span class="nav-text">随机过程的定义 Definition of Stochastic Processes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滤子与条件期望-Filtrations-and-Conditional-Expectations"><span class="nav-number">2.</span> <span class="nav-text">滤子与条件期望 Filtrations and Conditional Expectations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#停时-Stopping-Times"><span class="nav-number">3.</span> <span class="nav-text">停时 Stopping Times</span></a></li></ol></div>
             
 
           </div>
