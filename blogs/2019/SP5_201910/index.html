@@ -91,7 +91,7 @@ In the previous posts in this series, I introduced the concepts of filters, stop
 <meta property="og:site_name" content="Han's Blog">
 <meta property="og:description" content="在本系列的之前几篇文章中，我介绍了离散时间场景下的滤子、停时、鞅、马尔科夫链等概念。在这篇文章中，我将介绍这些概念在连续时间场景中的定义，并指出这些定义与离散时间下的定义的主要区别。
 In the previous posts in this series, I introduced the concepts of filters, stopping times, martingales, and">
-<meta property="og:updated_time" content="2019-09-28T03:14:09.074Z">
+<meta property="og:updated_time" content="2019-09-28T03:23:54.425Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Stochastic Process Note V: Continuous-Time Stochastic Processes">
 <meta name="twitter:description" content="在本系列的之前几篇文章中，我介绍了离散时间场景下的滤子、停时、鞅、马尔科夫链等概念。在这篇文章中，我将介绍这些概念在连续时间场景中的定义，并指出这些定义与离散时间下的定义的主要区别。
@@ -279,8 +279,8 @@ In the previous posts in this series, I introduced the concepts of filters, stop
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-27T12:00:00+08:00">
-                2019-09-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-30T12:00:00+08:00">
+                2019-09-30
               </time>
             
 
@@ -342,8 +342,8 @@ In the previous posts in this series, I introduced the concepts of filters, stop
         <p>在本系列的之前几篇文章中，我介绍了离散时间场景下的滤子、停时、鞅、马尔科夫链等概念。在这篇文章中，我将介绍这些概念在连续时间场景中的定义，并指出这些定义与离散时间下的定义的主要区别。</p>
 <p>In the previous posts in this series, I introduced the concepts of filters, stopping times, martingales, and Markov chains, in the discrete-time setting. In this post, I will introduce their counterparts in the continuous-time setting, with a focus on their differences.</p>
 <a id="more"></a>
-<p>在下面的讨论中，我将多次使用一维布朗运动作为例子来解释概念和展示方法应用；因此，在这里我将先给出布朗运动的定义。一个一维实值连续时间随机过程$B:\mathbb{R}^+ \times \Omega \to \mathbb{R}$被称为布朗运动，若其满足以下三个条件：<br>(1) （独立增量）对任意$t_0 &lt; t_1 &lt; \cdots &lt; t_n$，随机变量$B(t_0,\cdot), B(t_1,\cdot) - B(t_0,\cdot), \cdots, B(t_n,\cdot) - B(t_{n-1},\cdot)$独立。<br>(2) （正态分布）$B({s+t},\cdot) - B(s,\cdot) \sim N(0,t)$。<br>(3) （轨迹连续性）$P(\{\omega: t \to B(t,\omega) \text{连续}\}) = 1$。</p>
-<p>In the following discussion, I will introduce several examples of the one-dimensional Brownian motion in order to explain concepts and illustrate applications of methods. Therefore, I will give the definition of Brownian motions first. A one-dimensional real-valued continuous-time stochastic process $B:\mathbb{R}^+ \times \Omega \to \mathbb{R}$ is called a Brownian motion, if it satisfies the following three conditions:<br>(1) (Independent increment) For any $t_0 &lt; t_1 &lt; \cdots &lt; t_n$, random variables $B(t_0,\cdot)$,$ B(t_1,\cdot) - B(t_0,\cdot)$,$ \cdots$, $B(t_n,\cdot) - B(t_{n-1},\cdot)$ are independent.<br>(2) (Normally distributed) $B({s+t},\cdot) - B(s,\cdot) \sim N(0,t)$.<br>(3) (Sample-continuity) $P(\{\omega: t \to B(t,\omega) \text{continuous}\}) = 1$.</p>
+<p>在下面的讨论中，我将多次使用一维布朗运动作为例子来解释概念和展示方法应用；因此，在这里我将先给出布朗运动的定义。一个一维实值连续时间随机过程$B:\mathbb{R}^+ \times \Omega \to \mathbb{R}$被称为布朗运动，若其满足以下三个条件：<br>(1) （独立增量）对任意$t_0 &lt; t_1 &lt; \cdots &lt; t_n$，随机变量$B(t_0,\cdot), B(t_1,\cdot) - B(t_0,\cdot), \cdots, B(t_n,\cdot) - B(t_{n-1},\cdot)$独立。<br>(2) （正态分布）$B({s+t},\cdot) - B(s,\cdot) \sim N(0,t)$。<br>(3) （轨迹连续性）$P(\{\omega: t \to B(t,\omega) \text{ 连续}\}) = 1$。</p>
+<p>In the following discussion, I will introduce several examples of the one-dimensional Brownian motion in order to explain concepts and illustrate applications of methods. Therefore, I will give the definition of Brownian motions first. A one-dimensional real-valued continuous-time stochastic process $B:\mathbb{R}^+ \times \Omega \to \mathbb{R}$ is called a Brownian motion, if it satisfies the following three conditions:<br>(1) (Independent increment) For any $t_0 &lt; t_1 &lt; \cdots &lt; t_n$, random variables $B(t_0,\cdot)$,$ B(t_1,\cdot) - B(t_0,\cdot)$,$ \cdots$, $B(t_n,\cdot) - B(t_{n-1},\cdot)$ are independent.<br>(2) (Normally distributed) $B({s+t},\cdot) - B(s,\cdot) \sim N(0,t)$.<br>(3) (Sample-continuity) $P(\{\omega: t \to B(t,\omega) \text{ is continuous}\}) = 1$.</p>
 <p>为简便起见，下面我将交替使用$X_t$和$X(t,\cdot)$表示随机过程$X$在$t$时刻截面对应的随机变量。</p>
 <p>For simplicity, in the following discussion, I will use $X_t$ and $X(t,\cdot)$ interchangeably to represent the value of the stochastic process $X$ at the time $t$, which is a random variable.</p>
 <h2 id="样本轨迹连续性-Sample-continuity"><a href="#样本轨迹连续性-Sample-continuity" class="headerlink" title="样本轨迹连续性 Sample-continuity"></a>样本轨迹连续性 Sample-continuity</h2><p>在本系列的<a href="https://hanqiu92.github.io/blogs/2019/SP1_201905/">第一篇文章</a>中，我曾提到理解随机过程的两种视角：由不同时间下相应随机变量组成的序列（以下简称随机变量序列）、或是取值在实值序列空间上的随机变量（以下简称序列随机变量），并指出在离散时间场景下，可以通过Kolmogorov延拓定理来说明这两种视角的一致性。但对于连续时间场景，这种一致性并不是必然的。具体来说，对一条满足一系列关于有限维分布的相容性条件的随机变量序列$\{X_t\}$，Kolmogorov延拓定理能够保证与该序列服从同样有限维分布的序列随机变量$X$的存在性；但是，该定理无法保证构造所得$X$在样本轨迹维度$X(\cdot,\omega)$上具有所期望的性质。例如，让我们考虑布朗运动的构造问题。在上述布朗运动的定义中，条件(1-2)是对有限维分布的要求，因此可以通过Kolmogorov延拓定理保证。但条件(3)要求样本轨迹是连续的；已有工具并不能实现该要求。因此，在连续时间场景下，我们需要引入新的工具和思路来解决与样本轨迹性质相关的问题；此即本节的主题。特别地，在这篇文章中，我们将主要关注样本轨迹的连续性。</p>
@@ -504,6 +504,10 @@ In the previous posts in this series, I introduced the concepts of filters, stop
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/blogs/2019/SP6_201910/" rel="prev" title="Stochastic Process Note VI: Donsker's Theorem">
+                Stochastic Process Note VI: Donsker's Theorem <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -593,7 +597,7 @@ In the previous posts in this series, I introduced the concepts of filters, stop
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
