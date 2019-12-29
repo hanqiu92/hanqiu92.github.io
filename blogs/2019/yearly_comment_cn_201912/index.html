@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Queuing Theory,Stochastic Process," />
+  <meta name="keywords" content="Optimization,Shared Mobility," />
 
 
 
@@ -83,18 +83,16 @@
 
 
 
-<meta name="description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
+<meta name="description" content="趁着年末整理一下最近的一些新的见解，留个记录，以便后续反思和打脸。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Case Study: Delay in Mexico City">
-<meta property="og:url" content="http://hanqiu92.github.io/blogs/2016/mexico_city_delay_201610/index.html">
+<meta property="og:title" content="一些认知迭代">
+<meta property="og:url" content="http://hanqiu92.github.io/blogs/2019/yearly_comment_cn_201912/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mexico_city_map.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mm1.png">
-<meta property="og:updated_time" content="2019-06-26T14:08:01.066Z">
+<meta property="og:description" content="趁着年末整理一下最近的一些新的见解，留个记录，以便后续反思和打脸。">
+<meta property="og:updated_time" content="2019-12-29T06:48:49.746Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Case Study: Delay in Mexico City">
-<meta name="twitter:description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
+<meta name="twitter:title" content="一些认知迭代">
+<meta name="twitter:description" content="趁着年末整理一下最近的一些新的见解，留个记录，以便后续反思和打脸。">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2016/mexico_city_delay_201610/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/yearly_comment_cn_201912/"/>
 
 
 
 
 
-  <title>Case Study: Delay in Mexico City | Han's Blog</title>
+  <title>一些认知迭代 | Han's Blog</title>
   
 
 
@@ -249,7 +247,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2016/mexico_city_delay_201610/">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2019/yearly_comment_cn_201912/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
@@ -266,7 +264,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Case Study: Delay in Mexico City</h1>
+          <h1 class="post-title" itemprop="name headline">一些认知迭代</h1>
         
 
         <div class="post-meta">
@@ -278,8 +276,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-23T12:00:00+08:00">
-                2016-10-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-29T13:00:00+08:00">
+                2019-12-29
               </time>
             
 
@@ -301,8 +299,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blogs/categories/Case-Study/" itemprop="url" rel="index">
-                    <span itemprop="name">Case Study</span>
+                  <a href="/blogs/categories/Comment/" itemprop="url" rel="index">
+                    <span itemprop="name">Comment</span>
                   </a>
                 </span>
 
@@ -338,36 +336,43 @@
       
 
       
-        <p>This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about how to model and solve this problem. In last several days, I realized the tools we needed were no more than high school arithmetics.</p>
+        <p>趁着年末整理一下最近的一些新的见解，留个记录，以便后续反思和打脸。</p>
 <a id="more"></a>
-<h2 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h2><p>Here is the actual experience: we were in a taxi going to airport via Cto. Interior. We encountered a heavy rain, and several lower points were flooded (indicated as red circles in the following pic).</p>
-<p><img src="/blogs/images/mexico_city_map.png" alt="mexico city map"></p>
-<p>During the trip, Google Maps kept refreshing the estimated travel time, and the estimated delay for going through those bottlenecks were always increasing. When we arrived, we cost nearly one more hour than the initial estimated travel time.</p>
-<p>So how can Google Maps be such inaccurate? And if provided with the information that the capacity in these points will be low for several hours, can we have better estimates?</p>
-<h2 id="A-queuing-model-without-knowledge-in-queues"><a href="#A-queuing-model-without-knowledge-in-queues" class="headerlink" title="A queuing model without knowledge in queues"></a>A queuing model without knowledge in queues</h2><p>It is almost straightforward to think about a queuing model. To simplify, we consider a serial connection of M/M/1 units and free flow road segments (which can also be seen as M/M/1 unit with $\mu\to\infty$). Following is a visualization of M/M/1 unit (By Tsaitgaist - <a href="https://commons.wikimedia.org/w/index.php?curid=7037566" target="_blank" rel="external">Mm1.png</a>, CC BY-SA 3.0).</p>
-<p><img src="/blogs/images/mm1.png" alt="M/M/1"></p>
-<p>With elementary understanding of queuing theory, I only considered stable case ($\lambda &lt; \ mu$) at first and got into trouble. When the process become stationary, it is impossible to have increasing travel time! In this case, we are actually more likely in an unstable situation: if the capacity remains low forever, the length of the queue will surely explode.</p>
-<p>So we just make our first assumption: $\lambda &gt; \mu$. Now, when the difference between $\lambda$ and $\mu$ is not trivial, even with Poisson process as input, we can well assume them as deterministic (constant), since it is unlikely the queue will be empty and we can avoid the nasty analysis in stable case. Or we can argue like this: as $T\to\infty$, total arrival $\sim Poi(\lambda T)$ and total serviced $\sim Poi(\mu T)$, so when $T$ is large enough, the probability to have total serviced amount greater than total arrival is extremely low.</p>
-<p>Now we introduce another parameter $\theta$ to describe enter and exit ratios for each road segments between two flooded points. This is quite realistic since people can leave or enter the expressway through ramps. Also, without some inflows we will never have enough arrival to block the next M/M/1 units!</p>
-<p>So what is the arrival rate for the middle M/M/1 units? We have $(1-\theta)\mu$ from last unit, and $\theta\lambda$ new inflows. The arrival rate is just the sum of the two. We can also calculate a delay rate $\rho$, which represent how fast delay increases:</p>
-<p>$$\rho = \frac{\theta(\lambda - \mu)}{\mu}$$</p>
-<p>Now we can summarize our model: we have $n$ M/M/1 units (with same $\lambda$ and $\mu$) with $n-1$ road segments (with same $\theta$ and travel time $T_t$) connecting them in a serial way. We further assume that as we enter this system, every unit already has delay time $T_d$. We further use $T_T$ to denote the sum of $T_t$ and $T_d$.</p>
-<h2 id="Calculations"><a href="#Calculations" class="headerlink" title="Calculations"></a>Calculations</h2><p>Now it is time to do some high school arithmetics.</p>
-<p>Step 0. Upon arrived at the first M/M/1 unit, we are at time $T_1 = 0$, and the queue delay time is $D_1 = T_d$.</p>
-<p>Step 1. When arrived at the second M/M/1 unit, we are at time $T_2 = T_1 + D_1 + T_t = T_T$, and the queue delay time at his unit is $D_2 = T_d + \rho T_2 = T_d + \rho T_T = (1+\rho)T_T - T_t$.</p>
-<p>Step 2. When arrived at the third M/M/1 unit, we are at time $T_3 = T_2 + D_2 + T_t = (2+\rho)T_T$, and the queue delay time at his unit is $D_3 = T_d + \rho T_3 = (1+\rho)^2 T_T - T_t$.</p>
-<p>…</p>
-<p>So with induction, it is easy to find total travel time is $T = \frac{(1+\rho)^n-1}{\rho}T_T - T_t$. And the naive initial estimated travel time is $T’ = nT_T - T_t$.</p>
-<p>Now let’s replace them with some actual values. First we estimate those parameters:</p>
-<p>$$\lambda = 3\text{ lanes}\times 60\text{ km/h} \times 20\text{ veh/km} = 60\text{ veh/min}$$</p>
-<p>$$\mu = 1\text{ lanes}\times 4\text{ km/h} \times 300\text{ veh/km} = 20\text{ veh/min}$$</p>
-<p>$$\theta = 0.5$$</p>
-<p>So</p>
-<p>$$\rho = \frac{0.5\times 40}{20} = 1$$</p>
-<p>Let $n = 3$ (as in the Mexico City map), we then have $T = 7T_T - T_t$, while $T’ = 3T_T - T_t$; delay is more than 4/3 of the initial estimated travel time! And this is quite similar to what we experienced that afternoon.</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>So what can we learn from this case study? First, never trust Google Maps in similar situation (which you might only encounter in Mexico City…) and do not take expressway.</p>
-<p>Second, stationary results of queuing theory has its limits for application. As we can see, these results are not really useful for this problem, since we are focusing on short term dynamics. We can also explain why so many people find the famous nonlinear time-utilization plot counterintuitive: as utilization $\lambda/\mu\to 1$, the time required to get to the stationary status increase nonlinearly, and in short term dynamics (which is what most people can visualize in their minds) such relationship does not hold! For those who are interested in the asymptotic behavior of the system when $\lambda/\mu\to 1$, you might find the key word <a href="https://www.google.com/#q=heavy+traffic+approximation" target="_blank" rel="external">heavy traffic approximation</a> useful.</p>
-<p>So when should we apply those stationary results? The answer is in planning process, when the arrival variance is large and expected service time is almost infinity. In other cases, simulation is always the safest way to start.</p>
+<h2 id="优化-Optimization"><a href="#优化-Optimization" class="headerlink" title="优化 Optimization"></a>优化 Optimization</h2><p>关于优化，最近形成了一个新的认知：对具体问题的<strong>结构</strong>的理解是非常重要的。具体来说，各类经典优化算法都可以看成是<strong>在某个解空间结构上进行局部搜索(local search)</strong>：</p>
+<ol>
+<li>primal simplex是在可行域表面上的局部搜索。</li>
+<li>梯度下降和meta-heuristic是可行域内的局部搜索。</li>
+</ol>
+<p>这意味着一种通用的方法论(methodology)是寻找更好的解空间结构：</p>
+<ol>
+<li>mirror descent通过某种系统性的手段改变原始可行域的度量，从而改变了局部搜索的方向。</li>
+<li>在组合优化中，原始对偶方法通过互补松弛（complementary slackness）条件构造具有强组合结构的子问题来优化局部搜索效率。</li>
+<li>整数规划中一种常用技术是做lifting，将可行域从复杂低维形式转化为简单高维形式。</li>
+<li>OM中一种常用的分析技巧是通过决策变量的变换来获得更好的几何结构。</li>
+<li>heuristic的设计关键就在于如何利用问题结构优化局部搜索的效率。</li>
+</ol>
+<p>因此，考虑到不同业务的内在逻辑，应该对不同的解法更加open：看起来naive的思路很可能利用了某种重要结构。对于有能力的人来说，更应该理解和挖掘这些结构，从中找出共通性，从而设计更好的算法，而不是简单地将问题转化为已知形式再调包/solver解决。感觉很多以前的工作都可以再review一下（笑）。</p>
+<h2 id="计算-Computation"><a href="#计算-Computation" class="headerlink" title="计算 Computation"></a>计算 Computation</h2><p>根据观察，我发现计算效率在算法层面很容易被忽视。个人判断主要还是意识和机制问题。一方面，开发时没有足够的意识进行效率优化；另一方面，后续维护时缺乏优化动机。这在无形之中给系统增加了很多性能瓶颈。</p>
+<p>计算效率问题主要体现为两点。一方面，算法实现上存在过多冗余。这方面我个人做的也不是很好；这在仿真系统的开发上体现得特别明显。例如，在仿真网约车的司乘匹配问题时，首先需要计算每个司乘对的距离，从而判断匹配的可行性。最简单的做法是遍历所有司乘对，但是这种做法不scalable。在大规模场景下，一种更好的做法是先将司乘的位置映射到一系列区域内，然后只对相邻区域内的点对进行计算。一个简单实现表明这种做法在大规模场景下速度能提高3倍以上。再如，根据可行性判定，在调用匹配算法时很多配对是不需要被考虑的；此时应该使用稀疏存储及相应的稀疏匹配算法。计算表明，在大多数场景下速度能提高5~10倍。</p>
+<p>另一方面，未能使用足够好的底层工具来提高效率。单从Python来说，通过numba可以将很多无法简单矢量化的过程提速上百倍。在不具备完全迁移到C++/Julia上的可行性的情况下，熟练掌握numba和Cython还是很必要的。</p>
+<h2 id="决策-Decision-making"><a href="#决策-Decision-making" class="headerlink" title="决策 Decision-making"></a>决策 Decision-making</h2><p>相比优化，决策过程的外部依赖更复杂多样，因此更依赖于决策者的主观判断和信念(belief)。很多时候，与“决策原则”相关的讨论都是围绕主观信念展开的，更偏向哲学(philosophy)思辨，不同思路之间很难比出个高下。因此，我们并不关心决策者应采用哪种信念；但是，一旦形成了主观判断，后续的决策就应当与之相符。然而，根据我个人的实践经验，这其实并不容易。其中的一大难点在于：很多决策方法隐含的假设和方法论与决策者真正的主观信念并不相符。下面通过一些具体场景进行讨论。</p>
+<p>首先考虑建模(modeling)与模型驱动(model-driven)决策。一句著名的话说，“All models are wrong, some are useful”；而如何选择“恰到好处”的建模元素来得到useful model是很考验功力的。若因素没有考虑完备，则模型的解释力会大打折扣；若无关因素考虑过多，则模型过于冗余，无法快速给出简要直白的insights。我在过去一年中进行了不少尝试，也走了不少弯路，深刻地认识到：目前识别关键因素的能力还存在着很大的局限性，后续仍要不断实践积累经验。另外，除了要回答“怎么建模”，modeler还需要能够回答“怎样使用模型”。最基础但是很容易被忽视的一点是要理解模型的逻辑和局限性，并在合理范围内应用。事实上，受限于决策成本和能力，许多人对于模型的选用是有sparse和极端化趋势的。</p>
+<p>再考虑不确定性(uncertainty)的处理方式。决策者对问题的理解很难做到完全准确，因此有必要针对这种不确定性的可能后果进行规划。首先，以下几种常用手段及其相应假设：</p>
+<ol>
+<li>鲁棒优化(robust optimization)：假设事情总是在一系列可能性中按最坏的情况发生。</li>
+<li>探索(exploration)：假设新增的数据提供的信息能长期有效地降低估计的不确定性，因此可以通过牺牲一部分短期利益来减少长期遗憾(regret)。</li>
+<li>对冲(hedge)：假设一系列随机过程的不确定性具有线性相关性，因此可以通过线性组合的方式消除一部分不想要的不确定性。</li>
+</ol>
+<p>现在，考虑以下问题：</p>
+<ol>
+<li>如果在低信噪比、非平稳环境中做探索，可以取得什么收益？</li>
+<li>如果希望在一系列关于指标B的约束大概率得到满足的同时，降低指标A的长期regret，应该采用哪种手段？</li>
+</ol>
+<p>可以看出，武断地使用某种具体手段很容易导致结果南辕北辙。</p>
+<h2 id="城市交通-Urban-Transportation"><a href="#城市交通-Urban-Transportation" class="headerlink" title="城市交通 Urban Transportation"></a>城市交通 Urban Transportation</h2><p>最后，简单介绍一下我个人对后续城市交通方面值得做的点的判断。首先，MaaS等概念的兴起意味着未来需求与载具的相关性进一步削弱，整个系统可以拆分成需求、载具、基建三方面进行分析。</p>
+<p>具体来说，目前从国内大背景上看，一方面，虽然载具侧产能过剩，短期内成本走低，但个人推测持续时间不长，可能只会维持3~5年，然后成本就会恢复正常水平。同时，强监管大幅提高了人力成本。另一方面，需求侧人均出行频率和费率持续下降，大趋势上很难逆转；而且通过过往几年的宣传，由可达性(accessibility)提升带来的新增需求已经基本到顶。这意味着未来需求侧的增长只可能来源于人口增长和出行模式的竞争。竞争要素主要包含以下几点：便捷、价格、舒适度、稳定性、搜索成本。考虑到公共交通特别是轨道交通仍在高速增长，而且地面公交智能化运营已有不少尝试，如果地面公交能够与轨交联动进一步提升效率，公交系统将会具有更强的竞争力（考虑到目前有大量的公交-打车形式的接驳需求）。另外，许多分析认为目前的城市管理思路将导致活动向少量POI集中，在这种情况下共享出行的便捷性优势将大打折扣。</p>
+<p>基于这些观察，我认为后续需求侧的共享出行业务会有两种发展趋势：高端化或批量化。前者可与传统航司的运营手段类比，通过低毛利的普通需求形成网络效应，再从高支付意愿的两仓中获取高毛利。但与航司一样，国内业务很容易受到资源和行政制约，因此较难保证最本质的服务质量（旅行时间的稳定性）。后者则是定制化小运量路面公交的思路，但在国内由于法律风控的原因很难由私人部门占主导地位，更可能的是私人部门通过合作的形式在数据挖掘和智能管理方面为公共部门提供支持。</p>
+<p>相比之下，随着V2I等技术的发展，城市管理者有能力获得更实时的信息，从而可以引入更精准的管理手段，例如实时拥堵收费、停车资源调配等。另外，在信息层面，MaaS服务方拥有大量的需求-载具侧信息，而传统管理方拥有载具-基建侧信息，两层数据之间的整合与应用也很值得探索。综上所述，我认为需求侧的空间可能没有想象中大，而基建侧有很大的探索空间。当然，这里对空间的大小判断存在personal bias，因为此前我花了更多时间在需求侧上。</p>
 
       
     </div>
@@ -385,9 +390,9 @@
       
         <div class="post-tags">
           
-            <a href="/blogs/tags/Queuing-Theory/" rel="tag"># Queuing Theory</a>
+            <a href="/blogs/tags/Optimization/" rel="tag"># Optimization</a>
           
-            <a href="/blogs/tags/Stochastic-Process/" rel="tag"># Stochastic Process</a>
+            <a href="/blogs/tags/Shared-Mobility/" rel="tag"># Shared Mobility</a>
           
         </div>
       
@@ -400,8 +405,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blogs/2016/IP5_201610/" rel="next" title="Integer Programming Note V: Decomposition">
-                <i class="fa fa-chevron-left"></i> Integer Programming Note V: Decomposition
+              <a href="/blogs/2019/SP6_201910/" rel="next" title="Stochastic Process Note VI: Donsker's Theorem">
+                <i class="fa fa-chevron-left"></i> Stochastic Process Note VI: Donsker's Theorem
               </a>
             
           </div>
@@ -409,10 +414,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blogs/2016/latent_class_category_variable_201611/" rel="prev" title="Case Study: Latent Classes in Quebec Energy Consumption">
-                Case Study: Latent Classes in Quebec Energy Consumption <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -580,7 +581,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-description"><span class="nav-number">1.</span> <span class="nav-text">Problem description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-queuing-model-without-knowledge-in-queues"><span class="nav-number">2.</span> <span class="nav-text">A queuing model without knowledge in queues</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calculations"><span class="nav-number">3.</span> <span class="nav-text">Calculations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#优化-Optimization"><span class="nav-number">1.</span> <span class="nav-text">优化 Optimization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算-Computation"><span class="nav-number">2.</span> <span class="nav-text">计算 Computation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策-Decision-making"><span class="nav-number">3.</span> <span class="nav-text">决策 Decision-making</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#城市交通-Urban-Transportation"><span class="nav-number">4.</span> <span class="nav-text">城市交通 Urban Transportation</span></a></li></ol></div>
             
 
           </div>
@@ -741,9 +742,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://hanqiu92.github.io/blogs/2016/mexico_city_delay_201610/';
-          this.page.identifier = '2016/mexico_city_delay_201610/';
-          this.page.title = 'Case Study: Delay in Mexico City';
+          this.page.url = 'http://hanqiu92.github.io/blogs/2019/yearly_comment_cn_201912/';
+          this.page.identifier = '2019/yearly_comment_cn_201912/';
+          this.page.title = '一些认知迭代';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://hanqiu92.disqus.com/embed.js';
