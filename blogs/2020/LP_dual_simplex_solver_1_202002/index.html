@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Optimization,Shared Mobility," />
+  <meta name="keywords" content="Linear Programming," />
 
 
 
@@ -83,16 +83,16 @@
 
 
 
-<meta name="description" content="趁着年末整理一下最近的一些新的见解，留个记录，以便后续反思和打脸。">
+<meta name="description" content="在接下来这个系列中，我将介绍线性规划中的对偶单纯形法的基本原理，并示范如何实现一个简单的对偶单纯形法求解器。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一些认知迭代">
-<meta property="og:url" content="http://hanqiu92.github.io/blogs/2019/yearly_comment_cn_201912/index.html">
+<meta property="og:title" content="How to Develop Your Own Dual Simplex Solver I: Introduction">
+<meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_1_202002/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="趁着年末整理一下最近的一些新的见解，留个记录，以便后续反思和打脸。">
-<meta property="og:updated_time" content="2019-12-29T07:22:11.526Z">
+<meta property="og:description" content="在接下来这个系列中，我将介绍线性规划中的对偶单纯形法的基本原理，并示范如何实现一个简单的对偶单纯形法求解器。">
+<meta property="og:updated_time" content="2020-02-19T13:06:19.108Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一些认知迭代">
-<meta name="twitter:description" content="趁着年末整理一下最近的一些新的见解，留个记录，以便后续反思和打脸。">
+<meta name="twitter:title" content="How to Develop Your Own Dual Simplex Solver I: Introduction">
+<meta name="twitter:description" content="在接下来这个系列中，我将介绍线性规划中的对偶单纯形法的基本原理，并示范如何实现一个简单的对偶单纯形法求解器。">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/yearly_comment_cn_201912/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_1_202002/"/>
 
 
 
 
 
-  <title>一些认知迭代 | Han's Blog</title>
+  <title>How to Develop Your Own Dual Simplex Solver I: Introduction | Han's Blog</title>
   
 
 
@@ -255,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2019/yearly_comment_cn_201912/">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2020/LP_dual_simplex_solver_1_202002/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">一些认知迭代</h1>
+          <h1 class="post-title" itemprop="name headline">How to Develop Your Own Dual Simplex Solver I: Introduction</h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-29T13:00:00+08:00">
-                2019-12-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-15T13:00:00+08:00">
+                2020-02-15
               </time>
             
 
@@ -307,8 +307,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blogs/categories/Comment/" itemprop="url" rel="index">
-                    <span itemprop="name">Comment</span>
+                  <a href="/blogs/categories/Study-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Study Notes</span>
                   </a>
                 </span>
 
@@ -344,43 +344,29 @@
       
 
       
-        <p>趁着年末整理一下最近的一些新的见解，留个记录，以便后续反思和打脸。</p>
+        <p>在接下来这个系列中，我将介绍线性规划中的对偶单纯形法的基本原理，并示范如何实现一个简单的对偶单纯形法求解器。</p>
 <a id="more"></a>
-<h2 id="优化-Optimization"><a href="#优化-Optimization" class="headerlink" title="优化 Optimization"></a>优化 Optimization</h2><p>关于优化，最近形成了一个新的认知：对具体问题的<strong>结构</strong>的理解是非常重要的。具体来说，各类经典优化算法都可以看成是<strong>在某个解空间结构上进行局部搜索(local search)</strong>：</p>
+<h2 id="写作动机-Motivation"><a href="#写作动机-Motivation" class="headerlink" title="写作动机 Motivation"></a>写作动机 Motivation</h2><p>这个系列的写作主要有以下几个目的：</p>
 <ol>
-<li>primal simplex是在可行域表面上的局部搜索。</li>
-<li>梯度下降和meta-heuristic是可行域内的局部搜索。</li>
+<li>对偶单纯形法是目前线性规划和混合整数规划求解器中的核心模块。为了更好地利用已有的求解器资源，有必要了解其具体运作机理和局限性。</li>
+<li>为后续介绍混合整数规划求解原理的系列提供基础。</li>
+<li>对文字与代码结合的写作方式的首次尝试。</li>
+<li>完成一个简易的线性规划求解器，后续可能可以用于自己的一些小项目中。</li>
 </ol>
-<p>这意味着一种通用的方法论(methodology)是寻找更好的解空间结构：</p>
-<ol>
-<li>mirror descent通过某种系统性的手段改变原始可行域的度量，从而改变了局部搜索的方向。</li>
-<li>在组合优化中，原始对偶方法通过互补松弛（complementary slackness）条件构造具有强组合结构的子问题来优化局部搜索效率。</li>
-<li>整数规划中一种常用技术是做lifting，将可行域从复杂低维形式转化为简单高维形式。</li>
-<li>OM中一种常用的分析技巧是通过决策变量的变换来获得更好的几何结构。</li>
-<li>heuristic的设计关键就在于如何利用问题结构优化局部搜索的效率。</li>
-</ol>
-<p>因此，考虑到不同业务的内在逻辑，应该对不同的解法更加open：看起来naive的思路很可能利用了某种重要结构。对于有能力的人来说，更应该理解和挖掘这些结构，从中找出共通性，从而设计更好的算法，而不是简单地将问题转化为已知形式再调包/solver解决。感觉很多以前的工作都可以再review一下（笑）。</p>
-<h2 id="计算-Computation"><a href="#计算-Computation" class="headerlink" title="计算 Computation"></a>计算 Computation</h2><p>根据观察，我发现计算效率在算法层面很容易被忽视。个人判断主要还是意识和机制问题。一方面，开发时没有足够的意识进行效率优化；另一方面，后续维护时缺乏优化动机。这在无形之中给系统增加了很多性能瓶颈。</p>
-<p>计算效率问题主要体现为两点。一方面，算法实现上存在过多冗余。这方面我个人做的也不是很好；这在仿真系统的开发上体现得特别明显。例如，在仿真网约车的司乘匹配问题时，首先需要计算每个司乘对的距离，从而判断匹配的可行性。最简单的做法是遍历所有司乘对，但是这种做法不scalable。在大规模场景下，一种更好的做法是先将司乘的位置映射到一系列区域内，然后只对相邻区域内的点对进行计算。一个简单实现表明这种做法在大规模场景下速度能提高3倍以上。再如，根据可行性判定，在调用匹配算法时很多配对是不需要被考虑的；此时应该使用稀疏存储及相应的稀疏匹配算法。计算表明，在大多数场景下速度能提高5~10倍。</p>
-<p>另一方面，未能使用足够好的底层工具来提高效率。单从Python来说，通过numba可以将很多无法简单矢量化的过程提速上百倍。在不具备完全迁移到C++/Julia上的可行性的情况下，熟练掌握numba和Cython还是很必要的。</p>
-<h2 id="决策-Decision-making"><a href="#决策-Decision-making" class="headerlink" title="决策 Decision-making"></a>决策 Decision-making</h2><p>相比优化，决策过程的外部依赖更复杂多样，因此更依赖于决策者的主观判断和信念(belief)。很多时候，与“决策原则”相关的讨论都是围绕主观信念展开的，更偏向哲学(philosophy)思辨，不同思路之间很难比出个高下。因此，我们并不关心决策者应采用哪种信念；但是，一旦形成了主观判断，后续的决策就应当与之相符。然而，根据我个人的实践经验，这其实并不容易。其中的一大难点在于：很多决策方法隐含的假设和方法论与决策者真正的主观信念并不相符。下面通过一些具体场景进行讨论。</p>
-<p>首先考虑建模(modeling)与模型驱动(model-driven)决策。一句著名的话说，“All models are wrong, some are useful”；而如何选择“恰到好处”的建模元素来得到useful model是很考验功力的。若因素没有考虑完备，则模型的解释力会大打折扣；若无关因素考虑过多，则模型过于冗余，无法快速给出简要直白的insights。我在过去一年中进行了不少尝试，也走了不少弯路，深刻地认识到：目前识别关键因素的能力还存在着很大的局限性，后续仍要不断实践积累经验。另外，除了要回答“怎么建模”，modeler还需要能够回答“怎样使用模型”。最基础但是很容易被忽视的一点是要理解模型的逻辑和局限性，并在合理范围内应用。事实上，受限于决策成本和能力，许多人对于模型的选用是有sparse和极端化趋势的。</p>
-<p>再考虑不确定性(uncertainty)的处理方式。决策者对问题的理解很难做到完全准确，因此有必要针对这种不确定性的可能后果进行规划。首先，以下几种常用手段及其相应假设：</p>
-<ol>
-<li>鲁棒优化(robust optimization)：假设事情总是在一系列可能性中按最坏的情况发生。</li>
-<li>探索(exploration)：假设新增的数据提供的信息能长期有效地降低估计的不确定性，因此可以通过牺牲一部分短期利益来减少长期遗憾(regret)。</li>
-<li>对冲(hedge)：假设一系列随机过程的不确定性具有线性相关性，因此可以通过线性组合的方式消除一部分不想要的不确定性。</li>
-</ol>
-<p>现在，考虑以下问题：</p>
-<ol>
-<li>如果在低信噪比、非平稳环境中做探索，可以取得什么收益？</li>
-<li>如果希望在一系列关于指标B的约束大概率得到满足的同时，降低指标A的长期regret，应该采用哪种手段？</li>
-</ol>
-<p>可以看出，武断地使用某种具体手段很容易导致结果南辕北辙。</p>
-<h2 id="城市交通-Urban-Transportation"><a href="#城市交通-Urban-Transportation" class="headerlink" title="城市交通 Urban Transportation"></a>城市交通 Urban Transportation</h2><p>最后，简单介绍一下我个人对后续城市交通方面值得做的点的判断。首先，MaaS等概念的兴起意味着未来需求与载具的相关性进一步削弱，整个系统可以拆分成需求、载具、基建三方面进行分析。</p>
-<p>具体来说，目前从国内大背景上看，一方面，虽然载具侧产能过剩，短期内成本走低，但个人推测持续时间不长，可能只会维持3~5年，然后成本就会恢复正常水平。同时，强监管大幅提高了人力成本。另一方面，需求侧人均出行频率和费率持续下降，大趋势上很难逆转；而且通过过往几年的宣传，由可达性(accessibility)提升带来的新增需求已经基本到顶。这意味着未来需求侧的增长只可能来源于人口增长和出行模式的竞争。竞争要素主要包含以下几点：便捷、价格、舒适度、稳定性、搜索成本。考虑到公共交通特别是轨道交通仍在高速增长，而且地面公交智能化运营已有不少尝试，如果地面公交能够与轨交联动进一步提升效率，公交系统将会具有更强的竞争力（考虑到目前有大量的公交-打车形式的接驳需求）。另外，许多分析认为目前的城市管理思路将导致活动向少量POI集中，在这种情况下共享出行的便捷性优势将大打折扣。</p>
-<p>基于这些观察，我认为后续需求侧的共享出行业务会有两种发展趋势：高端化或批量化。前者可与传统航司的运营手段类比，通过低毛利的普通需求形成网络效应，再从高支付意愿的两仓中获取高毛利。但与航司一样，国内业务很容易受到资源和行政制约，因此较难保证最本质的服务质量（旅行时间的稳定性）。后者则是定制化小运量路面公交的思路，但在国内由于法律风控的原因很难由私人部门占主导地位，更可能的是私人部门通过合作的形式在数据挖掘和智能管理方面为公共部门提供支持。（注：领导指出，这种模式最大的问题在于公共部门可能不具备足够的动机。）</p>
-<p>相比之下，随着V2I等技术的发展，城市管理者有能力获得更实时的信息，从而可以引入更精准的管理手段，例如实时拥堵收费、停车资源调配等。另外，在信息层面，MaaS服务方拥有大量的需求-载具侧信息，而传统管理方拥有载具-基建侧信息，两层数据之间的整合与应用也很值得探索。综上所述，我认为需求侧的空间可能没有想象中大，而基建侧有很大的探索空间。当然，这里对空间的大小判断存在personal bias，因为此前我花了更多时间在需求侧上。</p>
+<p>基于上述动机的优先级，在本系列的写作/代码中，我将更注重<strong>直观性(intuition)</strong>和<strong>可读性</strong>，而选择性地忽略一些目前主流求解器中必备的、但与对偶单纯形法本身关系不大的计算优化技术。（还有一个主要的原因是这些技术都具有一定的技术壁垒，个人实现的时间成本较高。）</p>
+<p>在本系列的写作中，我所用到的参考资料包括A. Koberstein的博士毕业论文和相关引用文献，以及开源求解器CLP、SoPlex的代码。要顺畅地理解本系列中的内容，阅读者需要对线性规划理论有一定的了解。</p>
+<h2 id="写作方式-Format"><a href="#写作方式-Format" class="headerlink" title="写作方式 Format"></a>写作方式 Format</h2><p>对偶单纯形法里用到的许多技术都是为了解决实际算法执行过程中出现的问题而引入的。因此，现有算法实现的效果评估对理解后续算法思路至关重要。为了简化从算法原理到代码实现到获得效果反馈之间的流程，在本系列的写作中，我将采用blog post加上ipython notebook的展示形式：在blog中，我主要对算法的基本思路进行讨论；而在notebook中，我将结合具体代码实现对一些算法细节进行介绍。</p>
+<h2 id="写作计划-Agenda"><a href="#写作计划-Agenda" class="headerlink" title="写作计划 Agenda"></a>写作计划 Agenda</h2><p>在本系列的第一篇文章（也就是本文）中，我将介绍线性规划求解的预备知识，包括问题的定义、解的相关概念等。<br>第二篇文章将介绍对偶单纯形法的基本流程，并结合简单例子分析其几何意义。<br>第三篇文章将介绍一系列常用的预处理技术，并通过实际计算分析其对效率的提升。<br>第四篇文章将讨论求解流程的整体设计，包括可行解-最优解两阶段流程的设计、计算的数值稳定性和计算误差处理等。<br>在第五篇文章（最后一篇）中，我将就前述讨论进行总结，并针对求解器的设计和使用给出一些个人建议。</p>
+<h2 id="预备知识-Preliminary"><a href="#预备知识-Preliminary" class="headerlink" title="预备知识 Preliminary"></a>预备知识 Preliminary</h2><p><strong>问题(problem)的定义。</strong>线性规划的一般形式为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \min \ &amp; c^T x \\<br>    s.t. \ &amp; Ax = b, \\<br>           &amp; l \leq x \leq u.<br>  \end{aligned}<br>  \label{eq:primal}\tag{1.1}<br>\end{equation}<br>$$</p>
+<p>其中，决策变量$x$是一个$m$维的向量，$A$是一个$n\times m$维的矩阵，其中$n$为约束的个数。下界$l$和上界$u$的取值可以为$\pm \infty$。问题$\eqref{eq:primal}$一般被称为原始问题。根据对偶理论，问题$\eqref{eq:primal}$的对偶问题可以写为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \max \ &amp; b^T \lambda + u^T s_u + l^T s_l \\<br>    s.t. \ &amp; A^T \lambda + s_u + s_l = c, \\<br>           &amp; s_l \geq 0, \ s_u \leq 0.<br>  \end{aligned}<br>  \label{eq:dual}\tag{1.2}<br>\end{equation}<br>$$</p>
+<p>其中，决策变量$\lambda$和$s$分别为$n$维和$m$维的向量。</p>
+<p><strong>解(solution)的评估</strong>。给定一组解$(x,\lambda,s)$，如何判断其是否可行及是否最优？对于问题$\eqref{eq:primal}$和$\eqref{eq:dual}$，相应解$x$和$(\lambda,s)$的可行性可以直接通过约束的满足情况进行判断。解的最优性则可以通过以下的KKT条件进行判断：<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    &amp; Ax = b, \\<br>    &amp; l \leq x \leq u, \\<br>    &amp; A^T \lambda + s_u + s_l = c, \\<br>    &amp; s_l \geq 0, \ s_u \leq 0, \\<br>    &amp; s_u(x - u) = 0, \ s_l(x - l) = 0.<br>  \end{aligned}<br>  \label{eq:KKT}\tag{1.3}<br>\end{equation}<br>$$</p>
+<p>容易看出，KKT条件$\eqref{eq:KKT}$包括原始和对偶问题的可行性条件，以及互补松弛条件<br>$$s_u(x - u) = 0, \ s_l(x - l) = 0. \label{eq:compSlack}\tag{1.4}$$</p>
+<p><strong>基(basis)的定义。</strong>在单纯形法中，一个基本的概念是基。不妨假设原始问题的可行域$\mathcal{A}=\{Ax = b,l \leq x \leq u\}$是一个多面体。从几何的角度分析我们可知，原始问题$\eqref{eq:primal}$至少有一个最优解对应着多面体$\mathcal{A}$的顶点。因此，要求解原始问题的最优解，只需要找出多面体$\mathcal{A}$所有顶点中最优的一个即可。而根据线性代数知识，$\mathcal{A}$中的任意一个顶点都可以用一组基$(B,L,U)$表示：$x_L = l_L, x_U = u_U, x_B = A_B^{-1}(b - A_Lx_L - A_Ux_U)$，其中$B,L,U$为下标集合$\{1,2,\cdots,m\}$的一个分割。因此，对最优顶点的搜索可以转化为对最优基$(B,L,U)$的搜索。单纯形法的基本思路就是采用局部搜索的方式来求解最优基；原始单纯形法和对偶单纯形法的主要区别在于是在原始问题还是在对偶问题的可行域内进行局部搜索。</p>
+<p><strong>基于基的解。</strong>在给定一组基$(B,L,U)$时，利用互补松弛条件$\eqref{eq:compSlack}$，KKT条件$\eqref{eq:KKT}$可以改写为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    &amp; A_B x_B = b - A_Lx_L - A_Ux_U, \ x_L = l_L, \ x_U = u_U, \\<br>    &amp; A_B^T \lambda = c_B, \ s_{l,L} = c_L - A_L^T \lambda, \ s_{u,U} = c_U - A_U^T \lambda, \\<br>    &amp; s_{l,B} = s_{u,B} = s_{u,L} = s_{l,U} = 0; \\<br>    &amp; l_B \leq x_B \leq u_B, \ s_{l,L} \geq 0, \ s_{u,U} \leq 0.<br>  \end{aligned}\label{eq:KKT_decompose}\tag{1.5}<br>\end{equation}<br>$$</p>
+<p>因此，根据公式$\eqref{eq:KKT_decompose}$中的前三式，基$(B,L,U)$不但可以决定原始问题的解$x$，还可以决定对偶问题的解$(\lambda,s)$；而且，如果这组解$(x,\lambda,s)$同时满足可行性约束$l_B \leq x_B \leq u_B, \ s_{l,L} \geq 0, \ s_{u,U} \leq 0$，则其必为最优解。<strong>注：</strong>特别地，当上下界$l,u$有界时，我们总能通过交换$L$和$U$中的下标来保证$s_{l,L} \geq 0, \ s_{u,U} \leq 0$，从而对于任意$B$，我们都能找到相应的$L$和$U$使得对应的对偶解$(\lambda,s)$可行。这部分地解释了为何在通常情况下对偶方法效率更高。</p>
+<p><strong>数值误差的影响。</strong>通过基$(B,L,U)$来表示解$(x,\lambda,s)$的一个好处是互补松弛条件$\eqref{eq:compSlack}$永远是默认被满足的。此时，根据KKT条件$\eqref{eq:KKT}$的定义，对解$(x,\lambda,s)$的最优性检验可以减弱为可行性检验。同时，对原始解$x$和对偶解$(\lambda,s)$的统一表示在一定程度上能提高整个求解流程对于数值误差的稳健性。下面来看一个简单例子。假设在求解过程中的某一步中，存在某个下标$i\in N = L\cup U$，对应的对偶变量$s_i = s_{l,i} + s_{u,i}$的真实取值在0附近。受到数值误差的影响，实际计算的$s_i$可能是一个微小的正值或者负值。现在，如果我们要手动维持互补松弛条件，那么相应的原始变量$x_i$的取值很可能会在$l_i$和$u_i$之间来回波动。当这两个值的差异较大时，迭代优化过程会受到严重干扰。而如果我们不严格地维持互补松弛条件，则有可能在迭代优化过程中原始解和对偶解相关性不断减弱，从而导致算法中一些需要同时使用两边解的计算失效，进而导致算法不收敛。</p>
+<p>下面，我们进入<a href="https://github.com/hanqiu92/dual_simplex_solve/blob/master/1_preliminary.ipynb" target="_blank" rel="external">代码实现部分</a>。</p>
 
       
     </div>
@@ -398,9 +384,7 @@
       
         <div class="post-tags">
           
-            <a href="/blogs/tags/Optimization/" rel="tag"># Optimization</a>
-          
-            <a href="/blogs/tags/Shared-Mobility/" rel="tag"># Shared Mobility</a>
+            <a href="/blogs/tags/Linear-Programming/" rel="tag"># Linear Programming</a>
           
         </div>
       
@@ -413,8 +397,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blogs/2019/SP6_201910/" rel="next" title="Stochastic Process Note VI: Donsker's Theorem">
-                <i class="fa fa-chevron-left"></i> Stochastic Process Note VI: Donsker's Theorem
+              <a href="/blogs/2019/yearly_comment_cn_201912/" rel="next" title="一些认知迭代">
+                <i class="fa fa-chevron-left"></i> 一些认知迭代
               </a>
             
           </div>
@@ -422,10 +406,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blogs/2020/LP_dual_simplex_solver_1_202002/" rel="prev" title="How to Develop Your Own Dual Simplex Solver I: Introduction">
-                How to Develop Your Own Dual Simplex Solver I: Introduction <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -593,7 +573,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#优化-Optimization"><span class="nav-number">1.</span> <span class="nav-text">优化 Optimization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算-Computation"><span class="nav-number">2.</span> <span class="nav-text">计算 Computation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策-Decision-making"><span class="nav-number">3.</span> <span class="nav-text">决策 Decision-making</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#城市交通-Urban-Transportation"><span class="nav-number">4.</span> <span class="nav-text">城市交通 Urban Transportation</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写作动机-Motivation"><span class="nav-number">1.</span> <span class="nav-text">写作动机 Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写作方式-Format"><span class="nav-number">2.</span> <span class="nav-text">写作方式 Format</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写作计划-Agenda"><span class="nav-number">3.</span> <span class="nav-text">写作计划 Agenda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预备知识-Preliminary"><span class="nav-number">4.</span> <span class="nav-text">预备知识 Preliminary</span></a></li></ol></div>
             
 
           </div>
@@ -754,9 +734,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://hanqiu92.github.io/blogs/2019/yearly_comment_cn_201912/';
-          this.page.identifier = '2019/yearly_comment_cn_201912/';
-          this.page.title = '一些认知迭代';
+          this.page.url = 'http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_1_202002/';
+          this.page.identifier = '2020/LP_dual_simplex_solver_1_202002/';
+          this.page.title = 'How to Develop Your Own Dual Simplex Solver I: Introduction';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://hanqiu92.disqus.com/embed.js';

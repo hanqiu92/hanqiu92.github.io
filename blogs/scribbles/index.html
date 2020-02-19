@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Queuing Theory,Stochastic Process," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -83,17 +83,22 @@
 
 
 
-<meta name="description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Reflection on Simple Queues">
-<meta property="og:url" content="http://hanqiu92.github.io/blogs/2016/simple_queue_dynamic_201612/index.html">
+<meta name="description" content="Modeling(19/10/11) 图卷积网络(GCN)较适用于建模局部动力系统，似乎不太适用于端到端直接预测。
+(19/11/20) 仿真是一种成本较高的建模方式，因此在进行仿真时也需要考虑建模中的核心权衡：应该考虑哪些要素、抛弃哪些要素？
+(19/12/08) batching的作用：在供需都在平面上均匀分布时，可以降低pickup distance；但如果需求为单点，则batching不能">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Scribbles">
+<meta property="og:url" content="http://hanqiu92.github.io/blogs/scribbles/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/MM1_queue_state_space.png">
-<meta property="og:updated_time" content="2019-06-26T14:07:49.822Z">
+<meta property="og:description" content="Modeling(19/10/11) 图卷积网络(GCN)较适用于建模局部动力系统，似乎不太适用于端到端直接预测。
+(19/11/20) 仿真是一种成本较高的建模方式，因此在进行仿真时也需要考虑建模中的核心权衡：应该考虑哪些要素、抛弃哪些要素？
+(19/12/08) batching的作用：在供需都在平面上均匀分布时，可以降低pickup distance；但如果需求为单点，则batching不能">
+<meta property="og:updated_time" content="2020-01-17T13:56:39.533Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reflection on Simple Queues">
-<meta name="twitter:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
+<meta name="twitter:title" content="Scribbles">
+<meta name="twitter:description" content="Modeling(19/10/11) 图卷积网络(GCN)较适用于建模局部动力系统，似乎不太适用于端到端直接预测。
+(19/11/20) 仿真是一种成本较高的建模方式，因此在进行仿真时也需要考虑建模中的核心权衡：应该考虑哪些要素、抛弃哪些要素？
+(19/12/08) batching的作用：在供需都在平面上均匀分布时，可以降低pickup distance；但如果需求为单点，则batching不能">
 
 
 
@@ -123,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2016/simple_queue_dynamic_201612/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/scribbles/"/>
 
 
 
 
 
-  <title>Reflection on Simple Queues | Han's Blog</title>
+  <title>Scribbles | Han's Blog</title>
   
 
 
@@ -244,200 +249,75 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2016/simple_queue_dynamic_201612/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blogs/images/pics/1.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Han's Blog">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">Reflection on Simple Queues</h1>
-        
+	<h1 class="post-title" itemprop="name headline">Scribbles</h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-18T01:00:00+08:00">
-                2016-12-17
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blogs/categories/Reflection/" itemprop="url" rel="index">
-                    <span itemprop="name">Reflection</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <p>This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite capacity always have a steady state, but no proof is given in the class. In this post, I will discuss the dynamical system approach for this problem, and suggest several extensions.</p>
-<a id="more"></a>
-<h2 id="Modeling-the-Dynamics"><a href="#Modeling-the-Dynamics" class="headerlink" title="Modeling the Dynamics"></a>Modeling the Dynamics</h2><p>Let us consider the easiest $M$/$M$/1/$k$ queue, where $k$ is a finite number. Following is a picture of the temporal transition (By Gareth Jones - <a href="https://commons.wikimedia.org/w/index.php?curid=17204982" target="_blank" rel="external">MM1_queue_state_space.png</a>, CC BY-SA 3.0)</p>
-<p><img src="/blogs/images/MM1_queue_state_space.png" alt="two_segments"></p>
-<p>The state transition matrix is then given by</p>
-<p>$$A^T = \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ \mu &amp; -(\mu+\lambda) &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; \mu &amp; -\mu \end{pmatrix} $$</p>
-<p>It is taught from the class that to steady state probability $\pi$ can be obtained from solving equation $A\pi = 0$. But why is so?</p>
-<p>Let us think about how to obtain the transition diagram. We consider a small time slice $dt$, and find the first order derivative of transition probabilities between states. That means, the dynamical system on the probability of states can be described by the following linear ODE:</p>
-<p>$$ \frac{d}{dt}\pi = A\pi.$$</p>
-<p>It is obvious that this system is well defined since operator $A$ projects one probability distribution to another probability distribution. And now, we can analyze the queuing system using the tools for more general differential dynamical systems.</p>
-<p>The general solution of the ODE above is</p>
-<p>$$\pi_t = e^{At} \pi_0.$$</p>
-<p>Clearly, since $\pi_t$ will always satisfy the regularity condition as a probability distribution, $e^{At}$ will not have any eigenvalue with positive real part greater than 1. We can also prove this in a more formal way. Notice that $M = I + A$ is a Markov matrix on the graph of states and it is strongly connected, we know that $M$ is <a href="https://en.wikipedia.org/wiki/Irreducibility_(mathematics" target="_blank" rel="external">irreducible</a>. Then by Perron-Frobenius Theorem, we know that there is a maximal eigenvalue $\lambda_{max}$ such that the corresponding eigenvector $\pi^*$ is positive, and any non-negative eigenvector $\pi$ is a multiple of $\pi^*$. But since $A^Te = 0$, we know the left eigenvector $e$ exists and $\lambda_{max}$ must be 1. Then it is clear that the maximal eigenvalue of $e^{At}$ must be 1, the corresponding eigenvector $\pi^*$ exists and must be stable, and $\pi_t\to\pi^*$.</p>
-<h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><p>It seems that the analysis above uses complicate approach to validate a simple statement. But under the same framework, we can deal with systems with varying arrival and service rate, which is common in practice. For example, let us consider a varying arrival rate $\lambda_t$ along with the transition matrix $A_t$ and the ODE</p>
-<p>$$ \frac{d}{dt}\pi = A_t\pi.$$</p>
-<p>Now, the general solution can be expressed as</p>
-<p>$$\pi_t = e^{\int_0^t A_s ds} \pi_0 = e^{t\bar{A}_t} \pi_0,$$</p>
-<p>where $\bar{A}_t = \frac{1}{t}\int_0^tA_s ds$ is the time average of the transition matrix and is the transition matrix corresponding to average arrival rate $\bar{\lambda}_t = \frac{1}{t}\int_0^t\lambda_s ds$. If $\lambda_t$ is periodic with period $T$, by applying the same technique (informally) on $\bar{A}_T$ we know that there is a stable trajectory $\pi_T^*$ on $S^k \times [0,T]$ and $\pi_{nT+t}\to\pi_T^*(\cdot,t)$ as $n\to\infty$.</p>
-<p>To go one step further, we might be able to consider different arrival/service process. For example, consider a $M$/$D$/1/$k$ queue, in which the service process is deterministic. Now we have two matrices, the transient arrival</p>
-<p>$$A^T = \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -\lambda &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -\lambda &amp; \lambda \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \end{pmatrix} $$</p>
-<p>and the deterministic service with period $T=1/\mu$</p>
-<p>$$B^T = \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -1 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; -1 \end{pmatrix} $$</p>
-<p>So within period $T$ the dynamics is</p>
-<p>$$\pi_t = e^{tA} \pi_0,$$</p>
-<p>and at time $T$ we have</p>
-<p>$$\pi_T = Be^{TA} \pi_0.$$</p>
-<p>Then, to analyze the long term behavior of this system, we only need to know the spectral property of matrix $F=Be^{TA}$.</p>
-<p>We can also consider queues with infinity capacity. In this case, we need to define transition operator $A$ on $S^{\infty}$, the set of all discrete probability distribution, and analyze the spectrum of $A$. This is somewhat complicate so currently I will not discuss it. But one interesting question is, whether can we extend this notion into general probability distribution case and consider dynamics on the corresponding set/space.</p>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this post I briefly review some simple queuing systems from the perspective of dynamical system. It is shown that this framework is powerful and can be generalized in many different settings. Moreover, we might be able to not only focus on steady state but also analyze the transient dynamics, which can be helpful for subsequent simulation design.</p>
+      <div class="post-body han-init-context">
+        
+        
+          <h2 id="Modeling"><a href="#Modeling" class="headerlink" title="Modeling"></a>Modeling</h2><p>(19/10/11) 图卷积网络(GCN)较适用于建模局部动力系统，似乎不太适用于端到端直接预测。</p>
+<p>(19/11/20) 仿真是一种成本较高的建模方式，因此在进行仿真时也需要考虑建模中的核心权衡：应该考虑哪些要素、抛弃哪些要素？</p>
+<p>(19/12/08) batching的作用：在供需都在平面上均匀分布时，可以降低pickup distance；但如果需求为单点，则batching不能降低pickup distance。</p>
+<p>(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。</p>
+<p>(19/12/28) 如何保持一个特征（动作action）的作用的偏序：</p>
+<ol>
+<li>声明强结构、引入隐变量/参数，缺点在于计算复杂，容易mis-specify；</li>
+<li>data-driven+局部线性化，缺点在于应用时可控空间小；</li>
+<li>data-driven+加入辅助样本和相应损失函数（例如构造服从偏序关系的样本对）进行辅助训练，缺点在于不能完全保证偏序关系。</li>
+<li>需要进一步探索半结构(semi-structural)</li>
+</ol>
+<h2 id="Inference-amp-Control-amp-Decision"><a href="#Inference-amp-Control-amp-Decision" class="headerlink" title="Inference &amp; Control &amp; Decision"></a>Inference &amp; Control &amp; Decision</h2><p>(19/06/02) 在predict-then-optimize框架中，优化/控制器的迭代频率最好与预测器的迭代频率一致。例如，如果决策是实时的，那么模型最好保持相对实时的更新；否则一段时间过后数据分布可能会变化，导致模型预估精度下降。</p>
+<p>(19/07/02) OR在实际应用中的思考：</p>
+<ol>
+<li>输入模型的准确度、决策的敏感度评估非常重要！</li>
+<li>拿到问题，第一步永远是明确关键结构和核心变量，尽快建立从核心变量到决策的映射。业务直觉的建立与持续迭代很重要。</li>
+<li>决策影响面越大，越需要谨慎，引入更仔细的仿真评估和灵敏度分析。</li>
+</ol>
+<p>(19/07/29) 树模型的工作原理是找最优的分桶，而桶内数据点不做区分直接平均。因此可以认为是一种特征提取方式，分桶结果可以用作其他强表达模型的输入。</p>
+<p>(20/01/01) 反事实(counterfactual)误差分析的套路是将$l(y_1-y_2,\hat{y}_1-\hat{y}_2)$拆分为$l(y_1,\hat{y}_1)$和$l(y_2,\hat{y}_2)$，再通过原有模型误差分析套路生成bound。主要区别在于需要分析决策倾向性(propensity score) $p(a|s)$对于样本分布的影响。</p>
+<h2 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h2><p>(19/11/14) primal/dual方法不一定非要在simplex上做局部搜索(local search)。如果问题本身或局部有更好的结构（例如组合性质），则应当利用局部结构加速优化进程。例子：二分图匹配中的KM算法。</p>
+<p>(20/01/01) robust optimization思路整理:</p>
+<ol>
+<li>若每个单独的决策重要，但是预测的confidence不够，那么可以使用局部平均的方式提高预测精度。可以使用kNN、随机森林等方法。</li>
+<li>DB提出的data-driven生成uncertainty set的思路是：假设参数服从某一分布，再通过假设检验给出分布的置信区间。个人感觉这种方式更适用于宏观决策、没有明确反馈的场景，不适用于实时控制场景。</li>
+<li>model bootstrapping很难生成可以解析的uncertainty set，还是需要人工设计-&gt;怎么处理这个gap？</li>
+<li>Xu论文中讨论的robust DP是转化为LP求解，只能处理reward不确定的情况，无法处理模型不确定的情况。有空需要进一步review adaptive opt。</li>
+</ol>
+<h2 id="Transportation"><a href="#Transportation" class="headerlink" title="Transportation"></a>Transportation</h2><p>(19/09/13) 城市出行中，regular需求更关注服务稳定性，而MaaS的优势虽然灵活和可定制化(也可能有更好的服务)，但无法保证稳定，因此MaaS的主要空间在于irregular需求。由于需求的高支付意愿来源于lack of alternatives，MaaS概念内部的不同mode将会形成强替代效应。</p>
+<p>(19/11/20) 宏观基本图对应“稳态”，因此由于突发事件导致的交通流变化不应该根据宏观基本图进行判断，而应该基于动力学模型(PDE)甚至是仿真进行判断。</p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><p>(19/07/02) 大数据的作用有以下几点：</p>
+<ol>
+<li>由于存储原始数据变得可行，可以对历史数据进行更多事后的多维度的分析，数据的利用率得到提升。</li>
+<li>具有多源数据和实时数据流的处理能力，意味着可以进行更实时的决策。<br>本质上，仍然依赖于良好的直觉和业务认知！</li>
+</ol>
+<p>(19/08/26) 与推荐/广告业务相比，城市服务业务的用户使用频率更低，因此数据量相对有限。于此同时，偏好结构更清晰：价格、时间、服务、稳定性。因此，structural modeling/stated preference仍有一定的必要性。</p>
+<p>(19/12/21) (S)PDE的基本求解思路：</p>
+<ol>
+<li>对于空间问题，在值域逼近的话用有限差分(FDM)；在函数域逼近则用有限元(FEM)或者谱分解。</li>
+<li>如果有时间上的演化，则可将实数域上的PDE转化为函数域上(关于时间)的ODE。ODE中，每个无穷小时间片的演化对应一个函数域上的变换算子$A$，该算子在时间$t$的演化下组成算子半群$\{e^{tA}\}_t$。进而可以通过算子半群理论对算法的收敛性进行分析。</li>
+<li>对SPDE，需要掌握大规模随机采样的方式，特别是如何高效率对BM/brownian sheet进行采样。一种方式是通过circulant embedding+FFT进行精确采样。另一种方式是用Karhunen–Loève分解目标过程，然后分别采样来逼近。</li>
+</ol>
 
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/blogs/tags/Queuing-Theory/" rel="tag"># Queuing Theory</a>
-          
-            <a href="/blogs/tags/Stochastic-Process/" rel="tag"># Stochastic Process</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blogs/2016/latent_class_category_variable_201611/" rel="next" title="Case Study: Latent Classes in Quebec Energy Consumption">
-                <i class="fa fa-chevron-left"></i> Case Study: Latent Classes in Quebec Energy Consumption
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blogs/2017/shared_mobility_cn_201801/" rel="prev" title="关于共享出行">
-                关于共享出行 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
@@ -586,7 +466,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeling-the-Dynamics"><span class="nav-number">1.</span> <span class="nav-text">Modeling the Dynamics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extensions"><span class="nav-number">2.</span> <span class="nav-text">Extensions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">3.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeling"><span class="nav-number">1.</span> <span class="nav-text">Modeling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inference-amp-Control-amp-Decision"><span class="nav-number">2.</span> <span class="nav-text">Inference & Control & Decision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimization"><span class="nav-number">3.</span> <span class="nav-text">Optimization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transportation"><span class="nav-number">4.</span> <span class="nav-text">Transportation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc"><span class="nav-number">5.</span> <span class="nav-text">Misc</span></a></li></ol></div>
             
 
           </div>
@@ -747,9 +627,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://hanqiu92.github.io/blogs/2016/simple_queue_dynamic_201612/';
-          this.page.identifier = '2016/simple_queue_dynamic_201612/';
-          this.page.title = 'Reflection on Simple Queues';
+          this.page.url = 'http://hanqiu92.github.io/blogs/scribbles/index.html';
+          this.page.identifier = 'scribbles/index.html';
+          this.page.title = 'Scribbles';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://hanqiu92.disqus.com/embed.js';
