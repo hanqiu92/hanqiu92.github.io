@@ -93,7 +93,7 @@
 <meta property="og:description" content="Modeling(19/10/11) 图卷积网络(GCN)较适用于建模局部动力系统，似乎不太适用于端到端直接预测。
 (19/11/20) 仿真是一种成本较高的建模方式，因此在进行仿真时也需要考虑建模中的核心权衡：应该考虑哪些要素、抛弃哪些要素？
 (19/12/08) batching的作用：在供需都在平面上均匀分布时，可以降低pickup distance；但如果需求为单点，则batching不能">
-<meta property="og:updated_time" content="2020-01-17T13:56:39.533Z">
+<meta property="og:updated_time" content="2020-02-25T01:25:53.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scribbles">
 <meta name="twitter:description" content="Modeling(19/10/11) 图卷积网络(GCN)较适用于建模局部动力系统，似乎不太适用于端到端直接预测。
@@ -169,7 +169,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">About human behavior, reinforcement learning, and optimization.</p>
+        <p class="site-subtitle">Normative and descriptive ideas about decisions of agents.</p>
       
   </div>
 
@@ -270,13 +270,17 @@
 <p>(19/11/20) 仿真是一种成本较高的建模方式，因此在进行仿真时也需要考虑建模中的核心权衡：应该考虑哪些要素、抛弃哪些要素？</p>
 <p>(19/12/08) batching的作用：在供需都在平面上均匀分布时，可以降低pickup distance；但如果需求为单点，则batching不能降低pickup distance。</p>
 <p>(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。</p>
-<p>(19/12/28) 如何保持一个特征（动作action）的作用的偏序：</p>
+<p>(19/12/28) 如何保持一个输入特征（动作action）的偏序：</p>
 <ol>
 <li>声明强结构、引入隐变量/参数，缺点在于计算复杂，容易mis-specify；</li>
 <li>data-driven+局部线性化，缺点在于应用时可控空间小；</li>
 <li>data-driven+加入辅助样本和相应损失函数（例如构造服从偏序关系的样本对）进行辅助训练，缺点在于不能完全保证偏序关系。</li>
-<li>需要进一步探索半结构(semi-structural)</li>
+<li>对于实数空间$\mathbb{R}^n$上的偏序，可以考虑二次型效用函数$u(a,s,a’) = a^T G(s) a’$，然后假设DM的行为$a$服从softmax原则；容易看出此时结果效用是服从$a’$上的偏序的。</li>
+<li>如果要进一步考虑多维输出（例如，离散概率分布）上的偏序，一种简单的方式是先映射到一个全序集合（例如实数轴）上，然后作为参数映射到对应的多维空间中。例如，对于离散概率分布，可以考虑一族泊松分布，其位置参数$\lambda$是全序的。这种做法的问题是仍需手动指定输出的结构，容易mis-specify。</li>
+<li>进一步考虑拆分real prob和subjective prob来引入optimistic因素；参考saliency theory。</li>
 </ol>
+<p>(20/02/12) 建模本身可以看成是一种heuristic：相对于考虑全部信息，筛选出最重要的元素，形成tractable formulation。很多工作讨论的问题考虑因素过多，所提出的方法很难robust地应用到相应的实际问题中。</p>
+<p>(20/02/24) 建模过程中，一定要分析求解结果在不同context下的稳定性以及对参数的敏感度。</p>
 <h2 id="Inference-amp-Control-amp-Decision"><a href="#Inference-amp-Control-amp-Decision" class="headerlink" title="Inference &amp; Control &amp; Decision"></a>Inference &amp; Control &amp; Decision</h2><p>(19/06/02) 在predict-then-optimize框架中，优化/控制器的迭代频率最好与预测器的迭代频率一致。例如，如果决策是实时的，那么模型最好保持相对实时的更新；否则一段时间过后数据分布可能会变化，导致模型预估精度下降。</p>
 <p>(19/07/02) OR在实际应用中的思考：</p>
 <ol>
@@ -292,10 +296,32 @@
 <li>若每个单独的决策重要，但是预测的confidence不够，那么可以使用局部平均的方式提高预测精度。可以使用kNN、随机森林等方法。</li>
 <li>DB提出的data-driven生成uncertainty set的思路是：假设参数服从某一分布，再通过假设检验给出分布的置信区间。个人感觉这种方式更适用于宏观决策、没有明确反馈的场景，不适用于实时控制场景。</li>
 <li>model bootstrapping很难生成可以解析的uncertainty set，还是需要人工设计-&gt;怎么处理这个gap？</li>
-<li>Xu论文中讨论的robust DP是转化为LP求解，只能处理reward不确定的情况，无法处理模型不确定的情况。有空需要进一步review adaptive opt。</li>
+<li>Xu论文中讨论的robust DP是转化为LP求解，只能处理reward不确定的情况，无法处理模型不确定的情况。</li>
+<li>Adaptive opt: 忽略state、action对后续state的影响，直接考虑后续state的uncertainty。更加适用于长周期的宏观决策(例如电网控制)，而非前后state强相关的高频场景</li>
+<li>近期一些adversial的尝试可能能达到好的robust效果</li>
+</ol>
+<p>(20/01/30) 新算法的实现往往需要引入新的状态变量，而主流程在以往的开发中并未留下足够的接口，从而导致随着时间迁移，代码越来越难改；不断重构是必要的。(特别是在solver的设计中)</p>
+<p>(20/02/24) 整数规划review：</p>
+<ol>
+<li>设计求解算法/使用solver时，明确目的是要prove optimality还是search for feasible solution；</li>
+<li>一些formulation即使在计算上不可行(例如，指数多个约束)，也可能对理论分析、设计新的算法有帮助；特别地，很多组合优化问题可以通过加入大量的约束变成LP。</li>
+<li>很多heuristic的benchmark没有将solver tune得足够好，虽然仍然是有优势的。</li>
+</ol>
+<p>(20/02/24) 组合优化review：</p>
+<ol>
+<li>一些常用思路：primal-dual；Lagranian dual guided greedy；原始空间的局部搜索；LP + smart randomization/sampling</li>
+<li>vertex cover：尝试了CFT，效果较好。<ol>
+<li>subgradient优化的效率很重要，决定整体收敛速度；</li>
+<li>每步迭代中，用pricing来筛选column可以有效提高subgradient优化速度，但是需要更多迭代次数，应整体判断是否使用；</li>
+<li>如果做column fixing，则dual的上界估计（LP最优解）会逐步下降（因为fixed primal variable不一定是最优，导致对应的primal LP最优解下降），此时该上界估计不能用来评估整体效果，只能用于辅助subgradient算法收敛。不过，column fixing的确能够提高优化效果，因为基础的dual-guided思路本质上与最优解还是有gap的。</li>
+</ol>
+</li>
+<li>bipartite matching：给每个node加上一个fix-value varible（该变量可以看成node与source或target相连的边）；KM可以看成是利用组合方法对这个extend problem做dual simplex？其中，”对等边找增广路径提高primal目标值”对应”令fix-value variable离开basis”；”调整dual增加等边”对应”令original variable进入basis”。</li>
+<li>如果子问题有很好的组合解决方法，可以考虑Branch and Bound + 子问题。怎么变得更general？</li>
 </ol>
 <h2 id="Transportation"><a href="#Transportation" class="headerlink" title="Transportation"></a>Transportation</h2><p>(19/09/13) 城市出行中，regular需求更关注服务稳定性，而MaaS的优势虽然灵活和可定制化(也可能有更好的服务)，但无法保证稳定，因此MaaS的主要空间在于irregular需求。由于需求的高支付意愿来源于lack of alternatives，MaaS概念内部的不同mode将会形成强替代效应。</p>
 <p>(19/11/20) 宏观基本图对应“稳态”，因此由于突发事件导致的交通流变化不应该根据宏观基本图进行判断，而应该基于动力学模型(PDE)甚至是仿真进行判断。</p>
+<p>(20/02/26) 物流场景与出行场景的本质区别是需求形态上的，这种差异导致了运行模式的差异，从而产生了不同的优化问题。</p>
 <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><p>(19/07/02) 大数据的作用有以下几点：</p>
 <ol>
 <li>由于存储原始数据变得可行，可以对历史数据进行更多事后的多维度的分析，数据的利用率得到提升。</li>
@@ -389,7 +415,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
