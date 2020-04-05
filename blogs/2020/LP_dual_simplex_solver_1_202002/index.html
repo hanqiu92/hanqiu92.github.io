@@ -89,7 +89,7 @@
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_1_202002/index.html">
 <meta property="og:site_name" content="Han's Blog">
 <meta property="og:description" content="在接下来这个系列中，我将介绍线性规划中的对偶单纯形法的基本原理，并示范如何实现一个简单的对偶单纯形法求解器。">
-<meta property="og:updated_time" content="2020-03-16T01:51:01.723Z">
+<meta property="og:updated_time" content="2020-04-03T02:59:31.897Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Develop Your Own Dual Simplex Solver I: Introduction">
 <meta name="twitter:description" content="在接下来这个系列中，我将介绍线性规划中的对偶单纯形法的基本原理，并示范如何实现一个简单的对偶单纯形法求解器。">
@@ -163,7 +163,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">Normative and descriptive ideas about decisions of agents.</p>
+        <p class="site-subtitle">Thoughts on the normative and descriptive perspectives of human decision-making behavior.</p>
       
   </div>
 
@@ -362,10 +362,10 @@
 <p>其中，决策变量$\lambda$和$s$分别为$n$维和$m$维的向量。</p>
 <p><strong>解(solution)的评估</strong>。给定一组解$(x,\lambda,s)$，如何判断其是否可行及是否最优？对于问题$\eqref{eq:primal}$和$\eqref{eq:dual}$，相应解$x$和$(\lambda,s)$的可行性可以直接通过约束的满足情况进行判断。解的最优性则可以通过以下的KKT条件进行判断：<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    &amp; Ax = b, \\<br>    &amp; l \leq x \leq u, \\<br>    &amp; A^T \lambda + s_u + s_l = c, \\<br>    &amp; s_l \geq 0, \ s_u \leq 0, \\<br>    &amp; s_u(x - u) = 0, \ s_l(x - l) = 0.<br>  \end{aligned}<br>  \label{eq:KKT}\tag{1.3}<br>\end{equation}<br>$$</p>
 <p>容易看出，KKT条件$\eqref{eq:KKT}$包括原始和对偶问题的可行性条件，以及互补松弛条件<br>$$s_u(x - u) = 0, \ s_l(x - l) = 0. \label{eq:compSlack}\tag{1.4}$$</p>
-<p><strong>基(basis)的定义。</strong>在单纯形法中，一个基本的概念是基。不妨假设原始问题的可行域$\mathcal{A}=\{Ax = b,l \leq x \leq u\}$是一个多面体。从几何的角度分析我们可知，原始问题$\eqref{eq:primal}$至少有一个最优解对应着多面体$\mathcal{A}$的顶点。因此，要求解原始问题的最优解，只需要找出多面体$\mathcal{A}$所有顶点中最优的一个即可。而根据线性代数知识，$\mathcal{A}$中的任意一个顶点都可以用一组（广义）基$(B,L,U)$表示：$x_L = l_L, x_U = u_U, x_B = A_B^{-1}(b - A_Lx_L - A_Ux_U)$，其中$B,L,U$为下标集合$\{1,2,\cdots,m\}$的一个分割。（<strong>注：在一般的讨论中，基仅指集合$B$。在本系列中，我称$B$为狭义基。</strong>）因此，对最优顶点的搜索可以转化为对最优基$(B,L,U)$的搜索。单纯形法的基本思路就是采用局部搜索的方式来求解最优基；原始单纯形法和对偶单纯形法的主要区别在于是在原始问题还是在对偶问题的可行域内进行局部搜索。</p>
+<p><strong>基(basis)的定义。</strong>在单纯形法中，一个基本的概念是基。不妨假设原始问题的可行域$\mathcal{A}=\{Ax = b,l \leq x \leq u\}$是一个多面体。从几何的角度分析可知，原始问题$\eqref{eq:primal}$至少有一个最优解对应着多面体$\mathcal{A}$的顶点。因此，要求解原始问题的最优解，只需要找出多面体$\mathcal{A}$所有顶点中最优的一个即可。而根据线性代数知识，$\mathcal{A}$中的任意一个顶点都可以用一组（广义）基$(B,L,U)$表示：$x_L = l_L, x_U = u_U, x_B = A_B^{-1}(b - A_Lx_L - A_Ux_U)$，其中$B,L,U$为下标集合$\{1,2,\cdots,m\}$的一个分割。（<strong>注：在一般的讨论中，基仅指集合$B$。在本系列中，我称$B$为狭义基。</strong>）因此，对最优顶点的搜索可以转化为对最优基$(B,L,U)$的搜索。单纯形法的基本思路就是采用局部搜索的方式来求解最优基；原始单纯形法和对偶单纯形法的主要区别在于是在原始问题还是在对偶问题的可行域内进行局部搜索。</p>
 <p><strong>基于基的解。</strong>在给定一组基$(B,L,U)$时，利用互补松弛条件$\eqref{eq:compSlack}$，KKT条件$\eqref{eq:KKT}$可以改写为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    &amp; A_B x_B = b - A_Lx_L - A_Ux_U, \ x_L = l_L, \ x_U = u_U, \\<br>    &amp; A_B^T \lambda = c_B, \ s_{l,L} = c_L - A_L^T \lambda, \ s_{u,U} = c_U - A_U^T \lambda, \\<br>    &amp; s_{l,B} = s_{u,B} = s_{u,L} = s_{l,U} = 0; \\<br>    &amp; l_B \leq x_B \leq u_B, \ s_{l,L} \geq 0, \ s_{u,U} \leq 0.<br>  \end{aligned}\label{eq:KKT_decompose}\tag{1.5}<br>\end{equation}<br>$$</p>
 <p>因此，根据公式$\eqref{eq:KKT_decompose}$中的前三式，基$(B,L,U)$不但可以决定原始问题的解$x$，还可以决定对偶问题的解$(\lambda,s)$；而且，如果这组解$(x,\lambda,s)$同时满足可行性约束$l_B \leq x_B \leq u_B, \ s_{l,L} \geq 0, \ s_{u,U} \leq 0$，则其必为最优解。<strong>注：</strong>特别地，当上下界$l,u$有界时，我们总能通过交换$L$和$U$中的下标来保证$s_{l,L} \geq 0, \ s_{u,U} \leq 0$，从而对于任意$B$，我们都能找到相应的$L$和$U$使得对应的对偶解$(\lambda,s)$可行。这部分地解释了为何在通常情况下对偶方法效率更高。</p>
-<p><strong>数值误差的影响。</strong>通过基$(B,L,U)$来表示解$(x,\lambda,s)$的一个好处是互补松弛条件$\eqref{eq:compSlack}$永远是默认被满足的。此时，根据KKT条件$\eqref{eq:KKT}$的定义，对解$(x,\lambda,s)$的最优性检验可以减弱为可行性检验。同时，对原始解$x$和对偶解$(\lambda,s)$的统一表示在一定程度上能提高整个求解流程对于数值误差的稳健性。下面来看一个简单例子。假设在求解过程中的某一步中，存在某个下标$i\in N = L\cup U$，对应的对偶变量$s_i = s_{l,i} + s_{u,i}$的真实取值在0附近。受到数值误差的影响，实际计算的$s_i$可能是一个微小的正值或者负值。现在，如果我们要手动维持互补松弛条件，那么相应的原始变量$x_i$的取值很可能会在$l_i$和$u_i$之间来回波动。当这两个值的差异较大时，迭代优化过程会受到严重干扰。而如果我们不严格地维持互补松弛条件，则有可能在迭代优化过程中原始解和对偶解相关性不断减弱，从而导致算法中一些需要同时使用原始解和对偶解的计算失效，进而导致算法不收敛。</p>
+<p><strong>数值误差的影响。</strong>通过基$(B,L,U)$来表示解$(x,\lambda,s)$的一个好处是互补松弛条件$\eqref{eq:compSlack}$永远是默认被满足的。此时，根据KKT条件$\eqref{eq:KKT}$的定义，对解$(x,\lambda,s)$的最优性检验可以减弱为可行性检验。同时，对原始解$x$和对偶解$(\lambda,s)$的统一表示在一定程度上能提高整个求解流程对于数值误差的稳健性。下面来看一个简单例子。假设在求解过程中的某一步中，存在某个下标$i\in N = L\cup U$，对应的对偶变量$s_i = s_{l,i} + s_{u,i}$的真实取值在0附近。受到数值误差的影响，实际计算的$s_i$可能是一个微小的正值或者负值。现在，如果要手动维持互补松弛条件，那么相应的原始变量$x_i$的取值很可能会在$l_i$和$u_i$之间来回波动。当这两个值的差异较大时，迭代优化过程会受到严重干扰。而如果我们不严格地维持互补松弛条件，则有可能在迭代优化过程中原始解和对偶解相关性不断减弱，从而导致算法中一些需要同时使用原始解和对偶解的计算失效，进而导致算法不收敛。</p>
 <p>下面，我们进入<a href="https://github.com/hanqiu92/dual_simplex_solve/blob/master/1_preliminary.ipynb" target="_blank" rel="external">代码实现部分</a>。</p>
 
       
@@ -500,7 +500,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

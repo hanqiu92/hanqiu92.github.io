@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/blogs/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linear Programming," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在这篇文章中，我将介绍一系列常用的预处理技术，以进一步提升对偶单纯形法的求解效率。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Develop Your Own Dual Simplex Solver IV: Preprocessing Techniques">
+<meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_4_202004/index.html">
+<meta property="og:site_name" content="Han's Blog">
+<meta property="og:description" content="在这篇文章中，我将介绍一系列常用的预处理技术，以进一步提升对偶单纯形法的求解效率。">
+<meta property="og:updated_time" content="2020-04-05T04:34:11.387Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to Develop Your Own Dual Simplex Solver IV: Preprocessing Techniques">
+<meta name="twitter:description" content="在这篇文章中，我将介绍一系列常用的预处理技术，以进一步提升对偶单纯形法的求解效率。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blogs/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_4_202004/"/>
+
+
+
+
+
+  <title>How to Develop Your Own Dual Simplex Solver IV: Preprocessing Techniques | Han's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blogs/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Han's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Thoughts on the normative and descriptive perspectives of human decision-making behavior.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blogs/." rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blogs/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blogs/archives" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blogs/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-scribbles">
+          <a href="/blogs/scribbles" rel="section">
+            
+            Scribbles
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2020/LP_dual_simplex_solver_4_202004/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blogs/images/pics/1.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Han's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">How to Develop Your Own Dual Simplex Solver IV: Preprocessing Techniques</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-05T12:00:00+08:00">
+                2020-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blogs/categories/Study-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Study Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在这篇文章中，我将介绍一系列常用的预处理技术，以进一步提升对偶单纯形法的求解效率。</p>
+<a id="more"></a>
+<h2 id="问题形式转换-Transformation"><a href="#问题形式转换-Transformation" class="headerlink" title="问题形式转换 Transformation"></a>问题形式转换 Transformation</h2><p>在本系列之前的介绍中，我们假定原始问题具有以下形式<br>$$<br>  \begin{aligned}<br>    \min \ &amp; c^T x \\<br>    s.t. \ &amp; Ax = b, \\<br>           &amp; l \leq x \leq u.<br>  \end{aligned}<br>  \label{eq:primal}\tag{1.1}<br>$$ 相应的对偶问题为<br>$$<br>  \begin{aligned}<br>    \max \ &amp; b^T \lambda + u^T s_u + l^T s_l \\<br>    s.t. \ &amp; A^T \lambda + s_u + s_l = c, \\<br>           &amp; s_l \geq 0, \ s_u \leq 0.<br>  \end{aligned}<br>  \label{eq:dual}\tag{1.2}<br>$$ 但在实际的求解场景中，原始问题一般是按以下形式存储的：<br>$$<br>  \begin{aligned}<br>    \min \ &amp; c^T x \\<br>    s.t. \ &amp; b_l \leq Ax \leq b_u, \\<br>    &amp; l \leq x \leq u. \\<br>  \end{aligned}<br>  \label{eq:primal-in}\tag{1.3}<br>$$ 该形式的好处在于线性约束的表示能力更强，在极端情况下可以节省一半的表示空间。但是，我们无法对这种问题形式应用DS算法；为此，需要将问题\eqref{eq:primal-in}转换成问题\eqref{eq:primal}的形式。一种简单的方法是引入新变量$x^b$来代替$Ax$，从而将线性约束转为上下界约束：<br>$$<br>  \begin{aligned}<br>    \min \ &amp; c^T x + 0^T x^b \\<br>    s.t. \ &amp; Ax - x^b = 0, \\<br>           &amp; l \leq x \leq u, \ b_l \leq x^b \leq b_u.<br>  \end{aligned}<br>  \label{eq:primal-in-reform}\tag{1.4}<br>$$ $x_b$一般被称为逻辑变量/行变量。上述转换的另一个好处在于转换后的矩阵$\bar{A} = [A;-I]$是满秩的，因此降低了迭代过程中出现高条件数的基矩阵$A_B$的几率。然而，当线性约束为等式$Ax=b$时，上述转换方式会引入多余的固定值变量$x^b=b$（虽然这并不会影响求解效率）。</p>
+<p>在通过DS流程完成对问题\eqref{eq:primal-in-reform}的求解后，需要将结果转换回原问题\eqref{eq:primal-in}的解。通过比较两者的形式易知，原始解$x$的转换是trivial的；而对于对偶解$(\lambda,s)$，注意到问题\eqref{eq:primal-in-reform}对应的对偶问题为<br>$$<br>  \begin{aligned}<br>    \max \ &amp; u^T s_u + l^T s_l + b_u^T s_u^b + b_l^T s_l^b \\<br>    s.t. \ &amp; A^T \lambda + s_u + s_l = c, \\<br>           &amp; -\lambda + s_u^b + s_l^b = 0, \\<br>           &amp; s_l,s_l^b \geq 0, \ s_u,s_u^b \leq 0.<br>  \end{aligned}<br>  \label{eq:dual-in}\tag{1.5}<br>$$ 简单分析可知新增的对偶松弛变量$s_u^b$和$s_l^b$正好分别对应原问题\eqref{eq:primal-in}中$\leq$和$\geq$方向的约束的对偶变量，因此对偶解的转换也是trivial的。</p>
+<p>虽然在DS求解流程中上述问题转换步骤是必需的，但是直接对原问题\eqref{eq:primal-in}进行转换会影响求解效率：原问题形式中一些易于化简的结构可能会在形式转换后变得难以化简。因此，一般在完成其他预处理步骤后再进行问题转换。在下面的讨论中，我都将假定原始问题的形式为问题\eqref{eq:primal-in}。</p>
+<h2 id="系数缩放-Scaling"><a href="#系数缩放-Scaling" class="headerlink" title="系数缩放 Scaling"></a>系数缩放 Scaling</h2><p>在本系列之前的介绍中，我曾提到：DS迭代过程的数值误差很大程度受到矩阵$A_B$的条件数的影响。由于一个矩阵$A$的条件数与$A^TA$的最大最小特征值的比例有关，而特征值的大小与矩阵系数之间的量级差异有关（一个简单的例子是对角阵$diag([10^5,10^{-5}])$）；因此，可以通过对$A$的系数进行缩放来平衡系数的数量级，而这在一定程度上可降低$A_B$的条件数以及问题的数值计算难度。</p>
+<p>一种简单的系数缩放思路是按行和列进行缩放。具体来说，假设给定行权重$w_b\in \mathbb{R}^n$和列权重$w_c \in \mathbb{R}^m$，问题\eqref{eq:primal-in}可等价转化为<br>$$<br>  \begin{aligned}<br>    \min \ &amp; (w_c \odot c)^T x^{(w)} \\<br>    s.t. \ &amp; w_b \odot b_l \leq (diag(w_b) \cdot A \cdot diag(w_c) )x^{(w)} \leq w_b \odot b_u, \\<br>    &amp; (1/w_c) \odot l \leq x^{(w)} \leq (1/w_c) \odot u. \\<br>  \end{aligned}<br>  \label{eq:primal-in-weight}\tag{2.1}<br>$$ 其中$\odot$表示向量的元素相乘(Hadamard Product)运算，$diag(\cdot)$表示将向量转化成对角矩阵。形式\eqref{eq:primal-in-weight}中同时考虑了行维度和列维度的缩放；通过令$w_b = \mathbf{1}$或$w_c = \mathbf{1}$，可以实现只对行维度或列维度进行缩放。</p>
+<p>由于我们的目标是平衡矩阵$A$的系数的量级，因此，行/列权重一般被选为行/列系数的量级的倒数。以下是几种常用的权重选取方式：</p>
+<ol>
+<li>$l_2$范数：对于行$i$，令$w_i=1/\sqrt{\sum_j A_{ij}^2}$；对于列$j$，令$w_j=1/\sqrt{\sum_i A_{ij}^2}$；</li>
+<li>$l_{\infty}$范数（最大值）：对于行$i$，令$w_i=1/\max_j |A_{ij}|$；对于列$j$，令$w_j=1/\max_i |A_{ij}|$；</li>
+<li>几何平均(geomean)：对于行$i$，令$w_i=1/\sqrt{\max_{\{j| A_{ij} \neq 0\}} |A_{ij}|\cdot \min_{\{j| A_{ij} \neq 0\}} |A_{ij}|}$；<br>对于列$j$，令$w_j=1/\sqrt{\max_{\{i| A_{ij} \neq 0\}} |A_{ij}|\cdot \min_{\{i| A_{ij} \neq 0\}} |A_{ij}|}$。</li>
+</ol>
+<p>在实际操作中，一般会多次调用上述缩放方法并配合不同权重选取方式，以获得更优的系数整体平衡效果。例如，在本系列的代码实现中，我将首先使用基于$l_2$的行+列权重，然后使用基于$l_{\infty}$的行权重，最后再使用基于$l_{\infty}$的列权重。</p>
+<h2 id="问题简化-Reductions"><a href="#问题简化-Reductions" class="headerlink" title="问题简化 Reductions"></a>问题简化 Reductions</h2><p>根据此前的理论介绍和数值实验可知，线性代数相关计算是DS迭代过程中的主要计算开销来源（之一）；因此，如果能在进入DS迭代过程之前对线性系统$A$做一些简化，则可以一定程度上降低迭代中的计算量。简化思路主要有以下三点：</p>
+<ol>
+<li>减少行（线性约束）的个数。首先，可以根据变量的上下界约束（和其他线性约束）来判断一个线性约束是否是多余的。其次，在DS迭代中，上下界约束相比线性约束更容易处理（计算量更少），因此可以尝试将一些简单的线性约束（等价地）转换为上下界约束。</li>
+<li>减少列（决策变量）的个数。首先，可以根据约束和最优性条件，判断变量的取值是否可以固定。其次，可以基于等式约束将变量表示为其他变量的线性组合；不过这种做法可能会导致$A$的非零元素数量增加。</li>
+<li>对变量的上下界进行调整。通过放松(relax)上下界约束，可以降低可行域的复杂度（多面体的顶点个数），有利于原始单纯形法(PS)迭代。而通过加强(tighten)上下界约束，特别是将无界转换成有界，可以提高问题的对偶可行程度，有利于DS迭代。另外，在调整上下界约束后，可能可以进一步对行和列进行简化。</li>
+</ol>
+<p>需要注意的是，简化后问题和变量的定义发生了变化，因此在求解结束后还需要根据简化问题的结果来恢复原始问题的解；该步骤一般被称为后处理(postprocessing/post-solve)。</p>
+<p>接下来，我将介绍几种常用的简化手段（及其后处理方法）。</p>
+<h3 id="空行-列-Empty-Row-Column"><a href="#空行-列-Empty-Row-Column" class="headerlink" title="空行/列 Empty Row/Column"></a>空行/列 Empty Row/Column</h3><p>空行和空列中没有非零元素，即与其他行和列之间没有相互作用，故在简化步骤中只需要检查相应的（原始/对偶）可行性条件。具体来说，对于一个空行$i$，相应的约束为$b_{l,i} \leq 0 \leq b_{u,i}$，因此根据$b_{l,i}$和$b_{u,i}$的具体取值，该约束要么是多余的，要么会导致问题原始不可行。对于一个空列$j$，相应的变量$j$只受到上下界约束$l_j \leq x_j \leq u_j$的影响，因此可以根据$c_j$的符号直接取上界或下界；如果取到的值为$\pm \infty$（即无界），则问题对偶不可行。</p>
+<p>在后处理阶段，对于空列$j$，对应的原始变量$x_j$的取值已知，而对偶松弛变量的取值为<br>$$s_j = c_j - A_j^T \lambda = c_j - 0^T \lambda = c_j; \tag{3.1}<br>$$对于空行$i$，相应的对偶变量$\lambda_i$和$s_{i}^b$都可以直接置0。</p>
+<h3 id="固定值变量-Fixed-value-Column"><a href="#固定值变量-Fixed-value-Column" class="headerlink" title="固定值变量 Fixed-value Column"></a>固定值变量 Fixed-value Column</h3><p>对于一个变量$j$，其应满足的上下界约束为$l_j \leq x_j \leq u_j$。如果$l_j &gt; u_j$，那么问题原始不可行。如果$l_j = u_j$，那么可以固定$x_j$的取值为$l_j$并去除该变量。进行该简化操作时，$b$的取值需要进行相应改动：<br>$$b_l \gets b_l - A_j x_j,b_u \gets b_u - A_j x_j. \tag{3.2}<br>$$ 在后处理阶段，原始变量$x_j$的取值已知，而对偶松弛变量的取值为$s_j = c_j - A_j^T \lambda$。</p>
+<h3 id="单变量约束-Singleton-Row"><a href="#单变量约束-Singleton-Row" class="headerlink" title="单变量约束 Singleton Row"></a>单变量约束 Singleton Row</h3><p>如果行$i$只包含一个非零元素$A_{ij}$，那么该线性约束相当于对变量$j$的上下界约束。具体来说，假设该线性约束为$b_{l,i} \leq A_{ij}x_j \leq b_{u,i}$，其中$A_{ij} &gt; 0$，那么可以直接将其与已有的上下界$l_j \leq x_j \leq u_j$进行整合：<br>$$<br>\max(l_j,b_{l,i}/A_{ij}) \leq x_j \leq \min(u_j,b_{u,i}/A_{ij}), \tag{3.3}<br>$$ 并进行相应的可行性判断。</p>
+<p>在后处理阶段，需要给出约束$i$对应的对偶变量$\lambda_i,s_{l,i}^b,s_{u,i}^b$的取值。由于$A_j^T\lambda + s_j = c_j$，而$\lambda_{-i}$的取值已知，因此只需要确定$s_j$的取值。如果$x_j$的取值为$l_j$或$u_j$，则恢复约束$i$后$x_j$和$s_j$的取值不变，有$\lambda_i = s_{i}^b = 0$；否则，恢复约束$i$后列$j \in B$，进而有$s_j = 0, \ \lambda_i = (c_j - A_{(-i)j}^T\lambda_{-i})/A_{ij}$。</p>
+<h3 id="可行性隐含约束-Feasibly-trivial-Row"><a href="#可行性隐含约束-Feasibly-trivial-Row" class="headerlink" title="可行性隐含约束 Feasibly-trivial Row"></a>可行性隐含约束 Feasibly-trivial Row</h3><p>根据变量的上下界约束$u_j,l_j$，可以计算每个线性约束的隐含上下界：<br>$$<br>\begin{aligned}<br>b_i^+ &amp; = \sum_{\{j|A_{ij} &gt; 0\}} A_{ij}u_j + \sum_{\{j|A_{ij} &lt; 0\}} A_{ij}l_j; \\<br>b_i^- &amp; = \sum_{\{j|A_{ij} &gt; 0\}} A_{ij}l_j + \sum_{\{j|A_{ij} &lt; 0\}} A_{ij}u_j. \\<br>\end{aligned}\tag{3.4}<br>$$ 然后可以根据$b_i^+,b_i^-,b_{u,i},b_{l,i}$的相对大小进行简化。具体来说，如果$b_i^- &gt; b_{u,i}$或者$b_i^+ &lt; b_{l,i}$，那么该线性约束原始不可行。如果$b_i^- = b_{u,i}$或者$b_i^+ = b_{l,i}$，那么可以根据式(3.4)固定相关原始变量的取值。如果$b_{l,i} \leq b_i^- \leq b_i^+ \leq b_{u,i}$，则约束是多余的，可以被去除。</p>
+<p>后处理阶段的处理方法需要根据不同的简化情况进行讨论。</p>
+<ul>
+<li>如果约束$i$是作为多余约束被去除的，那么恢复该约束不影响当前解的可行性，故只需令$i^b\in B$以及对偶变量$\lambda_i=s_i^b=0$。</li>
+<li>如果约束$i$还固定了变量取值，那么该约束是有效的，需要对对偶变量$\lambda_i$和$s_j$进行计算。不妨假设$b_i^- = b_{u,i}$，则在原问题中约束$i$被固定在上界、值$A_{ij}x_j$被固定在下界。因此，对偶变量需要满足以下条件<br>$$<br>\begin{aligned}<br>\lambda_i &amp; = s_i^b \leq 0; \\<br>s_j &amp;<br>\begin{cases}<br>  \geq 0, &amp; A_{ij} &gt; 0; \\<br>  \leq 0, &amp; A_{ij} &lt; 0. \\<br>\end{cases}<br>\end{aligned}\tag{3.5}<br>$$ 又因为新增了一个约束，因此在各恢复的列$j$和$i^b$中间需要有一个进入$B$，其对应的对偶松弛变量必须为0。现在，根据对偶松弛变量的计算公式$s_j = (c_j - A_{(-i)j}^T \lambda_{-i}) - A_{ij} \lambda_i$，可以确定唯一的$\lambda_i \leq 0$使得(3.5)中所有约束都能满足，且各$s_j$和$s_i^b$中恰好有一个为0：$\lambda_i = \min(\min_{j}\{(c_j - A_{(-i)j}^T \lambda_{-i})) / A_{ij} \},0)$，并进而确定所有对偶变量的取值。</li>
+</ul>
+<h3 id="最优性隐含变量-Optimally-trivial-Column"><a href="#最优性隐含变量-Optimally-trivial-Column" class="headerlink" title="最优性隐含变量 Optimally-trivial Column"></a>最优性隐含变量 Optimally-trivial Column</h3><p>上面关于空列的讨论指出，在没有线性约束$b_l \leq Ax \leq b_u$的情况下，问题\eqref{eq:primal-in}的最优解是平凡(trivial)的：<br>$$<br>x_j = \begin{cases}<br>    u_j, &amp; c_j &lt; 0; \\<br>    l_j, &amp; c_j &gt; 0. \\<br>\end{cases}\tag{3.5}<br>$$ 如果线性约束$b_l \leq Ax \leq b_u$对一个变量$x_j$取到上述最优解没有明显约束作用，那么可以将该变量当做空列/固定值处理。具体来说，如果$c_j &lt; 0$且系数$A_{ij}$满足<br>$$ A_{ij} \begin{cases}<br>    \geq 0, &amp; b_{u,i} = \infty; \\<br>    \leq 0, &amp; b_{l,i} = -\infty, \\<br>\end{cases}\tag{3.6}<br>$$ 那么可以在保持其他变量$x_{-j}$不变的情况下令$x_j=u_j$来最优化目标；因此最优解必然满足$x_j \equiv u_j$。同理，我们可以给出$x_j \equiv l_j$的简单检查条件。如果在上述简化步骤中列$j$被去除了，那么在后处理阶段可以按以下方式计算和恢复相应的对偶松弛变量：$s_j = c_j - A_j^T \lambda$。</p>
+<p>上述简化思路也可以从对偶可行性的角度来理解。根据对偶可行性，如果对偶松弛变量$s_j$非零，则其符号确定了列$j$的属性$\{L,U\}$及$x_j$的取值。又因为$s_j = s_{u,j} + s_{l,j} = c_j - A_j^T \lambda$，因此可以根据对偶变量$\lambda$的上下界$[\lambda^-,\lambda^+]$来检查$s_j$的符号是否固定。特别地，在没有额外信息的情况下，可以根据等式$\lambda_i = s_{u,i}^b + s_{l,i}^b = s_i^b$以及$s^b$的平凡上下界$\{0,\pm\infty\}$来获取$\lambda$的上下界；这种方式恰好与上述简化思路相对应。也可以进一步通过上下界加强(bound tightening)手段处理$\lambda$的上下界，以期固定更多变量。</p>
+<h3 id="双变量等式约束-Doubleton-Row"><a href="#双变量等式约束-Doubleton-Row" class="headerlink" title="双变量等式约束 Doubleton Row"></a>双变量等式约束 Doubleton Row</h3><p>如果约束$i$是一个只包含两个变量的等式约束$A_{ij_1} x_{j_1} + A_{ij_2} x_{j_2} = b_i$，那么可以用其中一个变量$x_{j_2}$来表示另一个变量$x_{j_1}$：$x_{j_1} = (b_i - A_{ij_2} x_{j_2}) / A_{ij_1}$，然后去除变量$x_{j_1}$和约束$i$。注意保留变量$x_{j_2}$的上下界也需要根据$x_{j_1}$的上下界进行调整，可能会变得更紧。</p>
+<p>在后处理阶段，原始变量$x_{j_1}$可以直接通过上述表示来获取，而对偶变量$\lambda_i$和$s_{j_1},s_{j_2}$需要根据列$j_2$的属性和$x_{j_2}$的取值进行相应处理。具体来说，</p>
+<ul>
+<li>如果$x_{j_2}$在原始边界$\{l_{j_2},u_{j_2}\}$上或$j_2$在$B$中，则恢复变量$x_{j_1}$和约束$i$后，$j_2$的属性和$x_{j_2}$的取值不需要进行改变；故可令$j_1 \in B$，进而$s_{j_1} = 0, \ \lambda_i = (c_{j_1} - A_{(-i)j_1}^T \lambda_{-i})/A_{ij_1}$。由于恢复前（简化后）的松弛变量$\tilde{s}_{j_2}$满足$\tilde{s}_{j_2} = s_{j_2} - (A_{ij_2}/A_{ij_1}) s_{j_1}$，因此$s_{j_2}$的取值没有变化。</li>
+<li>如果$x_{j_2}$在新生成的边界上，那么恢复变量$x_{j_1}$和约束$i$后，$j_2$应进入$B$，故$s_{j_2} = 0$，进而可以算得<br>$$\lambda_i = (c_{j_2} - A_{(-i)j_2}^T \lambda_{-i})/A_{ij_2}, \ s_{j_2} = - (A_{ij_1}/A_{ij_2})\tilde{s}_{j_2}.$$</li>
+</ul>
+<p>接下来，我将在<a href="https://github.com/hanqiu92/dual_simplex_solve/blob/master/4_preprocess.ipynb" target="_blank" rel="external">这个notebook</a>中尝试实现上述各预处理方法，并通过数值实验分析效果。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blogs/tags/Linear-Programming/" rel="tag"># Linear Programming</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blogs/2020/LP_dual_simplex_solver_3_202004/" rel="next" title="How to Develop Your Own Dual Simplex Solver III: Pipeline Design">
+                <i class="fa fa-chevron-left"></i> How to Develop Your Own Dual Simplex Solver III: Pipeline Design
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="Han Qiu" />
+            
+              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blogs/archives">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blogs/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blogs/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://hanqiu92.github.io" target="_blank" title="Homepage">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Homepage</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hanqiu92" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-github"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:qiuhan9212@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题形式转换-Transformation"><span class="nav-number">1.</span> <span class="nav-text">问题形式转换 Transformation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系数缩放-Scaling"><span class="nav-number">2.</span> <span class="nav-text">系数缩放 Scaling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题简化-Reductions"><span class="nav-number">3.</span> <span class="nav-text">问题简化 Reductions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空行-列-Empty-Row-Column"><span class="nav-number">3.1.</span> <span class="nav-text">空行/列 Empty Row/Column</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#固定值变量-Fixed-value-Column"><span class="nav-number">3.2.</span> <span class="nav-text">固定值变量 Fixed-value Column</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单变量约束-Singleton-Row"><span class="nav-number">3.3.</span> <span class="nav-text">单变量约束 Singleton Row</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可行性隐含约束-Feasibly-trivial-Row"><span class="nav-number">3.4.</span> <span class="nav-text">可行性隐含约束 Feasibly-trivial Row</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最优性隐含变量-Optimally-trivial-Column"><span class="nav-number">3.5.</span> <span class="nav-text">最优性隐含变量 Optimally-trivial Column</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双变量等式约束-Doubleton-Row"><span class="nav-number">3.6.</span> <span class="nav-text">双变量等式约束 Doubleton Row</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qiu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blogs/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blogs/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blogs/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blogs/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blogs/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_4_202004/';
+          this.page.identifier = '2020/LP_dual_simplex_solver_4_202004/';
+          this.page.title = 'How to Develop Your Own Dual Simplex Solver IV: Preprocessing Techniques';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hanqiu92.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
