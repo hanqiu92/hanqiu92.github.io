@@ -93,7 +93,7 @@
 <meta property="og:description" content="Modeling(19/10/11) 图卷积网络(GCN)较适用于建模局部动力系统，似乎不太适用于端到端直接预测。
 (19/11/20) 仿真是一种成本较高的建模方式，因此在进行仿真时也需要考虑建模中的核心权衡：应该考虑哪些要素、抛弃哪些要素？
 (19/12/08) batching的作用：在供需都在平面上均匀分布时，可以降低pickup distance；但如果需求为单点，则batching不能">
-<meta property="og:updated_time" content="2020-02-25T01:25:53.480Z">
+<meta property="og:updated_time" content="2020-05-31T14:01:23.095Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scribbles">
 <meta name="twitter:description" content="Modeling(19/10/11) 图卷积网络(GCN)较适用于建模局部动力系统，似乎不太适用于端到端直接预测。
@@ -268,7 +268,7 @@
         
           <h2 id="Modeling"><a href="#Modeling" class="headerlink" title="Modeling"></a>Modeling</h2><p>(19/10/11) 图卷积网络(GCN)较适用于建模局部动力系统，似乎不太适用于端到端直接预测。</p>
 <p>(19/11/20) 仿真是一种成本较高的建模方式，因此在进行仿真时也需要考虑建模中的核心权衡：应该考虑哪些要素、抛弃哪些要素？</p>
-<p>(19/12/08) batching的作用：在供需都在平面上均匀分布时，可以降低pickup distance；但如果需求为单点，则batching不能降低pickup distance。</p>
+<p>(19/12/08) batching的作用：在供需都在平面上均匀分布时，可以降低pickup distance；但如果需求为单点，则batching不能降低pickup distance。(20/05/30) 这意味着规模收益需要通过车辆deadheading实现，存在tradeoff！</p>
 <p>(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。</p>
 <p>(19/12/28) 如何保持一个输入特征（动作action）的偏序：</p>
 <ol>
@@ -415,7 +415,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

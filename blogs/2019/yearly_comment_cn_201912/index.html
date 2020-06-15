@@ -89,7 +89,7 @@
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2019/yearly_comment_cn_201912/index.html">
 <meta property="og:site_name" content="Han's Blog">
 <meta property="og:description" content="趁着年末整理一下最近的一些新的见解，留个记录，以便后续反思和打脸。">
-<meta property="og:updated_time" content="2019-12-29T07:22:11.526Z">
+<meta property="og:updated_time" content="2020-06-07T09:34:09.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些认知迭代">
 <meta name="twitter:description" content="趁着年末整理一下最近的一些新的见解，留个记录，以便后续反思和打脸。">
@@ -359,7 +359,7 @@
 <li>OM中一种常用的分析技巧是通过决策变量的变换来获得更好的几何结构。</li>
 <li>heuristic的设计关键就在于如何利用问题结构优化局部搜索的效率。</li>
 </ol>
-<p>因此，考虑到不同业务的内在逻辑，应该对不同的解法更加open：看起来naive的思路很可能利用了某种重要结构。对于有能力的人来说，更应该理解和挖掘这些结构，从中找出共通性，从而设计更好的算法，而不是简单地将问题转化为已知形式再调包/solver解决。感觉很多以前的工作都可以再review一下（笑）。</p>
+<p>因此，考虑到不同业务的内在逻辑，应该对不同的解法更加open：看起来naive的思路很可能利用了某种重要结构。对于有能力的人来说，更应该理解和挖掘这些结构，从中找出共通性，从而设计更好的算法，而不是简单地将问题转化为已知形式再调包/solver解决。从这个角度，感觉很多以前的工作都可以再review一下。</p>
 <h2 id="计算-Computation"><a href="#计算-Computation" class="headerlink" title="计算 Computation"></a>计算 Computation</h2><p>根据观察，我发现计算效率在算法层面很容易被忽视。个人判断主要还是意识和机制问题。一方面，开发时没有足够的意识进行效率优化；另一方面，后续维护时缺乏优化动机。这在无形之中给系统增加了很多性能瓶颈。</p>
 <p>计算效率问题主要体现为两点。一方面，算法实现上存在过多冗余。这方面我个人做的也不是很好；这在仿真系统的开发上体现得特别明显。例如，在仿真网约车的司乘匹配问题时，首先需要计算每个司乘对的距离，从而判断匹配的可行性。最简单的做法是遍历所有司乘对，但是这种做法不scalable。在大规模场景下，一种更好的做法是先将司乘的位置映射到一系列区域内，然后只对相邻区域内的点对进行计算。一个简单实现表明这种做法在大规模场景下速度能提高3倍以上。再如，根据可行性判定，在调用匹配算法时很多配对是不需要被考虑的；此时应该使用稀疏存储及相应的稀疏匹配算法。计算表明，在大多数场景下速度能提高5~10倍。</p>
 <p>另一方面，未能使用足够好的底层工具来提高效率。单从Python来说，通过numba可以将很多无法简单矢量化的过程提速上百倍。在不具备完全迁移到C++/Julia上的可行性的情况下，熟练掌握numba和Cython还是很必要的。</p>
@@ -516,7 +516,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
