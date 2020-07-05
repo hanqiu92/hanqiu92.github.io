@@ -89,7 +89,7 @@
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_1_202006/index.html">
 <meta property="og:site_name" content="Han's Blog">
 <meta property="og:description" content="在接下来这个系列中，我将介绍混合整数规划中的分支定界法(branch &amp;amp; bound, B&amp;amp;B)的基本原理，并示范如何实现一个简单的B&amp;amp;B求解器。">
-<meta property="og:updated_time" content="2020-06-09T15:25:41.520Z">
+<meta property="og:updated_time" content="2020-06-26T13:41:04.011Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Develop Your Own Branch & Bound Solver I: Introduction">
 <meta name="twitter:description" content="在接下来这个系列中，我将介绍混合整数规划中的分支定界法(branch &amp;amp; bound, B&amp;amp;B)的基本原理，并示范如何实现一个简单的B&amp;amp;B求解器。">
@@ -352,7 +352,7 @@
 <li>完成一个简易的混合整数线性规划求解器，后续可能可以用于自己的一些小项目中。</li>
 </ol>
 <p>在本系列的写作中，我所用到的参考资料包括T. Ahterberg的<a href="https://depositonce.tu-berlin.de/bitstream/11303/1931/2/Dokument_41.pdf" target="_blank" rel="external">博士论文</a>和相关引用文献，以及开源求解器SCIP的代码。要顺畅地理解本系列中的内容，阅读者需要对线性规划理论有一定的了解。在代码实现中，主要依赖接口<a href="https://github.com/coin-or/CyLP" target="_blank" rel="external">CyLP</a>实现对线性规划求解包<a href="https://github.com/coin-or/Clp" target="_blank" rel="external">CLP</a>的调用；评估的benchmark则选用的是开源求解器<a href="https://github.com/coin-or/Cbc" target="_blank" rel="external">CBC</a>，其效率比目前最快的求解器要差一个数量级左右。</p>
-<h2 id="写作计划-Agenda"><a href="#写作计划-Agenda" class="headerlink" title="写作计划 Agenda"></a>写作计划 Agenda</h2><p>在本系列的第一篇文章（也就是本文）中，我将介绍分支定界法(B&amp;B)的基本思路及实现中的注意事项。<br>第二篇文章将介绍问题拆分(branching)和结点选择(node selection)模块的常用实现方法。<br>第三篇文章将回顾割(cut)方法的基本思路，介绍将其引入B&amp;B求解流程中的常用手段及注意事项，并实现最基础的变量边界加强(bound tightening)方法。<br>在第四篇文章（最后一篇）中，我将对前述内容进行总结，并针对MIP的求解方法及求解器的使用给出个人理解。</p>
+<h2 id="写作计划-Agenda"><a href="#写作计划-Agenda" class="headerlink" title="写作计划 Agenda"></a>写作计划 Agenda</h2><p>在本系列的第一篇文章（也就是本文）中，我将介绍分支定界法(B&amp;B)的基本思路及实现中的注意事项。<br>第二篇文章将介绍问题拆分(branching)和结点选择(node selection)模块的常用实现方法。<br>第三篇文章将回顾割(cut)方法的基本思路，介绍将其引入B&amp;B求解流程中的常用手段及注意事项，并实现最基础的变量边界加强(bound tightening)方法。<br>在第四篇文章（最后一篇）中，我将对前述内容进行总结，并针对MIP的求解方法设计及求解器的使用给出一些个人理解和建议。</p>
 <h2 id="分支定界法-Branch-amp-Bound-Method"><a href="#分支定界法-Branch-amp-Bound-Method" class="headerlink" title="分支定界法 Branch &amp; Bound Method"></a>分支定界法 Branch &amp; Bound Method</h2><p>混合整数规划(MIP)问题的一般形式为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \min \ &amp; c^T x \\<br>    s.t. \ &amp; Ax = b, \\<br>           &amp; l \leq x \leq u, \\<br>           &amp; x \in \mathbb{R}^{m_1} \times \mathbb{Z}^{m_2}.<br>  \end{aligned}<br>  \label{eq:basic}\tag{1.1}<br>\end{equation}<br>$$</p>
 <p>相比于线性规划(LP)问题，MIP的主要区别仅在于某些变量的取值必须是整数。因此，我们可以考虑以下求解思路：</p>
 <ol>
@@ -515,7 +515,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -89,7 +89,7 @@
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_5_202005/index.html">
 <meta property="og:site_name" content="Han's Blog">
 <meta property="og:description" content="在这篇文章中，我将对本系列之前的内容进行总结，并针对LP求解器的设计开发和使用给出一些个人建议。">
-<meta property="og:updated_time" content="2020-04-04T07:27:31.976Z">
+<meta property="og:updated_time" content="2020-06-27T14:55:11.392Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Develop Your Own Dual Simplex Solver V: Summary">
 <meta name="twitter:description" content="在这篇文章中，我将对本系列之前的内容进行总结，并针对LP求解器的设计开发和使用给出一些个人建议。">
@@ -359,15 +359,15 @@
 <li>在ratio test阶段中，使用Harris RT能够避开一些数值不稳定的pivot从而降低迭代次数，但可能会引入一定的对偶不可行程度（dual infeasibility），从而对整体的数值误差控制提出了新的要求。</li>
 </ol>
 <p>因此，在DS算法的实现中，往往需要对算法效率（迭代次数）、计算效率（计算量）、计算精度三者进行权衡。不过，还可以通过预处理、改进线性方程$Ax=b$求解效率等方式，全面提升DS算法的效率和精度。</p>
-<h2 id="线性规划求解器的高效使用-How-to-use-LP-solvers-efficiently"><a href="#线性规划求解器的高效使用-How-to-use-LP-solvers-efficiently" class="headerlink" title="线性规划求解器的高效使用 How to use LP solvers efficiently?"></a>线性规划求解器的高效使用 How to use LP solvers efficiently?</h2><h3 id="求解算法的选用"><a href="#求解算法的选用" class="headerlink" title="求解算法的选用"></a>求解算法的选用</h3><p>一般来说，DS比原始单纯形法（PS）的效率高。根据上述DS的工作原理，可以部分地解释为何如此：由于大部分问题的变量是双边有界的（$-\infty &lt; l \leq x \leq u &lt; \infty$），</p>
+<h2 id="线性规划求解器的高效使用-How-to-use-LP-solvers-efficiently"><a href="#线性规划求解器的高效使用-How-to-use-LP-solvers-efficiently" class="headerlink" title="线性规划求解器的高效使用 How to use LP solvers efficiently?"></a>线性规划求解器的高效使用 How to use LP solvers efficiently?</h2><h3 id="求解算法的选用-Selection-of-Algorithms"><a href="#求解算法的选用-Selection-of-Algorithms" class="headerlink" title="求解算法的选用 Selection of Algorithms"></a>求解算法的选用 Selection of Algorithms</h3><p>一般来说，DS比原始单纯形法（PS）的效率高。根据上述DS的工作原理，可以部分地解释为何如此：由于大部分问题的变量是双边有界的（$-\infty &lt; l \leq x \leq u &lt; \infty$），</p>
 <ul>
 <li>一方面，找对偶可行解比原始可行解容易得多。相比于PS的第一阶段是为找可行解而找可行解，DS在找可行解的过程中也考虑了目标值（最优性）的影响，因此从整个求解流程上看效率更高。</li>
 <li>另一方面，基结构$(B,L,U)$的多样性使得BFRT相比普通的ratio test能够大幅提高迭代效率。具体来说，在DS+BFRT中，首先决定哪个变量$j$离开狭义基$B$，然后决定哪个变量$j’$进入$B$。不妨假设$j’$原来在集合$L$中；当$j’$的属性需要变化时，它不仅可以进入$B$，也可以再次离开并进入$U$。如此反复，在DS+BFRT中，ratio test阶段不仅可以找到下一个$B$的元素，还能更新$U$和$L$。相比之下，在PS中，需要先决定哪个变量$j$进入$B$，再决定哪个$j’$离开$B$；在此过程中，$j’$是进入$L$还是$U$是被指定的，没有选择空间。</li>
 </ul>
 <p>然而，根据问题结构的变化，上述认知的前提不一定成立。此时，DS、PS或者内点法（barrier）都可能效率更高。例如，对于一些网络流问题，由于原始可行解很好找，PS的效率不比DS差。一种更简单粗暴的解决方式是，可以先设计一个小的测试问题，对不同求解算法的效率进行分析，然后再对实际问题应用效率最高的一个。Gurobi中提供了一种concurrent求解选项：该选项高效地实现了对多种求解算法的同步调用。</p>
 <p>另外，DS和PS都是普适的线性规划求解方法。在DS/PS中，线性方程求解$Ax=b$的效率很大程度上决定了整个求解器的效率；而由于其普适性，其对矩阵$A$的理解往往不如建模者的理解深入。在很多场景下，线性方程$Ax=b$的求解实际上对应了一个组合优化问题，在这种情况下使用组合算法效率往往更高。</p>
-<h3 id="求解器的选用"><a href="#求解器的选用" class="headerlink" title="求解器的选用"></a>求解器的选用</h3><p>对于不需要考虑成本的使用者来说，基本只需要考虑Gurobi和Cplex，不仅因为它们求解效率高，而且相关的接口和文档也更完善。但是，如果需要考虑预算，那么可以考虑开源求解器Clp。Clp基本是开源中最快的DS求解器，而且社区也提供了很多调用接口（例如PuLP、CyLP），可以很方便与其他任务进行整合。</p>
-<h3 id="建模与输入的注意事项"><a href="#建模与输入的注意事项" class="headerlink" title="建模与输入的注意事项"></a>建模与输入的注意事项</h3><p>通过代码实现，可以知道</p>
+<h3 id="求解器的选用-Selection-of-Solvers"><a href="#求解器的选用-Selection-of-Solvers" class="headerlink" title="求解器的选用 Selection of Solvers"></a>求解器的选用 Selection of Solvers</h3><p>对于不需要考虑成本的使用者来说，基本只需要考虑Gurobi和Cplex，不仅因为它们求解效率高，而且相关的接口和文档也更完善。但是，如果需要考虑预算，那么可以考虑开源求解器Clp。Clp基本是开源中最快的DS求解器，而且社区也提供了很多调用接口（例如PuLP、CyLP），可以很方便与其他任务进行整合。</p>
+<h3 id="建模与输入的注意事项-Notes-on-Modeling-and-Inputs"><a href="#建模与输入的注意事项-Notes-on-Modeling-and-Inputs" class="headerlink" title="建模与输入的注意事项 Notes on Modeling and Inputs"></a>建模与输入的注意事项 Notes on Modeling and Inputs</h3><p>通过代码实现，可以知道</p>
 <ol>
 <li>矩阵$A$的稀疏结构对于求解效率有至关重要的影响。因此，在使用建模语言（例如PuLP）时，可以对系数为零的元素进行过滤。</li>
 <li>输入变量的上下界能够一定程度提高DS的求解效率。因此，虽然预处理步骤能够从约束中推断出变量的上下界信息，但是在建模过程中可以避免引入类似$x_j \leq u_j$的约束。</li>
@@ -517,7 +517,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -594,7 +594,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对偶单纯形法的工作原理-How-does-DS-work"><span class="nav-number">1.</span> <span class="nav-text">对偶单纯形法的工作原理 How does DS work?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性规划求解器的高效使用-How-to-use-LP-solvers-efficiently"><span class="nav-number">2.</span> <span class="nav-text">线性规划求解器的高效使用 How to use LP solvers efficiently?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求解算法的选用"><span class="nav-number">2.1.</span> <span class="nav-text">求解算法的选用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求解器的选用"><span class="nav-number">2.2.</span> <span class="nav-text">求解器的选用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建模与输入的注意事项"><span class="nav-number">2.3.</span> <span class="nav-text">建模与输入的注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对偶单纯形法求解器的开发-How-to-develop-a-DS-solver"><span class="nav-number">3.</span> <span class="nav-text">对偶单纯形法求解器的开发 How to develop a DS solver?</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对偶单纯形法的工作原理-How-does-DS-work"><span class="nav-number">1.</span> <span class="nav-text">对偶单纯形法的工作原理 How does DS work?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性规划求解器的高效使用-How-to-use-LP-solvers-efficiently"><span class="nav-number">2.</span> <span class="nav-text">线性规划求解器的高效使用 How to use LP solvers efficiently?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求解算法的选用-Selection-of-Algorithms"><span class="nav-number">2.1.</span> <span class="nav-text">求解算法的选用 Selection of Algorithms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求解器的选用-Selection-of-Solvers"><span class="nav-number">2.2.</span> <span class="nav-text">求解器的选用 Selection of Solvers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建模与输入的注意事项-Notes-on-Modeling-and-Inputs"><span class="nav-number">2.3.</span> <span class="nav-text">建模与输入的注意事项 Notes on Modeling and Inputs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对偶单纯形法求解器的开发-How-to-develop-a-DS-solver"><span class="nav-number">3.</span> <span class="nav-text">对偶单纯形法求解器的开发 How to develop a DS solver?</span></a></li></ol></div>
             
 
           </div>

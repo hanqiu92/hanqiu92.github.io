@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/blogs/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Behavior Modeling," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在这篇文章中，我将照惯例总结在最近一年的工作和研究中的心得体会。在这次年度总结中，我想要讨论的主题是尺度。In this post, as usual, I will summarize my experience in formulating and tackling the problems in work and research in the past year. The topic of">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Annual Summary (2019-20)">
+<meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/annual_summary_202006/index.html">
+<meta property="og:site_name" content="Han's Blog">
+<meta property="og:description" content="在这篇文章中，我将照惯例总结在最近一年的工作和研究中的心得体会。在这次年度总结中，我想要讨论的主题是尺度。In this post, as usual, I will summarize my experience in formulating and tackling the problems in work and research in the past year. The topic of">
+<meta property="og:updated_time" content="2020-07-01T15:13:23.048Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Annual Summary (2019-20)">
+<meta name="twitter:description" content="在这篇文章中，我将照惯例总结在最近一年的工作和研究中的心得体会。在这次年度总结中，我想要讨论的主题是尺度。In this post, as usual, I will summarize my experience in formulating and tackling the problems in work and research in the past year. The topic of">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blogs/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/annual_summary_202006/"/>
+
+
+
+
+
+  <title>Annual Summary (2019-20) | Han's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blogs/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Han's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Thoughts on the normative and descriptive perspectives of human decision-making behavior.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blogs/." rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blogs/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blogs/archives" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blogs/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-scribbles">
+          <a href="/blogs/scribbles" rel="section">
+            
+            Scribbles
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2020/annual_summary_202006/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blogs/images/pics/1.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Han's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Annual Summary (2019-20)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-21T12:00:00+08:00">
+                2020-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blogs/categories/Reflection/" itemprop="url" rel="index">
+                    <span itemprop="name">Reflection</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在这篇文章中，我将照惯例总结在最近一年的工作和研究中的心得体会。在这次年度总结中，我想要讨论的主题是<strong>尺度</strong>。<br>In this post, as usual, I will summarize my experience in formulating and tackling the problems in work and research in the past year. The topic of this post is <strong>scale</strong>.</p>
+<a id="more"></a>
+<h2 id="建模的尺度-Scale-in-General-Modeling"><a href="#建模的尺度-Scale-in-General-Modeling" class="headerlink" title="建模的尺度 Scale in General Modeling"></a>建模的尺度 Scale in General Modeling</h2><p>在哲学中，关于问题分析的尺度存在一组经典的对偶(duality)：整体论和还原论。笼统地来说，前者认为系统整体是不可分割的，试图从宏观集计的角度理解系统；后者则认为系统整体由个体组成，通过理解和模拟个体行为，可以完全复现系统整体的表现。如果将分析尺度看成是一个一维坐标，那么上述两种理论将处于坐标轴的两端；中间的坐标则可对应为：对系统的不同子模块选用不同的理论/分析尺度。下面，我将简单地分析整体论、还原论以及其他综合分析尺度在建模(modeling)和数据推断(inference)任务上的优缺点：<br>In philosophy, there is a classic duality regarding the scale in modeling: holism and reductionism. Broadly speaking, people taking the former perspective think that the system as a whole is inseparable, and they try to understand the system with aggregated statistics; while people taking the latter perspective think that the system is composed of individual elements, and the behavior of the system can be fully reproduced by understanding and simulating individual behaviors. If we regard the modeling scale as a coordinate on an axis, then the above two perspectives will be at the ends of the axis, while a coordinate in the middle may correspond to a model that takes different scales for different modules of the system. Next, I will briefly summarize the advantages and disadvantages of holism, reductionism, and other mixed-scale approaches in tasks of modeling and statistical inference:</p>
+<ol>
+<li>整体论的问题：<br>Problems of holism:<ul>
+<li>从建模的角度：从整体的角度描述系统，容易受限于认知和表达能力，忽略一些微观因素的影响，导致模型与观测结果不相符。这种问题更容易随着观测数据的来源场景变化而出现（在机器学习中，通常称为<strong>泛化性</strong>不佳）。<br>A holistic model of the system may miss some important microscopic factors, resulting in inconsistency between the model and observations. This problem is likely to occur when the generation mechanism of the observational data changes frequently (this is often referred to as lack of <strong>generalization</strong> in the machine learning community).</li>
+<li>从统计推断的角度：整体论思维更容易被数据欺骗；一个简单的例子是Simpson悖论，即数据分布的变化会影响宏观结论。<br>From the perspective of statistical inference, holism is likely to be deceived by data and observations. An example is Simpson’s paradox, i.e., variations in microscopic data distributions will greatly affect macroscopic conclusions.</li>
+</ul>
+</li>
+<li>还原论的问题：<br>Problems of reductionism:<ul>
+<li>从建模的角度，还原论需要考虑大量微观层面的细节，因此分析和计算的复杂度很高。<br>A reductive model of the system generally needs to consider many microscopic details, so the computational complexity will be very high.</li>
+<li>在建立微观模型时，一些微观行为模式可能受到具体环境的影响。例如，在用户与app交互中，其点击行为会受到app中跳转设计的影响。这导致对微观实际行为的直接建模通常是很难复用的：app设计微小的变化可能导致用户行为链路的整体改变。虽然可以基于还原论的思路尝试进一步抽象出用户在不同点击行为背后的同一套选择决策行为模式，但这往往是计算上不可行的。<br>Some microscopic phenomena/behaviors may be highly correlated with the underlying environments, so the microscopic models may be difficult to generalize to different contexts. For example, users’ click behavior on an App may change completely when the designer makes minor changes to the App. Although it is plausible to further model the meta-decision-making behavior behind different click behaviors (which is itself another reductive approach), this is often computationally intractable.</li>
+<li>个体微观模型的准确性不一定有充分的代表性：在一些场合中，即使微观模型的预测误差很小，但微观结果集计在一起后与宏观观测结果相比仍会出现较大误差。这可能是由于受限于认知和分析复杂程度，建模中缺少了重要的微观关联机制导致的（e.g., 随机变量各自的边缘分布不等价于整体的联合密度分布）。关于该问题的更多思考可以参考著名的“More Is Different”论文以及后续相关讨论。<br>The accuracy of individual microscopic models may not be representative in the macroscopic analysis. In some cases, even if the prediction errors of the microscopic models are small, there will still be large discrepancies between the aggregations of microscopic predictions and macroscopic observations. This may be due to the unawareness of important microscopic interactions (for example, the marginal distribution of each random variable is not equivalent to the overall joint density distribution). Interested readers can refer to the famous “More Is Different” paper for more related discussions.</li>
+</ul>
+</li>
+<li>一种综合利用宏微观尺度的建模思路是先建立整体模型，然后对于模型与观测数据存在差异的地方，引入微观模型进行修正。这种建模思路的好处在于单次建模执行/分析成本低，可以快速迭代；但是模型的准确度主要依赖于反馈，在尝试成本高的场合不实用。<br>One mixed-scale modeling approach is to first develop a holistic model, and then introduce microscopic corrections for the differences between the holistic model and observations. The advantage of this approach is that the analysis cost of each modeling attempt is low (because the model is mostly holistic), so we can quickly evaluate and improve the model; however, the performance of this approach relies heavily on feedback, so it is impractical when the trial and error cost is high.</li>
+<li>另一种多尺度建模思路则是先从微观角度出发建立模型/仿真，然后逐步通过宏观近似模型来替代微观仿真。例如，在仿真系统设计中，一种常见的做法是用排队论的理论结果替代对随机事件的仿真，以节省计算量。这种建模思路只能解决还原论的计算效率问题，并不能消除宏微观机制之间潜在的差异。<br>Another mixed-scale modeling approach is to first establish a reductive (simulation) model, and then gradually replace microscopic models with macroscopic approximations. For example, a common practice in the design of queueing simulation systems is to replace the simulation of random events with the theoretical results from the queueing theory to save computational cost. However, this modeling idea can only alleviate the computational problem of reductionism; it cannot eliminate the potential gap between the macroscopic and the microscopic mechanisms.</li>
+</ol>
+<p>通过上述分析可以看出，如何针对具体任务选择合适的分析尺度以及建模元素是重要且困难的。下面，我将结合<strong>网约车匹配系统的建模与仿真</strong>这一场景讨论几个建模案例。在去年的总结中，我曾经介绍过Arnott和Weyl的（单区域）静态均衡模型；该模型是一个宏观模型，主要建模假设基于基础事实和简单函数关系，因此对建模误差和环境变化鲁棒，而且容易做实时监控和调整。但是，在很多任务中人们需要分析微观决策的影响，该模型由于尺度过大不适用；故需要尝试在该模型的基础上按需引入一些微观细节。那么，引入哪些细节是比较合适的呢？在下面的讨论中，我将通过模型状态的复杂度对各建模假设进行分析对比。我将主要关注供给相关状态的复杂度：这是网约车系统中的主要复杂度来源。注意在Arnott和Weyl的基础模型中，供给相关状态只有两个：总供给水平$D$和可用供给水平$I$。<br>According to the above discussions, choosing an appropriate scale in modeling is important but difficult. Next, I will further elaborate on this point through several modeling cases in the study of <strong>modeling and simulations of ride-hailing matching systems</strong>. The discussion will be based on Arnott’s static equilibrium model, which is (nearly) the most important model in this research topic and I’ve mentioned it in last year’s summary. This basic model has two major advantages: first, it is a simple macroscopic model, so it is easy to compute; second, its major modeling assumptions are based on basic facts, so it is robust to model misspecifications and environmental changes. However, in many cases, people need to analyze the impact of microscopic actions, and they cannot apply this basic model because of its scale. Our question is: what is the best way to extend this basic model to cover the microscopic details?<br>In the following discussion, I will analyze and compare various modeling approaches through the complexity of states in the model. I will focus on the supply-related states, which is the major source of modeling complexity in the ride-hailing system. One should note that in the basic model, there are only two supply-related states (both are scalar): the total supply $D$ and the available supply $I$.</p>
+<ol>
+<li>动态分析（时间细分）。通过引入时间维度，可以分析输入随时间动态变化时系统的演化情况，也可以评估静态均衡的收敛情况。引入时间维度后，供给状态将扩展为$D_t$和$I_t$（对每个时间片$t$），复杂度与时间片个数$N_t$正相关。<br>Dynamic analysis (heterogeneity in time). By introducing the time dimension, we can analyze the evolution of the system and study the convergence properties of static equilibrium. The supply-related states will now become $\{D_t\}$ and $\{I_t\}$ ($t$ for each time slice), which means that the complexity is proportional to the number of time slices $N_t$.</li>
+<li>区域细分。通过引入区域维度，可以建模区域的异质性：例如，某些区域路网更密或更拥堵。引入区域维度后，供给状态将扩展为$D_l$和$I_l$（对每个区域$l$），复杂度与区域个数$N_l$正相关。当供给是独占形式（快车模式）、且可用供给的流向是一个确定的函数关系（e.g., 只与当前区域可用供给有关）时，通过上述$2N_l$个状态变量足以描述系统均衡（<strong>思考题：</strong>为什么？）。但当供给是共享形式（拼车模式）时，一个司机可能同时处于可用和服务状态。此时，一个区域中的可用供给并不是同质(homogeneous)的，每个司机的流向受到当前行程起终点的影响（若有）。因此，若要准确描述系统演化规律，则需要进一步引入新的状态变量。例如，为计算下一个时间片各区域可用供给$I_l$的变化情况，需要将各区域$l$的可用供给$I_l$按当前行程目的地$l_d$拆分成$I_{l,l_d}$。<br>Heterogeneity in space. By introducing the space dimension, we can model the difference in congestion or road network density across regions. The supply status will now become $\{D_l\}$ and $\{I_l\}$ ($l$ for each region), and the complexity is proportional to the number of regions $N_l$. When the supply is exclusive (serving one passenger at one time), and the relocation of available supply can be described by a deterministic function (e.g., as a function of the available supply in the current region), the above $2N_l$ state variables are sufficient to describe the system equilibrium (<strong>Questions: Why?</strong>). However, when the supply can be shared among passengers, a driver may be both available and en-route at the same time. In this case, the available supply in a region is not homogeneous: the movement of each driver is affected by the destination of the current trip (if any). Therefore, if we want to describe the system dynamics accurately, we need to introduce new state variables, such as splitting the available supply $I_l$ in a region $l$ into $I_{l,l_d}$ according to destinations $l_d$.</li>
+<li>随机性。排队理论充分地展示了微观随机性对宏观现象的影响力。因此，有必要分析引入随机性是否会对宏观模型的分析结论产生显著影响。但是，对随机性形式的指定，又会对模型的复杂度造成很大的影响。例如，如果假设行程时间服从log normal分布，则该随机性并不是无记忆性的（行程结束概率$P(T\leq t+1|T&gt;t)$对于处于不同时间节点$t$的行程是不一样的），导致在描述司机状态时，需要引入每个忙碌司机的行程起始时间/已经过时间，即将$l$区域的可用供给$I_{l}$进一步按行程已经过时间拆分成$I_{l,t}$。而在传统的M/M/1排队模型中，行程时间的随机性服从指数分布（无记忆性），故只需对每个区域$l$增加忙碌供给$R_l$的状态，即可完成对供给状态转移的描述。相比之下，采用log normal分布会造成整个模型的状态复杂度有显著上升，进而使得稳态分布的分析变得非常困难。<br>Stochasticity. Queueing theory demonstrates the impact of microscopic stochasticity on macroscopic phenomena; therefore, it is necessary to study whether the existence of stochasticity will significantly change the conclusion of the deterministic model. However, the specification of the stochasticity can greatly affect the modeling complexity. For example, if we assume that the travel times of trips follow the log-normal distribution, then these random variables are not memoryless (i.e., the conditional probability $P(T\leq t+1|T&gt;t)$ is not the same for different $t$); so, to describe the system dynamics accurately, we need to split the available supply $I_l$ in a region $l$ into $I_{l,t}$ according to elapsed time during trips $t$. But if we use the traditional M/M/1 queueing model, then the travel times follow the exponential distribution and are memoryless, so we can omit the time dimension in the states. Therefore, the use of the log-normal distribution will substantially increase the complexity of the model, making the analysis of the steady-state distribution very difficult.</li>
+</ol>
+<h2 id="决策行为的尺度-Scale-in-Decision-Behavior"><a href="#决策行为的尺度-Scale-in-Decision-Behavior" class="headerlink" title="决策行为的尺度 Scale in Decision Behavior"></a>决策行为的尺度 Scale in Decision Behavior</h2><p>在决策行为建模方面，近段时间，我基于<strong>尺度</strong>的角度又产生了一些新的分析思路。具体来说，我们可以认为，<br>Recently, I have some new ideas about decision-making behavior modeling from the perspective of <strong>scale</strong>. Specifically, we can think that</p>
+<ul>
+<li>当一个决策者(Decision-Maker, DM)作出决策行为时，该DM往往处于一个多任务环境；<br>a decision-maker (DM) usually makes decisions in a multitasking environment;</li>
+<li>因此，DM实际上求解的是一个多阶段/多层级问题：DM先决定对每个任务分配多少精力（下称<strong>注意力预算</strong>），然后对每个任务在各自的<strong>预算</strong>范围内进行最优求解。<br>therefore, the DM solves multi-stage decision problems: the DM first optimize the <strong>attention budget</strong> allocation among tasks, and then optimize the decision for each task within the corresponding <strong>budget</strong>.</li>
+</ul>
+<p>这意味着，<br>which means,</p>
+<ul>
+<li>不同任务的<strong>相对尺度</strong>——包括重要程度和重复频率——会影响DM的注意力分配：例如，对于同等重要的一组高低频任务，低频任务单次决策的重要性更高，因此相比于平均分配注意力，DM更优的做法是为单次低频任务分配更多注意力预算（采集更多信息以进行更精准的决策），而给单次高频任务更少注意力预算（通过反馈控制的方式迭代决策行为）。<br>the <strong>relative scale</strong>, including utility and frequency, of different tasks, will affect the attention allocation decisions of the DM: for example, between two tasks of equal importance but different frequencies, the importance of every single decision for the low-frequency task is higher; so instead of allocating attention evenly between the two tasks, the DM should allocate more attention budget to decisions for the low-frequency task (to collect more information and make more optimization over decisions), and less attention budget to decisions for the high-frequency task (and update the decision-making behavior via feedback control).</li>
+<li>注意力预算的变化会改变DM对具体任务的决策目标（效用、决策思考成本）和约束（决策选项、参考信息），从而导致实际决策行为与理论最优行为之间存在系统性的偏差。这种偏差可以进一步通过搜索成本、不完全信息等行为理论进行解释，具体内容可以参考我去年年初写的<a href="https://hanqiu92.github.io/blogs/2019/decision_making_modeling_201901/">关于决策行为建模的文章</a>。<br>the attention budget will affect the DM’s objectives (utility and decision cost) and decision constraints (decision options and other information) for specific tasks, resulting in a systematic deviation between the actual decision behavior and the theoretical optimal (<strong>normative</strong>) behavior. Such deviation may be then explained by search friction, incomplete information, and several other behavioral theories; interested readers can refer to <a href="https://hanqiu92.github.io/blogs/2019/decision_making_modeling_201901/">this blog post</a> for a more detailed discussion.</li>
+</ul>
+<p>下面，我将基于上述分析框架，对一些常见的决策行为进行简单讨论。<br>Next, I will briefly discuss several common decision-making behaviors according to the above analysis framework.</p>
+<ul>
+<li>消费者选择行为：根据上述框架，对于每一次消费行为，消费者所分配的注意力水平与该次消费的总效用（短期+长期）有关。而在marketing文献中，消费者的效用通常包括三部分：搜索成本（了解有哪些选项）、决策成本（决策中考虑的选项越多，成本越高）和选项效用。<br>Consumer choice behavior: according to the above framework, for each consumption decision, the attention budget allocated by the consumer is related to the consumer’s total utility (short-term + long-term) of the consumption; while in the marketing literature, the (short-term) consumer utility usually consists of three parts: search cost (the more knowledge about available options, the higher the cost), decision cost (the more options considered in decisions, the higher the cost) and utility of the selected option.<ul>
+<li>高频消费（例如餐饮）的决策成本相对搜索成本更高，因此消费者更倾向于采用一种长期决策成本较低的决策方式：通过调研新产品扩大候选集合、通过heuristic进行决策快速试错、再根据消费体验从候选集合中剔除劣质的产品。如果所有产品选项在一定周期内保持稳定，那么消费者的决策行为往往会收敛到最优决策，此时可以选用效用最大化模型进行建模。如果产品选项不断更新迭代，那么消费者的决策行为可能与最优决策之间存在较为稳定的差距，我们可以进一步在效用最大化模型中引入熵来刻画决策成本。<br>In high-frequency consumptions (such as dining), the decision cost is generally higher than the search cost, so consumers tend to adopt a decision-making approach that has lower decision cost in long-term: first, to expand the candidate set by investigating new products; second, to make fast trial and error decisions through heuristic; and finally, update the candidate set according to the consumption experience. If (the properties of) all options remain stable for a certain period, then the consumer’s decision behavior should be able to converge to the optimal decision, so we can apply the utility-maximization model. If the products are continuously changing, then there may be a relatively stable gap between the consumer’s behavior and the optimal decision, and we may consider introducing an entropy term in the utility-maximization model to characterize the decision cost.</li>
+<li>对于低频大额消费行为，消费者会将注意力更多分配在搜索行为上，以缓解信息不对称。因此，在建模中我们可以选用引入了搜索成本的效用最大化模型。<br>For low-frequency large-value consumptions, consumers will pay more attention to searching and information collection to alleviate information asymmetry. Therefore, in modeling, we can consider a utility-maximization model that takes the search cost into account.</li>
+<li>低频小额消费行为（例如日用品）的效用相对较低，因此消费者分配的注意力预算低，往往使用heuristic进行决策，结果与最优决策的差距较大。然而，这类消费行为的样本数量通常较大，可采用ML模型进行建模。<br>The utility of low-frequency small-value consumptions (such as daily necessities) is relatively low, so consumers tend to allocate low attention budgets and often use heuristic for decisions, resulting in a large gap between the actual behavior and the optimal decision. However, datasets of this type of consumer behavior are usually large, so we can apply ML models for estimation.</li>
+</ul>
+</li>
+<li>出行者行为：在城市交通出行场景中，一个导致决策行为模式差异的主要因素是出行频次。<br>Urban traveler behavior: travel frequency is one of the major factors for the differences in behavior patterns.<ul>
+<li>对于高频出行需求（例如通勤），出行者单次决策影响长期收益，因此会将分配更多注意力预算于决策中，作出的决策行为更接近最优决策。此时，在建模中，我们可以应用效用最大化模型。历史经验表明，这类模型在描述出行者长期行为（规划中较为常用）上通常能够取得比较好的效果。<br>For high-frequency travel demand (e.g., commuting), every single decision of traveler will affect the long-term utility, so the traveler tends to allocate high attention budgets and the decision behavior is often close to the optimal one. In this case, we can use the utility-maximization model; according to my experience, this type of model can usually obtain good estimates of travelers’ long-term behavior.</li>
+<li>相比之下，临时出行需求只对应单次出行的效用，因此出行者会分配更少注意力预算，主要通过heuristic生成决策行为，与最优决策存在一定差距。此时，在建模中运用效用最大化模型往往会不够准确。对于这种出行需求，动态定价/需求引导的收益空间通常更大。<br>In contrast, for temporary travel demand, every single decision only affects the immediate utility, so the traveler will allocate low attention budgets and often use heuristic for decisions, resulting in a gap between the actual behavior and the optimal decision. In this case, the utility-maximization model is often inaccurate; however, we will have more opportunities for dynamic pricing and demand management.</li>
+</ul>
+</li>
+<li>劳动供给行为：劳动者有较大的动机以及较多的时间对劳动供给决策进行优化，因此其决策行为通常与最优决策一致；但是由于个性化偏好，不同劳动者的最优决策会存在一定差异。在建模过程中，我们可以在效用最大化模型中引入异质性特征，或者直接建立半结构化模型。<br>Labor supply behavior: labor workers have motivation and time budget to optimize labor supply decisions, so their behavior is usually consistent with optimal decisions; however, due to personal preferences, the optimal decisions for each worker can be quite different from each other. Therefore, in the modeling process, we should consider introducing personal features into the utility-maximization model, or develop a semi-structured model directly for the heterogeneity.</li>
+<li>组织决策行为：受到管理成本的约束，组织整体目标往往通过奖惩设计及分配机制拆解分发给个体，然后个体通过自身的效用最大化决策行为推动整体目标向纳什均衡演化。不过，个体在各子任务上的注意力分配的差异可能会导致最终均衡位置不同，在建模过程中可能需要考虑这一点。<br>Organizational decision behavior: constrained by management costs, the organization usually decomposes the overall goals into parts and distributes them to individuals through reward design and allocation mechanisms; then, the utility-maximizing behavior of individuals will push the overall goals towards the planned Nash equilibrium. However, heterogeneities in individual attention allocation mechanisms may lead to different overall equilibriums, so it should be considered in the modeling process.</li>
+</ul>
+<h2 id="总结与后续方向-Summary-and-Future-Directions"><a href="#总结与后续方向-Summary-and-Future-Directions" class="headerlink" title="总结与后续方向 Summary and Future Directions"></a>总结与后续方向 Summary and Future Directions</h2><p>综上所述，在近一年中，我从<strong>尺度</strong>的角度建立了以下认知：<br>In summary, in the past year, I have established the following understanding from the perspective of <strong>scale</strong>:</p>
+<ul>
+<li>在建模任务中，选取合适的分析尺度很重要。因此，建模者有必要锻炼在不同尺度之间灵活转换的能力。例如，能够对微观行为进行宏观抽象、对宏观现象作出微观解释。<br>In general modeling, it is important to choose the appropriate scale. Therefore, modelers should be able to think from different scales and switch between them flexibly. For example, we should be able to develop macroscopic abstractions of microscopic behaviors and microscopic interpretations of macroscopic phenomena.</li>
+<li>在决策行为研究中，我们可以通过分析具体决策任务的<strong>尺度</strong>，选用适当的统计推断模型和控制手段。<br>In decision behavior modeling, we can select appropriate models, statistical inference tools, and control methods by analyzing the <strong>scale</strong> of the underlying decision tasks.</li>
+<li>在一定程度上，决策行为与建模问题构成了一组对偶：<br>To a certain extent, decision behavior and modeling constitute a duality:<ul>
+<li>从规范性(normative)的角度，对决策行为的理解与优化能够帮助我们选择更好的建模手段。（特别地，注意力分配问题指导我们在建模中应平衡在不同尺度上花费的精力，避免过度追求精细模型，陷入技术细节中。）<br>From a normative perspective, understanding and optimization methods of decision behavior can help us choose better modeling methods. For example, the attention allocation problem guides us to balance the effort spent on different scales in modeling to avoid excessive emphasis on technical details.</li>
+<li>从描述性(descriptive)的角度，一般建模中的方法论可以应用于对决策行为的建模中。<br>From a descriptive perspective, the methods in general modeling can be readily applied to the modeling of decision behavior.</li>
+</ul>
+</li>
+<li>乐观地来看，这种对偶可能提供了一种以自举(bootstrap)的方式构建和改进认知、从而实现智能(intelligence)的过程。<br>Optimistically, this duality may provide a method to construct and improve cognition in a bootstrap manner to achieve intelligence.</li>
+</ul>
+<p>在接下来的一年中，我预期将分配一些精力用于在以下方向中进行尝试：<br>In the next year, I plan to allocate some attention to the following directions:</p>
+<ul>
+<li>在决策行为建模方面，基于上述注意力分配框架做一些实证工作。<br>In decision behavior modeling, try to do some empirical studies under the above attention allocation framework.</li>
+<li>根据个人观察，许多工作中的建模问题会采用多尺度的合作机制进行处理：先将问题拆解成多个不同尺度的子问题，将子问题分配给不同团队，最后再将各部分结论进行整合。从规范性的角度，可以研究如何通过价格理论和机制设计对这类合作机制进行改进；从描述性的角度，可以尝试分析并建模多智能体系统(Multi-agent System, MAS)和交互场景中的决策行为。<br>According to my observation, many real-world modeling problems are processed by a multi-scale cooperation mechanism: first decompose the problem into multiple sub-problems of different scales, then assign these sub-problems to different teams, and finally summarize the results of sub-problems to reach a final conclusion. From a normative perspective, we can study how to improve such cooperation mechanisms through price theory and mechanism design; from a descriptive perspective, we can analyze and model decision behavior in these multi-agent systems (MAS).</li>
+<li>注意到前述多层决策框架与元学习和分层强化学习很相似，因此后续可以考虑通过RL等方式建模DM长期的注意力分配行为。特别地，我在工作场合中注意到，许多工作模式背后可能对应个性化的目标设定(target setting)和奖励塑形(reward shaping)；或许，我们可以通过系统性地优化奖励和目标的生成机制，来提高自身的决策效率。<br>Because the aforementioned multi-stage decision framework is quite similar to meta-learning and hierarchical reinforcement learning, in the future we can consider using RL methods to model the DM’s long-term attention allocation behavior. In particular, I noticed that many labor working patterns may correspond to personalized target setting and reward shaping mechanisms; therefore, perhaps we can improve our decision-making efficiency by systematically optimizing the generation mechanism of rewards and goals.</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blogs/tags/Behavior-Modeling/" rel="tag"># Behavior Modeling</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blogs/2020/IP_BB_solver_2_202006/" rel="next" title="How to Develop Your Own Branch & Bound Solver II: Branching & Node Selection Methods">
+                <i class="fa fa-chevron-left"></i> How to Develop Your Own Branch & Bound Solver II: Branching & Node Selection Methods
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blogs/2020/IP_BB_solver_3_202007/" rel="prev" title="How to Develop Your Own Branch & Bound Solver III: Cut & Bound Tightening">
+                How to Develop Your Own Branch & Bound Solver III: Cut & Bound Tightening <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="Han Qiu" />
+            
+              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blogs/archives">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blogs/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blogs/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://hanqiu92.github.io" target="_blank" title="Homepage">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Homepage</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hanqiu92" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-github"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:qiuhan9212@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#建模的尺度-Scale-in-General-Modeling"><span class="nav-number">1.</span> <span class="nav-text">建模的尺度 Scale in General Modeling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策行为的尺度-Scale-in-Decision-Behavior"><span class="nav-number">2.</span> <span class="nav-text">决策行为的尺度 Scale in Decision Behavior</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结与后续方向-Summary-and-Future-Directions"><span class="nav-number">3.</span> <span class="nav-text">总结与后续方向 Summary and Future Directions</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qiu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blogs/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blogs/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blogs/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blogs/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blogs/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://hanqiu92.github.io/blogs/2020/annual_summary_202006/';
+          this.page.identifier = '2020/annual_summary_202006/';
+          this.page.title = 'Annual Summary (2019-20)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hanqiu92.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
