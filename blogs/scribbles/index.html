@@ -83,19 +83,16 @@
 
 
 
-<meta name="description" content="ModelingMethodology(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。(20/02/24) 建模过程中，要分析预测结果在不同context下的稳定性以及对参数的敏感度。
-Structure Design(19/10/11) 图卷积网络(GCN)较适用于建模局">
+<meta name="description" content="ModelingMethodology(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。(20/02/24) 建模过程中，要分析预测结果在不同context下的稳定性以及对参数的敏感度。(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Scribbles">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/scribbles/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="ModelingMethodology(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。(20/02/24) 建模过程中，要分析预测结果在不同context下的稳定性以及对参数的敏感度。
-Structure Design(19/10/11) 图卷积网络(GCN)较适用于建模局">
-<meta property="og:updated_time" content="2020-07-04T05:27:03.692Z">
+<meta property="og:description" content="ModelingMethodology(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。(20/02/24) 建模过程中，要分析预测结果在不同context下的稳定性以及对参数的敏感度。(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑">
+<meta property="og:updated_time" content="2020-07-13T13:56:37.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scribbles">
-<meta name="twitter:description" content="ModelingMethodology(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。(20/02/24) 建模过程中，要分析预测结果在不同context下的稳定性以及对参数的敏感度。
-Structure Design(19/10/11) 图卷积网络(GCN)较适用于建模局">
+<meta name="twitter:description" content="ModelingMethodology(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。(20/02/24) 建模过程中，要分析预测结果在不同context下的稳定性以及对参数的敏感度。(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑">
 
 
 
@@ -263,7 +260,7 @@ Structure Design(19/10/11) 图卷积网络(GCN)较适用于建模局">
       <div class="post-body han-init-context">
         
         
-          <h2 id="Modeling"><a href="#Modeling" class="headerlink" title="Modeling"></a>Modeling</h2><h3 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h3><p>(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。<br>(20/02/24) 建模过程中，要分析预测结果在不同context下的稳定性以及对参数的敏感度。</p>
+          <h2 id="Modeling"><a href="#Modeling" class="headerlink" title="Modeling"></a>Modeling</h2><h3 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h3><p>(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。<br>(20/02/24) 建模过程中，要分析预测结果在不同context下的稳定性以及对参数的敏感度。<br>(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑通过启发式方法近似求解优化问题来节省计算开销——当然，问题是优化结果对输入数据不一定可导。</p>
 <h3 id="Structure-Design"><a href="#Structure-Design" class="headerlink" title="Structure Design"></a>Structure Design</h3><p>(19/10/11) 图卷积网络(GCN)较适用于建模局部动力系统，似乎不太适用于端到端直接预测。<br>(19/12/28) 如何保持一个输入特征（动作action）的偏序：</p>
 <ol>
 <li>声明强结构、引入隐变量/参数，缺点在于计算复杂，容易mis-specify；</li>
@@ -274,7 +271,7 @@ Structure Design(19/10/11) 图卷积网络(GCN)较适用于建模局">
 <li>进一步考虑拆分real prob和subjective prob来引入optimistic因素；参考saliency theory。</li>
 </ol>
 <h2 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h2><h3 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h3><p>(20/07/04) 树/SVM等基于分类的模型是以split为核心（桶内数据点直接平均作为预测值），复杂度与桶数量有关；boosting进一步提供了高效交叉分桶的方式。LR/NN等基于回归的模型是以fit为核心（每个数据点贡献自己的loss影响整体模型），复杂度与模型参数有关。<strong>问题：</strong>是否从duality角度存在优化空间？例如，adaptive complexity/model selection？</p>
-<h3 id="Causal-Inference"><a href="#Causal-Inference" class="headerlink" title="Causal Inference"></a>Causal Inference</h3><p>(20/01/01) 反事实(counterfactual)误差分析的套路是将$l(y_1-y_2,\hat{y}_1-\hat{y}_2)$拆分为$l(y_1,\hat{y}_1)$和$l(y_2,\hat{y}_2)$，再通过原有模型误差分析套路生成bound。主要区别在于需要分析决策倾向性(propensity score) $p(a|s)$对于样本分布的影响。<br>(20/07/01) treatment effect: 如果r(s,a)中a是连续的，而且数据量足够大，那么对于每个s，对a的局部变化的影响的刻画是可接受的；否则，需要对样本关于s维度进行匹配，以让模型更好地捕捉a的影响。匹配方式可以考虑knn，PSM，随机森林等方法。<br>(20/07/01) PSM是一种常用方法，但是效果相当于做complete random实验而不是block random实验，因此当达到了full random效果后，随着过滤样本数增大（差异评估阈值下降）时，使用PSM反而增加了数据集之间（在特征层面上）的差异，因为样本量下降了。相反，直接对特征维度进行matching可以直接刻画数据集间的差异。（但是在数据量充分的情况下这种现象不太可能发生）<br>(20/07/01) generalized random forest: RF可以看成是非参生成局部相似性度量的方法，因此可以通过设计RF split和fit的优化目标来解决不同的task。理论分析所用到的技术不清楚。<br>(20/07/01) dragonnet: 用propensity score来估计ATE，可以降低估计方差，但是牺牲了个人维度属性，个性化估计会有偏</p>
+<h3 id="Causal-Inference"><a href="#Causal-Inference" class="headerlink" title="Causal Inference"></a>Causal Inference</h3><p>(20/01/01) 反事实(counterfactual)误差分析的套路是将$l(y_1-y_2,\hat{y}_1-\hat{y}_2)$拆分为$l(y_1,\hat{y}_1)$和$l(y_2,\hat{y}_2)$，再通过原有模型误差分析套路生成bound。主要区别在于需要分析决策倾向性(propensity score) $p(a|s)$对于样本分布的影响。<br>(20/07/01) treatment effect: 如果r(s,a)中a是连续的，而且数据量足够大，那么对于每个s，对a的局部变化的影响的刻画是可接受的；否则，需要对样本关于s维度进行匹配，以让模型更好地捕捉a的影响。匹配方式可以考虑knn，PSM，随机森林等方法。<br>(20/07/01) PSM是一种常用方法，但是效果相当于做complete random实验而不是block random实验，因此当达到了full random效果后，随着过滤样本数增大（差异评估阈值下降）时，使用PSM反而增加了数据集之间（在特征层面上）的差异，因为样本量下降了。相反，直接对特征维度进行matching可以直接刻画数据集间的差异。（但是在数据量充分的情况下这种现象不太可能发生）<br>(20/07/01) generalized random forest: RF可以看成是非参生成局部相似性度量的方法，因此可以通过设计RF split和fit的优化目标来解决不同的task。理论分析所用到的技术不清楚。<br>(20/07/01) dragonnet: 用propensity score来估计ATE，可以降低估计方差，但是牺牲了个人维度属性，个性化估计会有偏<br>(20/07/11) IPM：类似于正则化，限制中间特征的差异性，强化treatment的作用；但是后续步骤的计算需要足够简单，否则模型可以hack ipm。</p>
 <h2 id="Decision-amp-Optimization"><a href="#Decision-amp-Optimization" class="headerlink" title="Decision &amp; Optimization"></a>Decision &amp; Optimization</h2><h3 id="Methodology-1"><a href="#Methodology-1" class="headerlink" title="Methodology"></a>Methodology</h3><p>(19/06/02) 在predict-then-optimize框架中，优化/控制器的迭代频率最好与预测器的迭代频率一致。例如，如果决策是实时的，那么模型最好保持相对实时的更新；否则一段时间过后数据分布可能会变化，导致模型预估精度下降。</p>
 <p>(19/07/02) OR在实际应用中的思考：</p>
 <ol>
@@ -430,7 +427,7 @@ enter/leave区分primal/dual，分别进enter.cpp和leave.cpp；dual simplex是�
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

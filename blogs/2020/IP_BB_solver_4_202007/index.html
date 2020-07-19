@@ -83,16 +83,16 @@
 
 
 
-<meta name="description" content="Unbalanced Branching and EncodingConsider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in">
+<meta name="description" content="在这篇文章中，我将对本系列之前的内容进行总结，并针对MIP的求解方法设计及求解器的使用给出一些个人理解和建议。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Integer Programming Note III: Encoding & Embedding">
-<meta property="og:url" content="http://hanqiu92.github.io/blogs/2016/IP3_201610/index.html">
+<meta property="og:title" content="How to Develop Your Own Branch & Bound Solver IV: Summary">
+<meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_4_202007/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="Unbalanced Branching and EncodingConsider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in">
-<meta property="og:updated_time" content="2019-06-01T11:16:06.379Z">
+<meta property="og:description" content="在这篇文章中，我将对本系列之前的内容进行总结，并针对MIP的求解方法设计及求解器的使用给出一些个人理解和建议。">
+<meta property="og:updated_time" content="2020-06-29T02:25:13.231Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Integer Programming Note III: Encoding & Embedding">
-<meta name="twitter:description" content="Unbalanced Branching and EncodingConsider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in">
+<meta name="twitter:title" content="How to Develop Your Own Branch & Bound Solver IV: Summary">
+<meta name="twitter:description" content="在这篇文章中，我将对本系列之前的内容进行总结，并针对MIP的求解方法设计及求解器的使用给出一些个人理解和建议。">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2016/IP3_201610/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_4_202007/"/>
 
 
 
 
 
-  <title>Integer Programming Note III: Encoding & Embedding | Han's Blog</title>
+  <title>How to Develop Your Own Branch & Bound Solver IV: Summary | Han's Blog</title>
   
 
 
@@ -255,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2016/IP3_201610/">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2020/IP_BB_solver_4_202007/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Integer Programming Note III: Encoding & Embedding</h1>
+          <h1 class="post-title" itemprop="name headline">How to Develop Your Own Branch & Bound Solver IV: Summary</h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-05T00:00:00+08:00">
-                2016-10-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-18T12:00:00+08:00">
+                2020-07-18
               </time>
             
 
@@ -344,34 +344,41 @@
       
 
       
-        <h2 id="Unbalanced-Branching-and-Encoding"><a href="#Unbalanced-Branching-and-Encoding" class="headerlink" title="Unbalanced Branching and Encoding"></a>Unbalanced Branching and Encoding</h2><p>Consider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in standard MIP solver, $x_i$ is first relaxed into continuous variable, and then forced to be integer with B&amp;B. For the constraint above, when we branch on a fractional $x_i$, we have two choices, $x_i=1$ or $x_i=0$, but the result of each branch is different. With $x_i=1$, we immediate know $x_j=0, \forall j\neq i$, even though they are still assumed continuous. But with $x_i=0$, the optimal solution might still contain another fractional $x_j$ and further branching is needed. In extreme case, we need to branch $n-1$ times to locate the optimal integer solution.</p>
+        <p>在这篇文章中，我将对本系列之前的内容进行总结，并针对MIP的求解方法设计及求解器的使用给出一些个人理解和建议。</p>
 <a id="more"></a>
-<p>The basic idea to deal with such unbalanced branching is to encode each $x_i$ and design more efficient branching trees. In the above case, we can consider encoding</p>
-<p>$$\begin{aligned} \sum b_ix_i &amp;= y\\  \sum x_i&amp;= 1\\ y \ &amp;\in \{0,1\}^m, \end{aligned}$$</p>
-<p>in which $b_i\in \{0,1\}^m$ is the encoding for $x_i$.</p>
-<p>Notice that, if we let $m=n$ and $b_i=e_i$, we will recover the original constraint  $\sum_i x_i= 1, x_i\in \{0,1\}$. This encoding is called unary encoding; we already know it is inefficient. What other encoding can we use?</p>
-<p>In practice, two encoding are widely used: binary encoding and incremental encoding. In binary encoding, $m=\lceil log_2n \rceil$ and $b_i$ is selected to be mutually different and balanced in number for each row. An example for $n=4$ is</p>
-<p>$$\begin{pmatrix}0 &amp; 0 &amp; 1 &amp; 1\\0 &amp; 1 &amp; 1&amp; 0 \end{pmatrix} \begin{pmatrix} x_1\\x_2\\x_3\\x_4 \end{pmatrix}=\begin{pmatrix}y_1\\y_2\end{pmatrix}$$</p>
-<p>Now, assume in root LP the optimal solution has $y_1$ fractional. When we branch on $y_1$, we find the branching tree is more balanced: if $y_1=1$, then $x_1$ and $x_2$ are forced to be $0$; if $y_1=0$, then $x_3$ and $x_4$ are forced to be $0$. For $y_2$, the situation is similar. In extreme case, we only need to branch $m$ times, which is much better than unary encoding.</p>
-<p>Incremental encoding is slightly different. We have $m=n-1$, but with $b_i=\sum_{j&lt;i} e_j$. An example for $n=4$ is</p>
-<p>$$\begin{pmatrix}0 &amp; 1 &amp; 1&amp; 1\\ 0 &amp; 0 &amp; 1 &amp; 1\\ 0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix} \begin{pmatrix} x_1\\x_2\\x_3\\x_4 \end{pmatrix}=\begin{pmatrix}y_1\\y_2\\y_3\end{pmatrix}$$</p>
-<p>This encoding implies that $y_1\geqslant y_2\geqslant y_3$. In extreme case (branching from $y_1$ to $y_{n-1}$), we might still need to branch $n-1$ times; but if the problem has good structure, incremental encoding might even be better than binary encoding. For example, consider problem $\min |x|, x\in\{\alpha_i\}$ with both positive and negative $\alpha_i$. If $\alpha_i$ is perfectly ordered $\alpha_1&lt;\alpha_2&lt;\cdots&lt;\alpha_n$ , and we branch on $y_j$ with $\alpha_j&lt;0&lt;\alpha_{j+1}$ , then this branch can lead us to global optimal solution.</p>
-<p>In practice, if you have a good understanding of you problem, you might be able to design an appropriate encoding to speed up branching; but generally binary encoding or incremental encoding will work. In case of SOS1/2 constraints, it is better to define them as “SOS1/2” if you are using CPLEX or Gurobi, since there might be some other black magic to speed up.</p>
-<h2 id="Embedding"><a href="#Embedding" class="headerlink" title="Embedding"></a>Embedding</h2><p>In above discussion, we try to use encoding to improve branching efficiency for certain constraints. Such idea can actually be extended for union of polytope $P=\cup_i P_i$. Consider encoding $H$: $h_i\in\{0,1\}^m$ for each $P_i$. By embedding, we can turn focus to object</p>
-<p>$$P_i’=P_i\times\{h_i\},$$</p>
-<p>Notice that after embedding, $Q=conv(\cup_i P_i’)$ is ideal ($h_i$ characterizes the “extreme” part). So branching is not a major concern if there is no additional constraint. Then what else should we consider?</p>
-<p>Remember that we still need to have a representation of $Q$, and its size (in terms of $H$-representation, the number of constraints) has great impact on LP efficiency. To understand the significance of encoding on size, we consider a simple example $P=\{0\}\cup [1,2]\cup [a,a+0.5]\cup [a+1,a+2.5]$ and binary encoding $H\subseteq \{0,1\}^2$. Now, if we do the embedding</p>
-<p>$$P’=\{0\}\times \{0,0\} \cup [1,2]\times \{0,1\} \cup [a,a+0.5] \times \{1,0\} \cup [a+1,a+2.5] \times \{1,1\} ,$$</p>
-<p>the convex hull $Q$ is a nicely shaped polyhedron. But in case</p>
-<p>$$P’=\{0\}\times \{0,0\} \cup [1,2]\times \{1,1\} \cup [a,a+0.5] \times \{1,0\} \cup [a+1,a+2.5] \times \{0,1\} ,$$</p>
-<p>the convex hull is more complex.</p>
-<p>As dimension grows, such difference becomes more significant. If we select a random encoding to embed, it is possible to have exponential number of constraints. So, we want to use an encoding $H$ that $Q(H)$ has a small number of facet:</p>
-<p>$$H=\arg\min_H(size(Q(H)))$$</p>
-<p>Generally, design of such embedding is ad-hoc and general construction is not viable (think of permutations of $\{P_i\}$). But when $P_i$ admits a natural ordering, we might be able to conclude some techniques in designing embedding. One interesting example is piecewise linear function on $R^1$ (which induces the SOS2 constraints) or $R^2$. It is shown that with proper meshing and ordering, an encoding method called gray code can achieve the logarithm size in $n$. Some related papers can be found in the reference.</p>
-<p>In summary, the advantage of using embedding is that we don’t need to create copies of original variables, which is similar to the non-extended formulations in last post. If the problem and $P_i$ are well defined, embedding provide an efficient way to make those non-extend formulations ideal. For example, to model piecewise linear function on $R^1$, unary embedding is exactly the ideal extension of non-extended $V$-formulation, which is only sharp. But generally such idea is hard to implement.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Vielma, J. P. (2015). Embedding Formulations and Complexity for Unions of Polyhedra. arXiv:1506.01417. Available at: <a href="http://arxiv.org/pdf/1506.01417v2.pdf" target="_blank" rel="external">http://arxiv.org/pdf/1506.01417v2.pdf</a></p>
-<p>Yıldız, S., &amp; Vielma, J. P. (2013). Incremental and encoding formulations for mixed integer programming. Operations Research Letters, 41(6), 654-658.</p>
-<p>Vielma, J. P., &amp; Nemhauser, G. L. (2011). Modeling disjunctive constraints with a logarithmic number of binary variables and constraints. Mathematical Programming, 128(1-2), 49-72.</p>
+<h2 id="分支定界法的基本原理-How-does-B-amp-B-work"><a href="#分支定界法的基本原理-How-does-B-amp-B-work" class="headerlink" title="分支定界法的基本原理 How does B&amp;B work?"></a>分支定界法的基本原理 How does B&amp;B work?</h2><p>对于一个（最小化）混合整数规划(MIP)问题<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \min \ &amp; c^T x \\<br>    s.t. \ &amp; Ax = b, \\<br>           &amp; l \leq x \leq u, \\<br>           &amp; x \in \mathbb{R}^{m_1} \times \mathbb{Z}^{m_2},<br>  \end{aligned}<br>  \label{eq:basic}\tag{1.1}<br>\end{equation}<br>$$</p>
+<p>其对应的线性规划松弛(LP relaxation)问题是指放松问题\eqref{eq:basic}中的整数约束所得的规划问题。该问题可以通过单纯形法或内点法进行高效求解；所得的最优解虽然不一定是原MIP问题的可行解，但是相应的目标值可以作为MIP问题最优目标值的一个下界估计。<br>分支定界法(B&amp;B)的基本原理是将上述LP松弛估计的思路与分治法(divide and conquer)进行结合，不断将原MIP问题切割成子问题并求解，以获得更准确的目标值下界估计和更好的可行解，直至找到最优解为止。具体来说，B&amp;B流程不断重复以下步骤：</p>
+<ol>
+<li>对于一个MIP子问题，求解其LP松弛问题，得到解$x$，并根据相应的目标值更新全局的目标值下界估计；</li>
+<li>如果$x$不是MIP问题的可行解，那么从中选出一个不满足整数约束的变量$j$，并将该变量的可行域从原来的$[l_j,u_j]$切分为$[l_j,\lfloor x_j \rfloor]$和$[\lceil x_j \rceil,u_j]$，从而生成两个新的子问题；然后转到步骤4；</li>
+<li>如果$x$是MIP问题的可行解，那么根据其目标值决定是否更新当前全局最优解(incumbent solution)，然后转到步骤4；</li>
+<li>如果没有达到停止条件、且仍有未处理的子问题，则从中选择一个，然后回到步骤1。</li>
+</ol>
+<p>我们也可以从一个更一般(general)的视角——“外部逼近”(outer approximation)——来理解B&amp;B方法。具体来说，对于一个困难的优化问题<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \min \ &amp; f(x) \\<br>    s.t. \ &amp; x \in P, \\<br>  \end{aligned}<br>  \label{eq:general}\tag{1.2}<br>\end{equation}<br>$$</p>
+<p>外部逼近的基本想法是将可行域$P$拆分为$\cup_{i=1}^{N} P_i$，对每个$P_i$找到一个容易计算的超集$\bar{P}_i \supset P_i$并在$\bar{P}_i$上求解优化问题，然后对各部分求解结果进行整合产生对原问题最优目标值的估计。通过不断切分$P_i$并降低$P_i$与$\bar{P}_i$之间的差距，我们可以令$\bar{P} = \cup_{i=1}^{N} \bar{P}_i$逐步逼近$P$，从而获得更准确的估计。特别地，如果在该“外部逼近”框架中，我们进一步通过切割变量取值范围来拆分可行域$P_i$，并令$\bar{P}_i$为$P_i$的relaxation，那么我们就得到了B&amp;B方法。由于B&amp;B方法只在坐标轴方向（变量取值范围）进行切分，相比一般的割平面效率不高；其他一些外部逼近方法，例如半正定规划(SDP)，可能可以给出更好的逼近效果。</p>
+<h2 id="MIP求解器的高效使用-How-to-use-MIP-solvers-efficiently"><a href="#MIP求解器的高效使用-How-to-use-MIP-solvers-efficiently" class="headerlink" title="MIP求解器的高效使用 How to use MIP solvers efficiently?"></a>MIP求解器的高效使用 How to use MIP solvers efficiently?</h2><h3 id="求解器的选用-Selection-of-Solvers"><a href="#求解器的选用-Selection-of-Solvers" class="headerlink" title="求解器的选用 Selection of Solvers"></a>求解器的选用 Selection of Solvers</h3><p>对于MIP问题，商用求解器（Gurobi/Cplex）通常比开源求解器（CBC）速度快1~2个数量级，而且接口、文档以及社区支持也更完善。因此，如果不需要考虑成本或者预算较多，可以直接选择商用求解器。<br>商用和开源求解器在MIP上的差距比在LP上的差距更大，主要有以下几点原因：</p>
+<ol>
+<li>对LP问题的研究有较长的历史，相关求解算法非常成熟；相比之下，人们对MIP问题的理解仍然不够深入。</li>
+<li>MIP问题的复杂度和难度比LP问题高很多，（暂时）不存在单一最好的(single best)解法；因此，要在不同类型和场景的问题中都取得较好的效果，求解器往往需要从多个求解角度引入大量定制化(customized)/专门化(specialized)的技术，而这些工作需要更多的时间和金钱资源的投入。</li>
+</ol>
+<p>不过，这也意味着对于特定类型问题，求解器不一定能给出最高效的解决方案；好的业务理解和问题建模往往更重要。</p>
+<h3 id="求解器配置的选用-Selection-of-Solver-Configurations"><a href="#求解器配置的选用-Selection-of-Solver-Configurations" class="headerlink" title="求解器配置的选用 Selection of Solver Configurations"></a>求解器配置的选用 Selection of Solver Configurations</h3><p>上面提到，MIP求解器通常实现了多样化的求解技术、并提供了大量求解流程的控制配置，以应对不同类型问题的求解需求。然而，对于某个具体问题，求解器由于缺少先验信息，只能在求解过程中根据实际表现动态调整配置；这种做法不但在求解过程前期存在效率损失，而且不一定能在短时间内找到合理的求解配置。因此，即使通过调用求解器来解决MIP问题，我们也可以通过优化求解器配置来取得更好的效果。具体来说，</p>
+<ul>
+<li>一方面，我们可以结合对问题结构和求解需求的理解来选择合适的求解器的配置。例如，对于可满足性问题(SAT)等主要关注可行性的问题，在node selection阶段选用dfs/be等关注可行解的方法要优于bfs等关注下界估计的方法。</li>
+<li>另一方面，对于需要反复求解的任务，我们可以先设计一组小规模的测试问题对不同求解器配置的效果进行评估，然后选出效果较好的几组配置用于后续主求解流程中。</li>
+</ul>
+<h3 id="其他建模与求解技巧-Other-Modeling-and-Solving-Techniques"><a href="#其他建模与求解技巧-Other-Modeling-and-Solving-Techniques" class="headerlink" title="其他建模与求解技巧 Other Modeling and Solving Techniques"></a>其他建模与求解技巧 Other Modeling and Solving Techniques</h3><p>除了对求解器的配置进行优化，我们还可以基于对问题的理解，改进问题形式(formulation)，或者定制新的求解方式与求解器进行搭配：</p>
+<ul>
+<li>通过理论分析，给出更强/理想的问题形式。例如，在描述受0-1变量控制的连续变量时，可尽量避免big-M的使用。</li>
+<li>结合B&amp;B流程的特点，调整问题形式以提高求解器的效率。例如，引入lift变量以改善branching步骤的算法效率。</li>
+<li>启发式方法与求解器的结合。很多MIP问题背后有非常直观的业务逻辑，但相应的数学规划形式却比较复杂。根据个人经验，这类问题比较适合通过启发式方法来寻找解，然后通过求解器对启发式方法的效果进行校核。另外，注意到B&amp;B等基于LP的方法属于外部逼近方法，而启发式搜索方法属于内部逼近方法，两种不同视角可能可以结合，形成更高效的求解方案。</li>
+</ul>
+<h2 id="MIP求解器的开发-How-to-develop-an-MIP-solver"><a href="#MIP求解器的开发-How-to-develop-an-MIP-solver" class="headerlink" title="MIP求解器的开发 How to develop an MIP solver?"></a>MIP求解器的开发 How to develop an MIP solver?</h2><p>基于某些原因，使用者可能需要从头开始实现一个MIP求解器。不过，正如上面所提到的，如果要满足市场所需的通用性，MIP求解器通常需要实现大量专门化的求解技术，这对于没有充分的资源和业务经验支持的个人或者小团队来说是十分困难的。因此，至少在开发前期阶段，开发者需要有一定的侧重点，专注于求解器的某几项核心功能。我个人认为一种较合理的开发思路是先以某一类业务问题为切入点，基于一套可扩展的框架实现核心求解逻辑；后续再逐步引入专门化功能，扩大求解器的应用面。</p>
+<p>在实现核心求解逻辑时，开发者可以参考借鉴已有的开源工作，例如<a href="https://github.com/coin-or/Cbc" target="_blank" rel="external">CBC</a>、<a href="https://scipopt.org/" target="_blank" rel="external">SCIP</a>等，也可以参考我在本系列中的尝试。特别地，我认为有以下几个需要特别注意的工程设计问题：</p>
+<ul>
+<li>数据结构设计：在求解器中，类和数据结构的形式对计算和存储性能有重要影响，而且一旦确定，后续修改成本很高。因此，有必要根据求解器的主要应用方向设计类和数据结构的形式。例如，在SCIP中，约束（行）与变量（列）被认为是不同的对象，有独立的数据结构和处理逻辑；这是因为在MIP问题中通常有大量包含组合结构的约束，通过独立的处理逻辑可以利用这些组合结构来提高branching和domain propagation的效率。但与此同时，这种数据结构形式将会为LP松弛问题的求解增加一定的计算开销，因为LP求解器通常需要将行和列作为同一类对象进行处理。由于SCIP在设计之初更多是为了解决SAT/CIP等与布尔逻辑判定相关的问题，而对于这类问题，LP求解模块的重要性相对更低，故对约束使用独立的数据结构管理是更合适的。</li>
+<li>模块设计与可扩展性：随着新求解技术的不断引入，对技术的动态管理和控制会变得越来越复杂，很多地方需要加入具体求解技术选取的判断逻辑。此时，如果模块间的边界或者交互形式不清晰，前述判断逻辑可能较难实现或者容易出bug。例如，在本系列的实现中，约束相关信息没有专门的管理对象，而是在solver、propagator等多个类中都保存有独立备份；这导致后续较难对割生成技术进行支持，因为生成割平面后需要对问题约束信息进行改动，而这种改动在当前实现中是不可控的。</li>
+</ul>
 
       
     </div>
@@ -402,8 +409,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blogs/2016/IP2_201610/" rel="next" title="Integer Programming Note II: Formulation Strength & Size">
-                <i class="fa fa-chevron-left"></i> Integer Programming Note II: Formulation Strength & Size
+              <a href="/blogs/2020/IP_BB_solver_3_202007/" rel="next" title="How to Develop Your Own Branch & Bound Solver III: Cut & Bound Tightening">
+                <i class="fa fa-chevron-left"></i> How to Develop Your Own Branch & Bound Solver III: Cut & Bound Tightening
               </a>
             
           </div>
@@ -411,10 +418,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blogs/2016/IP4_201610/" rel="prev" title="Integer Programming Note IV: Cuts">
-                Integer Programming Note IV: Cuts <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -582,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unbalanced-Branching-and-Encoding"><span class="nav-number">1.</span> <span class="nav-text">Unbalanced Branching and Encoding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Embedding"><span class="nav-number">2.</span> <span class="nav-text">Embedding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支定界法的基本原理-How-does-B-amp-B-work"><span class="nav-number">1.</span> <span class="nav-text">分支定界法的基本原理 How does B&B work?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIP求解器的高效使用-How-to-use-MIP-solvers-efficiently"><span class="nav-number">2.</span> <span class="nav-text">MIP求解器的高效使用 How to use MIP solvers efficiently?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求解器的选用-Selection-of-Solvers"><span class="nav-number">2.1.</span> <span class="nav-text">求解器的选用 Selection of Solvers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求解器配置的选用-Selection-of-Solver-Configurations"><span class="nav-number">2.2.</span> <span class="nav-text">求解器配置的选用 Selection of Solver Configurations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他建模与求解技巧-Other-Modeling-and-Solving-Techniques"><span class="nav-number">2.3.</span> <span class="nav-text">其他建模与求解技巧 Other Modeling and Solving Techniques</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIP求解器的开发-How-to-develop-an-MIP-solver"><span class="nav-number">3.</span> <span class="nav-text">MIP求解器的开发 How to develop an MIP solver?</span></a></li></ol></div>
             
 
           </div>
@@ -743,9 +746,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://hanqiu92.github.io/blogs/2016/IP3_201610/';
-          this.page.identifier = '2016/IP3_201610/';
-          this.page.title = 'Integer Programming Note III: Encoding & Embedding';
+          this.page.url = 'http://hanqiu92.github.io/blogs/2020/IP_BB_solver_4_202007/';
+          this.page.identifier = '2020/IP_BB_solver_4_202007/';
+          this.page.title = 'How to Develop Your Own Branch & Bound Solver IV: Summary';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://hanqiu92.disqus.com/embed.js';
