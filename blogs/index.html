@@ -255,6 +255,158 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2020/mbst_202011/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blogs/images/pics/1.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Han's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blogs/2020/mbst_202011/" itemprop="url">Multivariate Boosted Trees</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-08T00:00:00-05:00">
+                2020-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blogs/categories/Research-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Research Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>随着数据收集能力的提升和控制手段的复杂化，在实际业务中，常常会遇到对多维、异质化的处置效应(treatment effect)的估计问题。近年来，学界在这个方向上提出了一些新的方法和工具；其中一个较为知名的工作是Susan Athey等人提出的generalized random forest(grf)。不过，这些工具与当前业界常用的工具（例如XGBoost，下称为xgb）存在一定差距：</p>
+<ul>
+<li>未针对大规模数据场景进行计算效率优化，训练和推断时间较长；</li>
+<li>功能局限于少数几种场景，无法支持多样化的建模需求；</li>
+<li>设计时主要考虑离线分析场景，缺乏对线上部署等工程应用场景的原生支持。</li>
+</ul>
+<p>考虑到这些痛点，在这一篇文章中，我将基于对这些新估计方法的认识和对xgb等常用工具的理解，提出（或者是重新发现）数种处置效应估计方法，以尝试结合xgb的计算效率和新方法的估计准确性。然后，我将通过一系列简单的数值实验，对这些方法在估计准确性、计算效率和开发效率等各方面的优劣进行评估。最后，我将根据这些实验结果和个人经验，对这些方法的实际使用给出一些个人建议。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blogs/2020/mbst_202011/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2020/IP_BB_solver_4_202007/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1556,152 +1708,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2020/LP_dual_simplex_solver_1_202002/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blogs/images/pics/1.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Han's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blogs/2020/LP_dual_simplex_solver_1_202002/" itemprop="url">How to Develop Your Own Dual Simplex Solver I: Introduction</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-15T00:00:00-05:00">
-                2020-02-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blogs/categories/Study-Notes/" itemprop="url" rel="index">
-                    <span itemprop="name">Study Notes</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在接下来这个系列中，我将介绍线性规划中的对偶单纯形法的基本原理，并示范如何实现一个简单的对偶单纯形法求解器。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blogs/2020/LP_dual_simplex_solver_1_202002/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1756,7 +1762,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1767,7 +1773,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/blogs/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1778,7 +1784,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blogs/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
