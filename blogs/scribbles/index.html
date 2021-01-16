@@ -83,16 +83,22 @@
 
 
 
-<meta name="description" content="ModelingMethodology(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。(20/02/24) 建模过程中，要分析预测结果在不同context下的稳定性以及对参数的敏感度。(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑">
+<meta name="description" content="ModelingMethodology(20/02/24) 建模过程中，要记得分析预测结果在不同context下的稳定性以及对参数的敏感度。(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑通过启发式方法近似求解优化问题来节省计算开销——当然，问题是优化结果对输入数据不一定可导。(20/09/01) 决策行为建模思考：
+
+对于一个确定的决策任务，给定充分的数">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Scribbles">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/scribbles/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="ModelingMethodology(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。(20/02/24) 建模过程中，要分析预测结果在不同context下的稳定性以及对参数的敏感度。(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑">
-<meta property="og:updated_time" content="2020-10-05T08:40:18.741Z">
+<meta property="og:description" content="ModelingMethodology(20/02/24) 建模过程中，要记得分析预测结果在不同context下的稳定性以及对参数的敏感度。(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑通过启发式方法近似求解优化问题来节省计算开销——当然，问题是优化结果对输入数据不一定可导。(20/09/01) 决策行为建模思考：
+
+对于一个确定的决策任务，给定充分的数">
+<meta property="og:updated_time" content="2021-01-10T03:33:07.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scribbles">
-<meta name="twitter:description" content="ModelingMethodology(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。(20/02/24) 建模过程中，要分析预测结果在不同context下的稳定性以及对参数的敏感度。(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑">
+<meta name="twitter:description" content="ModelingMethodology(20/02/24) 建模过程中，要记得分析预测结果在不同context下的稳定性以及对参数的敏感度。(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑通过启发式方法近似求解优化问题来节省计算开销——当然，问题是优化结果对输入数据不一定可导。(20/09/01) 决策行为建模思考：
+
+对于一个确定的决策任务，给定充分的数">
 
 
 
@@ -260,13 +266,14 @@
       <div class="post-body han-init-context">
         
         
-          <h2 id="Modeling"><a href="#Modeling" class="headerlink" title="Modeling"></a>Modeling</h2><h3 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h3><p>(19/12/08) model-driven：通常需要使用非线性优化校准(calibrate)，容易mis-specify；data-driven：对数据的分布有较强依赖。<br>(20/02/24) 建模过程中，要分析预测结果在不同context下的稳定性以及对参数的敏感度。<br>(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑通过启发式方法近似求解优化问题来节省计算开销——当然，问题是优化结果对输入数据不一定可导。<br>(20/09/01) 决策行为建模思考：</p>
+          <h2 id="Modeling"><a href="#Modeling" class="headerlink" title="Modeling"></a>Modeling</h2><h3 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h3><p>(20/02/24) 建模过程中，要记得分析预测结果在不同context下的稳定性以及对参数的敏感度。<br>(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑通过启发式方法近似求解优化问题来节省计算开销——当然，问题是优化结果对输入数据不一定可导。<br>(20/09/01) 决策行为建模思考：</p>
 <ol>
 <li>对于一个确定的决策任务，给定充分的数据，机器学习模型可以很好地拟合和预测人类行为；</li>
 <li>对于meta-task，util-max是一种较好的建模人类行为的思路；</li>
 <li>然而，目前的技术手段很难对一个人（的所有决策行为）进行仿真模拟——需要对上述工具采取一种巧妙的平衡；可能从强化学习的应用中获取灵感</li>
 <li>general modeling heuristic可能比ad-hoc accurate model更合理。特别地，为了模拟agent决策中的heuristic所设计的方案其实也更容易被其他建模者所理解。</li>
 </ol>
+<p>(20/12/31) recommendation影响的是attention，而不是choice</p>
 <h3 id="Structure-Design"><a href="#Structure-Design" class="headerlink" title="Structure Design"></a>Structure Design</h3><p>(19/10/11) 图卷积网络(GCN)较适用于建模局部动力系统，似乎不太适用于端到端直接预测。<br>(19/12/28) 如何保持一个输入特征（动作action）的偏序：</p>
 <ol>
 <li>声明强结构、引入隐变量/参数，缺点在于计算复杂，容易mis-specify；</li>
@@ -284,9 +291,8 @@
 <li>其他 —— 乘客希望有自定义偏好设定；对于福利主要关注应答时间；新司机由于业务不熟练，提供的体验更差</li>
 </ol>
 <h2 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h2><h3 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h3><p>(20/07/04) 树/SVM等基于分类的模型是以split为核心（桶内数据点直接平均作为预测值），复杂度与桶数量有关；boosting进一步提供了高效交叉分桶的方式。LR/NN等基于回归的模型是以fit为核心（每个数据点贡献自己的loss影响整体模型），复杂度与模型参数有关。<strong>问题：</strong>是否从duality角度存在优化空间？例如，adaptive complexity/model selection？<br>(20/10/04) split（VC维）与fit的一个区别在于，前者类似于分析学中的simple function，后者则类似于逼近理论中的FFT、小波等。对于split，表示复杂度 = 模型复杂度 * 局部定义数；特别地，如果原数据有复杂的非线性，那么局部线性需要定义非常多局部</p>
-<p>(20/10/07) 一种可能的model-driven和data-driven的结合方式是根据拟合误差动态选取模型。例如，在treatment effect estimation中，基准值用data-driven，而增量用model-driven。</p>
-<h3 id="Causal-Inference"><a href="#Causal-Inference" class="headerlink" title="Causal Inference"></a>Causal Inference</h3><p>(20/01/01) 反事实(counterfactual)误差分析的套路是将$l(y_1-y_2,\hat{y}_1-\hat{y}_2)$拆分为$l(y_1,\hat{y}_1)$和$l(y_2,\hat{y}_2)$，再通过原有模型误差分析套路生成bound。主要区别在于需要分析决策倾向性(propensity score) $p(a|s)$对于样本分布的影响。<br>(20/07/01) treatment effect: 如果r(s,a)中a是连续的，而且数据量足够大，那么对于每个s，对a的局部变化的影响的刻画是可接受的；否则，需要对样本关于s维度进行匹配，以让模型更好地捕捉a的影响。匹配方式可以考虑knn，PSM，随机森林等方法。<br>(20/07/01) PSM是一种常用方法，但是效果相当于做complete random实验而不是block random实验，因此当达到了full random效果后，随着过滤样本数增大（差异评估阈值下降）时，使用PSM反而增加了数据集之间（在特征层面上）的差异，因为样本量下降了。相反，直接对特征维度进行matching可以直接刻画数据集间的差异。（但是在数据量充分的情况下这种现象不太可能发生）<br>(20/07/01) generalized random forest: RF可以看成是非参生成局部相似性度量的方法，因此可以通过设计RF split和fit的优化目标来解决不同的task。理论分析所用到的技术不清楚。<br>(20/07/01) dragonnet: 用propensity score来估计ATE，可以降低估计方差，但是牺牲了个人维度属性，个性化估计会有偏<br>(20/07/11) IPM：类似于正则化，限制中间特征的差异性，强化treatment的作用；但是后续步骤的计算需要足够简单，否则模型可以hack ipm。<br>(20/10/11) 多重treatment估计思路：<br>    基准估计角度：声明一个局部影响结构，然后基于基准值上的误差去拟合该结构的参数<br>    增量估计角度：直接对增量进行拟合<br>        causal tree：split的角度，每个切分区域估计该区域内的平均增量<br>        causal nn：fit的角度，通过权重分布将单点估计转化为整体加权估计，然后利用分部积分进行转化。实际应用可能比较tricky。</p>
-<h3 id="Other-Data-Mining"><a href="#Other-Data-Mining" class="headerlink" title="Other Data Mining"></a>Other Data Mining</h3><p>(20/10/01) 宏观时序分析的缺点：如果外部存在持续影响因素，那么在评估一个shock的效果时置信度和时效性存在trade-off</p>
+<h3 id="Causal-Inference"><a href="#Causal-Inference" class="headerlink" title="Causal Inference"></a>Causal Inference</h3><p>(20/01/01) 反事实(counterfactual)误差分析的套路是将$l(y_1-y_2,\hat{y}_1-\hat{y}_2)$拆分为$l(y_1,\hat{y}_1)$和$l(y_2,\hat{y}_2)$，再通过原有模型误差分析套路生成bound。主要区别在于需要分析决策倾向性(propensity score) $p(a|s)$对于样本分布的影响。<br>(20/07/01) PSM是一种常用方法，但是效果相当于做complete random实验而不是block random实验，因此当达到了full random效果后，随着过滤样本数增大（差异评估阈值下降）时，使用PSM反而增加了数据集之间（在特征层面上）的差异，因为样本量下降了。相反，直接对特征维度进行matching可以直接刻画数据集间的差异。（但是在数据量充分的情况下这种现象不太可能发生）<br>(20/07/01) dragonnet: 用propensity score来估计ATE，可以降低估计方差，但是牺牲了个人维度属性，个性化估计会有偏<br>(20/10/11) causal nn：fit的角度，通过权重分布将单点估计转化为整体加权估计，然后利用分部积分进行转化。实际应用可能比较tricky。<br>(20/12/31) 在多treatment场景中，做单treatment的实验结果分析会有什么效率损失？噪声更大，实验结果置信度下降</p>
+<h3 id="Time-Series"><a href="#Time-Series" class="headerlink" title="Time Series"></a>Time Series</h3><p>(20/10/01) 宏观时序分析的缺点：如果外部存在持续影响因素，那么在评估一个shock的效果时置信度和时效性存在trade-off<br>(20/12/31) 通过观察bias和loss随时间的演化，可以一定程度上判断系统的非平稳性。<br>(20/12/31) 时间序列中，对之前时间段信息的利用可以通过多种时间粒度（小时、天、周）来提取不同层次的信息。在此之上，通过引入时间段的encoding特征，可以使用attention来自动化地根据不同场景（例如是否节假日）选取适当的建模信息。</p>
 <h2 id="Decision-amp-Optimization"><a href="#Decision-amp-Optimization" class="headerlink" title="Decision &amp; Optimization"></a>Decision &amp; Optimization</h2><h3 id="Methodology-1"><a href="#Methodology-1" class="headerlink" title="Methodology"></a>Methodology</h3><p>(19/06/02) 在predict-then-optimize框架中，优化/控制器的迭代频率最好与预测器的迭代频率一致。例如，如果决策是实时的，那么模型最好保持相对实时的更新；否则一段时间过后数据分布可能会变化，导致模型预估精度下降。</p>
 <p>(19/07/02) OR在实际应用中的思考：</p>
 <ol>
@@ -295,6 +301,16 @@
 <li>决策影响面越大，越需要谨慎，引入更仔细的仿真评估和灵敏度分析。</li>
 </ol>
 <p>(20/10/02) perception - decision - execution框架更多是人机交互的逻辑，可以extend到更多场景中</p>
+<p>(20/12/31) random action的优点:</p>
+<ol>
+<li>增加噪声，降低自身的exploitability，同时保持对方的attention</li>
+<li>增加从对方的反馈行为中能获取的信息量</li>
+</ol>
+<p>(21/01/10) task-specific方法存在数据利用的效率瓶颈，在数据量少的场景中较难取得好的效果。因此，一个重点的研究方向，是如何从不同任务下的数据中，归纳出可复用的决策思路（与meta-learning类似）。下面是一些可尝试的方向：</p>
+<ul>
+<li>通过半监督和表示学习，判断数据样本的可复用性，然后加以利用；</li>
+<li>从人类决策行为中，抽象出通用的inductive bias，然后设计相应框架。例如，模块化/stitching。</li>
+</ul>
 <h3 id="Integer-Programming-amp-Combinatorial-Optimization"><a href="#Integer-Programming-amp-Combinatorial-Optimization" class="headerlink" title="Integer Programming &amp; Combinatorial Optimization"></a>Integer Programming &amp; Combinatorial Optimization</h3><p>(19/11/14) primal/dual方法不一定非要在simplex上做局部搜索。如果问题本身或局部有更好的结构（例如组合性质），则应当利用局部结构加速优化进程。例子：二分图匹配中的KM算法。<br>(20/02/24) 一些formulation即使在计算上不可行(例如，指数多个约束)，也可能对理论分析、设计新的算法有帮助：SOS system等。<br>(20/07/01) 对于单个整数可行点，可以利用可行域的组合结构加速搜索效率。<strong>问题：</strong>很多问题的求解效率只是在单个整数解处高，一旦同时考虑多个整数解，就不如LP，此时怎么利用组合结构？<br>(20/07/01) QAOA的基本思路：考虑解{0,1}^n的复合态（由n个qubit表示），通过（参数化的）约束和解维度的酉矩阵对复合态作用，使得最终演化结果在期望上收益接近最优。演化/仿真过程是量子的，而参数的求解是经典的（低维求解）。<strong>问题：</strong>为什么可以用酉矩阵进行作用？<br>(20/02/24) 组合优化一些常用思路：primal-dual；Lagranian dual guided greedy；原始空间的局部搜索heuristic；LP + randomization/sampling<br>(20/02/24) CFT for vertex cover:</p>
 <pre><code>1. subgradient优化的效率很重要，决定整体收敛速度；
 2. 每步迭代中，用pricing来筛选column可以有效提高subgradient优化速度，但是需要更多迭代次数，应整体判断是否使用；
@@ -313,14 +329,10 @@ step 3: (ag) 选一个free row i，找shortest path，path上的都进入B。
 <ol>
 <li>若每个单独的决策重要，但是预测的confidence不够，那么可以使用局部平均的方式提高预测精度。可以使用kNN、随机森林等方法。</li>
 <li>DB提出的data-driven生成uncertainty set的思路是：假设参数服从某一分布，再通过假设检验给出分布的置信区间。个人感觉这种方式更适用于宏观决策、没有明确反馈的场景，不适用于实时控制场景。</li>
-<li>model bootstrapping很难生成可以解析的uncertainty set，还是需要人工设计-&gt;怎么处理这个gap？</li>
 <li>Xu论文中讨论的robust DP是转化为LP求解，只能处理reward不确定的情况，无法处理模型不确定的情况。</li>
 <li>Adaptive opt: 忽略state、action对后续state的影响，直接考虑后续state的uncertainty。更加适用于长周期的宏观决策(例如电网控制)，而非前后state强相关的高频场景</li>
-<li>近期一些adversial的尝试可能能达到好的robust效果；但是在某些场景中过分robust=无效？是否需要对robust进行重定义？</li>
-<li>可以使用matching+local weighting（knn+cart）来缓解personalized decision对特征的不稳定问题。</li>
 </ol>
-<h3 id="Exploration-amp-Exploitation"><a href="#Exploration-amp-Exploitation" class="headerlink" title="Exploration &amp; Exploitation"></a>Exploration &amp; Exploitation</h3><p>(20/10/01) (neal 18) 在传统的bias-var tradeoff之上，需要考虑优化达不到opt的误差，即prediction error = bias + sample var + opt var; 这里面的insight是，如果over parametrize (param &gt; data)，则因为高维空间中球的几何形态很扁，随机初始值的差异很小，从而opt var会下降并接近于忽略不计。</p>
-<p>(20/10/05) 在复杂函数的bandit分析中，需要用到reward function所处的函数空间的维度来评估一处样本的信息量对函数整体的估计准确度的影响。此时需要一些通用的维度定义。其中，可以考虑</p>
+<h3 id="Exploration-amp-Exploitation"><a href="#Exploration-amp-Exploitation" class="headerlink" title="Exploration &amp; Exploitation"></a>Exploration &amp; Exploitation</h3><p>(20/10/05) 在复杂函数的bandit分析中，需要用到reward function所处的函数空间的维度来评估一处样本的信息量对函数整体的估计准确度的影响。此时需要一些通用的维度定义。其中，可以考虑</p>
 <ol>
 <li>eluder dimension: 一种函数空间连续性的维度评估，可以用在任意函数空间中</li>
 <li>state-action matrix rank</li>
@@ -369,6 +381,15 @@ enter/leave区分primal/dual，分别进enter.cpp和leave.cpp；dual simplex是�
 <li>如果有时间上的演化，则可将实数域上的PDE转化为函数域上(关于时间)的ODE。ODE中，每个无穷小时间片的演化对应一个函数域上的变换算子$A$，该算子在时间$t$的演化下组成算子半群$\{e^{tA}\}_t$。进而可以通过算子半群理论对算法的收敛性进行分析。</li>
 <li>对SPDE，需要掌握大规模随机采样的方式，特别是如何高效率对BM/brownian sheet进行采样。一种方式是通过circulant embedding+FFT进行精确采样。另一种方式是用Karhunen–Loève分解目标过程，然后分别采样来逼近。</li>
 </ol>
+<h2 id="Paper-Notes"><a href="#Paper-Notes" class="headerlink" title="Paper Notes"></a>Paper Notes</h2><ul>
+<li>1912.05500: 通过extrinsic reward -&gt; intrinsic reward -&gt; policy, 能够更好地在非平稳环境中迭代策略</li>
+<li>2011.06118: 在拟合choice行为时，通过局部扰动生成候选选项，而不是考虑全部选项，类似于在决策前增加一层attention</li>
+<li>1908.09874: 对于类别特征的encoding，使用该类别的连续特征均值，或者给定联系特征、样本属于该类别的条件概率，相比于使用one-hot要更高效。</li>
+<li>2006.13570: 通过对不同的超参数（学习率、dropout率等）进行smart的deep-ensemble，可以得到hyper-deep-ensemble，进而增加预测的diversity。问题：这些工作是否真正地捕捉了模型的uncertainty？</li>
+<li>2006.08063: 在VAE等概率建模中，对于普通离散分布，一种重参数近似方式是gumbel-softmax；这一工作将该方法延拓到对复杂组合对象的分布上。具体来说是先仿照gumbel-max构建优化问题，然后考虑convex relaxation做近似。</li>
+<li>2010.06610: 文章指出，直接multi-head很难产生具有差异化的预测结果。但是为什么MIMO就能work？</li>
+<li><a href="https://papers.nips.cc/paper/2020/file/52f4691a4de70b3c441bca6c546979d9-Paper.pdf" target="_blank" rel="external">preference learning along multiple criteria</a>: 很多决策问题，有多个维度的偏好，此时优化问题可以formulate成一个approachbility的问题，min max与target set之间的距离；这一问题是凸、但非线性的，因此和一维偏好上的min max有一定差异。</li>
+</ul>
 
         
       </div>
@@ -450,7 +471,7 @@ enter/leave区分primal/dual，分别进enter.cpp和leave.cpp；dual simplex是�
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -527,7 +548,7 @@ enter/leave区分primal/dual，分别进enter.cpp和leave.cpp；dual simplex是�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeling"><span class="nav-number">1.</span> <span class="nav-text">Modeling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Methodology"><span class="nav-number">1.1.</span> <span class="nav-text">Methodology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Structure-Design"><span class="nav-number">1.2.</span> <span class="nav-text">Structure Design</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Human-Decision-Behavior"><span class="nav-number">1.3.</span> <span class="nav-text">Human Decision Behavior</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inference"><span class="nav-number">2.</span> <span class="nav-text">Inference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-Learning"><span class="nav-number">2.1.</span> <span class="nav-text">Machine Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Causal-Inference"><span class="nav-number">2.2.</span> <span class="nav-text">Causal Inference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-Data-Mining"><span class="nav-number">2.3.</span> <span class="nav-text">Other Data Mining</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-amp-Optimization"><span class="nav-number">3.</span> <span class="nav-text">Decision & Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Methodology-1"><span class="nav-number">3.1.</span> <span class="nav-text">Methodology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Integer-Programming-amp-Combinatorial-Optimization"><span class="nav-number">3.2.</span> <span class="nav-text">Integer Programming & Combinatorial Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Robust-Optimization"><span class="nav-number">3.3.</span> <span class="nav-text">Robust Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exploration-amp-Exploitation"><span class="nav-number">3.4.</span> <span class="nav-text">Exploration & Exploitation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transportation-amp-Urban-Studies"><span class="nav-number">4.</span> <span class="nav-text">Transportation & Urban Studies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Reading-amp-Development"><span class="nav-number">5.</span> <span class="nav-text">Code Reading & Development</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization-Solvers"><span class="nav-number">5.1.</span> <span class="nav-text">Optimization Solvers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc"><span class="nav-number">6.</span> <span class="nav-text">Misc</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeling"><span class="nav-number">1.</span> <span class="nav-text">Modeling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Methodology"><span class="nav-number">1.1.</span> <span class="nav-text">Methodology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Structure-Design"><span class="nav-number">1.2.</span> <span class="nav-text">Structure Design</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Human-Decision-Behavior"><span class="nav-number">1.3.</span> <span class="nav-text">Human Decision Behavior</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inference"><span class="nav-number">2.</span> <span class="nav-text">Inference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-Learning"><span class="nav-number">2.1.</span> <span class="nav-text">Machine Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Causal-Inference"><span class="nav-number">2.2.</span> <span class="nav-text">Causal Inference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Series"><span class="nav-number">2.3.</span> <span class="nav-text">Time Series</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-amp-Optimization"><span class="nav-number">3.</span> <span class="nav-text">Decision & Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Methodology-1"><span class="nav-number">3.1.</span> <span class="nav-text">Methodology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Integer-Programming-amp-Combinatorial-Optimization"><span class="nav-number">3.2.</span> <span class="nav-text">Integer Programming & Combinatorial Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Robust-Optimization"><span class="nav-number">3.3.</span> <span class="nav-text">Robust Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exploration-amp-Exploitation"><span class="nav-number">3.4.</span> <span class="nav-text">Exploration & Exploitation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transportation-amp-Urban-Studies"><span class="nav-number">4.</span> <span class="nav-text">Transportation & Urban Studies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Reading-amp-Development"><span class="nav-number">5.</span> <span class="nav-text">Code Reading & Development</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization-Solvers"><span class="nav-number">5.1.</span> <span class="nav-text">Optimization Solvers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc"><span class="nav-number">6.</span> <span class="nav-text">Misc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Paper-Notes"><span class="nav-number">7.</span> <span class="nav-text">Paper Notes</span></a></li></ol></div>
             
 
           </div>
@@ -547,7 +568,7 @@ enter/leave区分primal/dual，分别进enter.cpp和leave.cpp；dual simplex是�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

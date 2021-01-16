@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/blogs/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Behavior Modeling,Machine Learning,Reinforcement Learning," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在这篇文章中，我将对近半年来在决策行为相关领域的一些学习与思考进行整理，便于在后续应用中作为参照。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="认知迭代整理（2020）">
+<meta property="og:url" content="http://hanqiu92.github.io/blogs/2021/annual_comment_cn_202101/index.html">
+<meta property="og:site_name" content="Han's Blog">
+<meta property="og:description" content="在这篇文章中，我将对近半年来在决策行为相关领域的一些学习与思考进行整理，便于在后续应用中作为参照。">
+<meta property="og:updated_time" content="2021-01-16T07:18:44.199Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="认知迭代整理（2020）">
+<meta name="twitter:description" content="在这篇文章中，我将对近半年来在决策行为相关领域的一些学习与思考进行整理，便于在后续应用中作为参照。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blogs/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2021/annual_comment_cn_202101/"/>
+
+
+
+
+
+  <title>认知迭代整理（2020） | Han's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blogs/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Han's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Thoughts on the normative and descriptive perspectives of human decision-making behavior.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blogs/." rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blogs/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blogs/archives" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blogs/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-scribbles">
+          <a href="/blogs/scribbles" rel="section">
+            
+            Scribbles
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2021/annual_comment_cn_202101/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qiu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blogs/images/pics/1.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Han's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">认知迭代整理（2020）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-15T13:00:00+08:00">
+                2021-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blogs/categories/Comment/" itemprop="url" rel="index">
+                    <span itemprop="name">Comment</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在这篇文章中，我将对近半年来在决策行为相关领域的一些学习与思考进行整理，便于在后续应用中作为参照。</p>
+<a id="more"></a>
+<h2 id="基于历史数据的决策优化"><a href="#基于历史数据的决策优化" class="headerlink" title="基于历史数据的决策优化"></a>基于历史数据的决策优化</h2><p>在这一节中，我们考虑以下问题：如何利用一批历史数据来改进决策行为？该问题与监督学习（下记为SL）所要解决的问题有一定的相似性：监督学习的输入也是历史数据，但其目的是从数据中挖掘变量之间的内在联系。</p>
+<p>根据决策问题的复杂度，我们可以考虑不同的做法。</p>
+<h3 id="估计“决策行为”的直接影响——treatment-effect-estimation"><a href="#估计“决策行为”的直接影响——treatment-effect-estimation" class="headerlink" title="估计“决策行为”的直接影响——treatment effect estimation"></a>估计“决策行为”的直接影响——treatment effect estimation</h3><p>如果决策问题相对简单，可以表示为选择问题$\max_a r(s,a)$或者其变种，那么我们可以考虑以下两阶段做法：</p>
+<ol>
+<li>通过历史数据$D=\{(s,a,r)\}_{i \leq N}$来对目标函数$r(s,a)$进行估计；</li>
+<li>对于给定的$s$，根据拟合得到的目标函数$\hat{r}$来选择最优行为：$a^* = \arg\max_a \hat{r}(s,a)$。</li>
+</ol>
+<p>这种做法通常被称为predict-then-optimize。容易看出，该方法可以被推广到更一般的单步优化问题场景中；但为了简便起见，下面的讨论主要关注上述“选择问题”形式。</p>
+<p>现在，我们的主要关注点是：目标函数$r(s,a)$的估计应该怎么做？一种自然的思路是，使用监督学习SL来训练模型。例如，考虑MSE作为损失函数：$L(\theta) = \mathbb{E}_{(s,a,r) \in D}(\hat{r}(s,a|\theta) - r)^2$，然后通过随机梯度下降等方式训练模型参数$\theta$。但问题在于，所定义的损失函数$L$不一定和决策表现$r(s,a^*)$有直接的关联。特别地，如果$a$对$r$的影响相比$s$的影响要小得多，那么上述基于MSE的训练方法容易过度考虑$s$的作用，而缺乏学习$a$的影响。<br>因此，我们需要对$a$的影响给予更多关注。从形式上，假设$s$给定，那么我们可以将$r(s,a)$改写为$r(a|\theta(s))$。这暗示我们，SL的目标应该是以下（异质性）参数估计问题：$D\to \theta(\cdot)$，其中$\theta: \mathcal{S} \to \Theta$。简单分析可知，在同等数据量下，当真实参数空间$\Theta$的维度越高时，上述估计问题越难——越容易overfit。因此，我们需要适当降低对准确率的要求，以增加估计结果的样本外泛化能力。具体来说，我们有以下常用思路：</p>
+<ol>
+<li>降低估计模型的参数量和复杂度。<ol>
+<li>一方面，我们可以通过先验信息来设计和简化影响结构$r(a|\theta(s))$，从而降低参数空间$\Theta$的维度。例如，一种常用的方法是假设线性的影响结构，从而转为估计partial effect：$$r(a|\theta(s)) \approx \theta_1(s) \cdot a + \theta_0(s).$$</li>
+<li>另一方面，我们可以在设计参数映射$\theta(\cdot)$的形式时，采用复杂度更低的模型，例如将多层神经网络降级为梯度提升树、甚至是随机森林和线性回归等简单模型。</li>
+</ol>
+</li>
+<li>在估计问题中引入正则项。特别地，为了避免模型过度利用数据样本中$s$的差异性，我们可以提高对差异性利用的门槛（即增加对差异性表示的惩罚）。例如，通过正态分布先验或者integral probability metrics(IPM)这类距离指标，对$s$在神经网络中的高维特征提取/隐空间表示$s’$的差异性进行约束。值得注意的是，一些理论工作表明，这种正则化约束在很多场景下是必要的。<ol>
+<li>在训练过程中，我们可以使用CV或者honest tree等方式自动控制模型的过拟合程度。在此基础上，可以进一步引入贝叶斯优化等方式对正则项的超参数进行优化，从而更自动化地找到合适的正则化设计。</li>
+</ol>
+</li>
+</ol>
+<h3 id="通过offline-RL改进决策行为"><a href="#通过offline-RL改进决策行为" class="headerlink" title="通过offline RL改进决策行为"></a>通过offline RL改进决策行为</h3><p>对于具有后效性的决策问题，目前通常使用强化学习（下记为RL）来进行求解。然而，相比于（上述predict-then-optimize框架中的）数学规划求解，RL对问题定义的准确性有更高的要求。这意味着，如果我们直接针对离线数据做RL优化，将非常容易过拟合。针对这一问题，最近兴起了一个新的方向，称为offline RL。事实上，该方向的主要目标，就是解决如何对离线数据应用RL的问题。</p>
+<p>为解决过拟合问题，一种自然的想法是仿照SL，通过一些正则化手段来约束RL。目前，文献中提出的正则化思路可根据所使用的基础RL方法归为以下几类：</p>
+<ol>
+<li>策略约束（policy constraints）：对于基于策略优化的RL方法（例如，策略梯度），我们可以要求优化得到的策略与某个基准策略（例如，生成离线数据的策略）的差距在一定范围以内；由于这种差异性是相对于概率分布的，因此我们可以通过一些概率上的距离指标（例如KL）来进行定量评估。这类方法的一个主要缺点是约束范围较广，因此在基准策略的表现较差时，显得过于保守。另一个缺点是策略行为的相似性约束不一定直接与策略表现的稳健性直接相关。因此，在应用该方法时，往往需要进一步引入一些基于人类经验的inductive bias来提高学习效果，例如“只模仿好的行为”（stitching）。</li>
+<li>模型约束（model regularization）：对于基于模型的RL方法，我们可以在拟合得到的奖励函数（reward function）中，对估计不确定性较大的$(s,a)$对（通常对应历史经验较少）进行惩罚，鼓励策略避免往这些区域转移。</li>
+<li>值约束（value regularization）：在基于值的RL方法（例如，Q-learning）中，一个常见的导致过拟合的原因是，在通过bootstrap更新Q值时，max算子会将样本外的误差累积到样本内，从而导致多次迭代后Q值估计过高。基于这一认识，一种改进思路是在Q函数的训练过程中，增加正则项以限制Q的取值水平（例如，CQL在loss中增加了最大预估Q值一项）。另一种改进思路则与模型约束中的做法类似，在训练过程中对于Q值估计存在较大不确定性的$(s,a)$对进行惩罚。</li>
+</ol>
+<p>在某种程度上，上述这些正则化思路都可以被归于置信域（trust region）框架中，即仅在信息量充足的区域内进行决策优化。进一步地，置信域的定义可以通过硬约束或软约束实现：硬约束即对置信域给出明确定义，对应上面的策略约束方法（特别地，TRPO和PPO）；而软约束是根据不置信程度设计惩罚函数，从而允许在预期收益较大时进行适当探索，对应上面模型约束和值约束中基于不确定性评估的惩罚方法。</p>
+<p>接下来，一个进阶的问题是，对于一个具体问题，如何选出（最）合适的正则化方法？我们依然可以仿照SL，通过样本外评估方法（例如交叉验证）+贝叶斯优化来进行方法选取。但是，在RL环境中，我们无法像SL一样，可以直接使用样本上的预测损失进行评估；因此，需要设计和研究更合适的评估方法。这方面的工作对应offline-RL的一个子方向：offline-policy-evaluation（OPE）。</p>
+<p>上述讨论简单地归纳了offline-RL的一些基础思路和我个人的理解。对于有兴趣的读者，我建议可以进一步阅读<a href="https://sites.google.com/view/offlinerltutorial-neurips2020/home" target="_blank" rel="external">Offline-RL NeurIPS 2020 Tutorial</a>；该tutorial对offline-RL的现状进行了较为全面的整理，是一份很好的学习资料。</p>
+<h3 id="不确定性估计与稳健性评估"><a href="#不确定性估计与稳健性评估" class="headerlink" title="不确定性估计与稳健性评估"></a>不确定性估计与稳健性评估</h3><p>在上一小节关于offline-RL的讨论中，提及了模型预测结果的不确定性。事实上，不确定性估计的应用是很广泛的。例如，在RO中，可以用于产生一个对误差相对不敏感的决策方案。那么，应该如何估计模型预测结果的不确定性呢？在这一小节中，我将介绍一些基本概念和常用估计方法。</p>
+<p>首先，不妨假设对于一组数据$D$，我们通过训练流程$O$得到了模型$f$。现在，对一个数据样本$(X,y)$，我们可以利用经典的bias-variance分解来分析$f(X)$的误差组成：<br>$$<br>E_{y,D,O} (y - f(X|D,O))^2 = E_y(y - E(y|X))^2 + (E(y|X) - E_{D,O}f(X|D,O))^2 + Var_{D,O} f(X|D,O);<br>$$<br>换句话说，在期望意义上，预测误差可分解为：$y$本身的随机性（又称为aleatoric uncertainty，代表数据产生过程中自然的随机性）、（由能力导致的）模型预测的偏差（bias）、以及数据集$D$和训练过程$O$导致的噪声（又称为epistemic uncertainty，代表信息量不足导致的不确定性）。根据这一分解，我们可以作出以下定性分析：</p>
+<ul>
+<li>模型结构$f$、数据集$D$和训练过程$O$并不影响aleatoric uncertainty和bias；</li>
+<li>模型结构$f$的影响：如果使用自由度低的模型$f$（例如线性回归），则$D$和$O$中的噪声对$f$的估计结果的影响较小，epistemic uncertainty较低；但与此同时，模型的表达能力较差，因此对于大多数不那么容易的任务，bias项会比较高。</li>
+<li>数据集$D$大小的影响：数据量越少（$D \to \emptyset$），则数据集$D$对数据整体刻画的噪声越大，模型$f$更容易过拟合，带来更大的epistemic uncertainty。</li>
+<li>训练过程$O$的影响：当模型结构较为简单、参数量较少时，训练所对应的优化问题通常较为简单，故不同的训练过程$O$往往会收敛到相似的结果。但对于NN这种有多个局部极值点的模型，训练过程$O$的噪声可以带来很大的结果差异。</li>
+</ul>
+<p>接下来，根据上述分析，我们可以自然地想到以下的不确定性估计方向/方法：</p>
+<ul>
+<li>对于aleatoric uncertainty，我们应该直接建模条件概率分布$P(y|X)$。当数据量充足时，我们可以通过最大似然估计或者是贝叶斯推断来获取参数化的$P(y|X)$；而当数据量有限时，我们可以转为估计quantile等粗糙但robust的统计量。</li>
+<li>对于epistemic uncertainty，<ul>
+<li>从数据集$D$的角度，我们可以通过对$D$进行有放回的重采样，来刻画$D$的噪声对模型$f$估计结果的影响。这种方法叫做bootstrap sampling，是一种经典的统计学方法，近期在深度学习领域重新得到了一些关注。</li>
+<li>从训练过程$O$的角度，一种简单的思路是使用随机种子初始化训练过程。在深度学习中，这种简单的做法被称为Deep-Ensemble。不过，目前对这种方法的作用与效果的理解仍未取得共识：虽然很多工作指出它能为预测结果带来更大的多样性，但是也有一些工作（例如<a href="https://arxiv.org/pdf/1810.08591.pdf" target="_blank" rel="external">(Neal et al. 18)</a>）通过实验发现，随着模型$f$的参数量上升，该方法所带来的epistemic uncertainty会逐渐下降并收敛至0。当然，这可能意味着我们需要新的分析指标来对“不确定性估计”和“预测多样性”等目标进行更仔细的描述和区分。</li>
+<li>上述两种方法可以根据具体场景结合使用。特别地，当数据集$D$所提供的信息量较少时，使用bootstrap sampling能够更好地识别信息量不足的区域，提供更robust的估计。而当$D$中的内容较丰富、且样本内外差异很小时，由$D$导致的epistemic uncertainty很小，此时对$D$进行重采样反而会降低对现有数据的充分利用，从而造成效率损失。换句话说，bootstrap sampling更适合需要对数据样本中隐含不确定性进行描述的场景。</li>
+</ul>
+</li>
+</ul>
+<p>最后，对于有兴趣的读者，建议可以进一步参考<a href="https://neurips.cc/virtual/2020/public/tutorial_0f190e6e164eafe66f011073b4486975.html" target="_blank" rel="external">Uncertainty Estimation NeurIPS 2020 Tutorial</a>；该tutorial对深度学习中的不确定性估计方法的近期进展进行了很好的整理和介绍。</p>
+<h2 id="基于反馈信息的决策优化"><a href="#基于反馈信息的决策优化" class="headerlink" title="基于反馈信息的决策优化"></a>基于反馈信息的决策优化</h2><p>在上一节中，我们主要关注给定数据集下的决策优化。在这一节中，我将讨论：如果可以获取反馈，可以如何进一步优化决策行为？</p>
+<p>这里面的核心问题在于：如何评估数据反馈带来的增量信息收益，以及如何在决策时平衡数据探索带来的增量信息收益和利用已知信息所获得的策略表现收益（探索-利用的权衡）。对于一般的场景，这仍然是开放问题。在文献中虽有一些理论层面的建模尝试，但距离实际应用仍有一定距离，主要是分析中对问题的结构有较强的假设，以及很多关键变量在实际上计算复杂度很高。<br>不过，这些工作为我们分析和理解决策问题中的关键权衡提供了很好的思路。特别地，我个人觉得比较insightful的一个工作是information directed sampling：首先，将信息增益定义为，增加数据样本后，最优决策的信息熵的降低量。然后，在决策时，选择使得$\frac{\text{遗憾值}^2}{\text{信息增益}}$最小的选项，即最小化获得单位增量信息所付出的成本。<br>根据该工作我们可以想到，从本质上，数据反馈的主要作用是，在长期，降低决策由于不确定性所可能造成的失误。因此，我们可以作出以下定性判断：</p>
+<ul>
+<li>如果单次决策行为对整体收益的影响面很大，例如在有后效性的场景，那么应该降低探索的权重。</li>
+<li>如果探索带来的信息增益从长远来看很小，例如在非平稳环境中，增量信息的衰减速度很快，那么此时应该降低探索的权重。</li>
+<li>对不确定性高的区域进行探索，带来的信息增益更高。因此，当对决策行为的影响程度差不多时，从探索的角度应该更多关注不确定性高的区域。这与上一节的一些方法形成了鲜明的对比：在上一节中，为了避免对数据的过度利用，需要对不确定程度高的行为进行惩罚。从一个统一的视角来看，随着反馈频率的提高，探索的长期收益越大，因此我们对不确定性的态度应逐渐从保守（惩罚）转为激进（鼓励）。<ul>
+<li>特别地，由于Thompson sampling的探索机制相对固定（完全由后验分布决定），因此其可能在一些场景中表现较差。</li>
+</ul>
+</li>
+</ul>
+<p>在上面的讨论中，我们默认信息增益是已知的。那么，我们具体应该如何评估不同增量数据所带来的信息增益呢？答案部分取决于所使用的模型结构。具体来说，</p>
+<ul>
+<li>对于具有强参数结构的模型（例如线性回归），模型预测结果的不确定性并不具有局部性，而主要取决于模型全局参数的不确定性；因此增量数据的信息增益主要是相对于全局参数而言的。在传统的bandit设定中，更多考虑的是这类模型。</li>
+<li>对于没有强参数结构的模型，在每个邻域内，增量数据的信息增益与该邻域附近的数据点数量以及模型本身的Lipschitz常数有关：数据点越多，信息增益的绝对值越小；局部连续性越高，则增量数据的影响范围越大。特别地，对于树模型，增量数据的影响局限在其所处的邻域中，但影响也相对更容易计算，可以用局部方差的降低程度表示。</li>
+</ul>
+<p>在bandit等经典设定中，每次决策中特征向量$X$是由环境给定的，因此上述问题可能并不是特别重要；但在许多实际问题中，需要同时对一组样本进行决策，如果我们能根据每个样本的特征判断其带来信息增益的潜力，那么或许可以更好地对各样本的探索幅度进行整体规划。</p>
+<h2 id="自动化决策支持"><a href="#自动化决策支持" class="headerlink" title="自动化决策支持"></a>自动化决策支持</h2><p>在上面的讨论中，我们主要关注具有良好定义的问题。但在现实环境中，特别是在高度动态、多任务等复杂场景中，很多决策问题涉及到的因素较多，很难抽象出一个既完备又简单干净的问题形式。因此，对于这类问题，较难应用上述决策优化方法，仍需要通过人来进行决策。不过，由于机器算法可以高效地从数据中挖掘出有用的信息，一个有价值的方向是如何使用机器算法为人类决策提供支持。<br>目前，我主要关注以下方向：根据人工经验对人类决策行为进行抽象，并从中挖掘通用模式，然后使用机器算法提效。这种方法类似于先在上层进行人工的meta-learning和问题拆解，然后底层运用机器算法。这种做法的好处在于相对容易理解，在多方合作项目中更容易取得各方共识。<br>该方向的一个较为自然的应用切入点，是在决策前的“感知”部分：我们可以利用机器对数据进行监控，然后自动化产生特征关联性假设等信息，供人类用于后续决策。而根据我的观察，在“感知”部分，有以下两个基础而重要的元素：<strong>相关性</strong>和<strong>差异性</strong>（分层）。</p>
+<ol>
+<li><strong>（条件）相关性</strong>。相关性部分地反映了因果性（例如，可控因素$X$对目标因素$Y$的影响程度），因此决策者可以根据识别出的相关性来设计试验，校核背后是否存在因果关系，并进而设计后续策略动作。<ul>
+<li>最简单的做法是计算相关系数$corr(X,Y)$，但对该指标的解释是否合理取决于$X$和$Y$的数据分布是否服从较强的条件，因此分析容易失效。例如，可能存在辛普森效应。</li>
+<li>一种可能的解决方法是观察条件相关性$f(z) = corr(X,Y|Z=z)$。具体来说，我们可以先利用模型估计$X$和$Y$的概率分布，然后计算残差$X’=\frac{X - \mathbb{E}X}{\sqrt{Var(X)}}$和$Y’=\frac{Y - \mathbb{E}Y}{\sqrt{Var(Y)}}$，最后拟合$f(z) = \mathbb{E}(X’Y’|Z=z)$。</li>
+<li>在实际应用中，我们还需要解决一个问题：当特征数量较多时，遍历所有特征在计算上通常是不可行的，如何更高效地找到最有价值的特征对？这方面的工作有待后续调研。</li>
+</ul>
+</li>
+<li><strong>差异性与分层</strong>。人类为什么需要分层？一个可能的原因是，连续变量信息的处理成本太高，通过进行分层聚合，可以提高人类的感知水平和分析效率。从这一角度，要通过机器实现分层提效，一个主要目标是在复杂度约束下尽可能提高信息量，即分层的差异。<ul>
+<li>特别地，拐点识别可以看成是一种分层方式。拐点对应在某个变量$X$的一个较小的取值范围内，预测目标$Y$的取值发生了较大的变化。因此，在拐点处进行分层，可以最大化层间差异。</li>
+<li>根据上述描述容易看出，分层的差异程度对应了树模型中的分裂增益，因此可以使用树模型进行自动化分层。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blogs/tags/Behavior-Modeling/" rel="tag"># Behavior Modeling</a>
+          
+            <a href="/blogs/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+            <a href="/blogs/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blogs/2020/mbst_202011/" rel="next" title="Multivariate Boosted Trees">
+                <i class="fa fa-chevron-left"></i> Multivariate Boosted Trees
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="Han Qiu" />
+            
+              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blogs/archives">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blogs/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blogs/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://hanqiu92.github.io" target="_blank" title="Homepage">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Homepage</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hanqiu92" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-github"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:qiuhan9212@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于历史数据的决策优化"><span class="nav-number">1.</span> <span class="nav-text">基于历史数据的决策优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#估计“决策行为”的直接影响——treatment-effect-estimation"><span class="nav-number">1.1.</span> <span class="nav-text">估计“决策行为”的直接影响——treatment effect estimation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过offline-RL改进决策行为"><span class="nav-number">1.2.</span> <span class="nav-text">通过offline RL改进决策行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不确定性估计与稳健性评估"><span class="nav-number">1.3.</span> <span class="nav-text">不确定性估计与稳健性评估</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于反馈信息的决策优化"><span class="nav-number">2.</span> <span class="nav-text">基于反馈信息的决策优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动化决策支持"><span class="nav-number">3.</span> <span class="nav-text">自动化决策支持</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qiu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blogs/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blogs/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blogs/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blogs/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blogs/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://hanqiu92.github.io/blogs/2021/annual_comment_cn_202101/';
+          this.page.identifier = '2021/annual_comment_cn_202101/';
+          this.page.title = '认知迭代整理（2020）';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hanqiu92.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
