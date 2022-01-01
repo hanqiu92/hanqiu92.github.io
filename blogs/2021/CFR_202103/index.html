@@ -93,7 +93,7 @@
 <meta property="og:description" content="Counterfactual regret minimization（下称CFR）是目前针对不完全信息博弈问题的一类主流求解方法，在棋牌类游戏中有较为广泛和成功的应用。理解这类算法的思路和性质，将有助于后续对一般的不完全信息博弈问题的研究。在这篇文章中，我将对近期对CFR的学习做一个简单的整理，便于后续回顾。内容主要包括：
 
 对原始的CFR算法及其经典变种的简单实现，以及实现过程中遇到的一些问题点">
-<meta property="og:updated_time" content="2021-02-27T02:10:55.835Z">
+<meta property="og:updated_time" content="2021-04-06T13:09:18.404Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Counterfactual Regret Minimization (CFR)">
 <meta name="twitter:description" content="Counterfactual regret minimization（下称CFR）是目前针对不完全信息博弈问题的一类主流求解方法，在棋牌类游戏中有较为广泛和成功的应用。理解这类算法的思路和性质，将有助于后续对一般的不完全信息博弈问题的研究。在这篇文章中，我将对近期对CFR的学习做一个简单的整理，便于后续回顾。内容主要包括：
@@ -410,14 +410,15 @@
 <p>一种面向上述目标的算法开发哲学是，从简单结构问题出发，设计理论上可靠的算法，然后将其应用到更一般(general)的问题中，希望其能取得好的效果。CFR的设计思路正是follow了这种方法：首先，从<strong>两人零和博弈</strong>出发，找到能够收敛到近似Nash均衡的方法；然后，对于更一般的多人不完全信息博弈，通过实践说明其超人的表现。</p>
 <p>而在设计CFR的算法形式和证明其收敛性时，主要包括以下几个步骤：</p>
 <ol>
-<li>先通过一组等价关系，转换目标：在两人零和博弈中，Nash均衡性质可以通过策略regret的次线性收敛保证。因此，算法的目标可以转为控制策略regret的增长速度。</li>
-<li>其次，通过递推运用不等式，可证明策略整体的regret可以被各个信息集$I$上的regret之和控制住，因此算法的目标可以进一步拆分为控制各$I$上regret的增长速度。</li>
+<li>先通过一组等价关系，转换目标：在两人零和博弈中，Nash均衡性质可以通过策略regret的次线性收敛保证。因此，算法的目标可以转为控制策略regret的增长速度。<ul>
+<li>在上述Nash均衡和regret次线性收敛的等价性中，Nash均衡是相对于各参与者自身的“平均策略”的，这种平均是整体意义上的，而非局部意义上的；这意味着在产出平均策略结果时，需要对各动作概率$\sigma(I,a)$考虑权重$\pi^{\sigma}_{p(I)}(I)$。</li>
+</ul>
+</li>
+<li>其次，通过递推运用不等式，可证明策略整体的regret可以被各个信息集$I$上的regret之和控制住，因此算法的目标可以进一步拆分为控制各$I$上regret的增长速度。<ul>
+<li>在上述将整体regret拆分为局部regret的过程中，为了利用归纳原理（进行证明），需要保证单步拆分后的结构一致性。又由于在拆分递归的步骤中，固定了当前参与者$p(h)$的动作，因此递归步骤前后的差异在于其他参与者对历史信息$h$的概率贡献$\pi^{\sigma}_{-p(h)}(h)$。因此，我们需要在regret的计算中引入权重$\pi^{\sigma}_{-p(h)}(h)$来吸收这部分差异。</li>
+</ul>
+</li>
 <li>最后，利用已有方法解决拆分后的子问题：根据Blackwell’s Approachability，通过regret matching这种迭代方式可以使$I$上的regret次线性收敛。</li>
-</ol>
-<p>不过，在算法细节方面，目前仍存在一些没有彻底弄清楚的问题，有待后续思考：</p>
-<ol>
-<li>为什么在计算counterfactual regret时，需要考虑权重$\pi^{\sigma}_{-p(h)}(h)$？</li>
-<li>为什么在计算平均策略时，需要考虑权重$\pi^{\sigma}_{p(h)}(h)$？</li>
 </ol>
 <p>在这一节的最后，我们来进行一些扩展讨论：在理解了CFR算法的大致思路后，我们可以如何将其迁移到其他应用场景？</p>
 <ol>
@@ -487,6 +488,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blogs/2022/annual_comment_cn_202201/" rel="prev" title="认知迭代整理（2021）">
+                认知迭代整理（2021） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -577,7 +582,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -674,7 +679,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

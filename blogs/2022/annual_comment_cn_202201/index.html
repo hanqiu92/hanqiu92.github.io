@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Integer Programming," />
+  <meta name="keywords" content="Behavior Modeling,Machine Learning," />
 
 
 
@@ -83,16 +83,19 @@
 
 
 
-<meta name="description" content="在这篇文章中，我将回顾割(cut)方法的基本思路，介绍将其引入B&amp;amp;B求解流程中的常用手段及注意事项，并实现最基础的基于线性约束的变量边界加强(bound tightening/domain propagation)方法。">
+<meta name="description" content="在这篇文章中，我将对过去一年来在数据挖掘与应用方面的一些思考和实践进行整理。主要的背景和动机是，在之前的一段时间内，由于路径依赖等原因，我更关注在给定一个决策问题时，如何通过技术手段提高决策效率；而近期的一些实践经验表明，在实际业务场景中，如何找到数据、并从数据中挖掘出有价值的决策问题，其实也很重要。
+下面的讨论将分为三个部分。首先，我们讨论在给定一组数据集的情况下，如何更好地挖掘有价值的信息。其">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Develop Your Own Branch & Bound Solver III: Cut & Bound Tightening">
-<meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_3_202007/index.html">
+<meta property="og:title" content="认知迭代整理（2021）">
+<meta property="og:url" content="http://hanqiu92.github.io/blogs/2022/annual_comment_cn_202201/index.html">
 <meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="在这篇文章中，我将回顾割(cut)方法的基本思路，介绍将其引入B&amp;amp;B求解流程中的常用手段及注意事项，并实现最基础的基于线性约束的变量边界加强(bound tightening/domain propagation)方法。">
-<meta property="og:updated_time" content="2020-06-27T15:42:39.339Z">
+<meta property="og:description" content="在这篇文章中，我将对过去一年来在数据挖掘与应用方面的一些思考和实践进行整理。主要的背景和动机是，在之前的一段时间内，由于路径依赖等原因，我更关注在给定一个决策问题时，如何通过技术手段提高决策效率；而近期的一些实践经验表明，在实际业务场景中，如何找到数据、并从数据中挖掘出有价值的决策问题，其实也很重要。
+下面的讨论将分为三个部分。首先，我们讨论在给定一组数据集的情况下，如何更好地挖掘有价值的信息。其">
+<meta property="og:updated_time" content="2022-01-01T09:25:33.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Develop Your Own Branch & Bound Solver III: Cut & Bound Tightening">
-<meta name="twitter:description" content="在这篇文章中，我将回顾割(cut)方法的基本思路，介绍将其引入B&amp;amp;B求解流程中的常用手段及注意事项，并实现最基础的基于线性约束的变量边界加强(bound tightening/domain propagation)方法。">
+<meta name="twitter:title" content="认知迭代整理（2021）">
+<meta name="twitter:description" content="在这篇文章中，我将对过去一年来在数据挖掘与应用方面的一些思考和实践进行整理。主要的背景和动机是，在之前的一段时间内，由于路径依赖等原因，我更关注在给定一个决策问题时，如何通过技术手段提高决策效率；而近期的一些实践经验表明，在实际业务场景中，如何找到数据、并从数据中挖掘出有价值的决策问题，其实也很重要。
+下面的讨论将分为三个部分。首先，我们讨论在给定一组数据集的情况下，如何更好地挖掘有价值的信息。其">
 
 
 
@@ -122,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_3_202007/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2022/annual_comment_cn_202201/"/>
 
 
 
 
 
-  <title>How to Develop Your Own Branch & Bound Solver III: Cut & Bound Tightening | Han's Blog</title>
+  <title>认知迭代整理（2021） | Han's Blog</title>
   
 
 
@@ -255,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2020/IP_BB_solver_3_202007/">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2022/annual_comment_cn_202201/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
@@ -272,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">How to Develop Your Own Branch & Bound Solver III: Cut & Bound Tightening</h1>
+          <h1 class="post-title" itemprop="name headline">认知迭代整理（2021）</h1>
         
 
         <div class="post-meta">
@@ -284,8 +287,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-04T12:00:00+08:00">
-                2020-07-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-01-01T13:00:00+08:00">
+                2022-01-01
               </time>
             
 
@@ -307,8 +310,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blogs/categories/Study-Notes/" itemprop="url" rel="index">
-                    <span itemprop="name">Study Notes</span>
+                  <a href="/blogs/categories/Comment/" itemprop="url" rel="index">
+                    <span itemprop="name">Comment</span>
                   </a>
                 </span>
 
@@ -344,25 +347,18 @@
       
 
       
-        <p>在这篇文章中，我将回顾割(cut)方法的基本思路，介绍将其引入B&amp;B求解流程中的常用手段及注意事项，并实现最基础的基于线性约束的变量边界加强(bound tightening/domain propagation)方法。</p>
+        <p>在这篇文章中，我将对过去一年来在数据挖掘与应用方面的一些思考和实践进行整理。主要的背景和动机是，在之前的一段时间内，由于路径依赖等原因，我更关注在给定一个决策问题时，如何通过技术手段提高决策效率；而近期的一些实践经验表明，在实际业务场景中，如何找到数据、并从数据中挖掘出有价值的决策问题，其实也很重要。</p>
+<p>下面的讨论将分为三个部分。首先，我们讨论在给定一组数据集的情况下，如何更好地挖掘有价值的信息。其次，我们讨论在给定多组（可能相关的）数据集的情况下，如何针对不同的应用场景对数据进行提炼。最后，我们讨论如何在现有数据集的基础上，寻找更有价值的增量数据。</p>
 <a id="more"></a>
-<h2 id="割方法简介-Introduction-of-Cut-Methods"><a href="#割方法简介-Introduction-of-Cut-Methods" class="headerlink" title="割方法简介 Introduction of Cut Methods"></a>割方法简介 Introduction of Cut Methods</h2><p>在将混合整数规划(MIP)问题放松为线性规划(LP)问题求解时，LP求解结果对MIP结果的估计准确程度取决于MIP问题形式(formulation)的“规整”程度(integrality)：不妨假设在当前问题形式下，MIP问题的可行域是$P_I$，而LP松弛问题的可行域是$P$，那么当多面体$conv(P_I)$与$P$之间的差距越小时，LP松弛问题求得的解越接近整数可行解，问题形式的规整性越高。特别地，如果$P = conv(P_I)$，那么根据线性规划的几何性质，LP最优解$x_{LP}^* \in ext(P_I) \subseteq P_I$也是MIP问题的最优解。（关于MIP问题形式的规整程度的更多相关讨论可以参考我<a href="https://hanqiu92.github.io/blogs/2016/IP2_201610/">之前这篇blog post</a>。）</p>
-<p>割平面(cutting planes/cuts)是一类线性约束，这种约束试图在保持MIP可行域$P_I$中所有解可行的情况下，切割掉LP可行域$P$的一部分解（特别是LP松弛问题对应的最优解），以降低多面体$conv(P_I)$与$P$之间的差距、提高问题形式的规整性。在最理想情况下，我们可以通过在问题形式中添加割平面使得$P = conv(P_I)$，此时只需求解一次LP松弛问题即可完成对MIP问题的求解，无需调用B&amp;B流程。</p>
-<p>割方法对许多MIP问题的理论分析和求解算法设计提供了重要基础。特别地，对于很多MIP问题，我们可以通过组合理论系统性地引入割平面（例如Sherali-Adams Hierarchy）以获取更强的问题形式、甚至是理想问题形式$P = conv(P_I)$；虽然这通常需要引入指数多个割约束，但是其好处在于结构清晰，可以对多种近似求解方案在统一的理论框架下进行分析。并且，在实际求解过程中，含有指数多个约束的问题不一定是计算上不可行(intractable)的：我们可以利用分解(decomposition)以及惰性约束(lazy constriants)等计算技巧来提高计算效率。</p>
-<h2 id="B-amp-B流程中的割生成方法-Cut-Generation-in-B-amp-B-Procedure"><a href="#B-amp-B流程中的割生成方法-Cut-Generation-in-B-amp-B-Procedure" class="headerlink" title="B&amp;B流程中的割生成方法 Cut Generation in B&amp;B Procedure"></a>B&amp;B流程中的割生成方法 Cut Generation in B&amp;B Procedure</h2><p>在这一小节中，我将介绍在B&amp;B流程引入割生成方法的常规思路。<br>首先，通用方法生成的割平面虽然能很好地改进问题形式的规整性，但是这类割往往只能作为新增约束添加到已有问题形式中。由于LP的主要求解算法——单纯形法——的核心计算通过线性方程求解实现，而线性方程求解依赖于约束矩阵的分解（例如，LU分解）提高计算效率，故当生成新的割平面/约束时，约束结构发生变动触发约束矩阵分解的更新，进而对LP求解效率产生负面影响。（<strong>思考题：</strong>能否根据具体的割生成方法，定制化更高效的矩阵分解的计算和更新方法？）因此，为保证计算效率，通常只在B&amp;B流程中的一些关键节点（例如，求解根结点问题时）考虑加入通用方法生成的割平面。</p>
-<p>然而，从另一个角度，B&amp;B流程本身可以看成是一种特殊形式的割生成流程：在每一步迭代中，我们对某个子问题的某个变量的上下界约束进行加强，然后重新求解子问题。由于在单纯形法的求解过程中，变量上下界变化的影响很小（求解流程可以直接基于已有的基和解进行迭代），因此B&amp;B流程相比通用的割生成流程更适合与单纯形法（或者其他LP求解算法）结合。基于这一认知，我们可以进一步在B&amp;B流程中考虑branching以外的对变量上下界进行加强(bound tightening)的方法。一类较为通用的加强变量上下界约束的思路被称为<strong>可行域传播(domain propagation)</strong>：这种方式尝试根据branching后变量上下界的改动推断其他变量上下界的变动情况。由于这种方法依然只改变了变量的上下界，因此不会明显影响B&amp;B流程中的LP求解效率。不过，这种方法相比一般的割生成方法的缺点在于算法效率（即改进问题形式的规整性）低：它只能沿着坐标轴方向对问题的可行域进行切割，导致当原MIP问题和LP松弛问题的可行域差异主要处于坐标轴的斜角方向时，需要进行多次branching+变量上下界加强才能实现单个普通割平面的效果。例如，在T. Ahterberg的<a href="https://depositonce.tu-berlin.de/bitstream/11303/1931/2/Dokument_41.pdf" target="_blank" rel="external">博士论文</a>中曾介绍过这样一个例子：对于可行域<br>$$\{(x,y)|0.2 \leq x-y \leq 0.8, \ x,y \in \{0,\cdots,1000\}\},$$</p>
-<p>如果通过domain propagation，将需要接近1000次迭代才能证明该约束下无解；而利用一般的割方法则可以直接判断该可行域为空。</p>
-<p>上述关于算法效率和计算效率的权衡可以进一步推广到对不同形式的割平面的选取中。例如，在B&amp;B流程中加入具有稀疏结构或组合结构的割平面约束通常效果更好，因为这些约束对LP求解中的矩阵相关计算的效率影响更少，同时也可以更高效率地与domain propagation进行结合。具体来说，对于常见于big-M等建模方法中的variable bound约束，虽然在domain propagation中处理逻辑与普通的线性约束并无明显区别，但是由于约束稀疏（约束中包含的变量数只有2个）且变量系数形式简单（有一个变量的系数为1），因此需要的计算量显著更少。又如，由于knapsack约束中系数都是整数且变量的取值都为0-1，因此可以通过排序等方式做domain propagation，在节省了计算量的同时达到了更高的计算准确度。</p>
-<h2 id="对线性约束的边界加强方法-Domain-Propagation-for-Linear-Constraints"><a href="#对线性约束的边界加强方法-Domain-Propagation-for-Linear-Constraints" class="headerlink" title="对线性约束的边界加强方法 Domain Propagation for Linear Constraints"></a>对线性约束的边界加强方法 Domain Propagation for Linear Constraints</h2><p>这一小节中，我将简单介绍domain propagation中线性约束的处理方法。在后续代码实现中，我将实现该方法，并通过测试案例检验其效果。<br>首先，不妨假设变量$x$的上下界为$[l,u]$。我们定义一个线性约束$b_{l,i} \leq a_i^T x \leq b_{u,i}$的隐含上下界(implied bounds)为<br>$$b_{l,i}^{im} = \min_{l \leq x \leq u} a_i^T x, \ b_{u,i}^{im} = \max_{l \leq x \leq u} a_i^T x.$$</p>
-<p>根据上述定义，对于每个满足系数$a_{ij} &gt; 0$的变量$x_j$，我们可以推断其下界$l_j$应不小于<br>$$l_j^{im} = (b_{l,i} - \max_{x_{-j}} a_{i,-j}^T x_{-j}) / a_{ij} = (b_{l,i} - b_{u,i}^{im}) / a_{ij} + u_j,$$</p>
-<p>且其上界$u_j$应不大于<br>$$u_j^{im} = (b_{u,i} - \min_{x_{-j}} a_{i,-j}^T x_{-j}) / a_{ij} = (b_{u,i} - b_{l,i}^{im}) / a_{ij} + l_j;$$</p>
-<p>上述变量被称为变量$x_j$的隐含上下界。同理，可推得系数满足$a_{ij} &lt; 0$的变量$x_j$的隐含上下界$l_j^{im},u_j^{im}$。</p>
-<p>现在，当一个变量$x_j$的上下界发生变化$[l_j,u_j] \to [l_j’,u_j’]$时，我们可根据上述方法，计算这一变化通过每个约束$b_{l,i} \leq a_i^T x \leq b_{u,i}$传递到另一个变量$x_{j’}$上的隐含上下界$l_{ij’}^{im},u_{ij’}^{im}$；如果存在其中一个隐含上下界比当前上下界$l_{j’},u_{j’}$更强，我们就可以更新该变量的上下界约束。上述流程可以不断重复，直至没有变量可以获得更强的上下界约束为止。</p>
-<h2 id="建模技巧-Modeling-Tricks"><a href="#建模技巧-Modeling-Tricks" class="headerlink" title="建模技巧 Modeling Tricks"></a>建模技巧 Modeling Tricks</h2><p>上述讨论的另一个重要意义(implication)是：我们可以在MIP问题的建模过程中利用B&amp;B流程和割生成方法的理论和计算特性，设计更好的问题形式来提高求解速度。下面举两个简单的例子：</p>
-<ul>
-<li>lifting: 在上面提到的例子$\{(x,y)|0.2 \leq x-y \leq 0.8, \ x,y \in \{0,\cdots,1000\}\}$中，我们可以引入新的整数变量$z = x - y \in Z$，以在$x-y$方向上进行branching和domain propagation。容易看出，在引入lift变量后，上述问题可以直接通过B&amp;B流程快速求解，无需引入新的割生成流程。</li>
-<li>encoding: 对SOS1约束$\sum_j x_j = 1$，原始的branching会产生（深度上）很不平衡的B&amp;B树：$x_j = 1$仅对应其他所有$x_{j’}$都为0这一种情况，而$x_j = 0$则可能对应多种情况。我们可以通过lift变量将这种约束编码为一组约束，使得branching+domain propagation在这组约束下能产生更平衡的B&amp;B树，从而提高B&amp;B流程的求解效率。例如，我们可以将约束$x_1 + \cdots + x_4 = 1$编码为$x_1 + x_2 = y_1, \ x_3 + x_4 = y_2, \ y_1 + y_2 = 1$；此时，每个变量$y$的两个branching分支是平衡的：各分支都恰好对应两种$x$的取值情况。（关于MIP建模中encoding技巧的更多相关讨论可以参考我<a href="https://hanqiu92.github.io/blogs/2016/IP3_201610/">之前的一篇blog post</a>。）</li>
-</ul>
+<h2 id="数据挖掘-Data-Mining"><a href="#数据挖掘-Data-Mining" class="headerlink" title="数据挖掘 Data Mining"></a>数据挖掘 Data Mining</h2><p>通常的数据挖掘工作，会从技术的角度出发，针对一组类似的场景寻找通用的解决方案。一种常见的思路，是根据数据集的特性，选择或设计相应的建模组件，从而提高特征提取的效果。例如，对于用户历史行为数据，由于其具有较强的时序关联性，通常考虑通过RNN(LSTM)与注意力机制结合的方式进行建模；对于时空或路网上的统计数据，由于相邻时空或路段上的事件通常会有强相关性，使用CNN或者GCN等基于局部相似性的结构进行建模会更高效；而对于各类treatment的实验数据，由于影响因变量的基础值和增量效果的特征往往有所差异，使用DML等双塔结构、并叠加IPM等正则化方法，往往能够得到更准确的估计。</p>
+<p>在技术视角下的另一个热门方向，是在不考虑具体场景的情况下，直接通过自监督学习/表示学习对数据进行变换和压缩，得到具有泛化价值的中间特征，然后应用到不同的下游任务中。这种预训练的方式有以下好处：首先，当原始数据的特征数量大时，对各下游任务进行单独建模的成本会比较高；通过预训练对特征进行压缩，能够有效降低计算和存储成本。其次，当数据源本身非平稳时，不同周期数据存在分布漂移、可直接复用的比例不高，此时通过在预训练中引入正则化方法，可以更好地捕捉到数据中平稳的部分，从而得到泛化性能更好的特征。例如，在最近的一个应用场景中，我们通过对比学习，将不同时段的用户行为样本映射到同一个embedding上，以缓解行为特征波动造成的预测结果突变问题，在一些下游的小样本学习任务中取得了明显的收益。</p>
+<p>在更多的现实应用中，从业务视角出发设计特征往往更容易取得好的效果。这种基于业务理解先验的做法可以看成是一种高度定制化的迁移学习方法：从某些数据集中抽象出来的业务理解，可以通过特征的方式迁移到其他任务上。例如，我们近期的一个工作尝试根据司机的驾驶行为习惯推断其社会经济学属性，而后者可以帮助我们更好地理解司机的其他行为，包括出车习惯等等。在实践这种思路时，业务理解先验既可以从与一线员工的讨论或亲身体验中获得，也可以通过调研方法从业务对象处直接获得。</p>
+<h2 id="数据提炼-Data-Distillation"><a href="#数据提炼-Data-Distillation" class="headerlink" title="数据提炼 Data Distillation"></a>数据提炼 Data Distillation</h2><p>在实践中，我们通常可以接触到大量未经处理的原始数据。通过一些方式对这些数据进行加工提炼，得到的高质量数据集将有助于前述数据挖掘和建模工作。</p>
+<p>一类常见的数据加工场景是对同一任务下的不同数据源进行融合，从而对该任务的客观状态进行更准确的描述。在控制类问题中，这类任务通常称为状态估计（state estimation）；针对这类任务，滤波方法（filtering）是比较成熟的解决思路，有很多开源工具可以应用。而在更一般的应用里，这类任务的难点并不在于设计出好的估计方法，而在于识别出不同数据集所对应的相同的数据生成场景，以及其中可能存在的一致性问题。例如，一个用户在一个app内可能会同时留下状态切换动作和所处状态两类信息，如果将两类信息独立存储，然后分别统计状态持续时长，结果很容易对不上，长期会为下游应用造成一定的理解成本。如果能够在收集数据的过程中近实时地对数据结果进行交叉校正处理，则可以缓解上述一致性问题。</p>
+<p>另一类常见于机器学习应用中的场景，是如何构造合理的数据集对模型进行评估。由于历史数据集中通常混杂着很多不同context下得到的数据，直接使用全量历史数据来评估模型可能会引入一些偏差，造成线上线下效果不一致。在比较极端的场景，例如treatment effect估计任务中，使用包含多组不同A/B流量比例实验的数据集来对增量模型进行评估，会受到辛普森悖论的影响，有可能得到完全错误的结论。例如，假设对于一个策略的测试，在第一次A/B实验中使用了5%的流量，而在第二次A/B实验中使用了10%的流量，那么直接混合两次实验的数据来作为模型的评估数据集是有问题的。而真实的数据集可能混合了多种treatment在不同人群中以不同流量比例测试的数据，情况更为复杂。因此，对于这种情况，有必要通过匹配方法，对一组treatment找到它们在相似场景下的样本，并组合构造出评估数据集。</p>
+<h2 id="数据获取-Data-Acquisition"><a href="#数据获取-Data-Acquisition" class="headerlink" title="数据获取 Data Acquisition"></a>数据获取 Data Acquisition</h2><p>最后，在实际业务场景中，除了利用现有的数据源，我们也可以、或者必须要通过开拓新的数据获取渠道来取得业务成果。</p>
+<p>首先，我们考察treatment effect估计这一场景。在理论上，对treatment effect的估计依赖正值假设（positivity）：如果数据集中不包含某个treatment的相关数据，那么该treatment的效果将无法被准确估计。但是在实际的生产环境中，考虑到不同时期的context差异，被动收集到的treatment样本数据往往是不均衡、甚至缺失的。例如，某一策略全量后，后续将无法收集得到其他策略的效果数据。因此，直接根据观测数据建模存在一定的局限性；要突破这种局限，需要主动地收集（缺失的）数据。一种常用的方法是epsilon greedy，即留出固定比例的流量来进行随机探索，其余流量维持现有策略。另一种相对进阶的思路是使用TS(thompson sampling)或IDS(information directed sampling)，动态地根据目前信息量增益最大的方向去执行随机探索。不过，这种方式虽然在理论上更高效，但是依赖假设较多，而且在工程实现上更难模块化、误差控制方面短期的负向影响更不可控，目前较难应用于实际生产环境中。</p>
+<p>其次，更一般地，从定义业务决策问题的角度，现有数据源通常会受限于历史决策者所拥有的先验信息，不够全面和及时。例如，对于用户端业务，业务改进点通常对应用户体验的问题点，但线上收集到的数据往往只能反映出用户针对当前业务动作的被动反馈行为，是高度有偏的。在这种场景下，通过问卷调研等主动反馈方式来获取数据会是很好的补充。近期，我们正尝试对数据获取与数据挖掘这两部分工作进行结合：首先，根据已有的人工先验知识，通过数据挖掘深化认知并开展应用，在应用过程中收集潜在问题点；然后，针对这些潜在问题点通过调研收集用户反馈，并根据反馈结果更新先验信息。我们预期这一标准化流程能够在动态变化的业务环境中更快速地捕捉到迭代方向，从而提供增量业务价值。</p>
 
       
     </div>
@@ -380,7 +376,9 @@
       
         <div class="post-tags">
           
-            <a href="/blogs/tags/Integer-Programming/" rel="tag"># Integer Programming</a>
+            <a href="/blogs/tags/Behavior-Modeling/" rel="tag"># Behavior Modeling</a>
+          
+            <a href="/blogs/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
           
         </div>
       
@@ -393,8 +391,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blogs/2020/annual_summary_202006/" rel="next" title="Annual Summary (2019-20)">
-                <i class="fa fa-chevron-left"></i> Annual Summary (2019-20)
+              <a href="/blogs/2021/CFR_202103/" rel="next" title="Counterfactual Regret Minimization (CFR)">
+                <i class="fa fa-chevron-left"></i> Counterfactual Regret Minimization (CFR)
               </a>
             
           </div>
@@ -402,10 +400,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blogs/2020/IP_BB_solver_4_202007/" rel="prev" title="How to Develop Your Own Branch & Bound Solver IV: Summary">
-                How to Develop Your Own Branch & Bound Solver IV: Summary <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -573,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#割方法简介-Introduction-of-Cut-Methods"><span class="nav-number">1.</span> <span class="nav-text">割方法简介 Introduction of Cut Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-amp-B流程中的割生成方法-Cut-Generation-in-B-amp-B-Procedure"><span class="nav-number">2.</span> <span class="nav-text">B&B流程中的割生成方法 Cut Generation in B&B Procedure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对线性约束的边界加强方法-Domain-Propagation-for-Linear-Constraints"><span class="nav-number">3.</span> <span class="nav-text">对线性约束的边界加强方法 Domain Propagation for Linear Constraints</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建模技巧-Modeling-Tricks"><span class="nav-number">4.</span> <span class="nav-text">建模技巧 Modeling Tricks</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据挖掘-Data-Mining"><span class="nav-number">1.</span> <span class="nav-text">数据挖掘 Data Mining</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据提炼-Data-Distillation"><span class="nav-number">2.</span> <span class="nav-text">数据提炼 Data Distillation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据获取-Data-Acquisition"><span class="nav-number">3.</span> <span class="nav-text">数据获取 Data Acquisition</span></a></li></ol></div>
             
 
           </div>
@@ -734,9 +728,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://hanqiu92.github.io/blogs/2020/IP_BB_solver_3_202007/';
-          this.page.identifier = '2020/IP_BB_solver_3_202007/';
-          this.page.title = 'How to Develop Your Own Branch & Bound Solver III: Cut & Bound Tightening';
+          this.page.url = 'http://hanqiu92.github.io/blogs/2022/annual_comment_cn_202201/';
+          this.page.identifier = '2022/annual_comment_cn_202201/';
+          this.page.title = '认知迭代整理（2021）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://hanqiu92.disqus.com/embed.js';

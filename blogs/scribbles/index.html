@@ -93,7 +93,7 @@
 <meta property="og:description" content="ModelingMethodology(20/02/24) 建模过程中，要记得分析预测结果在不同context下的稳定性以及对参数的敏感度。(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑通过启发式方法近似求解优化问题来节省计算开销——当然，问题是优化结果对输入数据不一定可导。(20/09/01) 决策行为建模思考：
 
 对于一个确定的决策任务，给定充分的数">
-<meta property="og:updated_time" content="2021-02-19T12:18:49.065Z">
+<meta property="og:updated_time" content="2021-12-24T14:01:29.162Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scribbles">
 <meta name="twitter:description" content="ModelingMethodology(20/02/24) 建模过程中，要记得分析预测结果在不同context下的稳定性以及对参数的敏感度。(20/07/13) 很多场景中，模型内存在一些优化问题，不容易进行宏观近似；此时可以考虑通过启发式方法近似求解优化问题来节省计算开销——当然，问题是优化结果对输入数据不一定可导。(20/09/01) 决策行为建模思考：
@@ -273,7 +273,7 @@
 <li>然而，目前的技术手段很难对一个人（的所有决策行为）进行仿真模拟——需要对上述工具采取一种巧妙的平衡；可能从强化学习的应用中获取灵感</li>
 <li>general modeling heuristic可能比ad-hoc accurate model更合理。特别地，为了模拟agent决策中的heuristic所设计的方案其实也更容易被其他建模者所理解。</li>
 </ol>
-<p>(20/12/31) recommendation影响的是attention，而不是choice</p>
+<p>(20/12/31) recommendation影响的是attention，而不是choice。<br>(21/04/15) IRL的一个问题在于如果样本不足，学出来的reward形式容易overfit，无法泛化到样本外的特征上。</p>
 <h3 id="Structure-Design"><a href="#Structure-Design" class="headerlink" title="Structure Design"></a>Structure Design</h3><p>(19/10/11) 图卷积网络(GCN)较适用于建模局部动力系统，似乎不太适用于端到端直接预测。<br>(19/12/28) 如何保持一个输入特征（动作action）的偏序：</p>
 <ol>
 <li>声明强结构、引入隐变量/参数，缺点在于计算复杂，容易mis-specify；</li>
@@ -281,17 +281,26 @@
 <li>data-driven+加入辅助样本和相应损失函数（例如构造服从偏序关系的样本对）进行辅助训练，缺点在于不能完全保证偏序关系。</li>
 <li>对于实数空间$\mathbb{R}^n$上的偏序，可以考虑二次型效用函数$u(a,s,a’) = a^T G(s) a’$，然后假设DM的行为$a$服从softmax原则；容易看出此时结果效用是服从$a’$上的偏序的。</li>
 <li>如果要进一步考虑多维输出（例如，离散概率分布）上的偏序，一种简单的方式是先映射到一个全序集合（例如实数轴）上，然后作为参数映射到对应的多维空间中。例如，对于离散概率分布，可以考虑一族泊松分布，其位置参数$\lambda$是全序的。这种做法的问题是仍需手动指定输出的结构，容易mis-specify。</li>
-<li>进一步考虑拆分real prob和subjective prob来引入optimistic因素；参考saliency theory。</li>
+<li>进一步考虑拆分real prob和subjective prob来引入optimistic因素；参考saliency theory。<br>(21/04/15) attention机制是sparse的；attention权重可以作为rl中的reward.</li>
 </ol>
 <h3 id="Human-Decision-Behavior"><a href="#Human-Decision-Behavior" class="headerlink" title="Human Decision Behavior"></a>Human Decision Behavior</h3><p>(20/10/01) 网约车用户调研：</p>
 <ol>
 <li>高频基本与通勤挂钩 —— 需要通过结构化的mode choice模型判断，似乎公交的preference很低</li>
 <li>忠诚度与体验有关 —— 稳定的体验可以保证暂时ignore other options；可通过其他app的安装特征判断是否与其他option有较强的绑定</li>
 <li>价格敏感度与支付方式有关 —— 公司报销的相对不太敏感；高价车型部分反映供给紧张情况</li>
-<li>其他 —— 乘客希望有自定义偏好设定；对于福利主要关注应答时间；新司机由于业务不熟练，提供的体验更差</li>
+<li>其他 —— 乘客希望有自定义偏好设定；对于福利主要关注应答时间；新司机由于业务不熟练，提供的体验更差<br>(21/04/15) 劳动经济学基础假设：</li>
+<li>劳动者的资源禀赋包括：时间，以及周期性的固定盈余（租金等）。劳动者通过工作时长换取收入。</li>
+<li>劳动者的效用和支出是关于消费水平和休息水平的函数。决策问题是固定效用优化支出，或者固定支出优化效用。决策问题的解也可以看成是效用无差异曲线与支出无差异曲线的切点。<br>(21/04/15) 使用causal graph来分析人类决策行为的一个问题点在于，忽略了人类对于未来的推演能力（心智理论），即实际情况可能是双向因果关系。</li>
 </ol>
 <h2 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h2><h3 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h3><p>(20/07/04) 树/SVM等基于分类的模型是以split为核心（桶内数据点直接平均作为预测值），复杂度与桶数量有关；boosting进一步提供了高效交叉分桶的方式。LR/NN等基于回归的模型是以fit为核心（每个数据点贡献自己的loss影响整体模型），复杂度与模型参数有关。<strong>问题：</strong>是否从duality角度存在优化空间？例如，adaptive complexity/model selection？<br>(20/10/04) split（VC维）与fit的一个区别在于，前者类似于分析学中的simple function，后者则类似于逼近理论中的FFT、小波等。对于split，表示复杂度 = 模型复杂度 * 局部定义数；特别地，如果原数据有复杂的非线性，那么局部线性需要定义非常多局部</p>
-<h3 id="Causal-Inference"><a href="#Causal-Inference" class="headerlink" title="Causal Inference"></a>Causal Inference</h3><p>(20/01/01) 反事实(counterfactual)误差分析的套路是将$l(y_1-y_2,\hat{y}_1-\hat{y}_2)$拆分为$l(y_1,\hat{y}_1)$和$l(y_2,\hat{y}_2)$，再通过原有模型误差分析套路生成bound。主要区别在于需要分析决策倾向性(propensity score) $p(a|s)$对于样本分布的影响。<br>(20/07/01) PSM是一种常用方法，但是效果相当于做complete random实验而不是block random实验，因此当达到了full random效果后，随着过滤样本数增大（差异评估阈值下降）时，使用PSM反而增加了数据集之间（在特征层面上）的差异，因为样本量下降了。相反，直接对特征维度进行matching可以直接刻画数据集间的差异。（但是在数据量充分的情况下这种现象不太可能发生）<br>(20/07/01) dragonnet: 用propensity score来估计ATE，可以降低估计方差，但是牺牲了个人维度属性，个性化估计会有偏<br>(20/10/11) causal nn：fit的角度，通过权重分布将单点估计转化为整体加权估计，然后利用分部积分进行转化。实际应用可能比较tricky。<br>(20/12/31) 在多treatment场景中，做单treatment的实验结果分析会有什么效率损失？噪声更大，实验结果置信度下降</p>
+<h3 id="Causal-Inference"><a href="#Causal-Inference" class="headerlink" title="Causal Inference"></a>Causal Inference</h3><p>(20/01/01) 反事实(counterfactual)误差分析的套路是将$l(y_1-y_2,\hat{y}_1-\hat{y}_2)$拆分为$l(y_1,\hat{y}_1)$和$l(y_2,\hat{y}_2)$，再通过原有模型误差分析套路生成bound。主要区别在于需要分析决策倾向性(propensity score) $p(a|s)$对于样本分布的影响。<br>(20/07/01) PSM是一种常用方法，但是效果相当于做complete random实验而不是block random实验，因此当达到了full random效果后，随着过滤样本数增大（差异评估阈值下降）时，使用PSM反而增加了数据集之间（在特征层面上）的差异，因为样本量下降了。相反，直接对特征维度进行matching可以直接刻画数据集间的差异。（但是在数据量充分的情况下这种现象不太可能发生）<br>(20/07/01) dragonnet: 用propensity score来估计ATE，可以降低估计方差，但是牺牲了个人维度属性，个性化估计会有偏<br>(20/10/11) causal nn：fit的角度，通过权重分布将单点估计转化为整体加权估计，然后利用分部积分进行转化。实际应用可能比较tricky。<br>(20/12/31) 在多treatment场景中，做单treatment的实验结果分析会有什么效率损失？噪声更大，实验结果置信度下降<br>(21/04/15) 在估计treatment effect时，如果无法得到准确估计，可以退而求其次，根据一些正则性假设，生成上下界估计，并进行敏感度分析。<br>(21/04/15) 当treatment effect较弱时，使用传统的树模型可能会导致估计的treatment effect偏向于0，因为很难产生有效的split。<br>(21/04/15) 合成控制中，系数的稀疏性是一个重要性质。<br>(21/04/15) 合成控制的可靠性可以通过“extended pre-intervention period”的拟合准确度评估。特别地，根据理论分析，合成控制主要适用于样本量少+趋势强/噪声弱的场景；如果样本量大+噪声大，合成控制本身可能会overfit，引入更多noise。另一方面，可进一步通过类似于重采样的方式，评估效果的显著性：如果实验元素的估计效果显著差异于对照组元素的效果分布，则置信。这种评估更多依赖人工经验，因为样本少时p-value不置信。<br>(21/04/15) 通过观测数据和实验挖掘因果关系：</p>
+<ul>
+<li>目标：根据数据和实验，找到因果图的结构。</li>
+<li>关键假设：faithfulness，即概率分布与因果图关于随机变量条件独立的判断的一致性。基于这一假设，可以通过条件独立性推断因果图的方向，例如PC算法。若要进一步通过增量假设（例如，噪声的结构）得到更多关于因果图的结构信息，则需要对具体情况进行具体分析，没有简单结论。</li>
+<li>应用场景：医药、物理等基础研究场景；社会科学&amp;政策研究（可能存在hidden confounder）；AGI<br>(21/04/15) mediator &amp; moderator: 在现有因果关系估计基础上，试图进一步拆解不同因果路径的影响。可以使用因果图或者结构模型进行分析。常用于基于实验设计的因果关系挖掘中。<br>(21/04/15) honest做法迁移nn的思路：结构+权重拆分训练。可以与超参数的优化结合。</li>
+<li>简单方法：将模型结构切分为两部分，先用第一部分初始化全部权重，然后用第二部分数据fine-tune输出层权重。</li>
+<li>general方法：一部分数据做nas或者sparse connection search，另一部分训练权重。<br>(21/12/25) 当特征X维度少时，可以直接分层统计计算ATE；否则，需要通过模型简化X-&gt;y的复杂度。</li>
+</ul>
 <h3 id="Time-Series"><a href="#Time-Series" class="headerlink" title="Time Series"></a>Time Series</h3><p>(20/10/01) 宏观时序分析的缺点：如果外部存在持续影响因素，那么在评估一个shock的效果时置信度和时效性存在trade-off<br>(20/12/31) 通过观察bias和loss随时间的演化，可以一定程度上判断系统的非平稳性。<br>(20/12/31) 时间序列中，对之前时间段信息的利用可以通过多种时间粒度（小时、天、周）来提取不同层次的信息。在此之上，通过引入时间段的encoding特征，可以使用attention来自动化地根据不同场景（例如是否节假日）选取适当的建模信息。</p>
 <h2 id="Decision-amp-Optimization"><a href="#Decision-amp-Optimization" class="headerlink" title="Decision &amp; Optimization"></a>Decision &amp; Optimization</h2><h3 id="Methodology-1"><a href="#Methodology-1" class="headerlink" title="Methodology"></a>Methodology</h3><p>(19/06/02) 在predict-then-optimize框架中，优化/控制器的迭代频率最好与预测器的迭代频率一致。例如，如果决策是实时的，那么模型最好保持相对实时的更新；否则一段时间过后数据分布可能会变化，导致模型预估精度下降。</p>
 <p>(19/07/02) OR在实际应用中的思考：</p>
@@ -325,6 +334,12 @@ step 1b: (rt) 对于只连了一条边的row i，对应的j的对偶值完全由
 step 2: (rr) 选一个free row i, 算出两个最小的slack和对应的边，并令i_b离开B，将这两条边加入B，对应最小slack的col j的一条边离开B。（等于是B的2换2操作，而且通过augment可以进一步降低i_b）
 step 3: (ag) 选一个free row i，找shortest path，path上的都进入B。  
 </code></pre><p>(20/10/06) 内点法和单纯形法的比较：<br>内点法：几何角度，完全从可行域内部出发，迭代时不仅需要注意优化，还需要注意不要离边界太近，否则后续很难离开边界。<br>单纯形法：组合+几何角度，完全从顶点出发；这导致只在少数场景，例如LP中可以使用<br>(20/10/06) matriod和submodular的概念可以帮助理解为何简单的greedy+rounding能取得较好的效果</p>
+<p>(21/04/15) 多目标优化方法：</p>
+<ol>
+<li>序列带约束求解。该方法的一大问题是对约束的设定敏感，约束的微弱变化导致解的大幅波动。另外，目标多了以后，顺序影响很大：排在后面的目标要么优化空间小，要么大幅削弱此前的优化效果。</li>
+<li>加权。可以利用已有解来初始化对偶变量，从而提速：先对单目标求解并存储dual变量，然后用这些变量进行加权作为初始值。</li>
+<li>加权+约束求解兜底：从全局做加权优化，然后对违反约束的个体重新求解。加权相比序列约束更可控，故应将约束作为静态配置，加权权重作为主要控制优化点。</li>
+</ol>
 <h3 id="Robust-Optimization"><a href="#Robust-Optimization" class="headerlink" title="Robust Optimization"></a>Robust Optimization</h3><p>(20/01/01) </p>
 <ol>
 <li>若每个单独的决策重要，但是预测的confidence不够，那么可以使用局部平均的方式提高预测精度。可以使用kNN、随机森林等方法。</li>
@@ -337,10 +352,24 @@ step 3: (ag) 选一个free row i，找shortest path，path上的都进入B。
 <li>eluder dimension: 一种函数空间连续性的维度评估，可以用在任意函数空间中</li>
 <li>state-action matrix rank</li>
 </ol>
+<h3 id="Reinforcement-Learning"><a href="#Reinforcement-Learning" class="headerlink" title="Reinforcement Learning"></a>Reinforcement Learning</h3><p>(20/12/25) self-imitation：对于random exploration中产生的好trajectory，可以将其当做expert illustration，通过BC方法来引导后续训练。</p>
+<h3 id="Game-Theory"><a href="#Game-Theory" class="headerlink" title="Game Theory"></a>Game Theory</h3><p>(21/04/15) correlated equilibrium：作为nash equilibrium的扩展概念，主要差异是将决策空间从独立概率分布的乘积拓展为联合概率分布，因此允许更多均衡的存在性。<br>(21/04/15) blackwell approachability: iteratively solve the minmax problem w.r.t. a projected (half-space) sub-problem, then it is guaranteed that it will converge to the set. for equilibrium, the projection happens to be “regret matching”.<br>(21/04/15) 在评估中，AIVAT需要遍历所有可能发生的历史，因此计算量可能很大，是否能够仅考虑部分历史？<br>(21/04/15) online policy searching：可以使用alternative payoff（值估计）来进行引导，但是过度利用反而会增加了exploitability。一个有趣的观察是，抽象后，policy会变弱，但是value通常仍然很准，因此使用粗糙的value来引导精细的policy是较合理的。<br>(21/05/15) Single-deep CFR：在deep CFR的基础上，通过对历史regret模型的采样来替代对平均policy模型的学习。<br>(21/05/15) DREAM：在deep CFR的基础上，考虑outcome sampling以降低单次迭代的计算开销。然后，进一步通过增加模型预估的baseline来降低采样误差：使用expected SARSA，训练以下等式$Q(s(h),a) = R(h,a) + \mathbb{E}<em>{h’|\pi</em>{-i}} \sum_{a’} \pi(a’|s(h’)) Q(s(h’),a’)$。<br>(21/05/15) 怎么做depth-limited搜索？需要对信息集$I$进行扩充，以囊括自身策略$\pi$所产生的信息量：</p>
+<ul>
+<li>CFR-D: 增加其他agent可能处于的信息集和相应到达概率，以在求解subgame策略时，考虑其他agent的deviation动机，从而得到更robust的subgame策略；</li>
+<li>ReBeL: 增加其他agent对自身策略的belief（PBS=关于隐藏信息的概率分布），从而在求解trunk策略时，考虑自身策略对其他agent的belief的影响，从而得到更robust的trunk策略。<ul>
+<li>应用ReBeL所需的先决条件：1. 实现belief与history/info set的相互转化方式；2. 实现CFR-D/CFR-AVG，用于robust求解subgame。<br>(21/05/15) (deep) cfr的regret计算提效思路整理：</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>做多次outcome sampling rollout得到更准确的regret估计值。问题在于rollout时仍需要调用模型（生成策略），计算效率没有明显提升。</li>
+<li>结合outcome sampling和external sampling，在浅层用OS，深层用ES，以平衡计算成本和误差。</li>
+<li>使用类似于mcts的方式，在node处做多次有限深度搜索估计regret。问题在于如何保证模型预估与实际的Q值（受当前策略影响）是一致的。<br>(21/05/20) 进化博弈论（EGT）相比于传统博弈论，更关心群体中不同策略占比的演化过程。evolutionary stable strategy（ESS）是一个与纳什均衡（NE）不完全一致的概念。<br>(21/05/20) fictitious play（FP）: 每一步中，固定其他agent的策略，计算自己的最优响应策略（BR）；长期来看，这些最优响应策略的平均值（在一定条件下）收敛到NE。deep variants是用RL等方法求解最优响应策略。</li>
+</ol>
 <h2 id="Transportation-amp-Urban-Studies"><a href="#Transportation-amp-Urban-Studies" class="headerlink" title="Transportation &amp; Urban Studies"></a>Transportation &amp; Urban Studies</h2><p>(19/09/13) 城市出行中，regular需求更关注服务稳定性，而MaaS的优势虽然灵活和可定制化(也可能有更好的服务)，但无法保证稳定，因此MaaS的主要空间在于irregular需求。由于需求的高支付意愿来源于lack of alternatives，MaaS概念内部的不同mode将会形成强替代效应。<br>(19/11/20) 宏观基本图对应“稳态”，因此由于突发事件导致的交通流变化不应该根据宏观基本图进行判断，而应该基于动力学模型(PDE)甚至是仿真进行判断。<br>(20/02/26) 物流场景与出行场景的本质区别是需求形态上的，这种差异导致了运行模式的差异，从而产生了不同的优化问题。<br>(20/05/30) 在供需在空间上均匀分布时，batching可以降低pickup distance；但如果需求或供给为单点，则没有明显效果。这意味着规模收益需要通过车辆deadheading实现，存在tradeoff！<br>(20/07/01) 区域/路网转换：</p>
 <ul>
 <li>长方形、六边形体系：用于分析，优点是计算与转换方便，便于数据聚合和展示；缺点是不能反映区域间路网的连通性</li>
-<li>路网体系：可以准确描述微观行为，缺点在于计算成本高</li>
+<li>路网体系：可以准确描述微观行为，缺点在于计算成本高<br>(21/04/15) 城市交通新业态：热点从shared mobility到mobility service的转变，即从强调去中心化的资源共享（个体主导=C2C）回到中心化的服务上（企业主导=B2C）。</li>
 </ul>
 <h2 id="Code-Reading-amp-Development"><a href="#Code-Reading-amp-Development" class="headerlink" title="Code Reading &amp; Development"></a>Code Reading &amp; Development</h2><h3 id="Optimization-Solvers"><a href="#Optimization-Solvers" class="headerlink" title="Optimization Solvers"></a>Optimization Solvers</h3><p>(20/01/30) 新算法的实现往往需要引入新的状态变量，而主流程在以往的开发中并未留下足够的接口，从而导致随着时间迁移，代码越来越难改；不断重构是必要的。(特别是在solver的设计中)</p>
 <ul>
@@ -381,6 +410,23 @@ enter/leave区分primal/dual，分别进enter.cpp和leave.cpp；dual simplex是�
 <li>如果有时间上的演化，则可将实数域上的PDE转化为函数域上(关于时间)的ODE。ODE中，每个无穷小时间片的演化对应一个函数域上的变换算子$A$，该算子在时间$t$的演化下组成算子半群$\{e^{tA}\}_t$。进而可以通过算子半群理论对算法的收敛性进行分析。</li>
 <li>对SPDE，需要掌握大规模随机采样的方式，特别是如何高效率对BM/brownian sheet进行采样。一种方式是通过circulant embedding+FFT进行精确采样。另一种方式是用Karhunen–Loève分解目标过程，然后分别采样来逼近。</li>
 </ol>
+<p>(21/04/15) CTM模型：</p>
+<ul>
+<li>基本思路：next cell inflow = min(demand = current cell density, supply1 = next cell flow capacity, supply2 = next cell jam density)</li>
+<li>jam density通过backward wave speed（对应两个不同密度的流体merge时，边界移动的速度）定义，可以任意指定，也可以根据上下游流密速情况推导</li>
+<li>实践中，ctm可以很好地逼近lwr流体模型，并可进一步扩展到一般网络场景</li>
+</ul>
+<p>(21/04/15) CAV+V2X套路整理：</p>
+<ol>
+<li>微观：CAV+V2X控制方案设计。重要综述： An overview of vehicular platoon control under the four-component framework。<ol>
+<li>如何设计更安全和鲁棒的“分布式”跟弛行为：考虑周边车辆的信息输入，以及行驶过程中的自然扰动。通常考虑控制论方法，并分析稳定性。 – 思考题：如果是不同标准的CAV，应该如何进行交互？</li>
+<li>如何设计更好的platoon控制方法：取决于路侧单元提供哪种形式的控制信号。可以用传统的控制方法做，也可以考虑RL。同样，稳定性和鲁棒性很重要。</li>
+<li>如何设计更高效的CAV信息交互方案：information flow topology（IFT）设计。是一个MIP问题，但是可以根据问题结构设计高效的启发式算法。</li>
+<li>如何设计可实时部署的控制策略：预留计算时间，提前进行计算，然后在实际控制时，根据具体情况，对控制方案进行一阶修正。     </li>
+</ol>
+</li>
+<li>宏观：基于CAV+V2X的混合交通流的控制</li>
+</ol>
 <h2 id="Paper-Notes"><a href="#Paper-Notes" class="headerlink" title="Paper Notes"></a>Paper Notes</h2><ul>
 <li>1912.05500: 通过extrinsic reward -&gt; intrinsic reward -&gt; policy, 能够更好地在非平稳环境中迭代策略</li>
 <li>2011.06118: 在拟合choice行为时，通过局部扰动生成候选选项，而不是考虑全部选项，类似于在决策前增加一层attention</li>
@@ -391,6 +437,12 @@ enter/leave区分primal/dual，分别进enter.cpp和leave.cpp；dual simplex是�
 <li><a href="https://papers.nips.cc/paper/2020/file/52f4691a4de70b3c441bca6c546979d9-Paper.pdf" target="_blank" rel="external">preference learning along multiple criteria</a>: 很多决策问题，有多个维度的偏好，此时优化问题可以formulate成一个approachbility的问题，min max与target set之间的距离；这一问题是凸、但非线性的，因此和一维偏好上的min max有一定差异。</li>
 <li>2004.00603: CFR中的action regret推广为policy regret（称为“trigger regret”），然后再通过localize转化，形成可以局部计算的regret，进而产生相关算法。有点像在原版CFR上做的理论改进。</li>
 <li>2102.00815: 提出Bellman-Eluder dimension，作为一种结合Bellman Rank和Eluder dimension的用于评估复杂度的指标。</li>
+<li>2102.09488: 在information-directed sampling中，分析和比较了两种不同entropy定义所带来的影响，并根据数值实验结果，提出了一种新的regret bound理论分析框架。</li>
+<li>2102.12769: 考察了长尾reward情况下的RL理论，提出使用robust mean estimator（包括reward clipping）替代sample mean。</li>
+<li>2102.08087: 考虑连续时间optimal task acceptance问题，其中task的时长和收益未知，需要探索；作者先分析完全信息情况下的最优策略，然后基于此提出了数种predict-then-optimize算法，并分析了相应的regret bound。</li>
+<li>2103.04289: IRL with ql-k model，即对于任意reward函数，从myopic开始，多次根据opponent的当前最优策略更新自身最优策略（k层深度的优化）；然后根据相应的loss更新reward函数</li>
+<li>2110.13973: （平衡对环境复杂度的理解程度和策略的优化效果）在信息传输带宽有限的情况下，通过Blahut-Arimoto等信息论算法对未知环境的信息进行压缩，找到有限带宽下最值得关注的优化方向，能够提升单位信息密度的增量收益。</li>
+<li>2112.06054: 提出一种IRL方法，通过policy和state occupancy dist之间的联系，将学习目标转为expert state occupancy dist，而这可以通过td的方式实现。该方法的好处是不需要stationary的expert数据，要求更低（意味着可以在arbitrary init state dist下获取expert response）。</li>
 </ul>
 
         
@@ -473,7 +525,7 @@ enter/leave区分primal/dual，分别进enter.cpp和leave.cpp；dual simplex是�
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -550,7 +602,7 @@ enter/leave区分primal/dual，分别进enter.cpp和leave.cpp；dual simplex是�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeling"><span class="nav-number">1.</span> <span class="nav-text">Modeling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Methodology"><span class="nav-number">1.1.</span> <span class="nav-text">Methodology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Structure-Design"><span class="nav-number">1.2.</span> <span class="nav-text">Structure Design</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Human-Decision-Behavior"><span class="nav-number">1.3.</span> <span class="nav-text">Human Decision Behavior</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inference"><span class="nav-number">2.</span> <span class="nav-text">Inference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-Learning"><span class="nav-number">2.1.</span> <span class="nav-text">Machine Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Causal-Inference"><span class="nav-number">2.2.</span> <span class="nav-text">Causal Inference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Series"><span class="nav-number">2.3.</span> <span class="nav-text">Time Series</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-amp-Optimization"><span class="nav-number">3.</span> <span class="nav-text">Decision & Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Methodology-1"><span class="nav-number">3.1.</span> <span class="nav-text">Methodology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Integer-Programming-amp-Combinatorial-Optimization"><span class="nav-number">3.2.</span> <span class="nav-text">Integer Programming & Combinatorial Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Robust-Optimization"><span class="nav-number">3.3.</span> <span class="nav-text">Robust Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exploration-amp-Exploitation"><span class="nav-number">3.4.</span> <span class="nav-text">Exploration & Exploitation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transportation-amp-Urban-Studies"><span class="nav-number">4.</span> <span class="nav-text">Transportation & Urban Studies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Reading-amp-Development"><span class="nav-number">5.</span> <span class="nav-text">Code Reading & Development</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization-Solvers"><span class="nav-number">5.1.</span> <span class="nav-text">Optimization Solvers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc"><span class="nav-number">6.</span> <span class="nav-text">Misc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Paper-Notes"><span class="nav-number">7.</span> <span class="nav-text">Paper Notes</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeling"><span class="nav-number">1.</span> <span class="nav-text">Modeling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Methodology"><span class="nav-number">1.1.</span> <span class="nav-text">Methodology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Structure-Design"><span class="nav-number">1.2.</span> <span class="nav-text">Structure Design</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Human-Decision-Behavior"><span class="nav-number">1.3.</span> <span class="nav-text">Human Decision Behavior</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inference"><span class="nav-number">2.</span> <span class="nav-text">Inference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-Learning"><span class="nav-number">2.1.</span> <span class="nav-text">Machine Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Causal-Inference"><span class="nav-number">2.2.</span> <span class="nav-text">Causal Inference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Series"><span class="nav-number">2.3.</span> <span class="nav-text">Time Series</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-amp-Optimization"><span class="nav-number">3.</span> <span class="nav-text">Decision & Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Methodology-1"><span class="nav-number">3.1.</span> <span class="nav-text">Methodology</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Integer-Programming-amp-Combinatorial-Optimization"><span class="nav-number">3.2.</span> <span class="nav-text">Integer Programming & Combinatorial Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Robust-Optimization"><span class="nav-number">3.3.</span> <span class="nav-text">Robust Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exploration-amp-Exploitation"><span class="nav-number">3.4.</span> <span class="nav-text">Exploration & Exploitation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reinforcement-Learning"><span class="nav-number">3.5.</span> <span class="nav-text">Reinforcement Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Game-Theory"><span class="nav-number">3.6.</span> <span class="nav-text">Game Theory</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transportation-amp-Urban-Studies"><span class="nav-number">4.</span> <span class="nav-text">Transportation & Urban Studies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Reading-amp-Development"><span class="nav-number">5.</span> <span class="nav-text">Code Reading & Development</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization-Solvers"><span class="nav-number">5.1.</span> <span class="nav-text">Optimization Solvers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc"><span class="nav-number">6.</span> <span class="nav-text">Misc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Paper-Notes"><span class="nav-number">7.</span> <span class="nav-text">Paper Notes</span></a></li></ol></div>
             
 
           </div>
@@ -570,7 +622,7 @@ enter/leave区分primal/dual，分别进enter.cpp和leave.cpp；dual simplex是�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
