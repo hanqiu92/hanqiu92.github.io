@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,29 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Stochastic Process," />
 
 
+  <meta name="keywords" content="Stochastic Process,">
 
 
 
@@ -83,20 +81,22 @@
 
 
 
-<meta name="description" content="在上一篇文章中，我介绍了如何根据关于条件期望的结构性信息（具体来说，条件期望的单调性）来推导一些理论性质和计算一些随机变量的期望值。在这一篇文章中，我将更进一步，讨论如何利用关于条件概率测度$P$的结构性信息。具体来说，我将关注具有以下形式的$P$
-In the previous post, I discussed how to use structural information about c">
+
+
+<meta name="description" content="在上一篇文章中，我介绍了如何根据关于条件期望的结构性信息（具体来说，条件期望的单调性）来推导一些理论性质和计算一些随机变量的期望值。在这一篇文章中，我将更进一步，讨论如何利用关于条件概率测度$P$的结构性信息。具体来说，我将关注具有以下形式的$P$ In the previous post, I discussed how to use structural information about c">
+<meta name="keywords" content="Stochastic Process">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Stochastic Process Note III: Markov Chains">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2019/SP3_201908/index.html">
-<meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="在上一篇文章中，我介绍了如何根据关于条件期望的结构性信息（具体来说，条件期望的单调性）来推导一些理论性质和计算一些随机变量的期望值。在这一篇文章中，我将更进一步，讨论如何利用关于条件概率测度$P$的结构性信息。具体来说，我将关注具有以下形式的$P$
-In the previous post, I discussed how to use structural information about c">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/SP/markov_property.png">
+<meta property="og:site_name" content="Han&#39;s Blog">
+<meta property="og:description" content="在上一篇文章中，我介绍了如何根据关于条件期望的结构性信息（具体来说，条件期望的单调性）来推导一些理论性质和计算一些随机变量的期望值。在这一篇文章中，我将更进一步，讨论如何利用关于条件概率测度$P$的结构性信息。具体来说，我将关注具有以下形式的$P$ In the previous post, I discussed how to use structural information about c">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/SP/markov_property.png">
 <meta property="og:updated_time" content="2019-09-25T13:20:23.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Stochastic Process Note III: Markov Chains">
-<meta name="twitter:description" content="在上一篇文章中，我介绍了如何根据关于条件期望的结构性信息（具体来说，条件期望的单调性）来推导一些理论性质和计算一些随机变量的期望值。在这一篇文章中，我将更进一步，讨论如何利用关于条件概率测度$P$的结构性信息。具体来说，我将关注具有以下形式的$P$
-In the previous post, I discussed how to use structural information about c">
+<meta name="twitter:description" content="在上一篇文章中，我介绍了如何根据关于条件期望的结构性信息（具体来说，条件期望的单调性）来推导一些理论性质和计算一些随机变量的期望值。在这一篇文章中，我将更进一步，讨论如何利用关于条件概率测度$P$的结构性信息。具体来说，我将关注具有以下形式的$P$ In the previous post, I discussed how to use structural information about c">
+<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/images/SP/markov_property.png">
 
 
 
@@ -126,7 +126,7 @@ In the previous post, I discussed how to use structural information about c">
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/SP3_201908/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/SP3_201908/">
 
 
 
@@ -160,7 +160,7 @@ In the previous post, I discussed how to use structural information about c">
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -263,7 +263,7 @@ In the previous post, I discussed how to use structural information about c">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -299,7 +299,7 @@ In the previous post, I discussed how to use structural information about c">
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -370,8 +370,8 @@ In the previous post, I discussed how to use structural information about c">
 <p>$$P(X_j\in B_j, 0\leq j\leq n) = \int_{B_0}\mu(dx_0)\{ \int_{B_1}p(x_0,dx_1) \cdot \{ \cdots \int_{B_n}p(x_{n-1},dx_n) \} \}. \tag{1.2}$$</p>
 <p>其次，当状态空间$(S,\mathcal{S})$满足一定的正则性时，我们可以对上述（$\mu$和$p$唯一确定的）有限维概率分布(1.2)运用Kolmogorov延拓定理得到序列空间$(\Omega_o,\mathcal{F}) = (S^{ \{0,1,\cdots\} },\mathcal{S}^{ \{0,1,\cdots\} })$上的一个概率测度$P_{\mu}$，且在$P_{\mu}$下服从有限维概率分布(1.2)的随机变量$X_n$可以被看作是坐标映射$X_n(\omega) = \omega_n$。</p>
 <p>Second, when the state space $(S,\mathcal{S})$ is nice, we can apply the Kolmogorov extension theorem on the above finite-dimensional probability distributions (1.2) (which is uniquely determined given $\mu$ and $p$) to obtain a probability measure $P_{\mu}$ on the sequence space $(\Omega_o,\mathcal{F}) = (S^{ \{0,1,\cdots\} },\mathcal{S}^{ \{0,1,\cdots\} })$. Under $P_{\mu}$, the random variable $X_n$ can be viewed as a coordinate map $X_n(\omega) = \omega_n$.</p>
-<p>最后，我们可以（通过测度论中的<a href="https://en.wikipedia.org/wiki/Dynkin_system#Dynkin&#39;s_%CF%80-%CE%BB_theorem" target="_blank" rel="external">$\pi$-$\lambda$定理</a>和<a href="https://en.wikipedia.org/wiki/Monotone_class_theorem" target="_blank" rel="external">单调类定理</a>）证明：</p>
-<p>Finally, we can prove that (by applying the <a href="https://en.wikipedia.org/wiki/Dynkin_system#Dynkin&#39;s_%CF%80-%CE%BB_theorem" target="_blank" rel="external">$\pi$-$\lambda$ theorem</a> and the <a href="https://en.wikipedia.org/wiki/Monotone_class_theorem" target="_blank" rel="external">monotone class theorem</a> in the measure theory):</p>
+<p>最后，我们可以（通过测度论中的<a href="https://en.wikipedia.org/wiki/Dynkin_system#Dynkin&#39;s_%CF%80-%CE%BB_theorem" target="_blank" rel="noopener">$\pi$-$\lambda$定理</a>和<a href="https://en.wikipedia.org/wiki/Monotone_class_theorem" target="_blank" rel="noopener">单调类定理</a>）证明：</p>
+<p>Finally, we can prove that (by applying the <a href="https://en.wikipedia.org/wiki/Dynkin_system#Dynkin&#39;s_%CF%80-%CE%BB_theorem" target="_blank" rel="noopener">$\pi$-$\lambda$ theorem</a> and the <a href="https://en.wikipedia.org/wiki/Monotone_class_theorem" target="_blank" rel="noopener">monotone class theorem</a> in the measure theory):</p>
 <p><strong>定理1.1：</strong>根据上述方式得到的对应概率测度$P_{\mu}$的序列$\{X_n\}$是一个以$p$为转移概率的马尔科夫链。</p>
 <p><strong>Theorem 1.1:</strong> The coordinate maps $\{X_n\}$ with respect to the probability measure $P_{\mu}$ is a Markov chain with transition probability $p$.</p>
 <p><strong>定理1.2：</strong>一个以$\mu$为初始分布、$p$为转移概率的马尔科夫链$\{X_n\}$的有限维概率分布服从式(1.2)的形式。</p>
@@ -517,8 +517,8 @@ In the previous post, I discussed how to use structural information about c">
 <p>$$\mu_x(y) = E_x(1_{\{X_0 = y\}} + N_y^{T_x-1}) = \sum_{n=0}^{\infty} P_x(X_n=y,T_x&gt;n) \tag{3.2.5}$$</p>
 <p>定义了一个平稳测度。</p>
 <p>defines a stationary measure.</p>
-<p><strong>证明：</strong>根据定义式(3.2.5)并应用<a href="https://en.wikipedia.org/wiki/Fubini%27s_theorem" target="_blank" rel="external">Fubini定理</a>交换和式，我们可以得到</p>
-<p><strong>Proof:</strong> Applying <a href="https://en.wikipedia.org/wiki/Fubini%27s_theorem" target="_blank" rel="external">Fubini Theorem</a> and equation (3.2.5), we have</p>
+<p><strong>证明：</strong>根据定义式(3.2.5)并应用<a href="https://en.wikipedia.org/wiki/Fubini%27s_theorem" target="_blank" rel="noopener">Fubini定理</a>交换和式，我们可以得到</p>
+<p><strong>Proof:</strong> Applying <a href="https://en.wikipedia.org/wiki/Fubini%27s_theorem" target="_blank" rel="noopener">Fubini Theorem</a> and equation (3.2.5), we have</p>
 <p>$$\sum_{y \in S} \mu_x(y) p(y,z) = \sum_{n=0}^{\infty} \sum_{y \in S} p(y,z) P_x(X_n=y,T_x&gt;n). \tag{3.2.6}$$</p>
 <p>当$z \neq x$时，有</p>
 <p>On the one hand, when $z \neq x$,</p>
@@ -669,9 +669,7 @@ In the previous post, I discussed how to use structural information about c">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -684,7 +682,7 @@ In the previous post, I discussed how to use structural information about c">
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

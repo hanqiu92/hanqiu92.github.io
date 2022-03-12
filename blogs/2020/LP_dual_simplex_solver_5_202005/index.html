@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,27 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Linear Programming," />
+
+
+  <meta name="keywords" content="Linear Programming,">
 
 
 
@@ -84,11 +84,13 @@
 
 
 <meta name="description" content="在这篇文章中，我将对本系列之前的内容进行总结，并针对LP求解器的设计开发和使用给出一些个人建议。">
+<meta name="keywords" content="Linear Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Develop Your Own Dual Simplex Solver V: Summary">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_5_202005/index.html">
-<meta property="og:site_name" content="Han's Blog">
+<meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在这篇文章中，我将对本系列之前的内容进行总结，并针对LP求解器的设计开发和使用给出一些个人建议。">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2020-06-27T14:55:11.392Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Develop Your Own Dual Simplex Solver V: Summary">
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_5_202005/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_5_202005/">
 
 
 
@@ -156,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -259,7 +261,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -295,7 +297,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -377,7 +379,7 @@
 <li>线性方程求解的常用思路是做LU分解。对于稠密矩阵，LU分解的算法已经非常成熟；但是LP问题的输入矩阵$A$一般很稀疏。通过分析和利用稀疏性，LU分解的效率可以显著提升。事实上，本系列的实现中调用了一些线性方程求解器，这些求解器内部实现了多种复杂的利用稀疏性的算法。由于该领域目前仍不断有新的算法的提出，这些求解器在不断地优化，个人去做线性方程求解的优化似乎效率较低。然而，在LP求解中调用外部的线性方程求解器可能会有一些内存甚至是IO上的额外开销，从而削弱了外部求解器的优势。同时，单纯形法中的重要一步是对LU分解结果的更新，而这一步似乎是LP问题独有的，目前我没有发现有通用线性方程求解器对这一步提供支持。这显著地降低了外部求解器的吸引力。</li>
 <li>通过本系列中的尝试，可以充分地认识到数值误差的控制流设计对于求解器稳健性和求解效率的重要性。特别地，对于PILOT系列等数值不稳定的问题，不同的控制流设计会导致求解效率有数量级的差异。在本系列的实现中，基本上完全通过对问题进行扰动实现误差控制；而实际上，在很多步骤中，可以结合数值误差产生的原因设计更高效的误差控制手段。当然，对这些特定场景下的控制方案进行统一管理并不是一件简单的事情。</li>
 </ol>
-<p>要进一步提高求解器的效果，开发者可以参考已有的开源工作。在本系列的实现中，我参考了<a href="https://github.com/coin-or/Clp" target="_blank" rel="external">Clp</a>和<a href="http://soplex.zib.de/" target="_blank" rel="external">SoPlex</a>的代码，下面简单归纳一些基础认知。Clp的实现与A. Koberstein的<a href="https://www.researchgate.net/profile/Achim_Koberstein/publication/35632487_The_dual_simplex_method_techniques_for_a_fast_and_stable_implementation_Elektronische_Ressource/links/0a85e52ef5144e9031000000/The-dual-simplex-method-techniques-for-a-fast-and-stable-implementation-Elektronische-Ressource.pdf" target="_blank" rel="external">博士论文</a>中的描述的差别不是很大，但是引入了较精细的误差控制流程。一个主要的算法层面的区别是Clp没有进行第一/二阶段的区分，而是通过设置虚拟的上下界来保证对偶解可行性，然后动态地对这些虚拟的上下界进行管理，在必要的时候扩大这些虚拟上下界，直到对应的变量离开该界为止。虽然Koberstein的论文中提到这种方法，但是他没有选用，也没有做数值实验进行对比，可能是这种方案的效果强依赖与一些参数，而调参比较困难。Clp虽然求解效率很高，但是代码注释写得不够清楚。相比之下，SoPlex代码注释写得很好，阅读体验显著提升。在算法实现方面，相比Clp，SoPlex主要有以下两点区别：</p>
+<p>要进一步提高求解器的效果，开发者可以参考已有的开源工作。在本系列的实现中，我参考了<a href="https://github.com/coin-or/Clp" target="_blank" rel="noopener">Clp</a>和<a href="http://soplex.zib.de/" target="_blank" rel="noopener">SoPlex</a>的代码，下面简单归纳一些基础认知。Clp的实现与A. Koberstein的<a href="https://www.researchgate.net/profile/Achim_Koberstein/publication/35632487_The_dual_simplex_method_techniques_for_a_fast_and_stable_implementation_Elektronische_Ressource/links/0a85e52ef5144e9031000000/The-dual-simplex-method-techniques-for-a-fast-and-stable-implementation-Elektronische-Ressource.pdf" target="_blank" rel="noopener">博士论文</a>中的描述的差别不是很大，但是引入了较精细的误差控制流程。一个主要的算法层面的区别是Clp没有进行第一/二阶段的区分，而是通过设置虚拟的上下界来保证对偶解可行性，然后动态地对这些虚拟的上下界进行管理，在必要的时候扩大这些虚拟上下界，直到对应的变量离开该界为止。虽然Koberstein的论文中提到这种方法，但是他没有选用，也没有做数值实验进行对比，可能是这种方案的效果强依赖与一些参数，而调参比较困难。Clp虽然求解效率很高，但是代码注释写得不够清楚。相比之下，SoPlex代码注释写得很好，阅读体验显著提升。在算法实现方面，相比Clp，SoPlex主要有以下两点区别：</p>
 <ol>
 <li>DSE阶段没做采样优化效率；</li>
 <li>在BFRT阶段找对偶步长的时候使用排序循环，而不是像Clp一样用二分法；同时也没有加入Harris RT的元素来对数值误差进行处理。</li>
@@ -502,9 +504,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -517,7 +517,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

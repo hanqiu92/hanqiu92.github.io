@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,29 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Behavior Modeling,Reinforcement Learning," />
 
 
+  <meta name="keywords" content="Behavior Modeling,Reinforcement Learning,">
 
 
 
@@ -83,22 +81,20 @@
 
 
 
-<meta name="description" content="Counterfactual regret minimization（下称CFR）是目前针对不完全信息博弈问题的一类主流求解方法，在棋牌类游戏中有较为广泛和成功的应用。理解这类算法的思路和性质，将有助于后续对一般的不完全信息博弈问题的研究。在这篇文章中，我将对近期对CFR的学习做一个简单的整理，便于后续回顾。内容主要包括：
 
-对原始的CFR算法及其经典变种的简单实现，以及实现过程中遇到的一些问题点">
+
+<meta name="description" content="Counterfactual regret minimization（下称CFR）是目前针对不完全信息博弈问题的一类主流求解方法，在棋牌类游戏中有较为广泛和成功的应用。理解这类算法的思路和性质，将有助于后续对一般的不完全信息博弈问题的研究。在这篇文章中，我将对近期对CFR的学习做一个简单的整理，便于后续回顾。内容主要包括：  对原始的CFR算法及其经典变种的简单实现，以及实现过程中遇到的一些问题点">
+<meta name="keywords" content="Behavior Modeling,Reinforcement Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Counterfactual Regret Minimization (CFR)">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2021/CFR_202103/index.html">
-<meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="Counterfactual regret minimization（下称CFR）是目前针对不完全信息博弈问题的一类主流求解方法，在棋牌类游戏中有较为广泛和成功的应用。理解这类算法的思路和性质，将有助于后续对一般的不完全信息博弈问题的研究。在这篇文章中，我将对近期对CFR的学习做一个简单的整理，便于后续回顾。内容主要包括：
-
-对原始的CFR算法及其经典变种的简单实现，以及实现过程中遇到的一些问题点">
+<meta property="og:site_name" content="Han&#39;s Blog">
+<meta property="og:description" content="Counterfactual regret minimization（下称CFR）是目前针对不完全信息博弈问题的一类主流求解方法，在棋牌类游戏中有较为广泛和成功的应用。理解这类算法的思路和性质，将有助于后续对一般的不完全信息博弈问题的研究。在这篇文章中，我将对近期对CFR的学习做一个简单的整理，便于后续回顾。内容主要包括：  对原始的CFR算法及其经典变种的简单实现，以及实现过程中遇到的一些问题点">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2021-04-06T13:09:18.404Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Counterfactual Regret Minimization (CFR)">
-<meta name="twitter:description" content="Counterfactual regret minimization（下称CFR）是目前针对不完全信息博弈问题的一类主流求解方法，在棋牌类游戏中有较为广泛和成功的应用。理解这类算法的思路和性质，将有助于后续对一般的不完全信息博弈问题的研究。在这篇文章中，我将对近期对CFR的学习做一个简单的整理，便于后续回顾。内容主要包括：
-
-对原始的CFR算法及其经典变种的简单实现，以及实现过程中遇到的一些问题点">
+<meta name="twitter:description" content="Counterfactual regret minimization（下称CFR）是目前针对不完全信息博弈问题的一类主流求解方法，在棋牌类游戏中有较为广泛和成功的应用。理解这类算法的思路和性质，将有助于后续对一般的不完全信息博弈问题的研究。在这篇文章中，我将对近期对CFR的学习做一个简单的整理，便于后续回顾。内容主要包括：  对原始的CFR算法及其经典变种的简单实现，以及实现过程中遇到的一些问题点">
 
 
 
@@ -128,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2021/CFR_202103/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2021/CFR_202103/">
 
 
 
@@ -162,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -265,7 +261,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -301,7 +297,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -354,7 +350,7 @@
 <ul>
 <li>对原始的CFR算法及其经典变种的简单实现，以及实现过程中遇到的一些问题点和注意点；</li>
 <li>对CFR算法思路的一些个人理解，以及后续拓展方向的思考；</li>
-<li>通过一个简单的测试问题（Leduc纸牌游戏），对实现的算法的效果进行仿真评估；相应的代码仓库地址在<a href="https://github.com/hanqiu92/leduc_cfr" target="_blank" rel="external">这里</a>。</li>
+<li>通过一个简单的测试问题（Leduc纸牌游戏），对实现的算法的效果进行仿真评估；相应的代码仓库地址在<a href="https://github.com/hanqiu92/leduc_cfr" target="_blank" rel="noopener">这里</a>。</li>
 </ul>
 <a id="more"></a>
 <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>在不完全信息（imperfect information）的博弈问题中，系统的一些参与方对系统中的信息并不是完全感知的；例如，在许多牌类游戏中，一个玩家并不知道其他玩家的手牌信息。一个值得思考的问题是：不完全信息博弈问题的解决方法，与完全信息博弈问题的解决方法，有何异同？</p>
@@ -422,10 +418,10 @@
 </ol>
 <p>在这一节的最后，我们来进行一些扩展讨论：在理解了CFR算法的大致思路后，我们可以如何将其迁移到其他应用场景？</p>
 <ol>
-<li>理论层面：CFR中对各$I$独立进行regret最小化的思路，对于什么问题是可行的，而在哪些场景中会存在漏洞？这些漏洞可以通过什么方式解决？例如，在近期一篇<a href="https://arxiv.org/pdf/2004.00603.pdf" target="_blank" rel="external">关于相关均衡的文章</a>中，作者引入了一种新的regret的概念，然后用类似CFR的思路提出了一种求解相关均衡的方法，并证明了其收敛性。</li>
+<li>理论层面：CFR中对各$I$独立进行regret最小化的思路，对于什么问题是可行的，而在哪些场景中会存在漏洞？这些漏洞可以通过什么方式解决？例如，在近期一篇<a href="https://arxiv.org/pdf/2004.00603.pdf" target="_blank" rel="noopener">关于相关均衡的文章</a>中，作者引入了一种新的regret的概念，然后用类似CFR的思路提出了一种求解相关均衡的方法，并证明了其收敛性。</li>
 <li>计算层面：CFR的主要计算瓶颈来源于其对regret的表示缺乏泛化能力，故在计算中需要遍历$I$，导致时间和空间的复杂度很高。那么，我们能否剥离出CFR的核心步骤，并将其融入一些其他的具有泛化能力的求解框架中？特别地，注意到regret的形式与RL中的advantage有一定的相似性，因此或许可以对现有RL算法进行一些针对性的改造，以复现CFR的优秀的收敛效果。特别地，近期的deep CFR就是一次很好的尝试。</li>
 </ol>
-<h2 id="研究前沿"><a href="#研究前沿" class="headerlink" title="研究前沿"></a>研究前沿</h2><p>在经典的CFR方法的基础上，近期又出现了许多改进工作，进一步提高了CFR系列方法的计算可行性。在这篇文章的最后，我将对<a href="http://reports-archive.adm.cs.cmu.edu/anon/2020/CMU-CS-20-132.pdf" target="_blank" rel="external">Noam Brown的博士论文</a>中提到的一些改进方法进行简单总结：</p>
+<h2 id="研究前沿"><a href="#研究前沿" class="headerlink" title="研究前沿"></a>研究前沿</h2><p>在经典的CFR方法的基础上，近期又出现了许多改进工作，进一步提高了CFR系列方法的计算可行性。在这篇文章的最后，我将对<a href="http://reports-archive.adm.cs.cmu.edu/anon/2020/CMU-CS-20-132.pdf" target="_blank" rel="noopener">Noam Brown的博士论文</a>中提到的一些改进方法进行简单总结：</p>
 <ol>
 <li>discounted CFR (DCFR)：在上面关于CFR+的介绍中，我们已经知道，通过对历史平均策略信息进行折减、以更多利用当前策略的信息，可以提高算法的收敛效果。<ul>
 <li>在此基础上，一种自然的拓展思路是对历史累计的regret也进行折减。</li>
@@ -567,9 +563,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -582,7 +576,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

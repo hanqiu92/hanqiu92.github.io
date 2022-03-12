@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,27 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Linear Programming," />
+
+
+  <meta name="keywords" content="Linear Programming,">
 
 
 
@@ -84,16 +84,19 @@
 
 
 <meta name="description" content="在这篇文章中，我将介绍对偶单纯形法(Dual Simplex, DS)的基本流程，并结合一个简单的例子分析其几何含义。">
+<meta name="keywords" content="Linear Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Develop Your Own Dual Simplex Solver II: The Dual Simplex Algorithm">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_2_202003/index.html">
-<meta property="og:site_name" content="Han's Blog">
+<meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在这篇文章中，我将介绍对偶单纯形法(Dual Simplex, DS)的基本流程，并结合一个简单的例子分析其几何含义。">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/dual_simplex/BFRT_geometry.png">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/dual_simplex/BFRT_geometry.png">
 <meta property="og:updated_time" content="2020-04-03T03:04:32.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Develop Your Own Dual Simplex Solver II: The Dual Simplex Algorithm">
 <meta name="twitter:description" content="在这篇文章中，我将介绍对偶单纯形法(Dual Simplex, DS)的基本流程，并结合一个简单的例子分析其几何含义。">
+<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/images/dual_simplex/BFRT_geometry.png">
 
 
 
@@ -123,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_2_202003/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_2_202003/">
 
 
 
@@ -157,7 +160,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -260,7 +263,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -296,7 +299,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -357,7 +360,7 @@
 </ul>
 <p>下面，我将介绍DS迭代步骤的具体细节。不妨设给定的对偶可行的基和解分别是$(B,L,U)$和$(x,\lambda,s)$，且该解不是原始可行的。</p>
 <ol>
-<li>（pricing/CHUZR阶段）在这一阶段中，我们需要选取一个原始不可行的列$i$离开$B$。当$i$离开$B$时，取决于$x_i$是超过上界还是低于下界，应令$i$进入$U$或$L$。此时，对应的对偶变量$s_i$将根据方向$$<br>d_i =<br>\begin{cases}<br> 1 &amp; x_i &lt; l_i \\<br> -1 &amp; x_i &gt; u_i<br>\end{cases}\tag{1.5}<br>$$移动变成非零值。而根据系统\eqref{eq:KKT_decompose}，每当$s_i$沿着方向$d_i$变化一单位时，其他对偶变量$(\lambda,s)$的变化量应为<br>$$ \delta \lambda = d_i \cdot -A_B^{-T}e_i, \ \delta s = d_i\cdot A^TA_B^{-T}e_i; \tag{1.6}\label{eq:dual_delta}<br>$$ 其中$e_i$是在位置$i_B$上为1、其他位置为0的$n$维向量，而$i_B$是下标$i$在$B$中的位置。这些变化会进一步影响对偶问题\eqref{eq:dual}的目标函数。通过计算可以发现，$s_i$每单位变化所导致的对偶目标函数变化值正好是$x_B$的越界量(primal infeasibility)$$<br>\Delta x_i =<br>\begin{cases}<br> l_i - x_i &amp; x_i &lt; l_i \\<br> u_i - x_i &amp; x_i &gt; u_i \\<br> 0 &amp; otherwise<br>\end{cases}\tag{1.7}<br>$$的绝对值。因此，一种简单的选择$i$的方式是选单位对偶目标增量最大的一个：$\arg\max_{i\in B} |\Delta_i|$；这种方法称为Dantzig规则。然而，大量的计算经验表明，一种名为<strong>dual steepest edge (DSE)</strong>的选择方法要高效得多。这种方法近似地考虑了对偶变量$s$的<strong>总变化</strong>所带来的对偶目标增量；具体来说，这种方法选择 $$<br>i = \arg\max_{i\in B} \frac{|\Delta x_i|}{| A_B^{-T}e_i |_2},\tag{1.8}\label{eq:DSE}<br>$$其中，$|A_B^{-1}e_i| = |\delta \lambda|$正是对偶变量$\lambda$的改变方向。直观来看，$| A_B^{-T}e_i |_2$越小，那么$|\delta s|_2$就可能越小，从而在可行性约束下对偶步长$\alpha_{dual}$（$s_i$的可变化量）就可能越长，因此，式\eqref{eq:DSE}中的估计值可以认为是对对偶目标总增加值的近似。<br>最近，有研究者提出了一种新的pricing思路：positive edge(PE)，并通过数值实验说明在DSE中加入PE能显著降低迭代次数和计算时长。目前开源求解器CLP中实现了该方法；有兴趣的读者可以进一步参考<a href="https://hal.archives-ouvertes.fr/hal-02099584/document" target="_blank" rel="external">这篇论文</a>。</li>
+<li>（pricing/CHUZR阶段）在这一阶段中，我们需要选取一个原始不可行的列$i$离开$B$。当$i$离开$B$时，取决于$x_i$是超过上界还是低于下界，应令$i$进入$U$或$L$。此时，对应的对偶变量$s_i$将根据方向$$<br>d_i =<br>\begin{cases}<br> 1 &amp; x_i &lt; l_i \\<br> -1 &amp; x_i &gt; u_i<br>\end{cases}\tag{1.5}<br>$$移动变成非零值。而根据系统\eqref{eq:KKT_decompose}，每当$s_i$沿着方向$d_i$变化一单位时，其他对偶变量$(\lambda,s)$的变化量应为<br>$$ \delta \lambda = d_i \cdot -A_B^{-T}e_i, \ \delta s = d_i\cdot A^TA_B^{-T}e_i; \tag{1.6}\label{eq:dual_delta}<br>$$ 其中$e_i$是在位置$i_B$上为1、其他位置为0的$n$维向量，而$i_B$是下标$i$在$B$中的位置。这些变化会进一步影响对偶问题\eqref{eq:dual}的目标函数。通过计算可以发现，$s_i$每单位变化所导致的对偶目标函数变化值正好是$x_B$的越界量(primal infeasibility)$$<br>\Delta x_i =<br>\begin{cases}<br> l_i - x_i &amp; x_i &lt; l_i \\<br> u_i - x_i &amp; x_i &gt; u_i \\<br> 0 &amp; otherwise<br>\end{cases}\tag{1.7}<br>$$的绝对值。因此，一种简单的选择$i$的方式是选单位对偶目标增量最大的一个：$\arg\max_{i\in B} |\Delta_i|$；这种方法称为Dantzig规则。然而，大量的计算经验表明，一种名为<strong>dual steepest edge (DSE)</strong>的选择方法要高效得多。这种方法近似地考虑了对偶变量$s$的<strong>总变化</strong>所带来的对偶目标增量；具体来说，这种方法选择 $$<br>i = \arg\max_{i\in B} \frac{|\Delta x_i|}{| A_B^{-T}e_i |_2},\tag{1.8}\label{eq:DSE}<br>$$其中，$|A_B^{-1}e_i| = |\delta \lambda|$正是对偶变量$\lambda$的改变方向。直观来看，$| A_B^{-T}e_i |_2$越小，那么$|\delta s|_2$就可能越小，从而在可行性约束下对偶步长$\alpha_{dual}$（$s_i$的可变化量）就可能越长，因此，式\eqref{eq:DSE}中的估计值可以认为是对对偶目标总增加值的近似。<br>最近，有研究者提出了一种新的pricing思路：positive edge(PE)，并通过数值实验说明在DSE中加入PE能显著降低迭代次数和计算时长。目前开源求解器CLP中实现了该方法；有兴趣的读者可以进一步参考<a href="https://hal.archives-ouvertes.fr/hal-02099584/document" target="_blank" rel="noopener">这篇论文</a>。</li>
 <li>（ratio test/CHUZC阶段）在这一阶段中，我们需要找到一个列$j$进入$B$。这里的主要选择标准是要保证对偶变量的可行性；由于变量$\lambda$是无界的，因此只需要关注变量$s$的可行性。根据式\eqref{eq:dual_delta}，当对偶步长为$\alpha_{dual}$时，$s$会变为$s + \alpha_{dual}\cdot \delta s$；而随着$\alpha_{dual}$的增加，在某一时刻，$s$中某个元素$s_j\notin B$会从非零值变为0。注意到在约束\eqref{eq:cons}中，$j$的属性（$j\in L$或者$j\in U$）对应了$s_j$的正负性，因此，在$j$的属性不变时，如果$\alpha_{dual}$继续增加，则$s$会变得对偶不可行。这意味着此时算法需要停下，令$j$进入$B$，然后进入下一步迭代。<br>然而，我们也可以通过改变/翻转$j$的属性(bound flipping)，使得当$\alpha_{dual}$继续增加时，$s$仍是对偶可行的。问题在于，根据系统\eqref{eq:KKT_decompose}，$j$的翻转会导致原始变量$x_B$也发生变化，有可能会使原始不可行的程度变大，甚至让迭代过程进入死循环(cycling)。因此，这里需要有一个标准来判断是否应该翻转$j$。由于DS迭代过程的目标是优化对偶目标函数，算法可以分析在$j$翻转后，继续增加$\alpha_{dual}$是否仍能够带来对偶目标的收益。如果收益为正，那么就翻转$j$，继续增加$\alpha_{dual}$，并找下一个下标$j$；否则，令$j$进入$B$，然后继续迭代。<br>根据前面的讨论，当没有$j$被翻转时，每增加单位对偶步长会为对偶目标增加$|\Delta x_i|$（下称梯度）；而通过进一步的计算可知，每当一个$j$发生翻转时，梯度会下降$(u_j - l_j) |\delta s_j|$。因此，步长$\alpha_{dual}$可以不断增加，直到遇到一个$j$使得梯度$|\Delta x_i| - \sum_j (u_j - l_j) |\delta s_j|$变为负值；此时，继续扩大$\alpha_{dual}$会降低对偶目标。这种在迭代中对变量$j$的属性进行动态翻转的思路称为<strong>bound flipping ratio test (BFRT)</strong>。实际计算表明，BFRT能够显著降低DS的迭代次数，是各类高性能DS实现中的重要一部分。</li>
 <li>在选好$i$和$j$（即下一组基$(B’,L’,U’)$）后，我们需要对解$(x,\lambda,s)$的取值进行更新。根据上述讨论，对偶变量$\lambda$和$s$可以直接通过对偶步长$\alpha_{dual}$进行更新：<br>$$<br>\begin{aligned}<br> \lambda &amp; \gets \lambda + \alpha_{dual}\cdot \delta \lambda; \\<br> s &amp; \gets s + \alpha_{dual}\cdot \delta s. \\<br>\end{aligned}\tag{1.9}<br>$$ 而对于原始变量$x$，$x_{N/\{j\}},(N=L\cup U)$的变化值$\Delta x_{N/\{j\}}$和$x_i$的变化值$\Delta x_i$可以直接根据新基$(B’,L’,U’)$确定，因此只需要计算$x_{B}$和$x_{j}$。根据系统\eqref{eq:KKT_decompose}，$x_B$和$x_j$的变化值需要满足以下条件<br>$$<br>A_B \Delta x_B + A_j \Delta x_j + A_{N/\{j\}} \Delta x_{N/\{j\}} = 0 \tag{1.10}<br>$$ 因此，可以首先令<br>$$<br> x_B \gets x_B - A_B^{-1}A_{N/\{j\}} \Delta x_{N/\{j\}}; \tag{1.11}<br>$$ 然后，按以下方式计算原始步长$\alpha_{primal}$，并更新$x_B$和$x_j$：<br>$$<br>\begin{aligned}<br> \delta x_B &amp; = A_B^{-1}A_j; \\<br> \alpha_{primal} &amp; = -(e_i^T A_B^{-1}A_{N/\{j\}} \Delta x_{N/\{j\}}+\Delta x_i) / e_i^T\delta x_B; \\<br> x_j &amp; \gets x_j + \alpha_{primal}; \\<br> x_B &amp; \gets x_B - \alpha_{primal}\cdot \delta x_B.<br>\end{aligned}\tag{1.12}<br>$$</li>
 </ol>
@@ -369,7 +372,7 @@
 <p>现在，pricing阶段的结果显示，下标$1$将离开$B$进入$U$，同时原始变量$x_1$将从3变为$u_1 = 1$。那么，对偶变量$s$会怎么变化呢？简单计算可知，$s=c=(0,0,1)$，而$\delta s=(-1,-1,-10/3)$。因此，为了保证对偶可行性$s_2 \geq 0$，对偶步长必须为0，且$s_2$进入$B$。换句话说，在ratio test阶段，算法从下标$2$和$3$中选择了下标2。从图中可以看出这一选择的合理性：如果选择了下标3，则下一个解会变成$(1,0,0.6)$，而这个解是对偶不可行的（在局部范围可以沿着方向$dx=(0,1,-0.3)$优化）。</p>
 <p>在上面的计算中，通过一次迭代，算法从点$(3,0,0)$移动到了点$(1,2,0)$。简单的计算表明，再通过一次DS迭代就可以抵达最优解$(1,1,0.3)$。如果把DS算法的迭代路径$(3,0,0) \to (1,2,0) \to (1,1,0.3)$画在图上，那么可以大致认为，在几何上，<strong>DS算法是在可行域的最优性一侧的外部不断向可行域逼近直至到达可行域</strong>。</p>
 <p>下面，我将进一步分析BFRT技术的几何意义。仍然假设算法从对偶可行基$B=\{1\},L=\{2,3\}$和点$x=(3,0,0)$出发，并在pricing阶段选取了下标1离开$B$，而在ratio test阶段选取了下标2进入$B$。从图中可以看出，下标2进入$B$会导致$x_2$超过了上界$l_2 = 1$，从而在之后的迭代步骤中算法需要再次将其“拉回”可行域中。如果算法能够高效判断选中的下标是否会在迭代后越界，并且在会越界的情况下让其在边界上停住、并寻找下一个进入$B$的下标（相当于切换前进方向），那么就能降低后续的迭代次数。这正是BFRT技术的几何意义；事实上，通过简单计算可知，$|\Delta x_i| - (u_j - l_j) |\delta s_j|$表示了$x_j$翻转之后的变量$x_i$的越界量，因此通过该值可以判断是否应该切换方向：如果该值大于0，则$j$进入$B$之后$x_j$会越界（否则不足以消除$x_i$的越界量），反之亦然。通过BFRT，在DS的每次迭代中，对应下标集合$L\cup U$的原始变量的可行性都可以得到保证，而且解$x$会螺旋式地逼近投影面$x_i=u_i$或$x_i=l_i$。特别地，对于问题\eqref{eq:toy}，从基$B=\{1\},L=\{2,3\}$和点$x=(3,0,0)$出发并使用DS+BFRT，则只需要迭代一步，途径点$(2,1,0)$到达最优解$(1,1,0.3)$。</p>
-<p>在了解了DS的基本原理之后，下面，我们进入<a href="https://github.com/hanqiu92/dual_simplex_solve/blob/master/2_dual_simplex.ipynb" target="_blank" rel="external">代码实现</a>。</p>
+<p>在了解了DS的基本原理之后，下面，我们进入<a href="https://github.com/hanqiu92/dual_simplex_solve/blob/master/2_dual_simplex.ipynb" target="_blank" rel="noopener">代码实现</a>。</p>
 
       
     </div>
@@ -488,9 +491,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -503,7 +504,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

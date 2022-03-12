@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,29 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Integer Programming," />
 
 
+  <meta name="keywords" content="Integer Programming,">
 
 
 
@@ -83,19 +81,20 @@
 
 
 
-<meta name="description" content="Inner Approximation: $V$-representation, Dantzig-Wolfe decomposition, and Branch and PriceAssume we are given problem
-$$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant b_1 \\  &amp;">
+
+
+<meta name="description" content="Inner Approximation: $V$-representation, Dantzig-Wolfe decomposition, and Branch and PriceAssume we are given problem $$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant b_1 \\  &amp;">
+<meta name="keywords" content="Integer Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Integer Programming Note V: Decomposition">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2016/IP5_201610/index.html">
-<meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="Inner Approximation: $V$-representation, Dantzig-Wolfe decomposition, and Branch and PriceAssume we are given problem
-$$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant b_1 \\  &amp;">
+<meta property="og:site_name" content="Han&#39;s Blog">
+<meta property="og:description" content="Inner Approximation: $V$-representation, Dantzig-Wolfe decomposition, and Branch and PriceAssume we are given problem $$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant b_1 \\  &amp;">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-06-01T11:16:13.775Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Integer Programming Note V: Decomposition">
-<meta name="twitter:description" content="Inner Approximation: $V$-representation, Dantzig-Wolfe decomposition, and Branch and PriceAssume we are given problem
-$$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant b_1 \\  &amp;">
+<meta name="twitter:description" content="Inner Approximation: $V$-representation, Dantzig-Wolfe decomposition, and Branch and PriceAssume we are given problem $$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant b_1 \\  &amp;">
 
 
 
@@ -125,7 +124,7 @@ $$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2016/IP5_201610/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2016/IP5_201610/">
 
 
 
@@ -159,7 +158,7 @@ $$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -262,7 +261,7 @@ $$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -298,7 +297,7 @@ $$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -381,8 +380,8 @@ $$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant
 <p>2) LP based approach: this approach is similar to the outer approximation introduced above. The feasible region is approximated by many linear constraints, and in the solving process the optimal solution will get closer and closer to the feasible region. But this method may have slow convergence rate.</p>
 <p>3) Lifted LP based approach: this approach also consider linear approximation, but after the nonlinear feasible region being lifted to higher dimensional space. The advantage of doing this is that fewer linear cuts is needed to achieve the same approximation ratio (recall the gain in formulation size of extended formulation). Currently this approach is widely applied in many MINLP solvers.</p>
 <p>In general, if you have an MINLP problem, the first thing to check is whether the problem can be formulated with second order cone, which can be efficiently dealt with in CPLEX/Gurobi. Then, if the problem is convex in a disciplined way, you may try cvx or Pajarito (links can be found in the reference). For other cases, you can try NLP solvers or design ad-hoc heuristics, but no general performance can be guaranteed.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Lubin, M., Yamangil, E., Bent, R., &amp; Vielma, J. P. (2015). Extended Formulations in Mixed-integer Convex Programming. arXiv:1511.06710. Available at: <a href="http://arxiv.org/pdf/1511.06710v3.pdf" target="_blank" rel="external">http://arxiv.org/pdf/1511.06710v3.pdf</a>.</p>
-<p>Grant, M., Boyd, S., &amp; Ye, Y. (2008). CVX: Matlab software for disciplined convex programming. Available at: <a href="http://cvxr.com/cvx/" target="_blank" rel="external">http://cvxr.com/cvx/</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Lubin, M., Yamangil, E., Bent, R., &amp; Vielma, J. P. (2015). Extended Formulations in Mixed-integer Convex Programming. arXiv:1511.06710. Available at: <a href="http://arxiv.org/pdf/1511.06710v3.pdf" target="_blank" rel="noopener">http://arxiv.org/pdf/1511.06710v3.pdf</a>.</p>
+<p>Grant, M., Boyd, S., &amp; Ye, Y. (2008). CVX: Matlab software for disciplined convex programming. Available at: <a href="http://cvxr.com/cvx/" target="_blank" rel="noopener">http://cvxr.com/cvx/</a></p>
 
       
     </div>
@@ -501,9 +500,7 @@ $$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -516,7 +513,7 @@ $$\begin{aligned} z_I =\max &amp;amp; \ c^Tx \\ s.t. &amp;amp; \ A_1 x \leqslant
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

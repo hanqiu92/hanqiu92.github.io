@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,27 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Integer Programming," />
+
+
+  <meta name="keywords" content="Integer Programming,">
 
 
 
@@ -84,14 +84,16 @@
 
 
 <meta name="description" content="在这篇文章中，我将介绍问题拆分(branching)和结点选取(node selection)阶段的常用方法。">
+<meta name="keywords" content="Integer Programming">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Develop Your Own Branch & Bound Solver II: Branching & Node Selection Methods">
+<meta property="og:title" content="How to Develop Your Own Branch &amp; Bound Solver II: Branching &amp; Node Selection Methods">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_2_202006/index.html">
-<meta property="og:site_name" content="Han's Blog">
+<meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在这篇文章中，我将介绍问题拆分(branching)和结点选取(node selection)阶段的常用方法。">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2020-06-13T01:43:19.118Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Develop Your Own Branch & Bound Solver II: Branching & Node Selection Methods">
+<meta name="twitter:title" content="How to Develop Your Own Branch &amp; Bound Solver II: Branching &amp; Node Selection Methods">
 <meta name="twitter:description" content="在这篇文章中，我将介绍问题拆分(branching)和结点选取(node selection)阶段的常用方法。">
 
 
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_2_202006/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_2_202006/">
 
 
 
@@ -156,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -259,7 +261,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -295,7 +297,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -372,7 +374,7 @@
 <p>我们可以通过上面介绍的pseudo cost在结点选取方法中考虑可行解质量。具体来说，对于一个LP解中每个不满足整数约束的变量，我们可以通过pseudo cost来估计其（向上/下）取整对目标值的影响。然后，我们可以在现有LP解的目标值上加上所有这些影响之和，作为对该子问题的最优整数解的目标值的估计；这种估计被称为estimate。接下来，在结点选取中，我们可以选择estimate最小的一个子问题进行处理。这种方法被称为best estimate search (be)。相比于bfs方法，be方法更容易找到可行解；而相比于dfs方法，be方法通常能得到更好的下界估计。</p>
 <p>上述讨论主要关注所选取结点的质量，即如何通过更少的结点处理达到更好的求解效果；但是在实际求解过程中，结点处理的计算效率也很重要。具体来说，根据单纯形法的相关知识，单纯形法的迭代次数与基(basis)的初始位置有关；而相似LP问题的最优基往往相近。因此，如果要从一个LP问题的最优基出发求解另一个LP问题，那么两个问题越相似，求解所需迭代次数通常越小。这意味着，在B&amp;B求解流程中，相邻几次选取的结点/子问题的相似性对计算效率有重要影响。根据前述介绍可知，dfs方法选取的相邻结点一般是父子结点或者兄弟结点，而bfs/be方法选取的相邻结点的相似性则通常没有保证，因此dfs方法的计算效率通常比bfs/be方法要高，在一定时间内可以遍历更多结点。基于这一认知，我们可以考虑在bfs/be方法中加入局部的深度搜索，以结合dfs方法的计算效率和bfs/be方法的算法效率。具体来说，对每个选中的结点，我们先用dfs方法来快速探索该结点附近的子问题，直到超过一定深度或者无法继续（没有可行的子结点）为止；然后再用bfs/be方法选择下一个结点。这种方法被称为plunging。</p>
 <p><strong>思考题：</strong>在并行(parallel)计算场景中，应该如何利用单纯形法迭代次数对子问题相似性敏感这一性质设计结点选取方法？这与上述串行(sequential)场景中的结点选取方法存在什么异同点？</p>
-<p>接下来，我将在<a href="https://github.com/hanqiu92/branch_bound_solve/blob/master/2_branching_and_selection.ipynb" target="_blank" rel="external">这个notebook</a>中给出上述方法的代码实现。</p>
+<p>接下来，我将在<a href="https://github.com/hanqiu92/branch_bound_solve/blob/master/2_branching_and_selection.ipynb" target="_blank" rel="noopener">这个notebook</a>中给出上述方法的代码实现。</p>
 
       
     </div>
@@ -491,9 +493,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -506,7 +506,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

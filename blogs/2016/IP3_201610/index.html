@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,27 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Integer Programming," />
+
+
+  <meta name="keywords" content="Integer Programming,">
 
 
 
@@ -84,14 +84,16 @@
 
 
 <meta name="description" content="Unbalanced Branching and EncodingConsider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in">
+<meta name="keywords" content="Integer Programming">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Integer Programming Note III: Encoding & Embedding">
+<meta property="og:title" content="Integer Programming Note III: Encoding &amp; Embedding">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2016/IP3_201610/index.html">
-<meta property="og:site_name" content="Han's Blog">
+<meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="Unbalanced Branching and EncodingConsider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-06-01T11:16:06.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Integer Programming Note III: Encoding & Embedding">
+<meta name="twitter:title" content="Integer Programming Note III: Encoding &amp; Embedding">
 <meta name="twitter:description" content="Unbalanced Branching and EncodingConsider constraint $\sum_i x_i= 1$ with $x_i\in \{0,1\}$, which arises naturally in problem with selection (e.g. union of polytope $x\in \cup_i P_i$). Recall that, in">
 
 
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2016/IP3_201610/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2016/IP3_201610/">
 
 
 
@@ -156,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -259,7 +261,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -295,7 +297,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -369,7 +371,7 @@
 <p>$$H=\arg\min_H(size(Q(H)))$$</p>
 <p>Generally, design of such embedding is ad-hoc and general construction is not viable (think of permutations of $\{P_i\}$). But when $P_i$ admits a natural ordering, we might be able to conclude some techniques in designing embedding. One interesting example is piecewise linear function on $R^1$ (which induces the SOS2 constraints) or $R^2$. It is shown that with proper meshing and ordering, an encoding method called gray code can achieve the logarithm size in $n$. Some related papers can be found in the reference.</p>
 <p>In summary, the advantage of using embedding is that we don’t need to create copies of original variables, which is similar to the non-extended formulations in last post. If the problem and $P_i$ are well defined, embedding provide an efficient way to make those non-extend formulations ideal. For example, to model piecewise linear function on $R^1$, unary embedding is exactly the ideal extension of non-extended $V$-formulation, which is only sharp. But generally such idea is hard to implement.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Vielma, J. P. (2015). Embedding Formulations and Complexity for Unions of Polyhedra. arXiv:1506.01417. Available at: <a href="http://arxiv.org/pdf/1506.01417v2.pdf" target="_blank" rel="external">http://arxiv.org/pdf/1506.01417v2.pdf</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Vielma, J. P. (2015). Embedding Formulations and Complexity for Unions of Polyhedra. arXiv:1506.01417. Available at: <a href="http://arxiv.org/pdf/1506.01417v2.pdf" target="_blank" rel="noopener">http://arxiv.org/pdf/1506.01417v2.pdf</a></p>
 <p>Yıldız, S., &amp; Vielma, J. P. (2013). Incremental and encoding formulations for mixed integer programming. Operations Research Letters, 41(6), 654-658.</p>
 <p>Vielma, J. P., &amp; Nemhauser, G. L. (2011). Modeling disjunctive constraints with a logarithmic number of binary variables and constraints. Mathematical Programming, 128(1-2), 49-72.</p>
 
@@ -490,9 +492,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -505,7 +505,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

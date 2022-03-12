@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,27 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Integer Programming," />
+
+
+  <meta name="keywords" content="Integer Programming,">
 
 
 
@@ -84,14 +84,16 @@
 
 
 <meta name="description" content="在这篇文章中，我将回顾割(cut)方法的基本思路，介绍将其引入B&amp;amp;B求解流程中的常用手段及注意事项，并实现最基础的基于线性约束的变量边界加强(bound tightening/domain propagation)方法。">
+<meta name="keywords" content="Integer Programming">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Develop Your Own Branch & Bound Solver III: Cut & Bound Tightening">
+<meta property="og:title" content="How to Develop Your Own Branch &amp; Bound Solver III: Cut &amp; Bound Tightening">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_3_202007/index.html">
-<meta property="og:site_name" content="Han's Blog">
+<meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在这篇文章中，我将回顾割(cut)方法的基本思路，介绍将其引入B&amp;amp;B求解流程中的常用手段及注意事项，并实现最基础的基于线性约束的变量边界加强(bound tightening/domain propagation)方法。">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2020-06-27T15:42:39.339Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Develop Your Own Branch & Bound Solver III: Cut & Bound Tightening">
+<meta name="twitter:title" content="How to Develop Your Own Branch &amp; Bound Solver III: Cut &amp; Bound Tightening">
 <meta name="twitter:description" content="在这篇文章中，我将回顾割(cut)方法的基本思路，介绍将其引入B&amp;amp;B求解流程中的常用手段及注意事项，并实现最基础的基于线性约束的变量边界加强(bound tightening/domain propagation)方法。">
 
 
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_3_202007/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_3_202007/">
 
 
 
@@ -156,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -259,7 +261,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -295,7 +297,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -350,7 +352,7 @@
 <p>割平面(cutting planes/cuts)是一类线性约束，这种约束试图在保持MIP可行域$P_I$中所有解可行的情况下，切割掉LP可行域$P$的一部分解（特别是LP松弛问题对应的最优解），以降低多面体$conv(P_I)$与$P$之间的差距、提高问题形式的规整性。在最理想情况下，我们可以通过在问题形式中添加割平面使得$P = conv(P_I)$，此时只需求解一次LP松弛问题即可完成对MIP问题的求解，无需调用B&amp;B流程。</p>
 <p>割方法对许多MIP问题的理论分析和求解算法设计提供了重要基础。特别地，对于很多MIP问题，我们可以通过组合理论系统性地引入割平面（例如Sherali-Adams Hierarchy）以获取更强的问题形式、甚至是理想问题形式$P = conv(P_I)$；虽然这通常需要引入指数多个割约束，但是其好处在于结构清晰，可以对多种近似求解方案在统一的理论框架下进行分析。并且，在实际求解过程中，含有指数多个约束的问题不一定是计算上不可行(intractable)的：我们可以利用分解(decomposition)以及惰性约束(lazy constriants)等计算技巧来提高计算效率。</p>
 <h2 id="B-amp-B流程中的割生成方法-Cut-Generation-in-B-amp-B-Procedure"><a href="#B-amp-B流程中的割生成方法-Cut-Generation-in-B-amp-B-Procedure" class="headerlink" title="B&amp;B流程中的割生成方法 Cut Generation in B&amp;B Procedure"></a>B&amp;B流程中的割生成方法 Cut Generation in B&amp;B Procedure</h2><p>在这一小节中，我将介绍在B&amp;B流程引入割生成方法的常规思路。<br>首先，通用方法生成的割平面虽然能很好地改进问题形式的规整性，但是这类割往往只能作为新增约束添加到已有问题形式中。由于LP的主要求解算法——单纯形法——的核心计算通过线性方程求解实现，而线性方程求解依赖于约束矩阵的分解（例如，LU分解）提高计算效率，故当生成新的割平面/约束时，约束结构发生变动触发约束矩阵分解的更新，进而对LP求解效率产生负面影响。（<strong>思考题：</strong>能否根据具体的割生成方法，定制化更高效的矩阵分解的计算和更新方法？）因此，为保证计算效率，通常只在B&amp;B流程中的一些关键节点（例如，求解根结点问题时）考虑加入通用方法生成的割平面。</p>
-<p>然而，从另一个角度，B&amp;B流程本身可以看成是一种特殊形式的割生成流程：在每一步迭代中，我们对某个子问题的某个变量的上下界约束进行加强，然后重新求解子问题。由于在单纯形法的求解过程中，变量上下界变化的影响很小（求解流程可以直接基于已有的基和解进行迭代），因此B&amp;B流程相比通用的割生成流程更适合与单纯形法（或者其他LP求解算法）结合。基于这一认知，我们可以进一步在B&amp;B流程中考虑branching以外的对变量上下界进行加强(bound tightening)的方法。一类较为通用的加强变量上下界约束的思路被称为<strong>可行域传播(domain propagation)</strong>：这种方式尝试根据branching后变量上下界的改动推断其他变量上下界的变动情况。由于这种方法依然只改变了变量的上下界，因此不会明显影响B&amp;B流程中的LP求解效率。不过，这种方法相比一般的割生成方法的缺点在于算法效率（即改进问题形式的规整性）低：它只能沿着坐标轴方向对问题的可行域进行切割，导致当原MIP问题和LP松弛问题的可行域差异主要处于坐标轴的斜角方向时，需要进行多次branching+变量上下界加强才能实现单个普通割平面的效果。例如，在T. Ahterberg的<a href="https://depositonce.tu-berlin.de/bitstream/11303/1931/2/Dokument_41.pdf" target="_blank" rel="external">博士论文</a>中曾介绍过这样一个例子：对于可行域<br>$$\{(x,y)|0.2 \leq x-y \leq 0.8, \ x,y \in \{0,\cdots,1000\}\},$$</p>
+<p>然而，从另一个角度，B&amp;B流程本身可以看成是一种特殊形式的割生成流程：在每一步迭代中，我们对某个子问题的某个变量的上下界约束进行加强，然后重新求解子问题。由于在单纯形法的求解过程中，变量上下界变化的影响很小（求解流程可以直接基于已有的基和解进行迭代），因此B&amp;B流程相比通用的割生成流程更适合与单纯形法（或者其他LP求解算法）结合。基于这一认知，我们可以进一步在B&amp;B流程中考虑branching以外的对变量上下界进行加强(bound tightening)的方法。一类较为通用的加强变量上下界约束的思路被称为<strong>可行域传播(domain propagation)</strong>：这种方式尝试根据branching后变量上下界的改动推断其他变量上下界的变动情况。由于这种方法依然只改变了变量的上下界，因此不会明显影响B&amp;B流程中的LP求解效率。不过，这种方法相比一般的割生成方法的缺点在于算法效率（即改进问题形式的规整性）低：它只能沿着坐标轴方向对问题的可行域进行切割，导致当原MIP问题和LP松弛问题的可行域差异主要处于坐标轴的斜角方向时，需要进行多次branching+变量上下界加强才能实现单个普通割平面的效果。例如，在T. Ahterberg的<a href="https://depositonce.tu-berlin.de/bitstream/11303/1931/2/Dokument_41.pdf" target="_blank" rel="noopener">博士论文</a>中曾介绍过这样一个例子：对于可行域<br>$$\{(x,y)|0.2 \leq x-y \leq 0.8, \ x,y \in \{0,\cdots,1000\}\},$$</p>
 <p>如果通过domain propagation，将需要接近1000次迭代才能证明该约束下无解；而利用一般的割方法则可以直接判断该可行域为空。</p>
 <p>上述关于算法效率和计算效率的权衡可以进一步推广到对不同形式的割平面的选取中。例如，在B&amp;B流程中加入具有稀疏结构或组合结构的割平面约束通常效果更好，因为这些约束对LP求解中的矩阵相关计算的效率影响更少，同时也可以更高效率地与domain propagation进行结合。具体来说，对于常见于big-M等建模方法中的variable bound约束，虽然在domain propagation中处理逻辑与普通的线性约束并无明显区别，但是由于约束稀疏（约束中包含的变量数只有2个）且变量系数形式简单（有一个变量的系数为1），因此需要的计算量显著更少。又如，由于knapsack约束中系数都是整数且变量的取值都为0-1，因此可以通过排序等方式做domain propagation，在节省了计算量的同时达到了更高的计算准确度。</p>
 <h2 id="对线性约束的边界加强方法-Domain-Propagation-for-Linear-Constraints"><a href="#对线性约束的边界加强方法-Domain-Propagation-for-Linear-Constraints" class="headerlink" title="对线性约束的边界加强方法 Domain Propagation for Linear Constraints"></a>对线性约束的边界加强方法 Domain Propagation for Linear Constraints</h2><p>这一小节中，我将简单介绍domain propagation中线性约束的处理方法。在后续代码实现中，我将实现该方法，并通过测试案例检验其效果。<br>首先，不妨假设变量$x$的上下界为$[l,u]$。我们定义一个线性约束$b_{l,i} \leq a_i^T x \leq b_{u,i}$的隐含上下界(implied bounds)为<br>$$b_{l,i}^{im} = \min_{l \leq x \leq u} a_i^T x, \ b_{u,i}^{im} = \max_{l \leq x \leq u} a_i^T x.$$</p>
@@ -481,9 +483,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -496,7 +496,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -573,7 +573,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#割方法简介-Introduction-of-Cut-Methods"><span class="nav-number">1.</span> <span class="nav-text">割方法简介 Introduction of Cut Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-amp-B流程中的割生成方法-Cut-Generation-in-B-amp-B-Procedure"><span class="nav-number">2.</span> <span class="nav-text">B&B流程中的割生成方法 Cut Generation in B&B Procedure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对线性约束的边界加强方法-Domain-Propagation-for-Linear-Constraints"><span class="nav-number">3.</span> <span class="nav-text">对线性约束的边界加强方法 Domain Propagation for Linear Constraints</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建模技巧-Modeling-Tricks"><span class="nav-number">4.</span> <span class="nav-text">建模技巧 Modeling Tricks</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#割方法简介-Introduction-of-Cut-Methods"><span class="nav-number">1.</span> <span class="nav-text">割方法简介 Introduction of Cut Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-amp-B流程中的割生成方法-Cut-Generation-in-B-amp-B-Procedure"><span class="nav-number">2.</span> <span class="nav-text">B&amp;B流程中的割生成方法 Cut Generation in B&amp;B Procedure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对线性约束的边界加强方法-Domain-Propagation-for-Linear-Constraints"><span class="nav-number">3.</span> <span class="nav-text">对线性约束的边界加强方法 Domain Propagation for Linear Constraints</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建模技巧-Modeling-Tricks"><span class="nav-number">4.</span> <span class="nav-text">建模技巧 Modeling Tricks</span></a></li></ol></div>
             
 
           </div>

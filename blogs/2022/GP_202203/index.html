@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/blogs/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Machine Learning,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="高斯过程（Gaussian Process，下称GP）是机器学习/贝叶斯学习中的一种常见建模方法。由于GP不但能给出预测值，还能给出预测的不确定性，因此在许多实际场景（包括参数优化等）都有广泛的应用。近期，随着深度神经网络（Neural Network，下称NN）的兴起，也逐渐出现一些将GP与NN相结合的工作，一定程度上提升了GP的可用性（applicability）。在这篇文章中，我将对近期对G">
+<meta name="keywords" content="Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gaussian Processes (GP) and Extensions">
+<meta property="og:url" content="http://hanqiu92.github.io/blogs/2022/GP_202203/index.html">
+<meta property="og:site_name" content="Han&#39;s Blog">
+<meta property="og:description" content="高斯过程（Gaussian Process，下称GP）是机器学习/贝叶斯学习中的一种常见建模方法。由于GP不但能给出预测值，还能给出预测的不确定性，因此在许多实际场景（包括参数优化等）都有广泛的应用。近期，随着深度神经网络（Neural Network，下称NN）的兴起，也逐渐出现一些将GP与NN相结合的工作，一定程度上提升了GP的可用性（applicability）。在这篇文章中，我将对近期对G">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2022-03-12T09:43:17.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gaussian Processes (GP) and Extensions">
+<meta name="twitter:description" content="高斯过程（Gaussian Process，下称GP）是机器学习/贝叶斯学习中的一种常见建模方法。由于GP不但能给出预测值，还能给出预测的不确定性，因此在许多实际场景（包括参数优化等）都有广泛的应用。近期，随着深度神经网络（Neural Network，下称NN）的兴起，也逐渐出现一些将GP与NN相结合的工作，一定程度上提升了GP的可用性（applicability）。在这篇文章中，我将对近期对G">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blogs/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2022/GP_202203/">
+
+
+
+
+
+  <title>Gaussian Processes (GP) and Extensions | Han's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blogs/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Han's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Thoughts on the normative and descriptive perspectives of human decision-making behavior.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blogs/." rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blogs/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blogs/archives" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blogs/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-scribbles">
+          <a href="/blogs/scribbles" rel="section">
+            
+            Scribbles
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2022/GP_202203/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Han Qiu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blogs/images/pics/1.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Han's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Gaussian Processes (GP) and Extensions</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-03-10T13:00:00+08:00">
+                2022-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blogs/categories/Study-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Study Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>高斯过程（Gaussian Process，下称GP）是机器学习/贝叶斯学习中的一种常见建模方法。由于GP不但能给出预测值，还能给出预测的不确定性，因此在许多实际场景（包括参数优化等）都有广泛的应用。近期，随着深度神经网络（Neural Network，下称NN）的兴起，也逐渐出现一些将GP与NN相结合的工作，一定程度上提升了GP的可用性（applicability）。在这篇文章中，我将对近期对GP及其扩展的学习做一个简单的整理，便于后续回顾。</p>
+<a id="more"></a>
+<h2 id="基础思路-Basic-Approach"><a href="#基础思路-Basic-Approach" class="headerlink" title="基础思路 Basic Approach"></a>基础思路 Basic Approach</h2><h3 id="引子-Motivating-Example"><a href="#引子-Motivating-Example" class="headerlink" title="引子 Motivating Example"></a>引子 Motivating Example</h3><p>首先，作为一个引子，让我们考虑以下建模问题：我们希望根据一批观测数据$D = \{(x,y)\}$，拟合出定义在一个有限集合$S$上的实值函数$f: S \to \mathbb{R}$。例如，$S$可以取值为一系列正整数$S=\{1,\cdots,N\}$。由于$S$是有限的，函数$f$可以完全被其在$S$上的取值所参数化$\theta = f(S)$，因此上述拟合问题可以转化为一个参数估计问题。一种常见的参数估计方式是先定义出损失函数，然后通过梯度下降等优化方法找到最小化损失函数的参数。例如，在上面的例子中，我们可以考虑均方误差作为损失$L = E_{(x,y)\sim D} (y - \theta^T e(x))^2$。而在GP中，我们采用的参数估计方法是贝叶斯方法：首先假设参数$\theta$服从某个先验分布$p(\theta)$，并假设观测值$y$与函数值$f(x)=\theta^T e(x)$服从某个生成关系$p(y|x,\theta)$；然后，我们估计参数的后验分布</p>
+<p>$$<br>\begin{equation}<br>p(\theta|D) = \frac{p(\theta,D)}{\int_{\theta} p(\theta,D) d\theta} = \frac{p(\theta) \cdot \prod_{(x,y) \in D}p(y|x,\theta)}{\int_{\theta} p(\theta) \cdot \prod_{(x,y) \in D}p(y|x,\theta) d\theta}.<br>\end{equation}<br>$$</p>
+<p>特别地，对于GP，我们假设先验分布$p(\theta)$为多元正态分布（即$\theta \sim N(\mu,\Sigma)$），而生成模型$p(y|x,\theta)$对应观测值$y$等于函数值$f(x)$与观测误差$\epsilon \sim N(0,\sigma^2)$之和（即$y \sim N(\theta^T e(x),\sigma^2)$）。在这一假设下，我们可以计算得</p>
+<p>$$<br>\begin{equation}<br>\begin{aligned}<br>p(\theta|D) \propto p(\theta,D) &amp; \propto \exp(-\frac{1}{2} (\theta - \mu)^T \Sigma^{-1} (\theta - \mu)) \cdot \exp(-\frac{1}{2\sigma^2} \sum_{(x,y)\in D}(y - \theta^T e(x))^2) \\<br>&amp; \propto \exp(-\frac{1}{2}(\theta - \tilde{\mu})^T \tilde{\Sigma}^{-1} (\theta - \tilde{\mu})), \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>其中$\tilde{\Sigma}^{-1}=\Sigma^{-1}+\frac{1}{\sigma^2}\sum_{(x,y)\in D}e(x)e(x)^T$，$\tilde{\mu}=\tilde{\Sigma}(\Sigma^{-1}\mu + \frac{1}{\sigma^2}\sum_{(x,y)\in D}e(x)\cdot y)$。上述推导意味着，后验分布同样服从一个正态分布$N(\tilde{\mu},\tilde{\Sigma})$。</p>
+<p>上述模型的一个更有趣的性质是，我们可以避开上述对后验分布的计算，而直接对新的数据点进行预测/推理$p(y^{*}|x^{*},D)$。具体来说，注意到正态随机变量之和也是正态随机变量，故有$y \sim N(\mu^Te(x),e(x)^T\Sigma e(x)+\sigma^2)$，以及对任意$x_1,x_2$处的取值$y_1,y_2$，其服从联合正态分布</p>
+<p>$$<br>\begin{equation}<br>\begin{bmatrix}<br>y_1 \\<br>y_2<br>\end{bmatrix}<br>\sim N(<br>\begin{bmatrix}<br>\mu^T e(x_1) \\<br>\mu^T e(x_2)<br>\end{bmatrix}<br>,<br>\begin{bmatrix}<br>e(x_1)^T\Sigma e(x_1)+\sigma^2 &amp; e(x_1)^T\Sigma e(x_2) \\<br>e(x_1)^T\Sigma e(x_2) &amp; e(x_2)^T\Sigma e(x_2)+\sigma^2<br>\end{bmatrix}<br>);<br>\end{equation}<br>$$</p>
+<p>以此类推，可知$y^{*}$和$y$的联合分布为多元正态分布，进而根据正态分布的性质，条件分布$p(y^{*}|x^{*},D)$是一个与$x,y,\Sigma,x^{*}$有关的正态分布。注意，这里我们并不涉及对参数$\theta$的建模。</p>
+<h3 id="一般场景-General-Cases"><a href="#一般场景-General-Cases" class="headerlink" title="一般场景 General Cases"></a>一般场景 General Cases</h3><p>在前面的讨论中，根据正态分布先验$p(\theta)$，函数$f$可以被看作是一个多元正态随机变量。现在，我们考虑更一般的函数$f:\mathbb{R}^n \to \mathbb{R}$。如果在任意有限集合$S \subset \mathbb{R}^n$上，$f$的取值$f(S)$像前述讨论一样是一个多元正态随机变量，而且这些随机变量在不同的$S$上是相合的（consistent），那么根据Kolmogorov延拓定理，$f$可以看做是一个随机过程。对于GP，我们可以写为$f \sim \mathcal{GP}(\mu,k)$，其中均值$\mu: \mathbb{R}^n \to \mathbb{R}$是一个实值函数，而方差$k: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}$则通常被称为核函数（kernel）。</p>
+<p>在完成上述定义后，我们来回顾一下前面讨论的模型性质。容易看出，对于一般的GP，后验分布$p(f|D)$很难用简单的正态分布形式表示出来（虽然通过计算可知其等价于一个GP）；但是对于预测/推理问题$p(y^{*}|x^{*},D)$，我们可以沿用前述表示形式，直接计算出新数据点$y^{*}$应服从的后验分布。这也是GP在实践中具有应用价值的一个原因。</p>
+<h3 id="多维输出-Multioutputs"><a href="#多维输出-Multioutputs" class="headerlink" title="多维输出 Multioutputs"></a>多维输出 Multioutputs</h3><p>上面的讨论局限在一维实值函数上。对于多维实值函数，情况会有哪些不同呢？</p>
+<p>如果我们假设多维输出中的各个维度之间都相互独立，那么我们可以将多维GP $f:\mathbb{R}^n \to \mathbb{R}^m$看成是$m$个独立的一维实值GP $f_i:\mathbb{R}^n \to \mathbb{R}, \ \forall 1\leq i \leq m$。可以看出，在该假设下，训练和推理的流程都只需对输出维度拆分执行即可，建模的复杂度与一维GP是类似的。近期提出的Deep GP等拓展模型通常会作出该假设。</p>
+<p>但是，上面的独立性假设也存在一定的缺陷：无法建模输出各维度之间相关性。例如，对于一个消费者，其在某一时间周期内的消费次数和消费总金额理应是相关的。而当我们要考虑各个维度之间所有的相关性时，GP模型的协方差结构/核函数结构就会变得相当复杂。例如，对于一个二维的MOGP（multioutput GP），核函数$k$的值域就应该从$\mathbb{R}$变为$\mathbb{R}^{2\times 2}$。在这种情况下，如何根据问题结构选择合适的核函数是一个值得研究的问题。关于这一方向的前沿进展，有兴趣的读者可以参考最近这个<a href="https://nips.cc/media/neurips-2021/Slides/21890_AZNeRaA.pdf" target="_blank" rel="noopener">tutorial</a>中的第3.4节。</p>
+<h2 id="前沿扩展-Extensions"><a href="#前沿扩展-Extensions" class="headerlink" title="前沿扩展 Extensions"></a>前沿扩展 Extensions</h2><h3 id="代理数据点与变分推理-Inducing-Points-amp-Variational-Inference"><a href="#代理数据点与变分推理-Inducing-Points-amp-Variational-Inference" class="headerlink" title="代理数据点与变分推理 Inducing Points &amp; Variational Inference"></a>代理数据点与变分推理 Inducing Points &amp; Variational Inference</h3><p>传统的GP方法在应用中存在以下缺点：</p>
+<ol>
+<li>每次预测/推理的时间复杂度是$O(N^3)$、空间复杂度是$O(N^2)$（其中$N = |D|$是数据集的大小），因此在数据量较大（个人使用经验是超过1万）时基本上不可用；</li>
+<li>当生成模型$p(y|f(x))$并非简单的高斯白噪声模型时（例如，$p$服从sigmoid激活函数），后验$p(f|D)$和预测/推理问题$p(y^{*}|x^{*},D)$都没有简单的解析表达形式，使得传统GP方法不可用，需要引入其他数值逼近方法。</li>
+</ol>
+<p>为了解决上述问题，人们提出了以下思路：</p>
+<ol>
+<li>代理数据（inducing points）：首先，如果我们能使用少量的<strong>合成数据</strong>$D’=\{(z,u)\}$来提炼和替代原始数据集$D$，那么预测/推理的时间复杂度可以下降到$O(M^3)$，其中$M = |D’| \ll N$是合成数据集的大小。例如，考虑以下这个特殊的场景：当数据集$D$中包含多个在同一$x$处观测得到的数据点$\{(x,y_1),\cdots,(x,y_l)\}$时，我们可以使用均值$(x,\bar{y})$来替换这些数据点。</li>
+<li>变分推理（variational inference）：其次，当后验分布$p(f|D)$和预测/推理问题$p(y^{*}|x^{*},D)$并没有简单解析形式时，我们可以使用变分推理方法，先假定一种后验分布的参数化形式$q(f)$，然后通过优化方法找到使$q(f)$和$p(f|D)$距离最小的参数。这种方法可以理解为，通过一种信息密度更高/表示更简洁的方式$q$对目标分布$p(f|D)$进行提炼。</li>
+</ol>
+<p>详细的做法是这样的：首先，在训练阶段，我们希望找到一系列采样点$z_1,\cdots,z_M \in \mathbb{R}^n$以及在这些采样点上函数取值$u=f(z)$的分布$q(u)$，使得相应的后验分布估计$q(f(x))=\mathbb{E}_{u \sim q}q(f(x)|[u;z])$与实际的后验分布$p(f(x)|D)$最为接近。然后，在推理阶段，我们可以通过计算$\mathbb{E}_{u \sim q}q(y^{*}|x^{*},[u;z])$来近似$p(y^{*}|x^{*},D)$。</p>
+<p>具体来说，注意到概率生成逻辑为$x\to f_x \to y, \ z\to u$，训练阶段的优化问题可以写为（为简便起见，我们用$f_x$替代$f(x)$，并省略所有条件概率中的$x$和$z$）：</p>
+<p>$$<br>\begin{equation}<br>\begin{aligned}<br>\min_{z,u} L(u|D) = \ &amp; \text{KL}(q(f_x)||p(f_x|D)) \\<br>= \ &amp; \mathbb{E}_{q(f_x)} \log[\frac{q(f_x)}{p(f_x|y)}] \\<br>= \ &amp; \mathbb{E}_{q(f_x) \cdot p(u|f_x)} \log[\frac{q(f_x) \cdot p(u|f_x) \cdot p(y)}{p(f_x|y) \cdot p(u|f_x) \cdot p(y)}] \\<br>= \ &amp; \mathbb{E}_{q(f_x,u)} \log[\frac{q(f_x,u) \cdot p(y)}{p(u,f_x,y)}] \\<br>= \ &amp; \log p(y) + \mathbb{E}_{q(f_x,u)} \log[\frac{q(f_x,u)}{p(y|f_x) \cdot p(f_x,u)}] \\<br>= \ &amp; \log p(y) + \mathbb{E}_{q(u) \cdot p(f_x|u)} \log[\frac{q(u) \cdot p(f_x|u)}{p(y|f_x) \cdot p(u) \cdot p(f_x|u)}] \\<br>= \ &amp; \log p(y) + \mathbb{E}_{q(u)} \log[\frac{q(u)}{p(u)}] - \mathbb{E}_{q(f_x)} \log p(y|f_x) \\<br>= \ &amp; \log p(y) + \text{KL}(q(u)||p(u)) - \mathbb{E}_{q(f_x)} \log p(y|f_x).<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>进一步地，如果我们考虑$q$的形式为正态分布$u \sim N(m,S)$，并考虑进行为（批大小为$B$的）小批量数据训练，则损失函数$L(u|D)$可以近似为（注意到$\log p(y)$是常数可以忽略）：</p>
+<p>$$<br>\hat{L}(u|[y_B;x_B]) = \text{KL}(q(u)||p(u)) - \frac{N}{B} \sum_i \mathbb{E}_{f_i \sim q(\cdot|x_i)} \log p(y_i|f_i).<br>$$</p>
+<p>容易看出，每一训练步的计算复杂度被缩减为了$O(BM^2 + M^3)$。</p>
+<h3 id="核函数设计-Kernel-Design"><a href="#核函数设计-Kernel-Design" class="headerlink" title="核函数设计 Kernel Design"></a>核函数设计 Kernel Design</h3><p>传统GP方法在实践中的另一个痛点是，核函数的选择往往需要结合对问题的先验信息和业务理解（domain knowledge）；错误的选择会显著影响建模效果。因此，建模者需要投入一定的精力在理解问题相关的数据模式和不同核函数的性质上。例如，对于具有周期性的数据，相比RBF和Matern等常见核函数，周期性核函数$k_p(x,x’) \approx \exp(-2\sin^2(|x-x’|\pi))$往往是更合适的选择。针对这一困难，已有许多工作对常用核函数的性质进行了整理，例如这一<a href="https://www.cs.toronto.edu/~duvenaud/cookbook/" target="_blank" rel="noopener">网页</a>。但是，我们能否更进一步，建立通用的模型来自动选取合适的核函数呢？</p>
+<p>首先，我们注意到，对于任意给定的核函数$k: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}$和连续函数映射$g: \mathbb{R}^m \to \mathbb{R}^n$，复合映射$k(g(\cdot),g(\cdot)): \mathbb{R}^m \times \mathbb{R}^m \to \mathbb{R}$也是一个核函数。因此，我们可以使用表达能力强的参数化模型（例如NN）来表示$g=g(\cdot|\theta)$，并通过端到端的训练来同时优化$g$的参数和$k$的参数。</p>
+<p>在此基础上，Wilson等人(<a href="https://arxiv.org/abs/1611.00336" target="_blank" rel="noopener">Wilson et al., 2016</a>)进一步考虑了对多种不同的常用核函数进行自动化“选择”。具体来说，考虑多个独立的对应不同核函数的GP $f_i \sim \mathcal{GP}(0,k_i(g(\cdot),g(\cdot)))$；Wilson等人提出，可以引入可学习的(learnable)权重系数$w_i$，对这些GP进行混合，生成最终的输出结果$\bar{f} = \sum_i w_i f_i$。其中，权重$w_i$与$g$的参数$\theta$可以一起通过前述的VI方法进行端到端的训练得到。这种混合模型(mixture model)的好处在于，可以通过声明多个核函数$k_i$来引入模糊的但有利用价值的先验信息，提高训练效率。同时，该模型也可以被视作一种对核函数表达能力的扩展方法。</p>
+<p>另一种有趣的设计核函数的思路是，注意到神经网络随着隐藏层单元个数趋于无穷会收敛成GP，那么不同的激活函数自然可以映射为不同的核函数。相比常用的核函数，这类基于神经网络的核函数的优势是可以在深度上进行扩展，可能具有更好的表达能力。下面，我们简单介绍这类核函数/GP的推导过程。</p>
+<p>考虑一个$L$层的神经网络，其中每一层映射表示为</p>
+<p>$$<br>\begin{equation}<br>h_{i}^{l+1}(x) = \frac{1}{\sqrt{n_l}} \sum_{j=1}^{n_l} w_{ij}^{l} \phi(h_{j}^{l}(x)) + b_{i}^{l},<br>\end{equation}<br>$$</p>
+<p>其中参数$w_{ij}^{l} \sim N(0,\sigma_w^2), \ b_{i}^l \sim N(0,\sigma_b^2)$；$\phi$为激活函数。容易计算推导得知，</p>
+<p>$$<br>\begin{equation}<br>\begin{aligned}<br>\mathbb{E} h_{i}^{l+1}(x) \ &amp; = \frac{1}{\sqrt{n_l}} \sum_{j=1}^{n_l} \mathbb{E} w_{ij}^{l} \cdot \mathbb{E} \phi(h_{j}^{l}(x)) + \mathbb{E} b_{i}^{l} = 0; \\<br>\mathbb{E} [h_{i}^{l+1}(x) \cdot h_{i’}^{l+1}(x’)] \ &amp; = \frac{1}{n_l} \sum_{j=1}^{n_l} \mathbb{E} w_{ij}^{l} \cdot \mathbb{E} w_{i’j}^{l} \cdot \mathbb{E} [\phi(h_{j}^{l}(x)) \cdot \phi(h_{j}^{l}(x’))] + \mathbb{E} b_{i}^{l} \cdot \mathbb{E} b_{i’}^{l} = 0; \\<br>\mathbb{E} [h_{i}^{l+1}(x) \cdot h_{i}^{l+1}(x’)] \ &amp; = \frac{1}{n_l} \sum_{j=1}^{n_l} \mathbb{E} (w_{ij}^{l})^2 \cdot \mathbb{E} [\phi(h_{j}^{l}(x)) \cdot \phi(h_{j}^{l}(x’))] + \mathbb{E} (b_{i}^{l})^2 \\<br>\ &amp; = \sigma_w^2 \cdot \frac{1}{n_l} \sum_{j=1}^{n_l} \mathbb{E} [\phi(h_{j}^{l}(x)) \cdot \phi(h_{j}^{l}(x’))] + \sigma_b^2. \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>因此，随着$n_l \to \infty$，根据中心极限定理，有$h_{i}^{l+1}(x) \to N(0,k^l(x,x))$和$h_i^{l+1} \to \mathcal{GP}(0,k^l)$，其中核函数$k^l$满足</p>
+<p>$$<br>\begin{equation}<br>   k^{l+1}(x,x’) = \sigma_b^2 + \sigma_w^2 \cdot \mathbb{E}_{z \sim GP(0,k^{l})}[\phi(z(x))\cdot\phi(z(x’))].<br>\end{equation}<br>$$</p>
+<p>上述这种基于神经网络的GP通常称为NNGP。近期，有另一种与神经网络相关的核函数NTK(neural tangent kernel)，其形式与NNGP非常类似，主要用于描述神经网络训练过程的动力学性质，有兴趣的读者可以自行查阅相关资料。</p>
+<p>最后，针对图像等特定场景，可以进行专门的核函数设计，例如基于卷积核的GP等等。关于特定场景下核函数设计的一些前沿进展，有兴趣的读者可以参考最近这个<a href="https://nips.cc/media/neurips-2021/Slides/21890_AZNeRaA.pdf" target="_blank" rel="noopener">tutorial</a>中的第3.2节。</p>
+<h3 id="深度高斯过程-Deep-GPs"><a href="#深度高斯过程-Deep-GPs" class="headerlink" title="深度高斯过程 Deep GPs"></a>深度高斯过程 Deep GPs</h3><p>现在，让我们回顾一下上一节提到的复合核函数$k(g(\cdot),g(\cdot))$。当映射$g$是一个单层神经网络时，相应的GP可以表示为一个确定性GP和一个常规GP的堆叠(stacking)：</p>
+<p>$$<br>\begin{equation}<br>\begin{aligned}<br>h_1 \ &amp; \sim \mathcal{GP}(\phi(Wx+b),0), \\<br>f \ &amp; \sim \mathcal{GP}(0,k(h_1(\cdot),h_1(\cdot)))). \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>很自然地，我们可以进一步讨论和分析由多个常规GP堆叠而成的模型；这类模型被统一称为DGP(Deep GP)。首先，需要指出的是，DGP在一般情况下并不等价于GP；例如，考虑一个两层的一维的DGP：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>f \ &amp; \sim \mathcal{GP}(0,k_2(h_1(\cdot), h_1(\cdot))), \\<br>h_1 \ &amp; \sim \mathcal{GP}(0,k_1); \\<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>其条件边缘分布为</p>
+<p>$$<br>p(f|x) = \int_{h_1} p(f|h_1)p(h_1|x) d h_1 \propto \int_{h_1} \frac{1}{\sqrt{k_2(h_1,h_1)}} \exp(-\frac{1}{2}[\frac{f^2}{k_2(h_1,h_1)} + \frac{h_1^2}{k_1(x,x)}]) d h_1,<br>$$</p>
+<p>其中$h_1$同时出现在均值项和方差项中，无法解析的被积分消去(marginalized)，因此$p(f|x)$一般来说并不服从正态分布。这一与单层GP的差异，可以看作是DGP的一个优点：这类模型并不局限在正态分布的形式上，而可以表达更一般的概率分布和协方差结构。DGP的另一个潜在的优点则与深度神经网络有关：通过多层GP堆叠，模型具备了提取高阶特征的潜力，从而达到更好的拟合效果。</p>
+<p>下面，我们简单介绍Salimbeni和Deisenroth于2017年提出的一种<a href="https://arxiv.org/abs/1705.08933" target="_blank" rel="noopener">DGP训练方法</a>；这一训练方法易于理解和实现，且支持批处理，在计算上有一定优势，目前已用于<a href="https://gpytorch.ai/" target="_blank" rel="noopener">GPyTorch</a>等常见DGP建模工具中。</p>
+<p>考虑一个$L$层的DGP，其中每一层映射表示为</p>
+<p>$$<br>\begin{equation}<br>h_{i}^{l+1} \sim \mathcal{GP}(0,k_i^{l+1}(h^l(\cdot),h^l(\cdot))), \ \forall i \in \{1,\cdots,n_{l+1}\};<br>\end{equation}<br>$$</p>
+<p>则条件概率$p(y|x)$可以表示为</p>
+<p>$$<br>p(y|x) = \int_{ \{h\} } p(y,\{h\}|x) d \{h\} = \int_{ \{h\} } p(y|h_L) \prod_{l=0}^{L-1} p(h_{l+1}|h_l) d \{h\},<br>$$</p>
+<p>其中$h_0 = x$。现在，考虑沿用前面小节介绍的inducing points+VI的方法，对每一层$l$引入采样点$z_l$和函数取值$u_l$，则优化问题可以写为（为简便起见，我们仍然省略所有条件概率中的$x$和$z$）：</p>
+<p>$$<br>\begin{equation}<br>\begin{aligned}<br>\min_{ \{z\},\{u\} } L(\{u\}|D) = \ &amp; \text{KL}(q(\{h\})||p(\{h\}|D)) \\<br>= \ &amp; \text{Const} + \mathbb{E}_{q(\{h\},\{u\})} \log[\frac{q(\{h\},\{u\})}{p(y,\{h\},\{u\})}] \\<br>= \ &amp; \text{Const} + \sum_{l=1}^L \text{KL}(q(u_l)||p(u_l)) - \mathbb{E}_{q(\{h\})} \log p(y|h_L).<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>可以看出，上式的形式与前面单层GP的VI优化目标基本一致。注意到各$\text{KL}(q(u_l)||p(u_l))$项都有解析表达式，而$\mathbb{E}_{q(\{h\})} \log p(y|h_L)$项可以通过采样+重参数化(reparameterization)的形式进行前向计算和反向传播，因此整体可以使用PyTorch等自动微分工具进行端到端的训练。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blogs/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blogs/2022/annual_comment_cn_202201/" rel="next" title="认知迭代整理（2021）">
+                <i class="fa fa-chevron-left"></i> 认知迭代整理（2021）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
+            
+              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blogs/archives">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blogs/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blogs/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://hanqiu92.github.io" target="_blank" title="Homepage">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Homepage</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hanqiu92" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-github"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:qiuhan9212@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础思路-Basic-Approach"><span class="nav-number">1.</span> <span class="nav-text">基础思路 Basic Approach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引子-Motivating-Example"><span class="nav-number">1.1.</span> <span class="nav-text">引子 Motivating Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一般场景-General-Cases"><span class="nav-number">1.2.</span> <span class="nav-text">一般场景 General Cases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多维输出-Multioutputs"><span class="nav-number">1.3.</span> <span class="nav-text">多维输出 Multioutputs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前沿扩展-Extensions"><span class="nav-number">2.</span> <span class="nav-text">前沿扩展 Extensions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代理数据点与变分推理-Inducing-Points-amp-Variational-Inference"><span class="nav-number">2.1.</span> <span class="nav-text">代理数据点与变分推理 Inducing Points &amp; Variational Inference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核函数设计-Kernel-Design"><span class="nav-number">2.2.</span> <span class="nav-text">核函数设计 Kernel Design</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度高斯过程-Deep-GPs"><span class="nav-number">2.3.</span> <span class="nav-text">深度高斯过程 Deep GPs</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qiu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blogs/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blogs/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blogs/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blogs/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blogs/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://hanqiu92.github.io/blogs/2022/GP_202203/';
+          this.page.identifier = '2022/GP_202203/';
+          this.page.title = 'Gaussian Processes (GP) and Extensions';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hanqiu92.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

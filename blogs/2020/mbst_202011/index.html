@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,29 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Behavior Modeling,Machine Learning," />
 
 
+  <meta name="keywords" content="Behavior Modeling,Machine Learning,">
 
 
 
@@ -83,29 +81,28 @@
 
 
 
-<meta name="description" content="随着数据收集能力的提升和控制手段的复杂化，在实际业务中，常常会遇到对多维、异质化的处置效应(treatment effect)的估计问题。近年来，学界在这个方向上提出了一些新的方法和工具；其中一个较为知名的工作是Susan Athey等人提出的generalized random forest(grf)。不过，这些工具与当前业界常用的工具（例如XGBoost，下称为xgb）存在一定差距：
 
-未针对">
+
+<meta name="description" content="随着数据收集能力的提升和控制手段的复杂化，在实际业务中，常常会遇到对多维、异质化的处置效应(treatment effect)的估计问题。近年来，学界在这个方向上提出了一些新的方法和工具；其中一个较为知名的工作是Susan Athey等人提出的generalized random forest(grf)。不过，这些工具与当前业界常用的工具（例如XGBoost，下称为xgb）存在一定差距：  未针对">
+<meta name="keywords" content="Behavior Modeling,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Multivariate Boosted Trees">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/mbst_202011/index.html">
-<meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="随着数据收集能力的提升和控制手段的复杂化，在实际业务中，常常会遇到对多维、异质化的处置效应(treatment effect)的估计问题。近年来，学界在这个方向上提出了一些新的方法和工具；其中一个较为知名的工作是Susan Athey等人提出的generalized random forest(grf)。不过，这些工具与当前业界常用的工具（例如XGBoost，下称为xgb）存在一定差距：
-
-未针对">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case1_base_part_treat.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case2_base_full_treat.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case3_two_treats.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case4_base_two_treats.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case5_base_two_reverse_treats.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case6_base_two_weak_treats.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case7_three_treats.png">
+<meta property="og:site_name" content="Han&#39;s Blog">
+<meta property="og:description" content="随着数据收集能力的提升和控制手段的复杂化，在实际业务中，常常会遇到对多维、异质化的处置效应(treatment effect)的估计问题。近年来，学界在这个方向上提出了一些新的方法和工具；其中一个较为知名的工作是Susan Athey等人提出的generalized random forest(grf)。不过，这些工具与当前业界常用的工具（例如XGBoost，下称为xgb）存在一定差距：  未针对">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case1_base_part_treat.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case2_base_full_treat.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case3_two_treats.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case4_base_two_treats.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case5_base_two_reverse_treats.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case6_base_two_weak_treats.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case7_three_treats.png">
 <meta property="og:updated_time" content="2020-11-08T07:24:30.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Multivariate Boosted Trees">
-<meta name="twitter:description" content="随着数据收集能力的提升和控制手段的复杂化，在实际业务中，常常会遇到对多维、异质化的处置效应(treatment effect)的估计问题。近年来，学界在这个方向上提出了一些新的方法和工具；其中一个较为知名的工作是Susan Athey等人提出的generalized random forest(grf)。不过，这些工具与当前业界常用的工具（例如XGBoost，下称为xgb）存在一定差距：
-
-未针对">
+<meta name="twitter:description" content="随着数据收集能力的提升和控制手段的复杂化，在实际业务中，常常会遇到对多维、异质化的处置效应(treatment effect)的估计问题。近年来，学界在这个方向上提出了一些新的方法和工具；其中一个较为知名的工作是Susan Athey等人提出的generalized random forest(grf)。不过，这些工具与当前业界常用的工具（例如XGBoost，下称为xgb）存在一定差距：  未针对">
+<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/images/mbst/case1_base_part_treat.png">
 
 
 
@@ -135,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/mbst_202011/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/mbst_202011/">
 
 
 
@@ -169,7 +166,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -272,7 +269,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -308,7 +305,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -380,7 +377,7 @@
 <li>(split for heterogeneity) 调整了树的分裂标准，以更强调不同分支间参数的差异性。具体来说，在一次分裂过程中，给定样本集合$D$和全局参数估计值$\theta_D$，如果假设样本$i$对于$\theta_D$的局部贡献程度可用变量$\rho_i$表示：$$<br>\theta_{D’} \approx \theta_D + \sum_{j \in D’} \rho_j; $$ 那么这次分裂的目标是找到一种$D$的切分方法$(D_1,D_2)$，以最大化切分后两部分平均$\rho$的差异程度 $$<br>\max \frac{1}{|D_1|} (\sum_{j\in D_1} \rho_j)^2 + \frac{1}{|D_2|} (\sum_{j\in D_2} \rho_j)^2. $$ $\rho_i$的具体取值可以按以下方式确定：首先，我们将$\rho_i$定义为$\theta_{D \cup \{i\}} - \theta_{D}$。然后，注意到在理想情况下，条件$\sum_{j \in D’}g_j(\theta_D’) = 0$应对任意样本集合$D’$成立，因此有 $$<br>\begin{aligned}<br>0 &amp; = \sum_{j \in D \cup \{i\}} g_j(\theta_{D \cup \{i\}}) = \sum_{j \in D} g_j(\theta_D + \rho_i) + g_i(\theta_D + \rho_i) \\<br>&amp; \approx \sum_{j \in D} [g_j(\theta_D) + \rho_i\cdot h_j(\theta_D)] + g_i(\theta_D) = \rho_i \cdot \sum_{j \in D} h_j(\theta_D) + g_i(\theta_D),<br>\end{aligned} $$ 即$\rho_i \approx (\sum_{j \in D} h_j(\theta_D))^{-1} g_i(\theta_D)$.</li>
 <li>(honesty) 树的分裂和叶子结点赋值分别采用了一组独立样本，以减轻过拟合风险。</li>
 </ol>
-<p>算法的详细思路和实现逻辑可以参考相应的<a href="https://arxiv.org/abs/1610.01271" target="_blank" rel="external">论文</a>和<a href="https://grf-labs.github.io/grf/REFERENCE.html" target="_blank" rel="external">工具包的介绍页面</a>。另外，目前grf工具包只能支持一维参数估计，对于多维处置效应的估计，可以参考其扩展<a href="https://github.com/rajkumarkarthik/mgrf-develop" target="_blank" rel="external">mgrf</a>。</p>
+<p>算法的详细思路和实现逻辑可以参考相应的<a href="https://arxiv.org/abs/1610.01271" target="_blank" rel="noopener">论文</a>和<a href="https://grf-labs.github.io/grf/REFERENCE.html" target="_blank" rel="noopener">工具包的介绍页面</a>。另外，目前grf工具包只能支持一维参数估计，对于多维处置效应的估计，可以参考其扩展<a href="https://github.com/rajkumarkarthik/mgrf-develop" target="_blank" rel="noopener">mgrf</a>。</p>
 <p>相比上面xgb+局部回归的方案，grf的优点在于有较优的理论性质，但其缺点也很明显：</p>
 <ol>
 <li>首先，grf主要基于rf，在数据量充足时，估计准确度要差于基于boosting的xgb；</li>
@@ -491,7 +488,7 @@
 <li>grf的表现一致差于上述方法，一个可能的原因在于其基础模型是rf，通常bias更高；在处置效应估计方面，它还是好于xgb+局部回归的；</li>
 <li>xgb+局部回归并不适用于估计处置效应，应尽量避免使用。</li>
 </ul>
-<p>具体的实验细节可以通过这个<a href="https://github.com/hanqiu92/multivariate_boosting" target="_blank" rel="external">github repo</a>获取；感兴趣的读者可以进一步开展其他评估实验。该repo同时提供了基于python和xgb的mbst和投影mbst的实现，读者可以在自己的数据集上校核其估计效果。</p>
+<p>具体的实验细节可以通过这个<a href="https://github.com/hanqiu92/multivariate_boosting" target="_blank" rel="noopener">github repo</a>获取；感兴趣的读者可以进一步开展其他评估实验。该repo同时提供了基于python和xgb的mbst和投影mbst的实现，读者可以在自己的数据集上校核其估计效果。</p>
 <p>最后，我想从实际应用的角度，简单谈一谈mbst的局限性与应用方向。其实，提出mbst和投影mbst的初衷在于，常用树模型xgb较难直接或简单修改应用在处置效应的估计中，确实存在对新方法和工具的需求。然而，这些困难在神经网络(nn)上并不存在：现有的自动微分框架（tf、pytorch）可以直接支持建立半结构化模型、并进行定制化训练。因此，如果数据量足够充足，nn相比xgb有足够的统治性(dominant)时，可以直接考虑nn中的半结构化模型，无需使用mbst。但根据个人观察，实际应用中确实存在一些场景，在基础效应上数据充足，但在处置效应上数据较为稀疏。此时bias-variance tradeoff中的variance的重要度更高，在处置效应上树模型可能更实用；这时上述估计方法可能就能派上用场。</p>
 <p><strong>注：</strong>最后指出一个有趣的关联：在多年前，我曾经就choice modeling课中Quebec Energy Consumption这个case写过<a href="https://hanqiu92.github.io/blogs/2016/latent_class_category_variable_201611/">一篇文章</a>，指出该数据集中可能存在类别划分(latent classes)，并尝试通过树模型对这些类别进行挖掘、从而提升估计效果。这一工作可以看做是这篇文章中提到的估计方法的一个特殊应用，但在建模动机(motivation)上并不完全一致。</p>
 
@@ -614,9 +611,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -629,7 +624,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

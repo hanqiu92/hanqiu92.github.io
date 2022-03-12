@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,27 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Stochastic Process," />
+
+
+  <meta name="keywords" content="Stochastic Process,">
 
 
 
@@ -84,11 +84,13 @@
 
 
 <meta name="description" content="在上一篇文章中，我介绍了马尔科夫链（在一定条件下）的时间平均与空间平均的一致性。在这一篇文章中，我将首先介绍一种可以解释这种时空一致性的动力系统视角。然后，我将基于这种理解介绍两组使得这种时空一致性成立、但较马尔科夫条件更普适的条件。最后，我将给出一系列例子来解释这些更普适条件的应用方式。In the last post, I introduced the consistency between">
+<meta name="keywords" content="Stochastic Process">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Stochastic Process Note IV: Ergodicity">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2019/SP4_201909/index.html">
-<meta property="og:site_name" content="Han's Blog">
+<meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在上一篇文章中，我介绍了马尔科夫链（在一定条件下）的时间平均与空间平均的一致性。在这一篇文章中，我将首先介绍一种可以解释这种时空一致性的动力系统视角。然后，我将基于这种理解介绍两组使得这种时空一致性成立、但较马尔科夫条件更普适的条件。最后，我将给出一系列例子来解释这些更普适条件的应用方式。In the last post, I introduced the consistency between">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-09-17T01:19:36.058Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Stochastic Process Note IV: Ergodicity">
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/SP4_201909/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/SP4_201909/">
 
 
 
@@ -156,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -259,7 +261,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -295,7 +297,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -358,7 +360,7 @@
 <p><strong>例子1.1：</strong>若$\{X_n\}$是一条实值平稳序列，$g:\mathbb{R}^{\{0,1,\cdots\}}\to \mathbb{R}$是一个勒贝格可测函数，则$Y_k = g(X_k,X_{k+1},\cdots)$也是一条实值平稳序列。<br><strong>Example 1.1:</strong> If $\{X_n\}$ is a real-valued stationary sequence, and function $g:\mathbb{R}^{\{0,1,\cdots\}}\to \mathbb{R}$ is Lebesgue measurable, then the sequence $Y_k = g(X_k,X_{k+1},\cdots)$ is also stationary.</p>
 <p><strong>例子1.2：</strong>假设$\varphi=\theta_1$是一阶平移算子，$A\in\mathcal{I}(\varphi)$是一个不变集合；则（在$\mathcal{F}$对零测集完备的意义下）<br><strong>Example 1.2:</strong> Suppose $\varphi=\theta_1$ is the first-order shift operator (in the sequence space), and $A\in\mathcal{I}(\varphi)$ is an invariant set. Then, when $\mathcal{F}$ is complete,</p>
 <p>$$A = \varphi^{-1}(A) = \{\omega: \varphi(\omega) \in A\} \in \sigma(X_1,X_2,\cdots); \tag{1.1}$$</p>
-<p>不断迭代可知$A \in \cap_{n=1}^{\infty}\sigma(X_n,X_{n+1},\cdots) \doteq \mathcal{T}$（称为尾部$\sigma$-代数）。因此，$\mathcal{I}\subset \mathcal{T}$。当序列$\{X_n\}$是独立同分布时，根据<a href="https://en.wikipedia.org/wiki/Kolmogorov%27s_zero%E2%80%93one_law" target="_blank" rel="external">Kolmogorov零一律</a>可知$\mathcal{T}$是平凡的；进而可知$\mathcal{I}$是平凡的，即$\varphi=\theta_1$（在序列空间中）是遍历的。<br>by iterating over the procedure in equation (1.1) we know that $A \in \cap_{n=1}^{\infty}\sigma(X_n,X_{n+1},\cdots) \doteq \mathcal{T}$ ($\mathcal{T}$ is called the tail $\sigma$-algebra). Therefore, $\mathcal{I}\subset \mathcal{T}$. Now, when the random variables in the sequence $\{X_n\}$ are independent and identically distributed, <a href="https://en.wikipedia.org/wiki/Kolmogorov%27s_zero%E2%80%93one_law" target="_blank" rel="external">the Kolmogorov’s zero-one law</a> implies that $\mathcal{T}$ is trivial; so, in this case $\mathcal{I}$ is trivial, and $\varphi=\theta_1$ is ergodic in the sequence space.</p>
+<p>不断迭代可知$A \in \cap_{n=1}^{\infty}\sigma(X_n,X_{n+1},\cdots) \doteq \mathcal{T}$（称为尾部$\sigma$-代数）。因此，$\mathcal{I}\subset \mathcal{T}$。当序列$\{X_n\}$是独立同分布时，根据<a href="https://en.wikipedia.org/wiki/Kolmogorov%27s_zero%E2%80%93one_law" target="_blank" rel="noopener">Kolmogorov零一律</a>可知$\mathcal{T}$是平凡的；进而可知$\mathcal{I}$是平凡的，即$\varphi=\theta_1$（在序列空间中）是遍历的。<br>by iterating over the procedure in equation (1.1) we know that $A \in \cap_{n=1}^{\infty}\sigma(X_n,X_{n+1},\cdots) \doteq \mathcal{T}$ ($\mathcal{T}$ is called the tail $\sigma$-algebra). Therefore, $\mathcal{I}\subset \mathcal{T}$. Now, when the random variables in the sequence $\{X_n\}$ are independent and identically distributed, <a href="https://en.wikipedia.org/wiki/Kolmogorov%27s_zero%E2%80%93one_law" target="_blank" rel="noopener">the Kolmogorov’s zero-one law</a> implies that $\mathcal{T}$ is trivial; so, in this case $\mathcal{I}$ is trivial, and $\varphi=\theta_1$ is ergodic in the sequence space.</p>
 <p><strong>例子1.3：</strong>考虑一条以平稳分布$\pi$为初始分布的、有限状态的、不可约的马尔科夫链$\{X_n\}$，并考虑序列空间上的一阶平移算子$\varphi=\theta_1$。对任意不变集合$A\in \mathcal{I}$，根据$A$的不变性质及马尔科夫性质，有<br><strong>Example 1.3:</strong> consider an irreducible Markov chain $\{X_n\}$ on a finite state space that initiates from a stationary distribution $\pi$, and the first-order shift operator $\varphi=\theta_1$. For any invariant set $A\in \mathcal{I}$, according to the Markov property, equation</p>
 <p>$$E_{\pi}(1_A|\mathcal{F}_n) = E_{\pi}(1_A \circ \varphi^{n}|\mathcal{F}_n) = E_{X_n}1_A \tag{1.2}$$</p>
 <p>对任意$n$成立。现在，考虑$n\to \infty$。根据Levy零一律（<a href="https://hanqiu92.github.io/blogs/2019/SP2_201907/">本系列第二篇</a>中的推论2.5.2），上式左式a.s.收敛到$E(1_A|\mathcal{F}_{\infty}) = 1_A$。而根据$\{X_n\}$的平稳性和不可约性知，对任意$x\in S$，事件$\{X_n = x\}$按概率1会发生无穷多次。因此，$P(E_{x}1_A \equiv 0,\ \forall x \in S) + P(E_{x}1_A \equiv 1,\ \forall x \in S) = 1$，即$P(A) \in \{0,1\}$。由上式对任意不变集合$A\in \mathcal{I}$成立可知$\mathcal{I}$是平凡的，$\varphi=\theta_1$是遍历的。<br>holds for any $n$. Now, let $n\to \infty$. According to Levy’s 0-1 law (the corollary 2.5.2 in the <a href="https://hanqiu92.github.io/blogs/2019/SP2_201907/">second post in this series</a>), the left-hand side of equation (1.2) converges a.s. to $E(1_A|\mathcal{F}_{\infty}) = 1_A$. According to the stationarity and irreduciblility of $\{X_n\}$, for any $x\in S$, the event $\{X_n = x\}$ occurs infinitely many times with probability 1. Therefore, $P(E_{x}1_A \equiv 0,\ \forall x \in S) + P(E_{x}1_A \equiv 1,\ \forall x \in S) = 1$, and $P(A) \in \{0,1\}$. Since this holds for any invariant set $A\in \mathcal{I}$, $\mathcal{I}$ is trivial, and $\varphi=\theta_1$ is ergodic.</p>
@@ -514,9 +516,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -529,7 +529,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

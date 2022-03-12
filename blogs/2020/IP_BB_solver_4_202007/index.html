@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,27 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Integer Programming," />
+
+
+  <meta name="keywords" content="Integer Programming,">
 
 
 
@@ -84,14 +84,16 @@
 
 
 <meta name="description" content="在这篇文章中，我将对本系列之前的内容进行总结，并针对MIP的求解方法设计及求解器的使用给出一些个人理解和建议。">
+<meta name="keywords" content="Integer Programming">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Develop Your Own Branch & Bound Solver IV: Summary">
+<meta property="og:title" content="How to Develop Your Own Branch &amp; Bound Solver IV: Summary">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_4_202007/index.html">
-<meta property="og:site_name" content="Han's Blog">
+<meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在这篇文章中，我将对本系列之前的内容进行总结，并针对MIP的求解方法设计及求解器的使用给出一些个人理解和建议。">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2020-06-29T02:25:13.231Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Develop Your Own Branch & Bound Solver IV: Summary">
+<meta name="twitter:title" content="How to Develop Your Own Branch &amp; Bound Solver IV: Summary">
 <meta name="twitter:description" content="在这篇文章中，我将对本系列之前的内容进行总结，并针对MIP的求解方法设计及求解器的使用给出一些个人理解和建议。">
 
 
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_4_202007/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_4_202007/">
 
 
 
@@ -156,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -259,7 +261,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -295,7 +297,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -374,7 +376,7 @@
 <li>启发式方法与求解器的结合。很多MIP问题背后有非常直观的业务逻辑，但相应的数学规划形式却比较复杂。根据个人经验，这类问题比较适合通过启发式方法来寻找解，然后通过求解器对启发式方法的效果进行校核。另外，注意到B&amp;B等基于LP的方法属于外部逼近方法，而启发式搜索方法属于内部逼近方法，两种不同视角可能可以结合，形成更高效的求解方案。</li>
 </ul>
 <h2 id="MIP求解器的开发-How-to-develop-an-MIP-solver"><a href="#MIP求解器的开发-How-to-develop-an-MIP-solver" class="headerlink" title="MIP求解器的开发 How to develop an MIP solver?"></a>MIP求解器的开发 How to develop an MIP solver?</h2><p>基于某些原因，使用者可能需要从头开始实现一个MIP求解器。不过，正如上面所提到的，如果要满足市场所需的通用性，MIP求解器通常需要实现大量专门化的求解技术，这对于没有充分的资源和业务经验支持的个人或者小团队来说是十分困难的。因此，至少在开发前期阶段，开发者需要有一定的侧重点，专注于求解器的某几项核心功能。我个人认为一种较合理的开发思路是先以某一类业务问题为切入点，基于一套可扩展的框架实现核心求解逻辑；后续再逐步引入专门化功能，扩大求解器的应用面。</p>
-<p>在实现核心求解逻辑时，开发者可以参考借鉴已有的开源工作，例如<a href="https://github.com/coin-or/Cbc" target="_blank" rel="external">CBC</a>、<a href="https://scipopt.org/" target="_blank" rel="external">SCIP</a>等，也可以参考我在本系列中的尝试。特别地，我认为有以下几个需要特别注意的工程设计问题：</p>
+<p>在实现核心求解逻辑时，开发者可以参考借鉴已有的开源工作，例如<a href="https://github.com/coin-or/Cbc" target="_blank" rel="noopener">CBC</a>、<a href="https://scipopt.org/" target="_blank" rel="noopener">SCIP</a>等，也可以参考我在本系列中的尝试。特别地，我认为有以下几个需要特别注意的工程设计问题：</p>
 <ul>
 <li>数据结构设计：在求解器中，类和数据结构的形式对计算和存储性能有重要影响，而且一旦确定，后续修改成本很高。因此，有必要根据求解器的主要应用方向设计类和数据结构的形式。例如，在SCIP中，约束（行）与变量（列）被认为是不同的对象，有独立的数据结构和处理逻辑；这是因为在MIP问题中通常有大量包含组合结构的约束，通过独立的处理逻辑可以利用这些组合结构来提高branching和domain propagation的效率。但与此同时，这种数据结构形式将会为LP松弛问题的求解增加一定的计算开销，因为LP求解器通常需要将行和列作为同一类对象进行处理。由于SCIP在设计之初更多是为了解决SAT/CIP等与布尔逻辑判定相关的问题，而对于这类问题，LP求解模块的重要性相对更低，故对约束使用独立的数据结构管理是更合适的。</li>
 <li>模块设计与可扩展性：随着新求解技术的不断引入，对技术的动态管理和控制会变得越来越复杂，很多地方需要加入具体求解技术选取的判断逻辑。此时，如果模块间的边界或者交互形式不清晰，前述判断逻辑可能较难实现或者容易出bug。例如，在本系列的实现中，约束相关信息没有专门的管理对象，而是在solver、propagator等多个类中都保存有独立备份；这导致后续较难对割生成技术进行支持，因为生成割平面后需要对问题约束信息进行改动，而这种改动在当前实现中是不可控的。</li>
@@ -497,9 +499,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -512,7 +512,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -589,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支定界法的基本原理-How-does-B-amp-B-work"><span class="nav-number">1.</span> <span class="nav-text">分支定界法的基本原理 How does B&B work?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIP求解器的高效使用-How-to-use-MIP-solvers-efficiently"><span class="nav-number">2.</span> <span class="nav-text">MIP求解器的高效使用 How to use MIP solvers efficiently?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求解器的选用-Selection-of-Solvers"><span class="nav-number">2.1.</span> <span class="nav-text">求解器的选用 Selection of Solvers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求解器配置的选用-Selection-of-Solver-Configurations"><span class="nav-number">2.2.</span> <span class="nav-text">求解器配置的选用 Selection of Solver Configurations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他建模与求解技巧-Other-Modeling-and-Solving-Techniques"><span class="nav-number">2.3.</span> <span class="nav-text">其他建模与求解技巧 Other Modeling and Solving Techniques</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIP求解器的开发-How-to-develop-an-MIP-solver"><span class="nav-number">3.</span> <span class="nav-text">MIP求解器的开发 How to develop an MIP solver?</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支定界法的基本原理-How-does-B-amp-B-work"><span class="nav-number">1.</span> <span class="nav-text">分支定界法的基本原理 How does B&amp;B work?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIP求解器的高效使用-How-to-use-MIP-solvers-efficiently"><span class="nav-number">2.</span> <span class="nav-text">MIP求解器的高效使用 How to use MIP solvers efficiently?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求解器的选用-Selection-of-Solvers"><span class="nav-number">2.1.</span> <span class="nav-text">求解器的选用 Selection of Solvers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求解器配置的选用-Selection-of-Solver-Configurations"><span class="nav-number">2.2.</span> <span class="nav-text">求解器配置的选用 Selection of Solver Configurations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他建模与求解技巧-Other-Modeling-and-Solving-Techniques"><span class="nav-number">2.3.</span> <span class="nav-text">其他建模与求解技巧 Other Modeling and Solving Techniques</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIP求解器的开发-How-to-develop-an-MIP-solver"><span class="nav-number">3.</span> <span class="nav-text">MIP求解器的开发 How to develop an MIP solver?</span></a></li></ol></div>
             
 
           </div>

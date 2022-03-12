@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,27 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Linear Programming," />
+
+
+  <meta name="keywords" content="Linear Programming,">
 
 
 
@@ -84,11 +84,13 @@
 
 
 <meta name="description" content="在这篇文章中，我将介绍一系列常用的预处理技术，以进一步提升对偶单纯形法的求解效率。">
+<meta name="keywords" content="Linear Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Develop Your Own Dual Simplex Solver IV: Preprocessing Techniques">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_4_202004/index.html">
-<meta property="og:site_name" content="Han's Blog">
+<meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在这篇文章中，我将介绍一系列常用的预处理技术，以进一步提升对偶单纯形法的求解效率。">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2020-04-05T09:46:10.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Develop Your Own Dual Simplex Solver IV: Preprocessing Techniques">
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_4_202004/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_4_202004/">
 
 
 
@@ -156,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -259,7 +261,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -295,7 +297,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -385,7 +387,7 @@
 <li>如果$x_{j_2}$在原始边界$\{l_{j_2},u_{j_2}\}$上或$j_2$在$B$中，则恢复变量$x_{j_1}$和约束$i$后，$j_2$的属性和$x_{j_2}$的取值不需要进行改变；故可令$j_1 \in B$，进而$s_{j_1} = 0, \ \lambda_i = (c_{j_1} - A_{(-i)j_1}^T \lambda_{-i})/A_{ij_1}$。由于恢复前（简化后）的松弛变量$\tilde{s}_{j_2}$满足$\tilde{s}_{j_2} = s_{j_2} - (A_{ij_2}/A_{ij_1}) s_{j_1}$，因此$s_{j_2}$的取值没有变化。</li>
 <li>如果$x_{j_2}$在新生成的边界上，那么恢复变量$x_{j_1}$和约束$i$后，$j_2$应进入$B$，故$s_{j_2} = 0$，进而可以算得<br>$$\lambda_i = (c_{j_2} - A_{(-i)j_2}^T \lambda_{-i})/A_{ij_2}, \ s_{j_2} = - (A_{ij_1}/A_{ij_2})\tilde{s}_{j_2}.$$</li>
 </ul>
-<p>接下来，我将在<a href="https://github.com/hanqiu92/dual_simplex_solve/blob/master/4_preprocess.ipynb" target="_blank" rel="external">这个notebook</a>中尝试实现上述各预处理方法，并通过数值实验分析效果。</p>
+<p>接下来，我将在<a href="https://github.com/hanqiu92/dual_simplex_solve/blob/master/4_preprocess.ipynb" target="_blank" rel="noopener">这个notebook</a>中尝试实现上述各预处理方法，并通过数值实验分析效果。</p>
 
       
     </div>
@@ -504,9 +506,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -519,7 +519,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

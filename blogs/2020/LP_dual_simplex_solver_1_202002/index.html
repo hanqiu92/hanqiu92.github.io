@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,27 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Linear Programming," />
+
+
+  <meta name="keywords" content="Linear Programming,">
 
 
 
@@ -84,11 +84,13 @@
 
 
 <meta name="description" content="在接下来这个系列中，我将介绍线性规划中的对偶单纯形法的基本原理，并示范如何实现一个简单的对偶单纯形法求解器。">
+<meta name="keywords" content="Linear Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Develop Your Own Dual Simplex Solver I: Introduction">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_1_202002/index.html">
-<meta property="og:site_name" content="Han's Blog">
+<meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在接下来这个系列中，我将介绍线性规划中的对偶单纯形法的基本原理，并示范如何实现一个简单的对偶单纯形法求解器。">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2020-05-23T07:27:20.643Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Develop Your Own Dual Simplex Solver I: Introduction">
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_1_202002/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_1_202002/">
 
 
 
@@ -156,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -259,7 +261,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -295,7 +297,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -354,7 +356,7 @@
 <li>完成一个简易的线性规划求解器，后续可能可以用于自己的一些小项目中。</li>
 </ol>
 <p>基于上述动机的优先级，在本系列的写作/代码中，我将更注重<strong>直观性(intuition)</strong>和<strong>可读性</strong>，而选择性地忽略一些目前主流求解器中必备的、但与对偶单纯形法本身关系不大的计算优化技术。（还有一个主要的原因是这些技术都具有一定的技术壁垒，个人实现的时间成本较高。）</p>
-<p>在本系列的写作中，我所用到的参考资料包括A. Koberstein的<a href="https://www.researchgate.net/profile/Achim_Koberstein/publication/35632487_The_dual_simplex_method_techniques_for_a_fast_and_stable_implementation_Elektronische_Ressource/links/0a85e52ef5144e9031000000/The-dual-simplex-method-techniques-for-a-fast-and-stable-implementation-Elektronische-Ressource.pdf" target="_blank" rel="external">博士论文</a>和相关引用文献，以及开源求解器<a href="https://github.com/coin-or/Clp" target="_blank" rel="external">Clp</a>、<a href="http://soplex.zib.de/" target="_blank" rel="external">SoPlex</a>的代码。要顺畅地理解本系列中的内容，阅读者需要对线性规划理论有一定的了解。</p>
+<p>在本系列的写作中，我所用到的参考资料包括A. Koberstein的<a href="https://www.researchgate.net/profile/Achim_Koberstein/publication/35632487_The_dual_simplex_method_techniques_for_a_fast_and_stable_implementation_Elektronische_Ressource/links/0a85e52ef5144e9031000000/The-dual-simplex-method-techniques-for-a-fast-and-stable-implementation-Elektronische-Ressource.pdf" target="_blank" rel="noopener">博士论文</a>和相关引用文献，以及开源求解器<a href="https://github.com/coin-or/Clp" target="_blank" rel="noopener">Clp</a>、<a href="http://soplex.zib.de/" target="_blank" rel="noopener">SoPlex</a>的代码。要顺畅地理解本系列中的内容，阅读者需要对线性规划理论有一定的了解。</p>
 <h2 id="写作方式-Format"><a href="#写作方式-Format" class="headerlink" title="写作方式 Format"></a>写作方式 Format</h2><p>对偶单纯形法里用到的许多技术都是为了解决实际算法执行过程中出现的问题而引入的。因此，现有算法实现的效果评估对理解后续算法思路至关重要。为了简化从算法原理到代码实现到获得效果反馈之间的流程，在本系列的写作中，我将采用blog post加上ipython notebook的展示形式：在blog中，我主要对算法的基本思路进行讨论；而在notebook中，我将结合具体代码实现对一些算法细节进行介绍。</p>
 <h2 id="写作计划-Agenda"><a href="#写作计划-Agenda" class="headerlink" title="写作计划 Agenda"></a>写作计划 Agenda</h2><p>在本系列的第一篇文章（也就是本文）中，我将介绍线性规划求解的预备知识，包括问题的定义、解的相关概念等。<br>第二篇文章将介绍对偶单纯形法的基本流程，并结合简单例子分析其几何意义。<br>第三篇文章将介绍初始对偶可行解的寻找方法以及计算过程中数值误差的处理，以进一步完善对偶单纯形法的求解流程，保障求解结果的可靠性。<br>第四篇文章将介绍一系列常用的预处理技术，以进一步提升对偶单纯形法的求解效率。<br>在第五篇文章（最后一篇）中，我将对前述内容进行总结，并针对求解器的设计和使用给出一些个人建议。</p>
 <h2 id="预备知识-Preliminary"><a href="#预备知识-Preliminary" class="headerlink" title="预备知识 Preliminary"></a>预备知识 Preliminary</h2><p><strong>问题(problem)的定义。</strong>线性规划的一般形式为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \min \ &amp; c^T x \\<br>    s.t. \ &amp; Ax = b, \\<br>           &amp; l \leq x \leq u.<br>  \end{aligned}<br>  \label{eq:primal}\tag{1.1}<br>\end{equation}<br>$$</p>
@@ -366,7 +368,7 @@
 <p><strong>基于基的解。</strong>在给定一组基$(B,L,U)$时，利用互补松弛条件$\eqref{eq:compSlack}$，KKT条件$\eqref{eq:KKT}$可以改写为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    &amp; A_B x_B = b - A_Lx_L - A_Ux_U, \ x_L = l_L, \ x_U = u_U, \\<br>    &amp; A_B^T \lambda = c_B, \ s_{l,L} = c_L - A_L^T \lambda, \ s_{u,U} = c_U - A_U^T \lambda, \\<br>    &amp; s_{l,B} = s_{u,B} = s_{u,L} = s_{l,U} = 0; \\<br>    &amp; l_B \leq x_B \leq u_B, \ s_{l,L} \geq 0, \ s_{u,U} \leq 0.<br>  \end{aligned}\label{eq:KKT_decompose}\tag{1.5}<br>\end{equation}<br>$$</p>
 <p>因此，根据公式$\eqref{eq:KKT_decompose}$中的前三式，基$(B,L,U)$不但可以决定原始问题的解$x$，还可以决定对偶问题的解$(\lambda,s)$；而且，如果这组解$(x,\lambda,s)$同时满足可行性约束$l_B \leq x_B \leq u_B, \ s_{l,L} \geq 0, \ s_{u,U} \leq 0$，则其必为最优解。<strong>注：</strong>特别地，当上下界$l,u$有界时，我们总能通过交换$L$和$U$中的下标来保证$s_{l,L} \geq 0, \ s_{u,U} \leq 0$，从而对于任意$B$，我们都能找到相应的$L$和$U$使得对应的对偶解$(\lambda,s)$可行。这部分地解释了为何在通常情况下对偶方法效率更高。</p>
 <p><strong>数值误差的影响。</strong>通过基$(B,L,U)$来表示解$(x,\lambda,s)$的一个好处是互补松弛条件$\eqref{eq:compSlack}$永远是默认被满足的。此时，根据KKT条件$\eqref{eq:KKT}$的定义，对解$(x,\lambda,s)$的最优性检验可以减弱为可行性检验。同时，对原始解$x$和对偶解$(\lambda,s)$的统一表示在一定程度上能提高整个求解流程对于数值误差的稳健性。下面来看一个简单例子。假设在求解过程中的某一步中，存在某个下标$i\in N = L\cup U$，对应的对偶变量$s_i = s_{l,i} + s_{u,i}$的真实取值在0附近。受到数值误差的影响，实际计算的$s_i$可能是一个微小的正值或者负值。现在，如果要手动维持互补松弛条件，那么相应的原始变量$x_i$的取值很可能会在$l_i$和$u_i$之间来回波动。当这两个值的差异较大时，迭代优化过程会受到严重干扰。而如果我们不严格地维持互补松弛条件，则有可能在迭代优化过程中原始解和对偶解相关性不断减弱，从而导致算法中一些需要同时使用原始解和对偶解的计算失效，进而导致算法不收敛。</p>
-<p>下面，我们进入<a href="https://github.com/hanqiu92/dual_simplex_solve/blob/master/1_preliminary.ipynb" target="_blank" rel="external">代码实现部分</a>。</p>
+<p>下面，我们进入<a href="https://github.com/hanqiu92/dual_simplex_solve/blob/master/1_preliminary.ipynb" target="_blank" rel="noopener">代码实现部分</a>。</p>
 
       
     </div>
@@ -485,9 +487,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -500,7 +500,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

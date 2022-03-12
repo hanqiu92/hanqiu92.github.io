@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,27 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Stochastic Process," />
+
+
+  <meta name="keywords" content="Stochastic Process,">
 
 
 
@@ -84,14 +84,16 @@
 
 
 <meta name="description" content="对于一组独立同分布的随机变量$\{X_n\}$及相应的和$S_n=\sum_{k=1}^nX_k$，中心极限定理指出，在一定的条件下，$\frac{1}{\sqrt{n}}S_n$的分布将随$n\to\infty$趋于一个正态分布。在这篇文章中，我将介绍随机过程理论中一个相似的结论：如果我们将序列$\{S_n\}$视为随机游走，并通过线性插值的方式将其延拓为连续时间过程$\{S_t\}$，那么在一">
+<meta name="keywords" content="Stochastic Process">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Stochastic Process Note VI: Donsker's Theorem">
+<meta property="og:title" content="Stochastic Process Note VI: Donsker&#39;s Theorem">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2019/SP6_201910/index.html">
-<meta property="og:site_name" content="Han's Blog">
+<meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="对于一组独立同分布的随机变量$\{X_n\}$及相应的和$S_n=\sum_{k=1}^nX_k$，中心极限定理指出，在一定的条件下，$\frac{1}{\sqrt{n}}S_n$的分布将随$n\to\infty$趋于一个正态分布。在这篇文章中，我将介绍随机过程理论中一个相似的结论：如果我们将序列$\{S_n\}$视为随机游走，并通过线性插值的方式将其延拓为连续时间过程$\{S_t\}$，那么在一">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-10-21T15:48:39.677Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Stochastic Process Note VI: Donsker's Theorem">
+<meta name="twitter:title" content="Stochastic Process Note VI: Donsker&#39;s Theorem">
 <meta name="twitter:description" content="对于一组独立同分布的随机变量$\{X_n\}$及相应的和$S_n=\sum_{k=1}^nX_k$，中心极限定理指出，在一定的条件下，$\frac{1}{\sqrt{n}}S_n$的分布将随$n\to\infty$趋于一个正态分布。在这篇文章中，我将介绍随机过程理论中一个相似的结论：如果我们将序列$\{S_n\}$视为随机游走，并通过线性插值的方式将其延拓为连续时间过程$\{S_t\}$，那么在一">
 
 
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/SP6_201910/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/SP6_201910/">
 
 
 
@@ -156,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -259,7 +261,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -295,7 +297,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -368,7 +370,7 @@
 <p>$$\int_0^1 (S(nt)/\sqrt{n})^k dt - n^{-1-k/2}\sum_{m=1}^n S_m^k \to 0; \tag{1.7}$$</p>
 <p>因此有<br>therefore, we have</p>
 <p>$$n^{-1-k/2}\sum_{m=1}^n S_m^k \Rightarrow \int_0^1 B_t^k dt. \tag{1.8}$$</p>
-<h3 id="证明思路-Intuition-in-Proofs"><a href="#证明思路-Intuition-in-Proofs" class="headerlink" title="证明思路 Intuition in Proofs"></a>证明思路 Intuition in Proofs</h3><p>在这一小节中，我将介绍两种定理1.1的证明思路。第一种思路相对自然：对连续时间进行离散采样，先证明离散时间情况下的结论，然后再通过轨迹连续性将其延拓为连续时间情况下的结论。具体来说，我们可以考虑采样点$t_k = k2^{-m},k\in\{0,\cdots,2^m-1\}$。一方面，我们可以对每个$t_k$应用中心极限定理，从而证明随机游走的有限维采样分布弱收敛于布朗运动的有限维采样分布；另一方面，通过布朗运动和随机游走线性延拓的轨迹连续性，证明在$m\to\infty$时，两者的有限维采样分布都强收敛于连续时间分布。具体证明可以参考<a href="https://www.math.utah.edu/~davar/ps-pdf-files/donsker.pdf" target="_blank" rel="external">以下课件</a>。<br>In this subsection, I will introduce two approaches in proving theorems 1.1. The first approach is fairly intuitive: we first sample the time at a finite number of points and prove the corresponding discrete-time version of the conclusion, and then extend it to the continuous-time setting via trajectory continuity. Specifically, we can consider the sampling point $t_k = k2^{-m},k\in\{0,\cdots,2^m-1\}$. On the one hand, we can apply the central limit theorem to each $t_k$ to prove that the finite-dimensional sample distribution of the random walk converges (weakly) to the finite-dimensional sample distribution of the Brownian motion. On the other hand, we can use the trajectory continuity of Brownian motions and linear interpolations of random walks to prove that both finite-dimensional sampling distributions converge (strongly) to the corresponding continuous-time distributions as $m\to\infty$. A detailed proof in this direction can be found in <a href="https://www.math.utah.edu/~davar/ps-pdf-files/donsker.pdf" target="_blank" rel="external">this lecture note</a>.</p>
+<h3 id="证明思路-Intuition-in-Proofs"><a href="#证明思路-Intuition-in-Proofs" class="headerlink" title="证明思路 Intuition in Proofs"></a>证明思路 Intuition in Proofs</h3><p>在这一小节中，我将介绍两种定理1.1的证明思路。第一种思路相对自然：对连续时间进行离散采样，先证明离散时间情况下的结论，然后再通过轨迹连续性将其延拓为连续时间情况下的结论。具体来说，我们可以考虑采样点$t_k = k2^{-m},k\in\{0,\cdots,2^m-1\}$。一方面，我们可以对每个$t_k$应用中心极限定理，从而证明随机游走的有限维采样分布弱收敛于布朗运动的有限维采样分布；另一方面，通过布朗运动和随机游走线性延拓的轨迹连续性，证明在$m\to\infty$时，两者的有限维采样分布都强收敛于连续时间分布。具体证明可以参考<a href="https://www.math.utah.edu/~davar/ps-pdf-files/donsker.pdf" target="_blank" rel="noopener">以下课件</a>。<br>In this subsection, I will introduce two approaches in proving theorems 1.1. The first approach is fairly intuitive: we first sample the time at a finite number of points and prove the corresponding discrete-time version of the conclusion, and then extend it to the continuous-time setting via trajectory continuity. Specifically, we can consider the sampling point $t_k = k2^{-m},k\in\{0,\cdots,2^m-1\}$. On the one hand, we can apply the central limit theorem to each $t_k$ to prove that the finite-dimensional sample distribution of the random walk converges (weakly) to the finite-dimensional sample distribution of the Brownian motion. On the other hand, we can use the trajectory continuity of Brownian motions and linear interpolations of random walks to prove that both finite-dimensional sampling distributions converge (strongly) to the corresponding continuous-time distributions as $m\to\infty$. A detailed proof in this direction can be found in <a href="https://www.math.utah.edu/~davar/ps-pdf-files/donsker.pdf" target="_blank" rel="noopener">this lecture note</a>.</p>
 <p>第二种思路，在我看来，则更接近问题本质：首先，引入一组停时序列$\{\tau_n^m\}_{m\geq 0}$将随机游走$\{\frac{1}{\sqrt{n}}S_m\}_{m\geq 0}$弱嵌入到一个布朗运动$B$中（即原始随机过程$\{\frac{1}{\sqrt{n}}S_m\}_{m\geq 0}$与嵌入过程$\{B_{\tau_n^m}\}_{m\geq 0}$的分布相同）；然后，说明在给定条件下，对于任意$t\in[0,1]$，停时序列$\{T_{\tau_n^{nt}}\}_{n\geq 0}$具有强收敛性质，从而证明嵌入过程$\{B_{\tau_n^{nt}}\}_{n\geq 0}$强收敛于$B_t$。上述步骤可以用下面这个表达式表示：<br>The second approach, in my opinion, better addresses the nature of the problem. First, we introduce a collection of stopping time sequences $\{\tau_n^m\}_{m\geq 0}$ to embed randomly walks $\{\frac{1}{\sqrt{n}}S_m\}_{m\geq 0}$ into a Brownian motion $B$ weakly (i.e., the original processes $\{\frac{1}{\sqrt{n}}S_m\}_{m\geq 0}$ and the embedded processes $\{B_{\tau_n^m}\}_{m\geq 0}$ have same distributions). Then, we can show that under certain conditions, for any $t\in[0,1]$, the stopping time sequence $\{T_{\tau_n^{nt}}\}_{n\geq 0}$ converges to $t$; as a result, the embedded process $\{B_{\tau_n^{nt}}\}_{n\geq 0}$ also converges, and to $B_t$. The above steps can be summarized by the following expression:</p>
 <p>$$\frac{1}{\sqrt{n}}S_{nt} =_d B_{\tau_n^{nt}} \to B_t. \tag{1.9}$$</p>
 <p>相比于第一种思路，这种思路对于时间点的选取更为灵活，因此更容易拓展到较复杂的结果中。例如，当所讨论的目标随机过程不是随机游走时，停时序列$\{T_{\tau_n^{nt}}\}_{n\geq 0}$很可能强收敛到某个关于时间$t$的函数$f(t)$上；此时，应用第一种思路会存在不小的表示上的困难，而第二种思路就不存在这个问题。然而，第二种思路依赖于嵌入停时$\{\tau_n^m\}_{m\geq 0}$的存在性；这不是一个平凡的问题。在下一节中，我将介绍将一个随机游走、甚至是一般随机过程嵌入到一个布朗运动中的可能手段及必要条件。<br>Compared to the first approach, the second approach has higher flexibility in the selection of time points, so it can be applied to more general results. For example, when the stochastic process in question is not a random walk, the stopping time sequence $\{T_{\tau_n^{nt}}\}_{n\geq 0}$ may converge strongly to some function $f(t)$ rather than $t$; in this case, the first approach will have difficulty in finding appropriate time points to sample, while the second approach will not. However, the second approach relies on the existence of embedding stopping times $\{\tau_n^m\}_{m\geq 0}$, which is not a trivial problem. In the next section, I will introduce viable methods and necessary conditions to embed a random walk, or even a general stochastic process, into a Brownian motion.</p>
@@ -510,9 +512,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -525,7 +525,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

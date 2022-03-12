@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,27 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Behavior Modeling,Machine Learning,Reinforcement Learning," />
+
+
+  <meta name="keywords" content="Behavior Modeling,Reinforcement Learning,Machine Learning,">
 
 
 
@@ -84,11 +84,13 @@
 
 
 <meta name="description" content="在这篇文章中，我将对近半年来在决策行为相关领域的一些学习与思考进行整理，便于在后续应用中作为参照。">
+<meta name="keywords" content="Behavior Modeling,Reinforcement Learning,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="认知迭代整理（2020）">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2021/annual_comment_cn_202101/index.html">
-<meta property="og:site_name" content="Han's Blog">
+<meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在这篇文章中，我将对近半年来在决策行为相关领域的一些学习与思考进行整理，便于在后续应用中作为参照。">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2021-01-16T07:18:44.200Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="认知迭代整理（2020）">
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2021/annual_comment_cn_202101/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2021/annual_comment_cn_202101/">
 
 
 
@@ -156,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -259,7 +261,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -295,7 +297,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -375,7 +377,7 @@
 </ol>
 <p>在某种程度上，上述这些正则化思路都可以被归于置信域（trust region）框架中，即仅在信息量充足的区域内进行决策优化。进一步地，置信域的定义可以通过硬约束或软约束实现：硬约束即对置信域给出明确定义，对应上面的策略约束方法（特别地，TRPO和PPO）；而软约束是根据不置信程度设计惩罚函数，从而允许在预期收益较大时进行适当探索，对应上面模型约束和值约束中基于不确定性评估的惩罚方法。</p>
 <p>接下来，一个进阶的问题是，对于一个具体问题，如何选出（最）合适的正则化方法？我们依然可以仿照SL，通过样本外评估方法（例如交叉验证）+贝叶斯优化来进行方法选取。但是，在RL环境中，我们无法像SL一样，可以直接使用样本上的预测损失进行评估；因此，需要设计和研究更合适的评估方法。这方面的工作对应offline-RL的一个子方向：offline-policy-evaluation（OPE）。</p>
-<p>上述讨论简单地归纳了offline-RL的一些基础思路和我个人的理解。对于有兴趣的读者，我建议可以进一步阅读<a href="https://sites.google.com/view/offlinerltutorial-neurips2020/home" target="_blank" rel="external">Offline-RL NeurIPS 2020 Tutorial</a>；该tutorial对offline-RL的现状进行了较为全面的整理，是一份很好的学习资料。</p>
+<p>上述讨论简单地归纳了offline-RL的一些基础思路和我个人的理解。对于有兴趣的读者，我建议可以进一步阅读<a href="https://sites.google.com/view/offlinerltutorial-neurips2020/home" target="_blank" rel="noopener">Offline-RL NeurIPS 2020 Tutorial</a>；该tutorial对offline-RL的现状进行了较为全面的整理，是一份很好的学习资料。</p>
 <h3 id="不确定性估计与稳健性评估"><a href="#不确定性估计与稳健性评估" class="headerlink" title="不确定性估计与稳健性评估"></a>不确定性估计与稳健性评估</h3><p>在上一小节关于offline-RL的讨论中，提及了模型预测结果的不确定性。事实上，不确定性估计的应用是很广泛的。例如，在RO中，可以用于产生一个对误差相对不敏感的决策方案。那么，应该如何估计模型预测结果的不确定性呢？在这一小节中，我将介绍一些基本概念和常用估计方法。</p>
 <p>首先，不妨假设对于一组数据$D$，我们通过训练流程$O$得到了模型$f$。现在，对一个数据样本$(X,y)$，我们可以利用经典的bias-variance分解来分析$f(X)$的误差组成：<br>$$<br>E_{y,D,O} (y - f(X|D,O))^2 = E_y(y - E(y|X))^2 + (E(y|X) - E_{D,O}f(X|D,O))^2 + Var_{D,O} f(X|D,O);<br>$$<br>换句话说，在期望意义上，预测误差可分解为：$y$本身的随机性（又称为aleatoric uncertainty，代表数据产生过程中自然的随机性）、（由能力导致的）模型预测的偏差（bias）、以及数据集$D$和训练过程$O$导致的噪声（又称为epistemic uncertainty，代表信息量不足导致的不确定性）。根据这一分解，我们可以作出以下定性分析：</p>
 <ul>
@@ -389,12 +391,12 @@
 <li>对于aleatoric uncertainty，我们应该直接建模条件概率分布$P(y|X)$。当数据量充足时，我们可以通过最大似然估计或者是贝叶斯推断来获取参数化的$P(y|X)$；而当数据量有限时，我们可以转为估计quantile等粗糙但robust的统计量。</li>
 <li>对于epistemic uncertainty，<ul>
 <li>从数据集$D$的角度，我们可以通过对$D$进行有放回的重采样，来刻画$D$的噪声对模型$f$估计结果的影响。这种方法叫做bootstrap sampling，是一种经典的统计学方法，近期在深度学习领域重新得到了一些关注。</li>
-<li>从训练过程$O$的角度，一种简单的思路是使用随机种子初始化训练过程。在深度学习中，这种简单的做法被称为Deep-Ensemble。不过，目前对这种方法的作用与效果的理解仍未取得共识：虽然很多工作指出它能为预测结果带来更大的多样性，但是也有一些工作（例如<a href="https://arxiv.org/pdf/1810.08591.pdf" target="_blank" rel="external">(Neal et al. 18)</a>）通过实验发现，随着模型$f$的参数量上升，该方法所带来的epistemic uncertainty会逐渐下降并收敛至0。当然，这可能意味着我们需要新的分析指标来对“不确定性估计”和“预测多样性”等目标进行更仔细的描述和区分。</li>
+<li>从训练过程$O$的角度，一种简单的思路是使用随机种子初始化训练过程。在深度学习中，这种简单的做法被称为Deep-Ensemble。不过，目前对这种方法的作用与效果的理解仍未取得共识：虽然很多工作指出它能为预测结果带来更大的多样性，但是也有一些工作（例如<a href="https://arxiv.org/pdf/1810.08591.pdf" target="_blank" rel="noopener">(Neal et al. 18)</a>）通过实验发现，随着模型$f$的参数量上升，该方法所带来的epistemic uncertainty会逐渐下降并收敛至0。当然，这可能意味着我们需要新的分析指标来对“不确定性估计”和“预测多样性”等目标进行更仔细的描述和区分。</li>
 <li>上述两种方法可以根据具体场景结合使用。特别地，当数据集$D$所提供的信息量较少时，使用bootstrap sampling能够更好地识别信息量不足的区域，提供更robust的估计。而当$D$中的内容较丰富、且样本内外差异很小时，由$D$导致的epistemic uncertainty很小，此时对$D$进行重采样反而会降低对现有数据的充分利用，从而造成效率损失。换句话说，bootstrap sampling更适合需要对数据样本中隐含不确定性进行描述的场景。</li>
 </ul>
 </li>
 </ul>
-<p>最后，对于有兴趣的读者，建议可以进一步参考<a href="https://neurips.cc/virtual/2020/public/tutorial_0f190e6e164eafe66f011073b4486975.html" target="_blank" rel="external">Uncertainty Estimation NeurIPS 2020 Tutorial</a>；该tutorial对深度学习中的不确定性估计方法的近期进展进行了很好的整理和介绍。</p>
+<p>最后，对于有兴趣的读者，建议可以进一步参考<a href="https://neurips.cc/virtual/2020/public/tutorial_0f190e6e164eafe66f011073b4486975.html" target="_blank" rel="noopener">Uncertainty Estimation NeurIPS 2020 Tutorial</a>；该tutorial对深度学习中的不确定性估计方法的近期进展进行了很好的整理和介绍。</p>
 <h2 id="基于反馈信息的决策优化"><a href="#基于反馈信息的决策优化" class="headerlink" title="基于反馈信息的决策优化"></a>基于反馈信息的决策优化</h2><p>在上一节中，我们主要关注给定数据集下的决策优化。在这一节中，我将讨论：如果可以获取反馈，可以如何进一步优化决策行为？</p>
 <p>这里面的核心问题在于：如何评估数据反馈带来的增量信息收益，以及如何在决策时平衡数据探索带来的增量信息收益和利用已知信息所获得的策略表现收益（探索-利用的权衡）。对于一般的场景，这仍然是开放问题。在文献中虽有一些理论层面的建模尝试，但距离实际应用仍有一定距离，主要是分析中对问题的结构有较强的假设，以及很多关键变量在实际上计算复杂度很高。<br>不过，这些工作为我们分析和理解决策问题中的关键权衡提供了很好的思路。特别地，我个人觉得比较insightful的一个工作是information directed sampling：首先，将信息增益定义为，增加数据样本后，最优决策的信息熵的降低量。然后，在决策时，选择使得$\frac{\text{遗憾值}^2}{\text{信息增益}}$最小的选项，即最小化获得单位增量信息所付出的成本。<br>根据该工作我们可以想到，从本质上，数据反馈的主要作用是，在长期，降低决策由于不确定性所可能造成的失误。因此，我们可以作出以下定性判断：</p>
 <ul>
@@ -444,9 +446,9 @@
           
             <a href="/blogs/tags/Behavior-Modeling/" rel="tag"># Behavior Modeling</a>
           
-            <a href="/blogs/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
-          
             <a href="/blogs/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+          
+            <a href="/blogs/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
           
         </div>
       
@@ -547,9 +549,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -562,7 +562,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

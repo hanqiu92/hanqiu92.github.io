@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,29 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Stochastic Process," />
 
 
+  <meta name="keywords" content="Stochastic Process,">
 
 
 
@@ -83,23 +81,25 @@
 
 
 
-<meta name="description" content="随机性在我们的日常生活中随处可见：股票价格的涨跌，天气的变化以及交通拥堵的产生等现象都与其有关。随机过程理论则提供了一系列简洁有力的工具，不仅能够对这些现象进行建模解释，还为大量工程领域的奠定了分析基础，例如排队系统、最优控制、衍生品定价等。
-Stochasticity is pervasive in our daily lives and is related to phenomena like">
+
+
+<meta name="description" content="随机性在我们的日常生活中随处可见：股票价格的涨跌，天气的变化以及交通拥堵的产生等现象都与其有关。随机过程理论则提供了一系列简洁有力的工具，不仅能够对这些现象进行建模解释，还为大量工程领域的奠定了分析基础，例如排队系统、最优控制、衍生品定价等。 Stochasticity is pervasive in our daily lives and is related to phenomena like">
+<meta name="keywords" content="Stochastic Process">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Stochastic Process Note I: Introduction and Basic Concepts">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2019/SP1_201905/index.html">
-<meta property="og:site_name" content="Han's Blog">
-<meta property="og:description" content="随机性在我们的日常生活中随处可见：股票价格的涨跌，天气的变化以及交通拥堵的产生等现象都与其有关。随机过程理论则提供了一系列简洁有力的工具，不仅能够对这些现象进行建模解释，还为大量工程领域的奠定了分析基础，例如排队系统、最优控制、衍生品定价等。
-Stochasticity is pervasive in our daily lives and is related to phenomena like">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/SP/random_vars_real.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/SP/filtration.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/SP/cond_expectation.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/SP/stop_time.png">
+<meta property="og:site_name" content="Han&#39;s Blog">
+<meta property="og:description" content="随机性在我们的日常生活中随处可见：股票价格的涨跌，天气的变化以及交通拥堵的产生等现象都与其有关。随机过程理论则提供了一系列简洁有力的工具，不仅能够对这些现象进行建模解释，还为大量工程领域的奠定了分析基础，例如排队系统、最优控制、衍生品定价等。 Stochasticity is pervasive in our daily lives and is related to phenomena like">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/SP/random_vars_real.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/SP/filtration.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/SP/cond_expectation.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/SP/stop_time.png">
 <meta property="og:updated_time" content="2019-09-22T08:07:33.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Stochastic Process Note I: Introduction and Basic Concepts">
-<meta name="twitter:description" content="随机性在我们的日常生活中随处可见：股票价格的涨跌，天气的变化以及交通拥堵的产生等现象都与其有关。随机过程理论则提供了一系列简洁有力的工具，不仅能够对这些现象进行建模解释，还为大量工程领域的奠定了分析基础，例如排队系统、最优控制、衍生品定价等。
-Stochasticity is pervasive in our daily lives and is related to phenomena like">
+<meta name="twitter:description" content="随机性在我们的日常生活中随处可见：股票价格的涨跌，天气的变化以及交通拥堵的产生等现象都与其有关。随机过程理论则提供了一系列简洁有力的工具，不仅能够对这些现象进行建模解释，还为大量工程领域的奠定了分析基础，例如排队系统、最优控制、衍生品定价等。 Stochasticity is pervasive in our daily lives and is related to phenomena like">
+<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/images/SP/random_vars_real.png">
 
 
 
@@ -129,7 +129,7 @@ Stochasticity is pervasive in our daily lives and is related to phenomena like">
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/SP1_201905/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/SP1_201905/">
 
 
 
@@ -163,7 +163,7 @@ Stochasticity is pervasive in our daily lives and is related to phenomena like">
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -266,7 +266,7 @@ Stochasticity is pervasive in our daily lives and is related to phenomena like">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -302,7 +302,7 @@ Stochasticity is pervasive in our daily lives and is related to phenomena like">
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -370,8 +370,8 @@ Stochasticity is pervasive in our daily lives and is related to phenomena like">
 <p>Now, starting from the above definitions, we have two directions to define a (real-valued) stochastic process. On one hand, if we sample the process at time $\{t_0,\cdots,t_n,\cdots\}$, we can obtain a sequence of r.v.s $\{X_{t_i}(\omega_{t_i})\}$ with a specific joint probability measure $\nu_{\{t_0,\cdots,t_n,\cdots\}}$. Following this observation, we can define a stochastic process as a collection of r.v.s $\{X_{t}(\omega_{t})\}$ on time $t \in \mathbb{R}^+$, which is equipped with “consistent” finite-dimensional joint probability measures $\nu_{\{t_0,\cdots,t_n,\cdots\}}$. (<strong>Remark:</strong> how to formally defined the “consistency” here?)</p>
 <p>另一方面，如果我们认为观测值直接就是轨迹或时间序列，那么随机过程可以直接定义为实值序列的随机变量$X(t,\omega)$。换句话说，对于每种可能的结果$\omega$，对应的观测值$X(\cdot,\omega)$是一条实值序列。</p>
 <p>On the other hand, if we regard the whole trajectory or time series as the result of a single observation, the stochastic process can be defined directly as an r.v. $X(t,\omega)$ of real-valued sequences. That is, for each possible outcome (or sample) $\omega$, the observation $X(\cdot,\omega)$ is a real-valued sequence.</p>
-<p>下面的问题是：这两种定义方式是否一致？幸运的是，<a href="https://en.wikipedia.org/wiki/Kolmogorov_extension_theorem" target="_blank" rel="external">Kolmogorov extension theorem</a>给出了正面的回答：对于任意离散时间随机过程和许多连续时间过程（具体来说，那些满足<a href="https://en.wikipedia.org/wiki/Kolmogorov_continuity_theorem" target="_blank" rel="external">Kolmogorov continuity theorem</a>中的正则性条件的过程），上述两种定义是等价的。</p>
-<p>The next question is whether these two directions provide consistent definitions. Luckily, the <a href="https://en.wikipedia.org/wiki/Kolmogorov_extension_theorem" target="_blank" rel="external">Kolmogorov extension theorem</a> provides a positive answer: for all discrete-time processes and many continuous-time processes (more specifically, those satisfying the regularity condition in the <a href="https://en.wikipedia.org/wiki/Kolmogorov_continuity_theorem" target="_blank" rel="external">Kolmogorov continuity theorem</a>), the two definitions are equivalent.</p>
+<p>下面的问题是：这两种定义方式是否一致？幸运的是，<a href="https://en.wikipedia.org/wiki/Kolmogorov_extension_theorem" target="_blank" rel="noopener">Kolmogorov extension theorem</a>给出了正面的回答：对于任意离散时间随机过程和许多连续时间过程（具体来说，那些满足<a href="https://en.wikipedia.org/wiki/Kolmogorov_continuity_theorem" target="_blank" rel="noopener">Kolmogorov continuity theorem</a>中的正则性条件的过程），上述两种定义是等价的。</p>
+<p>The next question is whether these two directions provide consistent definitions. Luckily, the <a href="https://en.wikipedia.org/wiki/Kolmogorov_extension_theorem" target="_blank" rel="noopener">Kolmogorov extension theorem</a> provides a positive answer: for all discrete-time processes and many continuous-time processes (more specifically, those satisfying the regularity condition in the <a href="https://en.wikipedia.org/wiki/Kolmogorov_continuity_theorem" target="_blank" rel="noopener">Kolmogorov continuity theorem</a>), the two definitions are equivalent.</p>
 <h2 id="滤子与条件期望-Filtrations-and-Conditional-Expectations"><a href="#滤子与条件期望-Filtrations-and-Conditional-Expectations" class="headerlink" title="滤子与条件期望 Filtrations and Conditional Expectations"></a>滤子与条件期望 Filtrations and Conditional Expectations</h2><p>在现实情况下，上面两种随机过程定义方式并不是很有用：确定轨迹上的概率测度或者任意有限维联合概率测度都是不平凡的。由于我们一般对随机过程都有一些历史数据，一种更简便的方式是指定不同时刻观测值的相互依赖性。例如，考虑一个随机游走过程$S_n = X_1 + \cdots + X_n$，其中$X_i$是独立同分布的随机变量。如果我们已知$S_{n-1}=s$，那么$S_n$可以表示为$s + X_n$。</p>
 <p>In practice, the two definitions above are not very useful: it is nontrivial to specify either the probability measure on trajectories or the finite-dimensional joint distributions. Because we normally have some historical observations, it is more convenient to specify the process according to the temporal dependency (on the historical observations). For example, consider a random walk $S_n = X_1 + \cdots + X_n$, where $X_i$ are i.i.d. random variables. If we already know $S_{n-1}=s$, we can write $S_n$ as $s + X_n$.</p>
 <p>一般来说，对于一个离散时间过程，我们可以按下面的方式根据历史观测值$X_{n-1}, X_{n-2}, \cdots, X_0$指定$X_n$的分布：</p>
@@ -536,9 +536,7 @@ Stochasticity is pervasive in our daily lives and is related to phenomena like">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -551,7 +549,7 @@ Stochasticity is pervasive in our daily lives and is related to phenomena like">
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

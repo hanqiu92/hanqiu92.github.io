@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -52,27 +52,27 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="Integer Programming," />
+
+
+  <meta name="keywords" content="Integer Programming,">
 
 
 
@@ -84,14 +84,16 @@
 
 
 <meta name="description" content="在接下来这个系列中，我将介绍混合整数规划中的分支定界法(branch &amp;amp; bound, B&amp;amp;B)的基本原理，并示范如何实现一个简单的B&amp;amp;B求解器。">
+<meta name="keywords" content="Integer Programming">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to Develop Your Own Branch & Bound Solver I: Introduction">
+<meta property="og:title" content="How to Develop Your Own Branch &amp; Bound Solver I: Introduction">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_1_202006/index.html">
-<meta property="og:site_name" content="Han's Blog">
+<meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在接下来这个系列中，我将介绍混合整数规划中的分支定界法(branch &amp;amp; bound, B&amp;amp;B)的基本原理，并示范如何实现一个简单的B&amp;amp;B求解器。">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2020-06-26T13:41:04.011Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Develop Your Own Branch & Bound Solver I: Introduction">
+<meta name="twitter:title" content="How to Develop Your Own Branch &amp; Bound Solver I: Introduction">
 <meta name="twitter:description" content="在接下来这个系列中，我将介绍混合整数规划中的分支定界法(branch &amp;amp; bound, B&amp;amp;B)的基本原理，并示范如何实现一个简单的B&amp;amp;B求解器。">
 
 
@@ -122,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_1_202006/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_1_202006/">
 
 
 
@@ -156,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/"  class="brand" rel="start">
+      <a href="/blogs/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -259,7 +261,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -295,7 +297,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -351,7 +353,7 @@
 <li>混合整数规划(MIP)问题在日常工作中很常见，但求解方法多样（调用求解器、设计启发式(heuristic)算法），且通常需要根据问题结构进行定制化。通过了解求解器的基本运作机理和局限性，可加深对MIP问题分析套路的认知，以更高效地协同利用各求解方法。具体来说，我将主要关注B&amp;B相关的技术手段。</li>
 <li>完成一个简易的混合整数线性规划求解器，后续可能可以用于自己的一些小项目中。</li>
 </ol>
-<p>在本系列的写作中，我所用到的参考资料包括T. Ahterberg的<a href="https://depositonce.tu-berlin.de/bitstream/11303/1931/2/Dokument_41.pdf" target="_blank" rel="external">博士论文</a>和相关引用文献，以及开源求解器SCIP的代码。要顺畅地理解本系列中的内容，阅读者需要对线性规划理论有一定的了解。在代码实现中，主要依赖接口<a href="https://github.com/coin-or/CyLP" target="_blank" rel="external">CyLP</a>实现对线性规划求解包<a href="https://github.com/coin-or/Clp" target="_blank" rel="external">CLP</a>的调用；评估的benchmark则选用的是开源求解器<a href="https://github.com/coin-or/Cbc" target="_blank" rel="external">CBC</a>，其效率比目前最快的求解器要差一个数量级左右。</p>
+<p>在本系列的写作中，我所用到的参考资料包括T. Ahterberg的<a href="https://depositonce.tu-berlin.de/bitstream/11303/1931/2/Dokument_41.pdf" target="_blank" rel="noopener">博士论文</a>和相关引用文献，以及开源求解器SCIP的代码。要顺畅地理解本系列中的内容，阅读者需要对线性规划理论有一定的了解。在代码实现中，主要依赖接口<a href="https://github.com/coin-or/CyLP" target="_blank" rel="noopener">CyLP</a>实现对线性规划求解包<a href="https://github.com/coin-or/Clp" target="_blank" rel="noopener">CLP</a>的调用；评估的benchmark则选用的是开源求解器<a href="https://github.com/coin-or/Cbc" target="_blank" rel="noopener">CBC</a>，其效率比目前最快的求解器要差一个数量级左右。</p>
 <h2 id="写作计划-Agenda"><a href="#写作计划-Agenda" class="headerlink" title="写作计划 Agenda"></a>写作计划 Agenda</h2><p>在本系列的第一篇文章（也就是本文）中，我将介绍分支定界法(B&amp;B)的基本思路及实现中的注意事项。<br>第二篇文章将介绍问题拆分(branching)和结点选择(node selection)模块的常用实现方法。<br>第三篇文章将回顾割(cut)方法的基本思路，介绍将其引入B&amp;B求解流程中的常用手段及注意事项，并实现最基础的变量边界加强(bound tightening)方法。<br>在第四篇文章（最后一篇）中，我将对前述内容进行总结，并针对MIP的求解方法设计及求解器的使用给出一些个人理解和建议。</p>
 <h2 id="分支定界法-Branch-amp-Bound-Method"><a href="#分支定界法-Branch-amp-Bound-Method" class="headerlink" title="分支定界法 Branch &amp; Bound Method"></a>分支定界法 Branch &amp; Bound Method</h2><p>混合整数规划(MIP)问题的一般形式为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \min \ &amp; c^T x \\<br>    s.t. \ &amp; Ax = b, \\<br>           &amp; l \leq x \leq u, \\<br>           &amp; x \in \mathbb{R}^{m_1} \times \mathbb{Z}^{m_2}.<br>  \end{aligned}<br>  \label{eq:basic}\tag{1.1}<br>\end{equation}<br>$$</p>
 <p>相比于线性规划(LP)问题，MIP的主要区别仅在于某些变量的取值必须是整数。因此，我们可以考虑以下求解思路：</p>
@@ -381,7 +383,7 @@
 </li>
 <li>如果队列$\mathcal{L}$为空，返回$x,\hat{c},\check{c}$；否则，回到第3步。</li>
 </ol>
-<p>接下来，我将根据上述框架，在<a href="https://github.com/hanqiu92/branch_bound_solve/blob/master/1_branch_bound_tree.ipynb" target="_blank" rel="external">这个notebook</a>中实现一个简单的B&amp;B求解流程。</p>
+<p>接下来，我将根据上述框架，在<a href="https://github.com/hanqiu92/branch_bound_solve/blob/master/1_branch_bound_tree.ipynb" target="_blank" rel="noopener">这个notebook</a>中实现一个简单的B&amp;B求解流程。</p>
 
       
     </div>
@@ -500,9 +502,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/blogs/images/pics/1.JPG"
-                alt="Han Qiu" />
+              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
             
               <p class="site-author-name" itemprop="name">Han Qiu</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -515,7 +515,7 @@
               
                 <a href="/blogs/archives">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -592,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写作动机-Motivation"><span class="nav-number">1.</span> <span class="nav-text">写作动机 Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写作计划-Agenda"><span class="nav-number">2.</span> <span class="nav-text">写作计划 Agenda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支定界法-Branch-amp-Bound-Method"><span class="nav-number">3.</span> <span class="nav-text">分支定界法 Branch & Bound Method</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写作动机-Motivation"><span class="nav-number">1.</span> <span class="nav-text">写作动机 Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写作计划-Agenda"><span class="nav-number">2.</span> <span class="nav-text">写作计划 Agenda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支定界法-Branch-amp-Bound-Method"><span class="nav-number">3.</span> <span class="nav-text">分支定界法 Branch &amp; Bound Method</span></a></li></ol></div>
             
 
           </div>
