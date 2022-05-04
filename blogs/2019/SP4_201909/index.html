@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -52,9 +52,9 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Stochastic Process,">
+  <meta name="keywords" content="Stochastic Process," />
 
 
 
@@ -84,24 +84,24 @@
 
 
 <meta name="description" content="在上一篇文章中，我介绍了马尔科夫链（在一定条件下）的时间平均与空间平均的一致性。在这一篇文章中，我将首先介绍一种可以解释这种时空一致性的动力系统视角。然后，我将基于这种理解介绍两组使得这种时空一致性成立、但较马尔科夫条件更普适的条件。最后，我将给出一系列例子来解释这些更普适条件的应用方式。In the last post, I introduced the consistency between">
-<meta name="keywords" content="Stochastic Process">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Stochastic Process Note IV: Ergodicity">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2019/SP4_201909/index.html">
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在上一篇文章中，我介绍了马尔科夫链（在一定条件下）的时间平均与空间平均的一致性。在这一篇文章中，我将首先介绍一种可以解释这种时空一致性的动力系统视角。然后，我将基于这种理解介绍两组使得这种时空一致性成立、但较马尔科夫条件更普适的条件。最后，我将给出一系列例子来解释这些更普适条件的应用方式。In the last post, I introduced the consistency between">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-09-17T01:19:36.058Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-09-01T04:00:00.000Z">
+<meta property="article:modified_time" content="2019-09-17T01:19:36.058Z">
+<meta property="article:author" content="Han Qiu">
+<meta property="article:tag" content="Stochastic Process">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Stochastic Process Note IV: Ergodicity">
-<meta name="twitter:description" content="在上一篇文章中，我介绍了马尔科夫链（在一定条件下）的时间平均与空间平均的一致性。在这一篇文章中，我将首先介绍一种可以解释这种时空一致性的动力系统视角。然后，我将基于这种理解介绍两组使得这种时空一致性成立、但较马尔科夫条件更普适的条件。最后，我将给出一系列例子来解释这些更普适条件的应用方式。In the last post, I introduced the consistency between">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blogs/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/SP4_201909/">
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/SP4_201909/"/>
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
@@ -158,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/" class="brand" rel="start">
+      <a href="/blogs/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -186,7 +186,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blogs/." rel="section">
+          <a href="/blogs/.%20" rel="section">
             
             Home
           </a>
@@ -194,7 +194,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/blogs/categories" rel="section">
+          <a href="/blogs/categories%20" rel="section">
             
             Categories
           </a>
@@ -202,7 +202,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blogs/archives" rel="section">
+          <a href="/blogs/archives%20" rel="section">
             
             Archives
           </a>
@@ -210,7 +210,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/blogs/tags" rel="section">
+          <a href="/blogs/tags%20" rel="section">
             
             Tags
           </a>
@@ -218,7 +218,7 @@
       
         
         <li class="menu-item menu-item-scribbles">
-          <a href="/blogs/scribbles" rel="section">
+          <a href="/blogs/scribbles%20" rel="section">
             
             Scribbles
           </a>
@@ -260,8 +260,8 @@
     <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2019/SP4_201909/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -297,7 +297,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -347,57 +347,58 @@
 
       
         <p>在上一篇文章中，我介绍了马尔科夫链（在一定条件下）的时间平均与空间平均的一致性。在这一篇文章中，我将首先介绍一种可以解释这种时空一致性的动力系统视角。然后，我将基于这种理解介绍两组使得这种时空一致性成立、但较马尔科夫条件更普适的条件。最后，我将给出一系列例子来解释这些更普适条件的应用方式。<br>In the last post, I introduced the consistency between the time-average and the space-average of Markov chains (under certain regularity conditions). In this post, I will first introduce a dynamical system perspective that can explain this consistency. Then, based on this understanding, I will introduce two sets of conditions that lead to the consistency between the time-average and the space-average but are more general than the Markov condition. Finally, I will provide several examples to explain how to apply these more general conditions in practice.</p>
-<a id="more"></a>
-<h2 id="概念与定义-Concepts-and-Definitions"><a href="#概念与定义-Concepts-and-Definitions" class="headerlink" title="概念与定义 Concepts and Definitions"></a>概念与定义 Concepts and Definitions</h2><p>在前面几篇文章中，我介绍了两种建模（离散时间）随机过程的方式：考虑由随机变量组成的序列，或是在序列空间上定义的随机变量族。具体来说，对随机变量序列$\{X_n\}$，根据Kolmogorov延拓定理我们可以将其看作是序列空间$(S^{\{0,1,\cdots\}},\mathcal{S}^{\{0,1,\cdots\}})$上的坐标映射$X_n(\omega) = \omega_n$。在这篇文章中，我们将引入一种新的建模方式：将随机过程$\{X_n\}$看做是某个可测函数$\varphi$的迭代。具体来说，我们考虑一阶平移算子$\varphi=\theta_1$；容易看出$X_n(\omega) = X_0(\varphi^n(\omega))$。这样，我们就可以引入动力系统理论中的工具来对$\{X_n\}$的渐近性质进行分析。<br>In the previous posts, I introduced two ways to model (discrete time) stochastic processes: to consider sequences consisting of random variables, or random variables defined on the sequence space. Specifically, for a sequence $\{X_n\}$ of random variable, according to the Kolmogorov extension theorem, we can view it as a series of coordinate maps $X_n(\omega) = \omega_n$ in the sequence space $(S^{\{0,1,\cdots\}}, \mathcal{S}^{\{0,1,\cdots\}})$. In this post, I will introduce a new modeling perspective: view the stochastic process $\{X_n\}$ as iterations of a measurable function $\varphi$. Specifically, we consider the first-order shift operator $\varphi=\theta_1$ in the sequence space; it is easy to see that $X_n(\omega) = X_0(\varphi^n(\omega))$. In this way, we can introduce tools from the theory of dynamical systems to analyze the asymptotic properties of $\{X_n\}$.</p>
-<p>在动力系统理论中，人们通常关心的是系统在迭代过程中的定性变化：哪些子结构存在一定的稳定性、哪些部分会不稳定。具体到其在概率论（以及更一般的测度论）的应用中，我们通常会关注两类对象的稳定性：集合和映射。具体来说，在概率空间$(\Omega,\mathcal{F},P)$下，对一个可测映射$\varphi:\Omega\to\Omega$，我们将考虑<strong>保测度</strong>性质：对任意$A\in \mathcal{F}$满足$P(\varphi^{-1}(A)) = P(A)$；而对一个集合$A\in\mathcal{F}$，我们会考虑其在某个可测映射$\varphi$下的<strong>不变性</strong>，即$\varphi^{-1}(A)$与$A$几乎处处相等：$P(\varphi^{-1}(A) \Delta A) = 0$，其中二元算子$\Delta$是对称差。（<strong>注：</strong>在一些定义中，不变性要求更严格意义的相等关系$\varphi^{-1}(A) = A$。不过，在离散时间下，各次迭代$\varphi^{-n}(A)$与$A$的差异之和$\cup_{n=0}^{\infty}\varphi^{-n}(A) \Delta A$也是零测的，因此两种定义可以认为是等价的。事实上，可以证明：对于任意的不变集合$A$，存在一个与其几乎处处相等的严格意义上的不变集合$A’$，即$P(A \Delta A’) = 0$。）<br>In the theory of dynamical systems, people are mostly interested in the qualitative behavior of the system under iterations (of some mappings): which parts of the system are stable and which are not. In particular, in its applications to the probability theory, we will focus on the stabilities of two types of objects: sets and mappings. More specifically, suppose a probability space $(\Omega,\mathcal{F},P)$ is given. For a measurable mapping $\varphi:\Omega\to\Omega$, we will consider the property of <strong>measure-preserving</strong>, i.e., $P(\varphi^{-1}(A)) = P(A)$ for any $A\in \mathcal{F}$. While for a set $A\in\mathcal{F}$, we will consider its <strong>invariance</strong> under a specific measurable mapping $\varphi$, i.e., $P(\varphi^{-1}(A) \Delta A) = 0$, where the operator $\Delta$ is the symmetric difference. (<strong>Remark:</strong> in some definitions, invariance refers to the strict equality relationship $\varphi^{-1}(A) = A$. However, in discrete time, the union $\cup_{n=0}^{\infty}\varphi^{-n}(A) \Delta A$ of differences between sets $\varphi^{-n}(A)$ under iterations and the original set $A$ has measure zero. Therefore, the two definitions can be thought of as equivalent. In fact, we can prove that, for any invariant set $A$, there exists a set $A’$ which is invariant in the strict sense and equals to $A$ almost surely, i.e., $P(A \Delta A’) = 0$.)</p>
-<p>通过集合的不变性，我们可以进一步定义随机变量$X$（在映射$\varphi$下）的不变性：$X\circ \varphi = X\text{ a.s.}$，即对任意勒贝格可测的集合$B$，$\{\omega:X(\omega) \in B\}$是不变集合。我们也可以进一步引入所有（关于映射$\varphi$的）不变集合$A$组成的集合$\mathcal{I}(\varphi)$，并证明$\mathcal{I}\subset \mathcal{F}$也是一个$\sigma$-代数。在上述定义下，容易看出任意随机变量$X\in \mathcal{I}$都是不变的。<br>With the above definition of invariant sets, we can further define the invariance of the random variable $X$ (under the mapping $\varphi$): $X\circ \varphi = X\text{ a.s.}$, i.e., for any Lebesgue-measurable set $B$, set $\{\omega:X(\omega) \in B\}$ is invariant. We can also introduce the set $\mathcal{I}(\varphi)$ of all invariant sets $A$ (under the mapping $\varphi$) and prove that $\mathcal{I}\subset \mathcal{F}$ is a $\sigma$-algebra. According to these definitions, it is easy to show that any random variable $X\in \mathcal{I}$ is invariant.</p>
+<span id="more"></span>
+
+<h2 id="概念与定义-Concepts-and-Definitions"><a href="#概念与定义-Concepts-and-Definitions" class="headerlink" title="概念与定义 Concepts and Definitions"></a>概念与定义 Concepts and Definitions</h2><p>在前面几篇文章中，我介绍了两种建模（离散时间）随机过程的方式：考虑由随机变量组成的序列，或是在序列空间上定义的随机变量族。具体来说，对随机变量序列$\{X_n\}$，根据Kolmogorov延拓定理我们可以将其看作是序列空间$(S^{\{0,1,\cdots\}},\mathcal{S}^{\{0,1,\cdots\}})$上的坐标映射$X_n(\omega) &#x3D; \omega_n$。在这篇文章中，我们将引入一种新的建模方式：将随机过程$\{X_n\}$看做是某个可测函数$\varphi$的迭代。具体来说，我们考虑一阶平移算子$\varphi&#x3D;\theta_1$；容易看出$X_n(\omega) &#x3D; X_0(\varphi^n(\omega))$。这样，我们就可以引入动力系统理论中的工具来对$\{X_n\}$的渐近性质进行分析。<br>In the previous posts, I introduced two ways to model (discrete time) stochastic processes: to consider sequences consisting of random variables, or random variables defined on the sequence space. Specifically, for a sequence $\{X_n\}$ of random variable, according to the Kolmogorov extension theorem, we can view it as a series of coordinate maps $X_n(\omega) &#x3D; \omega_n$ in the sequence space $(S^{\{0,1,\cdots\}}, \mathcal{S}^{\{0,1,\cdots\}})$. In this post, I will introduce a new modeling perspective: view the stochastic process $\{X_n\}$ as iterations of a measurable function $\varphi$. Specifically, we consider the first-order shift operator $\varphi&#x3D;\theta_1$ in the sequence space; it is easy to see that $X_n(\omega) &#x3D; X_0(\varphi^n(\omega))$. In this way, we can introduce tools from the theory of dynamical systems to analyze the asymptotic properties of $\{X_n\}$.</p>
+<p>在动力系统理论中，人们通常关心的是系统在迭代过程中的定性变化：哪些子结构存在一定的稳定性、哪些部分会不稳定。具体到其在概率论（以及更一般的测度论）的应用中，我们通常会关注两类对象的稳定性：集合和映射。具体来说，在概率空间$(\Omega,\mathcal{F},P)$下，对一个可测映射$\varphi:\Omega\to\Omega$，我们将考虑<strong>保测度</strong>性质：对任意$A\in \mathcal{F}$满足$P(\varphi^{-1}(A)) &#x3D; P(A)$；而对一个集合$A\in\mathcal{F}$，我们会考虑其在某个可测映射$\varphi$下的<strong>不变性</strong>，即$\varphi^{-1}(A)$与$A$几乎处处相等：$P(\varphi^{-1}(A) \Delta A) &#x3D; 0$，其中二元算子$\Delta$是对称差。（<strong>注：</strong>在一些定义中，不变性要求更严格意义的相等关系$\varphi^{-1}(A) &#x3D; A$。不过，在离散时间下，各次迭代$\varphi^{-n}(A)$与$A$的差异之和$\cup_{n&#x3D;0}^{\infty}\varphi^{-n}(A) \Delta A$也是零测的，因此两种定义可以认为是等价的。事实上，可以证明：对于任意的不变集合$A$，存在一个与其几乎处处相等的严格意义上的不变集合$A’$，即$P(A \Delta A’) &#x3D; 0$。）<br>In the theory of dynamical systems, people are mostly interested in the qualitative behavior of the system under iterations (of some mappings): which parts of the system are stable and which are not. In particular, in its applications to the probability theory, we will focus on the stabilities of two types of objects: sets and mappings. More specifically, suppose a probability space $(\Omega,\mathcal{F},P)$ is given. For a measurable mapping $\varphi:\Omega\to\Omega$, we will consider the property of <strong>measure-preserving</strong>, i.e., $P(\varphi^{-1}(A)) &#x3D; P(A)$ for any $A\in \mathcal{F}$. While for a set $A\in\mathcal{F}$, we will consider its <strong>invariance</strong> under a specific measurable mapping $\varphi$, i.e., $P(\varphi^{-1}(A) \Delta A) &#x3D; 0$, where the operator $\Delta$ is the symmetric difference. (<strong>Remark:</strong> in some definitions, invariance refers to the strict equality relationship $\varphi^{-1}(A) &#x3D; A$. However, in discrete time, the union $\cup_{n&#x3D;0}^{\infty}\varphi^{-n}(A) \Delta A$ of differences between sets $\varphi^{-n}(A)$ under iterations and the original set $A$ has measure zero. Therefore, the two definitions can be thought of as equivalent. In fact, we can prove that, for any invariant set $A$, there exists a set $A’$ which is invariant in the strict sense and equals to $A$ almost surely, i.e., $P(A \Delta A’) &#x3D; 0$.)</p>
+<p>通过集合的不变性，我们可以进一步定义随机变量$X$（在映射$\varphi$下）的不变性：$X\circ \varphi &#x3D; X\text{ a.s.}$，即对任意勒贝格可测的集合$B$，$\{\omega:X(\omega) \in B\}$是不变集合。我们也可以进一步引入所有（关于映射$\varphi$的）不变集合$A$组成的集合$\mathcal{I}(\varphi)$，并证明$\mathcal{I}\subset \mathcal{F}$也是一个$\sigma$-代数。在上述定义下，容易看出任意随机变量$X\in \mathcal{I}$都是不变的。<br>With the above definition of invariant sets, we can further define the invariance of the random variable $X$ (under the mapping $\varphi$): $X\circ \varphi &#x3D; X\text{ a.s.}$, i.e., for any Lebesgue-measurable set $B$, set $\{\omega:X(\omega) \in B\}$ is invariant. We can also introduce the set $\mathcal{I}(\varphi)$ of all invariant sets $A$ (under the mapping $\varphi$) and prove that $\mathcal{I}\subset \mathcal{F}$ is a $\sigma$-algebra. According to these definitions, it is easy to show that any random variable $X\in \mathcal{I}$ is invariant.</p>
 <p>最后，我们介绍这篇文章中的核心概念：<strong>遍历性</strong>。一个保测度映射$\varphi$被称为是遍历的，若$\mathcal{I}(\varphi)$是平凡的，即对任意$A\in\mathcal{I}(\varphi)$，$P(A) \in \{0,1\}$。该定义可通过以下推导进行理解：若$\varphi$不是遍历的，则存在满足$0&lt;P(A)&lt;1$的不变集合$A$。由于$A$和$A^c$是对样本空间$\Omega$的一个划分，而每一部分都各自不变，从而$\varphi$从任一部分出发都只能留在该部分中，无法遍历整个$\Omega$。<br>Finally, we introduce the central concept in this post: <strong>ergodicity</strong>. A measure-preserving mapping $\varphi$ is said to be ergodic if $\mathcal{I}(\varphi)$ is trivial, i.e., for any $A\in\mathcal{I}(\varphi)$, $P(A) \in \{0,1\}$. This definition can be explained by the following logic: if $\varphi$ is not ergodic, then there is an invariant set $A$ that satisfies $0&lt;P(A)&lt;1$. Since $A$ and $A^c$ form a partition of the sample space $\Omega$ and each of them is invariant, any trajectory formed under the iterations of $\varphi$ can only stay within one of the two sets (almost surely) and cannot traverse the entire $\Omega$.</p>
-<p>在介绍了一系列动力系统的概念后，下面，我们将建立这些概念与已有概率论知识的联系。假设给定了概率空间$(\Omega,\mathcal{F},P)$中的一个保测度映射$\varphi$；我们定义其$n$阶迭代为$\varphi^n$。现在，对任意取值在空间$(S,\mathcal{S})$中的随机变量$X\in\mathcal{F}$，我们可以定义随机变量序列$X_n(\omega) = X(\varphi^n(\omega))$；容易看出，对任意正整数$m,k &gt; 0$及可测集合$B \in \mathcal{S}^{\{0,1,\cdots,m\}}$，有<br>In above, I introduce several concepts in the theory of dynamical systems. Next, I will establish a connection between these concepts and the existing concepts in the probability theory. Suppose a probability space $(\Omega,\mathcal{F},P)$ and a measure-preserving mapping $\varphi$ on this space are given, and we denote its $n$th-order iterates as $\varphi^n$. Now, for any random variable $X\in\mathcal{F}$ that takes values in the state space $(S,\mathcal{S})$, we can define a sequence of random variables as $X_n(\omega) = X (\varphi^n(\omega))$; It is obvious that for any positive integers $m,k &gt; 0$ and measurable set $B \in \mathcal{S}^{\{0,1,\cdots,m\}}$,</p>
-<p>$$P((X_0,\cdots,X_m)\in B) = P((X_k,\cdots,X_{k+m})\in B),$$</p>
+<p>在介绍了一系列动力系统的概念后，下面，我们将建立这些概念与已有概率论知识的联系。假设给定了概率空间$(\Omega,\mathcal{F},P)$中的一个保测度映射$\varphi$；我们定义其$n$阶迭代为$\varphi^n$。现在，对任意取值在空间$(S,\mathcal{S})$中的随机变量$X\in\mathcal{F}$，我们可以定义随机变量序列$X_n(\omega) &#x3D; X(\varphi^n(\omega))$；容易看出，对任意正整数$m,k &gt; 0$及可测集合$B \in \mathcal{S}^{\{0,1,\cdots,m\}}$，有<br>In above, I introduce several concepts in the theory of dynamical systems. Next, I will establish a connection between these concepts and the existing concepts in the probability theory. Suppose a probability space $(\Omega,\mathcal{F},P)$ and a measure-preserving mapping $\varphi$ on this space are given, and we denote its $n$th-order iterates as $\varphi^n$. Now, for any random variable $X\in\mathcal{F}$ that takes values in the state space $(S,\mathcal{S})$, we can define a sequence of random variables as $X_n(\omega) &#x3D; X (\varphi^n(\omega))$; It is obvious that for any positive integers $m,k &gt; 0$ and measurable set $B \in \mathcal{S}^{\{0,1,\cdots,m\}}$,</p>
+<p>$$P((X_0,\cdots,X_m)\in B) &#x3D; P((X_k,\cdots,X_{k+m})\in B),$$</p>
 <p>即$(X_0,\cdots,X_m)$与$(X_k,\cdots,X_{k+m})$同分布。这种性质被称为<strong>平稳性</strong>，即随着时间的推移，序列的基本概率性质并不发生改变。平稳序列的一些简单例子包括：由独立同分布随机变量组成的序列$\{X_n\}$；以平稳分布$\pi$为初始分布的、有限状态的马尔科夫链$\{X_n\}$等。<br>i.e., $(X_0,\cdots,X_m)$ has the same distribution as $(X_k,\cdots,X_{k+m})$. This property is called <strong>stationarity</strong>, i.e., the probabilistic structure of the sequence does not change over time. Some simple examples of stationary sequences are: a sequence $\{X_n\}$ of independent and identically distributed random variables; a Markov chain $\{X_n\}$ on a finite state space that initiates from a stationary distribution $\pi$.</p>
-<p>上面的讨论指出给定一个概率空间下的保测度映射$\varphi$和随机变量$X$，可以构造出一条定义在该概率空间下的平稳随机变量序列；我们进一步指出，若给定一个平稳序列，我们可以构造得到相应序列空间下的一个保测度映射。事实上，在前述讨论中已经提到，通过Kolmogorov延拓定理我们可以将序列$\{X_n\}$看成是序列空间$(S^{\{0,1,\cdots\}},\mathcal{S}^{\{0,1,\cdots\}})$上的可测映射$\varphi=\theta_1$的一系列迭代$X_n(\omega) = X_0(\varphi^n(\omega))$。进一步地，可以证明，当$\{X_n\}$是平稳序列时，$\varphi$是一个保测度映射。这意味着，平稳性和保测度性这两种性质在一定程度上是等价的；因此平稳序列的渐近性质可以在动力系统理论的框架下通过保测度映射的迭代性质得到。<br>In above, I show that given a measure-preserving mapping $\varphi$ and a random variable $X$ in a probability space, we can construct a stationary sequence in the same probability space. Next, I will show that: given a stationary sequence in a probability space, we can construct a measure-preserving mapping in the corresponding sequence space. In fact, as mentioned in the first paragraph in this section, we can view the stochastic process $\{X_n\}$ as iterates of the first-order shift operator $\varphi=\theta_1$ in the sequence space $(S^{\{0,1,\cdots\}},\mathcal{S}^{\{0,1,\cdots\}})$: $X_n(\omega) = X_0(\varphi^n(\omega))$. Furthermore, it can be shown that when $\{X_n\}$ is a stationary sequence, $\varphi$ is a measure-preserving mapping. This means that the stationarity and the measure-preserving are, to some extent, equivalent, and we can obtain the asymptotic behavior of stationary sequences by analyzing the iterative property of measure-preserving mappings with tools from the theory of dynamical systems.</p>
+<p>上面的讨论指出给定一个概率空间下的保测度映射$\varphi$和随机变量$X$，可以构造出一条定义在该概率空间下的平稳随机变量序列；我们进一步指出，若给定一个平稳序列，我们可以构造得到相应序列空间下的一个保测度映射。事实上，在前述讨论中已经提到，通过Kolmogorov延拓定理我们可以将序列$\{X_n\}$看成是序列空间$(S^{\{0,1,\cdots\}},\mathcal{S}^{\{0,1,\cdots\}})$上的可测映射$\varphi&#x3D;\theta_1$的一系列迭代$X_n(\omega) &#x3D; X_0(\varphi^n(\omega))$。进一步地，可以证明，当$\{X_n\}$是平稳序列时，$\varphi$是一个保测度映射。这意味着，平稳性和保测度性这两种性质在一定程度上是等价的；因此平稳序列的渐近性质可以在动力系统理论的框架下通过保测度映射的迭代性质得到。<br>In above, I show that given a measure-preserving mapping $\varphi$ and a random variable $X$ in a probability space, we can construct a stationary sequence in the same probability space. Next, I will show that: given a stationary sequence in a probability space, we can construct a measure-preserving mapping in the corresponding sequence space. In fact, as mentioned in the first paragraph in this section, we can view the stochastic process $\{X_n\}$ as iterates of the first-order shift operator $\varphi&#x3D;\theta_1$ in the sequence space $(S^{\{0,1,\cdots\}},\mathcal{S}^{\{0,1,\cdots\}})$: $X_n(\omega) &#x3D; X_0(\varphi^n(\omega))$. Furthermore, it can be shown that when $\{X_n\}$ is a stationary sequence, $\varphi$ is a measure-preserving mapping. This means that the stationarity and the measure-preserving are, to some extent, equivalent, and we can obtain the asymptotic behavior of stationary sequences by analyzing the iterative property of measure-preserving mappings with tools from the theory of dynamical systems.</p>
 <p>在这一节的最后，我将介绍一些简单的例子，以帮助各位读者进一步理解上面引入的概念：<br>At the end of this section, I will provide several examples to help readers to further understand the concepts introduced above:</p>
-<p><strong>例子1.1：</strong>若$\{X_n\}$是一条实值平稳序列，$g:\mathbb{R}^{\{0,1,\cdots\}}\to \mathbb{R}$是一个勒贝格可测函数，则$Y_k = g(X_k,X_{k+1},\cdots)$也是一条实值平稳序列。<br><strong>Example 1.1:</strong> If $\{X_n\}$ is a real-valued stationary sequence, and function $g:\mathbb{R}^{\{0,1,\cdots\}}\to \mathbb{R}$ is Lebesgue measurable, then the sequence $Y_k = g(X_k,X_{k+1},\cdots)$ is also stationary.</p>
-<p><strong>例子1.2：</strong>假设$\varphi=\theta_1$是一阶平移算子，$A\in\mathcal{I}(\varphi)$是一个不变集合；则（在$\mathcal{F}$对零测集完备的意义下）<br><strong>Example 1.2:</strong> Suppose $\varphi=\theta_1$ is the first-order shift operator (in the sequence space), and $A\in\mathcal{I}(\varphi)$ is an invariant set. Then, when $\mathcal{F}$ is complete,</p>
-<p>$$A = \varphi^{-1}(A) = \{\omega: \varphi(\omega) \in A\} \in \sigma(X_1,X_2,\cdots); \tag{1.1}$$</p>
-<p>不断迭代可知$A \in \cap_{n=1}^{\infty}\sigma(X_n,X_{n+1},\cdots) \doteq \mathcal{T}$（称为尾部$\sigma$-代数）。因此，$\mathcal{I}\subset \mathcal{T}$。当序列$\{X_n\}$是独立同分布时，根据<a href="https://en.wikipedia.org/wiki/Kolmogorov%27s_zero%E2%80%93one_law" target="_blank" rel="noopener">Kolmogorov零一律</a>可知$\mathcal{T}$是平凡的；进而可知$\mathcal{I}$是平凡的，即$\varphi=\theta_1$（在序列空间中）是遍历的。<br>by iterating over the procedure in equation (1.1) we know that $A \in \cap_{n=1}^{\infty}\sigma(X_n,X_{n+1},\cdots) \doteq \mathcal{T}$ ($\mathcal{T}$ is called the tail $\sigma$-algebra). Therefore, $\mathcal{I}\subset \mathcal{T}$. Now, when the random variables in the sequence $\{X_n\}$ are independent and identically distributed, <a href="https://en.wikipedia.org/wiki/Kolmogorov%27s_zero%E2%80%93one_law" target="_blank" rel="noopener">the Kolmogorov’s zero-one law</a> implies that $\mathcal{T}$ is trivial; so, in this case $\mathcal{I}$ is trivial, and $\varphi=\theta_1$ is ergodic in the sequence space.</p>
-<p><strong>例子1.3：</strong>考虑一条以平稳分布$\pi$为初始分布的、有限状态的、不可约的马尔科夫链$\{X_n\}$，并考虑序列空间上的一阶平移算子$\varphi=\theta_1$。对任意不变集合$A\in \mathcal{I}$，根据$A$的不变性质及马尔科夫性质，有<br><strong>Example 1.3:</strong> consider an irreducible Markov chain $\{X_n\}$ on a finite state space that initiates from a stationary distribution $\pi$, and the first-order shift operator $\varphi=\theta_1$. For any invariant set $A\in \mathcal{I}$, according to the Markov property, equation</p>
-<p>$$E_{\pi}(1_A|\mathcal{F}_n) = E_{\pi}(1_A \circ \varphi^{n}|\mathcal{F}_n) = E_{X_n}1_A \tag{1.2}$$</p>
-<p>对任意$n$成立。现在，考虑$n\to \infty$。根据Levy零一律（<a href="https://hanqiu92.github.io/blogs/2019/SP2_201907/">本系列第二篇</a>中的推论2.5.2），上式左式a.s.收敛到$E(1_A|\mathcal{F}_{\infty}) = 1_A$。而根据$\{X_n\}$的平稳性和不可约性知，对任意$x\in S$，事件$\{X_n = x\}$按概率1会发生无穷多次。因此，$P(E_{x}1_A \equiv 0,\ \forall x \in S) + P(E_{x}1_A \equiv 1,\ \forall x \in S) = 1$，即$P(A) \in \{0,1\}$。由上式对任意不变集合$A\in \mathcal{I}$成立可知$\mathcal{I}$是平凡的，$\varphi=\theta_1$是遍历的。<br>holds for any $n$. Now, let $n\to \infty$. According to Levy’s 0-1 law (the corollary 2.5.2 in the <a href="https://hanqiu92.github.io/blogs/2019/SP2_201907/">second post in this series</a>), the left-hand side of equation (1.2) converges a.s. to $E(1_A|\mathcal{F}_{\infty}) = 1_A$. According to the stationarity and irreduciblility of $\{X_n\}$, for any $x\in S$, the event $\{X_n = x\}$ occurs infinitely many times with probability 1. Therefore, $P(E_{x}1_A \equiv 0,\ \forall x \in S) + P(E_{x}1_A \equiv 1,\ \forall x \in S) = 1$, and $P(A) \in \{0,1\}$. Since this holds for any invariant set $A\in \mathcal{I}$, $\mathcal{I}$ is trivial, and $\varphi=\theta_1$ is ergodic.</p>
-<p><strong>例子1.4：</strong>假设$\{X_n\}$是一条取值在$(S,\mathcal{S})$上的平稳序列。对一个给定集合$A\in \mathcal{S}$, 定义第$k$次到达时间$T_A^k = \inf\{n &gt; T_A^{k-1}: X_n \in A\}$以及相邻两次到达时间的间隔$t_k = T_A^k - T_A^{k-1}$。若该序列按概率1在有限时间内返回集合$A$：$P(T_A^1 &lt; \infty) = 1$，则可以证明，序列$\{t_k\}$是对事件$\{X_0\in A\}$条件平稳的，即对任意$m,k &gt; 0$和正整数序列$T_1,\cdots,T_m \in \mathbb{N^+}$，下式成立：<br><strong>Example 1.4:</strong> Suppose $\{X_n\}$ is a stationary sequence taking values in the state space $(S,\mathcal{S})$. Given a set $A\in \mathcal{S}$, we can define the time of the $k$-th return to $A$ as $T_A^k = \inf\{n &gt; T_A^{k-1}: X_n \in A\}$, and consider the interarrival time $t_k = T_A^k - T_A^{k-1}$. If this sequence returns to $A$ in finite time with probability 1 $P(T_A^1 &lt; \infty) = 1$, then we can show that $\{t_k\}$ is conditionally stationary w.r.t. event $\{X_0\in A\}$, i.e., the following equation holds for any $m,k &gt; 0$ and sequence of positive integers $T_1,\cdots,T_m \in \mathbb{N^+}$:</p>
-<p>$$P(t_1 = T_1,t_2=T_2,\cdots,t_m=T_m|X_0\in A) = P(t_{k+1} = T_1,t_{m+2}=T_2,\cdots,t_{k+m}=T_m|X_0\in A). \tag{1.3}$$</p>
+<p><strong>例子1.1：</strong>若$\{X_n\}$是一条实值平稳序列，$g:\mathbb{R}^{\{0,1,\cdots\}}\to \mathbb{R}$是一个勒贝格可测函数，则$Y_k &#x3D; g(X_k,X_{k+1},\cdots)$也是一条实值平稳序列。<br><strong>Example 1.1:</strong> If $\{X_n\}$ is a real-valued stationary sequence, and function $g:\mathbb{R}^{\{0,1,\cdots\}}\to \mathbb{R}$ is Lebesgue measurable, then the sequence $Y_k &#x3D; g(X_k,X_{k+1},\cdots)$ is also stationary.</p>
+<p><strong>例子1.2：</strong>假设$\varphi&#x3D;\theta_1$是一阶平移算子，$A\in\mathcal{I}(\varphi)$是一个不变集合；则（在$\mathcal{F}$对零测集完备的意义下）<br><strong>Example 1.2:</strong> Suppose $\varphi&#x3D;\theta_1$ is the first-order shift operator (in the sequence space), and $A\in\mathcal{I}(\varphi)$ is an invariant set. Then, when $\mathcal{F}$ is complete,</p>
+<p>$$A &#x3D; \varphi^{-1}(A) &#x3D; \{\omega: \varphi(\omega) \in A\} \in \sigma(X_1,X_2,\cdots); \tag{1.1}$$</p>
+<p>不断迭代可知$A \in \cap_{n&#x3D;1}^{\infty}\sigma(X_n,X_{n+1},\cdots) \doteq \mathcal{T}$（称为尾部$\sigma$-代数）。因此，$\mathcal{I}\subset \mathcal{T}$。当序列$\{X_n\}$是独立同分布时，根据<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Kolmogorov%27s_zero%E2%80%93one_law">Kolmogorov零一律</a>可知$\mathcal{T}$是平凡的；进而可知$\mathcal{I}$是平凡的，即$\varphi&#x3D;\theta_1$（在序列空间中）是遍历的。<br>by iterating over the procedure in equation (1.1) we know that $A \in \cap_{n&#x3D;1}^{\infty}\sigma(X_n,X_{n+1},\cdots) \doteq \mathcal{T}$ ($\mathcal{T}$ is called the tail $\sigma$-algebra). Therefore, $\mathcal{I}\subset \mathcal{T}$. Now, when the random variables in the sequence $\{X_n\}$ are independent and identically distributed, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Kolmogorov%27s_zero%E2%80%93one_law">the Kolmogorov’s zero-one law</a> implies that $\mathcal{T}$ is trivial; so, in this case $\mathcal{I}$ is trivial, and $\varphi&#x3D;\theta_1$ is ergodic in the sequence space.</p>
+<p><strong>例子1.3：</strong>考虑一条以平稳分布$\pi$为初始分布的、有限状态的、不可约的马尔科夫链$\{X_n\}$，并考虑序列空间上的一阶平移算子$\varphi&#x3D;\theta_1$。对任意不变集合$A\in \mathcal{I}$，根据$A$的不变性质及马尔科夫性质，有<br><strong>Example 1.3:</strong> consider an irreducible Markov chain $\{X_n\}$ on a finite state space that initiates from a stationary distribution $\pi$, and the first-order shift operator $\varphi&#x3D;\theta_1$. For any invariant set $A\in \mathcal{I}$, according to the Markov property, equation</p>
+<p>$$E_{\pi}(1_A|\mathcal{F}_n) &#x3D; E_{\pi}(1_A \circ \varphi^{n}|\mathcal{F}_n) &#x3D; E_{X_n}1_A \tag{1.2}$$</p>
+<p>对任意$n$成立。现在，考虑$n\to \infty$。根据Levy零一律（<a href="https://hanqiu92.github.io/blogs/2019/SP2_201907/">本系列第二篇</a>中的推论2.5.2），上式左式a.s.收敛到$E(1_A|\mathcal{F}_{\infty}) &#x3D; 1_A$。而根据$\{X_n\}$的平稳性和不可约性知，对任意$x\in S$，事件$\{X_n &#x3D; x\}$按概率1会发生无穷多次。因此，$P(E_{x}1_A \equiv 0,\ \forall x \in S) + P(E_{x}1_A \equiv 1,\ \forall x \in S) &#x3D; 1$，即$P(A) \in \{0,1\}$。由上式对任意不变集合$A\in \mathcal{I}$成立可知$\mathcal{I}$是平凡的，$\varphi&#x3D;\theta_1$是遍历的。<br>holds for any $n$. Now, let $n\to \infty$. According to Levy’s 0-1 law (the corollary 2.5.2 in the <a href="https://hanqiu92.github.io/blogs/2019/SP2_201907/">second post in this series</a>), the left-hand side of equation (1.2) converges a.s. to $E(1_A|\mathcal{F}_{\infty}) &#x3D; 1_A$. According to the stationarity and irreduciblility of $\{X_n\}$, for any $x\in S$, the event $\{X_n &#x3D; x\}$ occurs infinitely many times with probability 1. Therefore, $P(E_{x}1_A \equiv 0,\ \forall x \in S) + P(E_{x}1_A \equiv 1,\ \forall x \in S) &#x3D; 1$, and $P(A) \in \{0,1\}$. Since this holds for any invariant set $A\in \mathcal{I}$, $\mathcal{I}$ is trivial, and $\varphi&#x3D;\theta_1$ is ergodic.</p>
+<p><strong>例子1.4：</strong>假设$\{X_n\}$是一条取值在$(S,\mathcal{S})$上的平稳序列。对一个给定集合$A\in \mathcal{S}$, 定义第$k$次到达时间$T_A^k &#x3D; \inf\{n &gt; T_A^{k-1}: X_n \in A\}$以及相邻两次到达时间的间隔$t_k &#x3D; T_A^k - T_A^{k-1}$。若该序列按概率1在有限时间内返回集合$A$：$P(T_A^1 &lt; \infty) &#x3D; 1$，则可以证明，序列$\{t_k\}$是对事件$\{X_0\in A\}$条件平稳的，即对任意$m,k &gt; 0$和正整数序列$T_1,\cdots,T_m \in \mathbb{N^+}$，下式成立：<br><strong>Example 1.4:</strong> Suppose $\{X_n\}$ is a stationary sequence taking values in the state space $(S,\mathcal{S})$. Given a set $A\in \mathcal{S}$, we can define the time of the $k$-th return to $A$ as $T_A^k &#x3D; \inf\{n &gt; T_A^{k-1}: X_n \in A\}$, and consider the interarrival time $t_k &#x3D; T_A^k - T_A^{k-1}$. If this sequence returns to $A$ in finite time with probability 1 $P(T_A^1 &lt; \infty) &#x3D; 1$, then we can show that $\{t_k\}$ is conditionally stationary w.r.t. event $\{X_0\in A\}$, i.e., the following equation holds for any $m,k &gt; 0$ and sequence of positive integers $T_1,\cdots,T_m \in \mathbb{N^+}$:</p>
+<p>$$P(t_1 &#x3D; T_1,t_2&#x3D;T_2,\cdots,t_m&#x3D;T_m|X_0\in A) &#x3D; P(t_{k+1} &#x3D; T_1,t_{m+2}&#x3D;T_2,\cdots,t_{k+m}&#x3D;T_m|X_0\in A). \tag{1.3}$$</p>
 <p>而且可以证明：<br>Moreover, we can show that</p>
-<p>$$E(T_A^1|X_0\in A) = \frac{1}{P(X_0\in A)}. \tag{1.4}$$</p>
-<p>现在，如果$\{X_n\}$是一条以平稳分布$\pi$为初始分布的、有限状态的、不可约的马尔科夫链，且$A = \{x\}$，那么上面的例子说明<br>Now, if $\{X_n\}$ is an irreducible Markov chain on a countable state space that initiates from a stationary distribution $\pi$, and $A = \{x\}$, then the example above implies that</p>
-<p>$$E_x T_x \cdot \pi(x) = 1;$$</p>
+<p>$$E(T_A^1|X_0\in A) &#x3D; \frac{1}{P(X_0\in A)}. \tag{1.4}$$</p>
+<p>现在，如果$\{X_n\}$是一条以平稳分布$\pi$为初始分布的、有限状态的、不可约的马尔科夫链，且$A &#x3D; \{x\}$，那么上面的例子说明<br>Now, if $\{X_n\}$ is an irreducible Markov chain on a countable state space that initiates from a stationary distribution $\pi$, and $A &#x3D; \{x\}$, then the example above implies that</p>
+<p>$$E_x T_x \cdot \pi(x) &#x3D; 1;$$</p>
 <p>而这恰好是<a href="https://hanqiu92.github.io/blogs/2019/SP3_201908/">上一篇文章</a>中定理3.5的推论。因此，该例子可以看做是对马尔科夫链一个性质的推广。<br>which is exactly the corollary of theorem 3.5 in <a href="https://hanqiu92.github.io/blogs/2019/SP3_201908/">my previous post</a>. Therefore, example 1.4 can be viewed as a generalization of a property of Markov chains.</p>
 <h2 id="Birkhoff遍历定理-Birkhoff’s-Ergodic-Theorem"><a href="#Birkhoff遍历定理-Birkhoff’s-Ergodic-Theorem" class="headerlink" title="Birkhoff遍历定理 Birkhoff’s Ergodic Theorem"></a>Birkhoff遍历定理 Birkhoff’s Ergodic Theorem</h2><p>在这一节中，我们的主要讨论对象是下面这个定理：<br>The main subject in this section is the following theorem:</p>
 <p><strong>定理2.1（Birkhoff遍历定理）：</strong>假设$\varphi$是一个保测度映射。则对任意随机变量$X\in L^1$，有<br><strong>Theorem 2.1 (Birkhoff’s ergodic theorem):</strong> Suppose $\varphi$ is a measure-preserving mapping. Then, for any random variable $X\in L^1$,</p>
-<p>$$\frac{1}{n}\sum_{m=0}^{n-1}X(\varphi^m \omega) \to E(X|\mathcal{I})(\omega) \ \text{ a.s. and in } L^1. \tag{2.1}$$</p>
+<p>$$\frac{1}{n}\sum_{m&#x3D;0}^{n-1}X(\varphi^m \omega) \to E(X|\mathcal{I})(\omega) \ \text{ a.s. and in } L^1. \tag{2.1}$$</p>
 <p>定理2.1的含义是十分直观的：对于几乎每个样本$\omega$，函数值$X$在映射$\varphi$的迭代下的平均（左式）等于其在一个可遍历的子空间$\mathcal{I}$上的平均（右式）。换句话说，定理2.1展示了（在一组新的条件下的）时间平均与空间平均的一致性。<br>Theorem 2.1 has an intuitive interpretation: for almost every sample $\omega$, the average of the function $X$ under iterates of $\varphi$ (the left-hand side of equation (2.1)) equals to the average of $X$ across an ergodic subspace $\mathcal{I}$ (the right-hand side of equation (2.1)). In other words, theorem 2.1 shows the consistency between the time-average and the space-average under a new set of conditions.</p>
 <p>定理2.1的一个简单推论是：若$\varphi$是遍历的，则$\mathcal{I}$是平凡的，从而有<br>A simple corollary of theorem 2.1 is: if $\varphi$ is ergodic, then $\mathcal{I}$ is trivial and</p>
-<p>$$\frac{1}{n}\sum_{m=0}^{n-1}X(\varphi^m \omega) \to EX \ \text{ a.s. and in } L^1. \tag{2.2}$$</p>
+<p>$$\frac{1}{n}\sum_{m&#x3D;0}^{n-1}X(\varphi^m \omega) \to EX \ \text{ a.s. and in } L^1. \tag{2.2}$$</p>
 <p>因此，根据例子1.2和1.3中的分析，立刻有以下结论：<br>Consequently, according to the analysis in examples 1.2 and 1.3, we can show:</p>
-<p><strong>例子2.2：</strong>根据例子1.2，对由独立同分布随机变量组成的序列$\{X_n\}$，一阶平移算子$\varphi=\theta_1$是遍历的，因此根据定理2.1，我们再一次推导出了强大数定律（<strong>注：</strong>此前，在本系列第二篇关于倒鞅的讨论中曾经推导过一次）：<br><strong>Example 2.2:</strong> According to example 1.2, the first-order shift operator $\varphi=\theta_1$ is ergodic for a sequence of independent and identically distributed random variables $\{X_n\}$. Therefore, according to theorem 2.1, we can derive the strong law of large numbers again (<strong>Remark:</strong> we showed this once when we discussed the backward martingale in the second post of this series):</p>
-<p>$$\frac{1}{n}\sum_{m=0}^{n-1}X_m \to EX_0 \ \text{ a.s. and in } L^1. \tag{2.3}$$</p>
-<p><strong>例子2.3：</strong>根据例子1.3，对以平稳分布$\pi$为初始分布的、有限状态的、不可约的马尔科夫链$\{X_n\}$，一阶平移算子$\varphi=\theta_1$是遍历的，因此根据定理2.1，对任意满足$E_{\pi}|f| &lt; \infty$的实值函数$f$，有<br><strong>Example 2.3:</strong> According to example 1.3, the first-order shift operator $\varphi=\theta_1$ is ergodic for any irreducible Markov chain $\{X_n\}$ on a countable state space that initiates from a stationary distribution $\pi$. Therefore, according to theorem 2.1, for any real-valued function $f$ satisfying $E_{\pi}|f| &lt; \infty$,</p>
-<p>$$\frac{1}{n}\sum_{m=0}^{n-1}f(X_m) \to E_{\pi}f = \sum_{x\in S}\pi(x)f(x) \ \text{ a.s. and in } L^1. \tag{2.4}$$</p>
-<h2 id="次可加遍历定理-Subadditive-Ergodic-Theorem"><a href="#次可加遍历定理-Subadditive-Ergodic-Theorem" class="headerlink" title="次可加遍历定理 Subadditive Ergodic Theorem"></a>次可加遍历定理 Subadditive Ergodic Theorem</h2><p>根据定理2.1，我们可以说明：对一个平稳序列$\{X_n\}$和一个实值函数$f$，相应的函数均值$\frac{1}{n}\sum_{m=1}^{n}f(X_n)$收敛。但在很多情况下，我们感兴趣的关于序列$\{X_n\}$的随机变量$S_n = F(X_1,\cdots,X_{n})$并不能表示成和式的形式，因此无法使用定理2.1来获取其渐近性质；此时，我们需要一些更强的工具。在这一节中，我将介绍一种常用的工具：次可加遍历定理。该定理首先由John Kingman在1968年提出；在这里，我将介绍Thomas M. Liggett在1985年提出的推广形式。为简便起见，在下面的讨论中，我们称一个平稳序列是遍历的，若其对应的一阶平移算子$\theta_1$在相应的序列空间中是遍历的。<br>According to theorem 2.1, we can show that: for a stationary sequence $\{X_n\}$ and a real-valued function $f$, the average of function values $\frac{1}{n}\sum_{ m=1}^{n}f(X_n)$ converges. But in many other cases, the random variables $S_n = F(X_1,\cdots,X_{n})$ (about the sequence $\{X_n\}$) that we are interested in are not additive, so we cannot apply theorem 2.1 to obtain their asymptotic properties; in these cases, we need some stronger tools. In this section, I will introduce a commonly used tool: the subadditive ergodic theorem. This theorem was first proposed by John Kingman in 1968; here, I will introduce a generalization that was proposed by Thomas M. Liggett in 1985. For the sake of brevity, in the following discussion, a stationary sequence is said to be ergodic if the corresponding first-order shift operator $\theta_1$ is ergodic in the corresponding sequence space.</p>
-<p><strong>定理3.1（Liggett版本的次可加遍历定理）：</strong>假设随机变量族$\{S_{m,n}\}_{0 \leq m &lt; n}$满足以下四个条件：<br>(1) （次可加性）$S_{0,m} + S_{m,n} \leq S_{0,n}$；<br>(2) （平稳性）对任意$k$，$\{S_{nk,(n+1)k}\}_{n\geq 1}$是一个平稳序列；<br>(3) （同分布性）$\{S_{m,m+k}\}_{k\geq 1}$的分布与$m$无关；<br>(4) （有界性）$ES_{0,1}^+ &lt; \infty$,且对任意$n$,$ES_{0,n} \geq \gamma_0n$,其中$\gamma_0 &gt; -\infty$。<br>则$\{S_{m,n}\}_{0 \leq m &lt; n}$具有以下性质：<br>(a) （期望收敛性）$\lim_{n\to\infty} E\frac{S_{0,n}}{n} = \inf_m E\frac{S_{0,m}}{m} \equiv \gamma$。<br>(b) （a.s.收敛性）$\lim_{n\to\infty} \frac{S_{0,n}}{n} = X \ \text{ a.s. and in } L^1$。<br>(c) （遍历性）若条件(2)中所有平稳序列都是遍历的，则$X=\gamma$ a.s.。<br><strong>Theorem 3.1 (Liggett’s version of the subadditive ergodic theorem):</strong> Suppose that a family of random varibles $\{S_{m,n}\}_{0 \leq m &lt; n}$ satisfies the following four conditions:<br>(1) (subadditivity) $S_{0,m} + S_{m,n} \leq S_{0,n}$;<br>(2) (stationarity) for any $k$, $\{S_{nk,(n+1)k}\}_{n\geq 1}$ is a stationary sequence;<br>(3) (having identical distribution) the distributions of $\{S_{m,m+k}\}_{k\geq 1}$ do not rely on $m$;<br>(4) (boundedness) $ES_{0,1}^+ &lt; \infty$, and for any $n$, $ES_{0,n} \geq \gamma_0n$, where $\gamma_0 &gt; -\infty$.<br>Then, $\{S_{m,n}\}_{0 \leq m &lt; n}$ has the following properties:<br>(a) (convergence in expectations) $\lim_{n\to\infty} E\frac{S_{0,n}}{n} = \inf_m E\frac{S_{0,m}}{m} \equiv \gamma$.<br>(b) (a.s. convergence) $\lim_{n\to\infty} \frac{S_{0,n}}{n} = X \ \text{ a.s. and in } L^1$.<br>(c) (ergodicity) If all stationary sequences in the condition (2) are ergodic, then $X=\gamma$ a.s.</p>
-<p>相比定理2.1，定理3.1的条件较多，且各个条件的具体含义不太直观。这里，我将结合定理3.1的一种应用方式来解释定理3.1的含义。假设$\{X_n\}$是一条平稳序列，并考虑随机变量$S_{m,n}=F(X_{m+1},\cdots,X_n)$。此时，条件(2)中的各$S_{nk,(n+1)k}$所覆盖的$X_n$互不重叠，因此根据$\{X_n\}$的平稳性，条件(2)是显然的。同样，根据例子1.1，条件(3)也是显然的。因此，在该场景中，只需要检验条件(1)和条件(4)；条件(1)要求函数$F$的次可加性，而条件(4)要求$F$具有明确的上下界。在这些条件下，定理3.1指出：序列$\{S_{0,n}/n\}$渐近收敛，且相应的期望值序列$\{ES_{0,n}/n\}$收敛到该序列的下确界。进一步地，如果在$F$的作用下一阶平移算子$\theta_1$在相应的序列空间中是遍历的，那么对于几乎每一条轨迹$\omega$，$\{S_{0,n}(\omega)/n\}$都将渐近收敛于期望值收敛结果$\gamma$。（该结论对应定理2.1的推论式(2.2)。）<br>Compared with theorem 2.1, theorem 3.1 has more conditions, and the specific meaning of each condition is not very clear. Here, I will try to explain the meaning of theorem 3.1 with one of its applications. Suppose $\{X_n\}$ is a stationary sequence, and we let $S_{m,n}$ to be $S_{m,n}=F(X_{m+1},\cdots,X_n)$. In this case, each $S_{nk,(n+1)k}$ in condition (2) covers a different set of variables $X_n$, so according to the stationarity of $\{X_n\}$, condition (2) is trivial. Also, according to example 1.1, condition (3) is trivial. Therefore, in this case, one only need to check for condition (1) and condition (4), where condition (1) requires the subadditivity of the function $F$ and condition (4) requires $F$ to have explicit upper and lower bounds. Under these conditions, theorem 3.1 states that the sequence $\{S_{0,n}/n\}$ converges, and the corresponding sequence of expectations $\{ES_{0,n}/ n\}$ converges to its infimum. Moreover, if the first-order shift operator $\theta_1$ is ergodic in the sequence space under $F$, then for almost every sample trajectory $\omega$, $\{S_ {0,n}(\omega)/n\}$ will converge to the limit $\gamma$ of the expectation sequence. (This result corresponds to the corollary (2.2) of theorem 2.1.)</p>
+<p><strong>例子2.2：</strong>根据例子1.2，对由独立同分布随机变量组成的序列$\{X_n\}$，一阶平移算子$\varphi&#x3D;\theta_1$是遍历的，因此根据定理2.1，我们再一次推导出了强大数定律（<strong>注：</strong>此前，在本系列第二篇关于倒鞅的讨论中曾经推导过一次）：<br><strong>Example 2.2:</strong> According to example 1.2, the first-order shift operator $\varphi&#x3D;\theta_1$ is ergodic for a sequence of independent and identically distributed random variables $\{X_n\}$. Therefore, according to theorem 2.1, we can derive the strong law of large numbers again (<strong>Remark:</strong> we showed this once when we discussed the backward martingale in the second post of this series):</p>
+<p>$$\frac{1}{n}\sum_{m&#x3D;0}^{n-1}X_m \to EX_0 \ \text{ a.s. and in } L^1. \tag{2.3}$$</p>
+<p><strong>例子2.3：</strong>根据例子1.3，对以平稳分布$\pi$为初始分布的、有限状态的、不可约的马尔科夫链$\{X_n\}$，一阶平移算子$\varphi&#x3D;\theta_1$是遍历的，因此根据定理2.1，对任意满足$E_{\pi}|f| &lt; \infty$的实值函数$f$，有<br><strong>Example 2.3:</strong> According to example 1.3, the first-order shift operator $\varphi&#x3D;\theta_1$ is ergodic for any irreducible Markov chain $\{X_n\}$ on a countable state space that initiates from a stationary distribution $\pi$. Therefore, according to theorem 2.1, for any real-valued function $f$ satisfying $E_{\pi}|f| &lt; \infty$,</p>
+<p>$$\frac{1}{n}\sum_{m&#x3D;0}^{n-1}f(X_m) \to E_{\pi}f &#x3D; \sum_{x\in S}\pi(x)f(x) \ \text{ a.s. and in } L^1. \tag{2.4}$$</p>
+<h2 id="次可加遍历定理-Subadditive-Ergodic-Theorem"><a href="#次可加遍历定理-Subadditive-Ergodic-Theorem" class="headerlink" title="次可加遍历定理 Subadditive Ergodic Theorem"></a>次可加遍历定理 Subadditive Ergodic Theorem</h2><p>根据定理2.1，我们可以说明：对一个平稳序列$\{X_n\}$和一个实值函数$f$，相应的函数均值$\frac{1}{n}\sum_{m&#x3D;1}^{n}f(X_n)$收敛。但在很多情况下，我们感兴趣的关于序列$\{X_n\}$的随机变量$S_n &#x3D; F(X_1,\cdots,X_{n})$并不能表示成和式的形式，因此无法使用定理2.1来获取其渐近性质；此时，我们需要一些更强的工具。在这一节中，我将介绍一种常用的工具：次可加遍历定理。该定理首先由John Kingman在1968年提出；在这里，我将介绍Thomas M. Liggett在1985年提出的推广形式。为简便起见，在下面的讨论中，我们称一个平稳序列是遍历的，若其对应的一阶平移算子$\theta_1$在相应的序列空间中是遍历的。<br>According to theorem 2.1, we can show that: for a stationary sequence $\{X_n\}$ and a real-valued function $f$, the average of function values $\frac{1}{n}\sum_{ m&#x3D;1}^{n}f(X_n)$ converges. But in many other cases, the random variables $S_n &#x3D; F(X_1,\cdots,X_{n})$ (about the sequence $\{X_n\}$) that we are interested in are not additive, so we cannot apply theorem 2.1 to obtain their asymptotic properties; in these cases, we need some stronger tools. In this section, I will introduce a commonly used tool: the subadditive ergodic theorem. This theorem was first proposed by John Kingman in 1968; here, I will introduce a generalization that was proposed by Thomas M. Liggett in 1985. For the sake of brevity, in the following discussion, a stationary sequence is said to be ergodic if the corresponding first-order shift operator $\theta_1$ is ergodic in the corresponding sequence space.</p>
+<p><strong>定理3.1（Liggett版本的次可加遍历定理）：</strong>假设随机变量族$\{S_{m,n}\}_{0 \leq m &lt; n}$满足以下四个条件：<br>(1) （次可加性）$S_{0,m} + S_{m,n} \leq S_{0,n}$；<br>(2) （平稳性）对任意$k$，$\{S_{nk,(n+1)k}\}_{n\geq 1}$是一个平稳序列；<br>(3) （同分布性）$\{S_{m,m+k}\}_{k\geq 1}$的分布与$m$无关；<br>(4) （有界性）$ES_{0,1}^+ &lt; \infty$,且对任意$n$,$ES_{0,n} \geq \gamma_0n$,其中$\gamma_0 &gt; -\infty$。<br>则$\{S_{m,n}\}_{0 \leq m &lt; n}$具有以下性质：<br>(a) （期望收敛性）$\lim_{n\to\infty} E\frac{S_{0,n}}{n} &#x3D; \inf_m E\frac{S_{0,m}}{m} \equiv \gamma$。<br>(b) （a.s.收敛性）$\lim_{n\to\infty} \frac{S_{0,n}}{n} &#x3D; X \ \text{ a.s. and in } L^1$。<br>(c) （遍历性）若条件(2)中所有平稳序列都是遍历的，则$X&#x3D;\gamma$ a.s.。<br>**Theorem 3.1 (Liggett’s version of the subadditive ergodic theorem):** Suppose that a family of random varibles $\{S_{m,n}\}_{0 \leq m &lt; n}$ satisfies the following four conditions:<br>(1) (subadditivity) $S_{0,m} + S_{m,n} \leq S_{0,n}$;<br>(2) (stationarity) for any $k$, $\{S_{nk,(n+1)k}\}_{n\geq 1}$ is a stationary sequence;<br>(3) (having identical distribution) the distributions of $\{S_{m,m+k}\}_{k\geq 1}$ do not rely on $m$;<br>(4) (boundedness) $ES_{0,1}^+ &lt; \infty$, and for any $n$, $ES_{0,n} \geq \gamma_0n$, where $\gamma_0 &gt; -\infty$.<br>Then, $\{S_{m,n}\}_{0 \leq m &lt; n}$ has the following properties:<br>(a) (convergence in expectations) $\lim_{n\to\infty} E\frac{S_{0,n}}{n} &#x3D; \inf_m E\frac{S_{0,m}}{m} \equiv \gamma$.<br>(b) (a.s. convergence) $\lim_{n\to\infty} \frac{S_{0,n}}{n} &#x3D; X \ \text{ a.s. and in } L^1$.<br>(c) (ergodicity) If all stationary sequences in the condition (2) are ergodic, then $X&#x3D;\gamma$ a.s.</p>
+<p>相比定理2.1，定理3.1的条件较多，且各个条件的具体含义不太直观。这里，我将结合定理3.1的一种应用方式来解释定理3.1的含义。假设$\{X_n\}$是一条平稳序列，并考虑随机变量$S_{m,n}&#x3D;F(X_{m+1},\cdots,X_n)$。此时，条件(2)中的各$S_{nk,(n+1)k}$所覆盖的$X_n$互不重叠，因此根据$\{X_n\}$的平稳性，条件(2)是显然的。同样，根据例子1.1，条件(3)也是显然的。因此，在该场景中，只需要检验条件(1)和条件(4)；条件(1)要求函数$F$的次可加性，而条件(4)要求$F$具有明确的上下界。在这些条件下，定理3.1指出：序列$\{S_{0,n}&#x2F;n\}$渐近收敛，且相应的期望值序列$\{ES_{0,n}&#x2F;n\}$收敛到该序列的下确界。进一步地，如果在$F$的作用下一阶平移算子$\theta_1$在相应的序列空间中是遍历的，那么对于几乎每一条轨迹$\omega$，$\{S_{0,n}(\omega)&#x2F;n\}$都将渐近收敛于期望值收敛结果$\gamma$。（该结论对应定理2.1的推论式(2.2)。）<br>Compared with theorem 2.1, theorem 3.1 has more conditions, and the specific meaning of each condition is not very clear. Here, I will try to explain the meaning of theorem 3.1 with one of its applications. Suppose $\{X_n\}$ is a stationary sequence, and we let $S_{m,n}$ to be $S_{m,n}&#x3D;F(X_{m+1},\cdots,X_n)$. In this case, each $S_{nk,(n+1)k}$ in condition (2) covers a different set of variables $X_n$, so according to the stationarity of $\{X_n\}$, condition (2) is trivial. Also, according to example 1.1, condition (3) is trivial. Therefore, in this case, one only need to check for condition (1) and condition (4), where condition (1) requires the subadditivity of the function $F$ and condition (4) requires $F$ to have explicit upper and lower bounds. Under these conditions, theorem 3.1 states that the sequence $\{S_{0,n}&#x2F;n\}$ converges, and the corresponding sequence of expectations $\{ES_{0,n}&#x2F; n\}$ converges to its infimum. Moreover, if the first-order shift operator $\theta_1$ is ergodic in the sequence space under $F$, then for almost every sample trajectory $\omega$, $\{S_ {0,n}(\omega)&#x2F;n\}$ will converge to the limit $\gamma$ of the expectation sequence. (This result corresponds to the corollary (2.2) of theorem 2.1.)</p>
 <p>最后，我将通过一个例子来进一步介绍定理3.1的应用场景和应用方式。<br>Finally, I will provide an example to further illustrate in which context and with which method should we apply theorem 3.1.</p>
-<p><strong>例子3.2：</strong>假设有两条遍历的平稳序列$\{X_n\}_{n\geq 1}$和$\{Y_n\}_{n\geq 1}$。我们希望研究两者间最长相同子列的长度<br><strong>Example 3.2:</strong> Suppose there are two ergodic stationary sequences $\{X_n\}_{n\geq 1}$ and $\{Y_n\}_{n\geq 1}$. We want to study the asymptotic behavior ($m=0,n\to \infty$) of the length of their longest common subsequences</p>
-<p>$$L_{m,n} = \max\{K: \exists \ m &lt; i_1 &lt; \cdots &lt; i_K \leq n, m &lt; j_1 &lt; \cdots &lt; j_K \leq n \ \text{ s.t. } \ X_{i_k} = Y_{j_k}, 1\leq k \leq K\}$$</p>
-<p>在$m=0,n\to \infty$时的渐近性质。容易看出$L_{m,n}$不具有可加性，因此无法应用定理2.1；但随机变量$X_{m,n} = -L_{m,n}$是次可加的，且根据$0 \leq L_{0,n} \leq n$知$X_{m,n}/n$有界，因此可以应用定理3.1，从而得到<br>It is obvious that $L_{m,n}$ is not additive, so we cannot apply theorem 2.1. But the random variable $X_{m,n} = -L_{m,n}$ is subadditive, and $X_{m,n}/n$ is bounded because $0 \leq L_{0,n} \leq n$, so we can apply theorem 3.1 to obtain the following result</p>
+<p><strong>例子3.2：</strong>假设有两条遍历的平稳序列$\{X_n\}_{n\geq 1}$和$\{Y_n\}_{n\geq 1}$。我们希望研究两者间最长相同子列的长度<br><strong>Example 3.2:</strong> Suppose there are two ergodic stationary sequences $\{X_n\}_{n\geq 1}$ and $\{Y_n\}_{n\geq 1}$. We want to study the asymptotic behavior ($m&#x3D;0,n\to \infty$) of the length of their longest common subsequences</p>
+<p>$$L_{m,n} &#x3D; \max\{K: \exists \ m &lt; i_1 &lt; \cdots &lt; i_K \leq n, m &lt; j_1 &lt; \cdots &lt; j_K \leq n \ \text{ s.t. } \ X_{i_k} &#x3D; Y_{j_k}, 1\leq k \leq K\}$$</p>
+<p>在$m&#x3D;0,n\to \infty$时的渐近性质。容易看出$L_{m,n}$不具有可加性，因此无法应用定理2.1；但随机变量$X_{m,n} &#x3D; -L_{m,n}$是次可加的，且根据$0 \leq L_{0,n} \leq n$知$X_{m,n}&#x2F;n$有界，因此可以应用定理3.1，从而得到<br>It is obvious that $L_{m,n}$ is not additive, so we cannot apply theorem 2.1. But the random variable $X_{m,n} &#x3D; -L_{m,n}$ is subadditive, and $X_{m,n}&#x2F;n$ is bounded because $0 \leq L_{0,n} \leq n$, so we can apply theorem 3.1 to obtain the following result</p>
 <p>$$\frac{L_{0,n}}{n} \to \gamma \doteq \sup_{m\geq 1}E(\frac{L_{0,m}}{m}) \text{ a.s. } \tag{3.1}$$</p>
-<p>我们指出：式(3.1)不仅说明了渐近收敛性，还可用于对收敛结果$\gamma$进行估计。下面我们通过一个算例来说明这一点。不妨进一步假设$X_n$和$Y_n$都是独立同分布的二元变量：$P(X_n = 0) = P(X_n = 1) = 0.5$。一方面，我们可以手动计算序列$\{EL_{0,n}/n\}$的前几项从而得到$\gamma$的下界。例如，前两项可以计算如下：<br>We point out that equation (3.1) not only states the convergence result, but also can be used to estimate the limit $\gamma$. I will further illustrate this with the following example. Suppose $X_n$ and $Y_n$ are independent and identically distributed binary variables with $P(X_n = 0) = P(X_n = 1) = 0.5$. On the one hand, we can calculate the first few terms of the sequence $\{EL_{0,n}/n\}$ to get the lower bound of $\gamma$. For example, the first two terms can be calculated as follows:</p>
-<p>$$\begin{aligned} EL_{0,1} &amp; = P(X_1 = Y_1) = \frac{1}{2}; \\ \frac{EL_{0,2}}{2} &amp; = P(X_1=Y_1,X_2=Y_2) + \frac{1}{2}[1 - P(X_1=Y_1,X_2=Y_2) - P(X_1=X_2,Y_1=Y_2,X_1\neq Y_1)] \\ &amp;  = \frac{1}{4} + \frac{1}{2}\cdot(1 - \frac{1}{4} - \frac{1}{8}) \\ &amp; = \frac{9}{16}. \end{aligned}$$</p>
+<p>我们指出：式(3.1)不仅说明了渐近收敛性，还可用于对收敛结果$\gamma$进行估计。下面我们通过一个算例来说明这一点。不妨进一步假设$X_n$和$Y_n$都是独立同分布的二元变量：$P(X_n &#x3D; 0) &#x3D; P(X_n &#x3D; 1) &#x3D; 0.5$。一方面，我们可以手动计算序列$\{EL_{0,n}&#x2F;n\}$的前几项从而得到$\gamma$的下界。例如，前两项可以计算如下：<br>We point out that equation (3.1) not only states the convergence result, but also can be used to estimate the limit $\gamma$. I will further illustrate this with the following example. Suppose $X_n$ and $Y_n$ are independent and identically distributed binary variables with $P(X_n &#x3D; 0) &#x3D; P(X_n &#x3D; 1) &#x3D; 0.5$. On the one hand, we can calculate the first few terms of the sequence $\{EL_{0,n}&#x2F;n\}$ to get the lower bound of $\gamma$. For example, the first two terms can be calculated as follows:</p>
+<p>$$\begin{aligned} EL_{0,1} &amp; &#x3D; P(X_1 &#x3D; Y_1) &#x3D; \frac{1}{2}; \\ \frac{EL_{0,2}}{2} &amp; &#x3D; P(X_1&#x3D;Y_1,X_2&#x3D;Y_2) + \frac{1}{2}[1 - P(X_1&#x3D;Y_1,X_2&#x3D;Y_2) - P(X_1&#x3D;X_2,Y_1&#x3D;Y_2,X_1\neq Y_1)] \\ &amp;  &#x3D; \frac{1}{4} + \frac{1}{2}\cdot(1 - \frac{1}{4} - \frac{1}{8}) \\ &amp; &#x3D; \frac{9}{16}. \end{aligned}$$</p>
 <p>以此类推，通过计算更多项我们可以得到更精确的关于$\gamma$的下界的估计。另一方面，我们可以直接根据$L_{0,n}$的定义对$\gamma$的上界进行估计。例如，一个长度为$n$的序列存在$\binom{n}{an}$个长度为$an$的子序列，而每个子序列都有$2^{an}$个等可能的取值，因此序列$\{X_m\}_{n\geq m\geq 1}$和$\{Y_m\}_{n\geq m\geq 1}$有两个长度为$an$的相同子序列$\{\tilde{X}\},\{\tilde{Y}\}$的概率$p_{an,n}$满足<br>In this manner, we can obtain a more accurate estimate of the lower bound of $\gamma$ by computing more terms. On the other hand, we can estimate the upper bound of $\gamma$ directly according to the definition of $L_{0,n}$. For example, a sequence of length $n$ has $\binom{n}{an}$ subsequences of length $an$, and each subsequence has $2^{an}$ possible values, so the probability $p_{an,n}$ of the existence of two identical subsequences $\{\tilde{X}\},\{\tilde{Y}\}$ of length $an$ within sequences $\{X_m\}_{n\geq m\geq 1}$ and $\{Y_m\}_{n\geq m\geq 1}$ respectively can be estimated as follows</p>
-<p>$$p_{an,n} \leq \sum_{\{\tilde{X}\},\{\tilde{Y}\}} P(\{\tilde{X}\}=\{\tilde{Y}\}) = \binom{n}{an}^2 \cdot 2^{-an} \approx (a^{2a}(1-a)^{2(1-a)}2^a)^{-n}, \tag{3.2}$$</p>
+<p>$$p_{an,n} \leq \sum_{\{\tilde{X}\},\{\tilde{Y}\}} P(\{\tilde{X}\}&#x3D;\{\tilde{Y}\}) &#x3D; \binom{n}{an}^2 \cdot 2^{-an} \approx (a^{2a}(1-a)^{2(1-a)}2^a)^{-n}, \tag{3.2}$$</p>
 <p>其中，最后的估计式由Stirling公式给出。在式(3.2)中令$n\to \infty$，有<br>where the last approximation is provided by Stirling’s formula. If we further let $n\to \infty$ in equation (3.2), we will have</p>
 <p>$$\limsup_{n\to\infty}\frac{1}{n}\log p_{an,n} \leq - 2a\log a - 2(1-a)\log(1-a) - a\log 2. \tag{3.3}$$</p>
-<p>现在，一方面，根据式(3.1)知$P(L &gt; n(\gamma - \varepsilon)) \to 1$对任意$\varepsilon &gt; 0$成立；另一方面，当$a&gt;0.91$时，式(3.3)右端$&lt;0$，故$p_{an,n} = P(L \geq an)\to 0$。由此，$\gamma &lt; a + \varepsilon \leq 0.91$。</p>
-<p>Now, on the one hand, from equation (3.1) we know that $P(L &gt; n(\gamma - \varepsilon)) \to 1$ holds for any $\varepsilon &gt; 0$; on the other hand, when $a&gt;0.91$, the right-hand side of equation (3.3) is smaller than 0, so $p_{an,n} = P(L \geq an)\to 0$. Combining the last two results gives us $\gamma &lt; a + \varepsilon \leq 0.91$.</p>
+<p>现在，一方面，根据式(3.1)知$P(L &gt; n(\gamma - \varepsilon)) \to 1$对任意$\varepsilon &gt; 0$成立；另一方面，当$a&gt;0.91$时，式(3.3)右端$&lt;0$，故$p_{an,n} &#x3D; P(L \geq an)\to 0$。由此，$\gamma &lt; a + \varepsilon \leq 0.91$。</p>
+<p>Now, on the one hand, from equation (3.1) we know that $P(L &gt; n(\gamma - \varepsilon)) \to 1$ holds for any $\varepsilon &gt; 0$; on the other hand, when $a&gt;0.91$, the right-hand side of equation (3.3) is smaller than 0, so $p_{an,n} &#x3D; P(L \geq an)\to 0$. Combining the last two results gives us $\gamma &lt; a + \varepsilon \leq 0.91$.</p>
 
       
     </div>
@@ -474,7 +475,7 @@
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
     </div>
@@ -516,9 +517,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -527,9 +530,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blogs/archives">
+                <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -551,7 +554,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blogs/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -606,7 +609,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念与定义-Concepts-and-Definitions"><span class="nav-number">1.</span> <span class="nav-text">概念与定义 Concepts and Definitions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Birkhoff遍历定理-Birkhoff’s-Ergodic-Theorem"><span class="nav-number">2.</span> <span class="nav-text">Birkhoff遍历定理 Birkhoff’s Ergodic Theorem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#次可加遍历定理-Subadditive-Ergodic-Theorem"><span class="nav-number">3.</span> <span class="nav-text">次可加遍历定理 Subadditive Ergodic Theorem</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%AE%9A%E4%B9%89-Concepts-and-Definitions"><span class="nav-number">1.</span> <span class="nav-text">概念与定义 Concepts and Definitions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Birkhoff%E9%81%8D%E5%8E%86%E5%AE%9A%E7%90%86-Birkhoff%E2%80%99s-Ergodic-Theorem"><span class="nav-number">2.</span> <span class="nav-text">Birkhoff遍历定理 Birkhoff’s Ergodic Theorem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AC%A1%E5%8F%AF%E5%8A%A0%E9%81%8D%E5%8E%86%E5%AE%9A%E7%90%86-Subadditive-Ergodic-Theorem"><span class="nav-number">3.</span> <span class="nav-text">次可加遍历定理 Subadditive Ergodic Theorem</span></a></li></ol></div>
             
 
           </div>

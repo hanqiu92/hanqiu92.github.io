@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -52,9 +52,9 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Linear Programming,">
+  <meta name="keywords" content="Linear Programming," />
 
 
 
@@ -84,24 +84,24 @@
 
 
 <meta name="description" content="在接下来这个系列中，我将介绍线性规划中的对偶单纯形法的基本原理，并示范如何实现一个简单的对偶单纯形法求解器。">
-<meta name="keywords" content="Linear Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Develop Your Own Dual Simplex Solver I: Introduction">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_1_202002/index.html">
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在接下来这个系列中，我将介绍线性规划中的对偶单纯形法的基本原理，并示范如何实现一个简单的对偶单纯形法求解器。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-05-23T07:27:20.643Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-15T05:00:00.000Z">
+<meta property="article:modified_time" content="2020-05-23T07:27:20.643Z">
+<meta property="article:author" content="Han Qiu">
+<meta property="article:tag" content="Linear Programming">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Develop Your Own Dual Simplex Solver I: Introduction">
-<meta name="twitter:description" content="在接下来这个系列中，我将介绍线性规划中的对偶单纯形法的基本原理，并示范如何实现一个简单的对偶单纯形法求解器。">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blogs/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_1_202002/">
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/LP_dual_simplex_solver_1_202002/"/>
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
@@ -158,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/" class="brand" rel="start">
+      <a href="/blogs/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -186,7 +186,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blogs/." rel="section">
+          <a href="/blogs/.%20" rel="section">
             
             Home
           </a>
@@ -194,7 +194,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/blogs/categories" rel="section">
+          <a href="/blogs/categories%20" rel="section">
             
             Categories
           </a>
@@ -202,7 +202,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blogs/archives" rel="section">
+          <a href="/blogs/archives%20" rel="section">
             
             Archives
           </a>
@@ -210,7 +210,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/blogs/tags" rel="section">
+          <a href="/blogs/tags%20" rel="section">
             
             Tags
           </a>
@@ -218,7 +218,7 @@
       
         
         <li class="menu-item menu-item-scribbles">
-          <a href="/blogs/scribbles" rel="section">
+          <a href="/blogs/scribbles%20" rel="section">
             
             Scribbles
           </a>
@@ -260,8 +260,8 @@
     <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2020/LP_dual_simplex_solver_1_202002/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -297,7 +297,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -347,7 +347,8 @@
 
       
         <p>在接下来这个系列中，我将介绍线性规划中的对偶单纯形法的基本原理，并示范如何实现一个简单的对偶单纯形法求解器。</p>
-<a id="more"></a>
+<span id="more"></span>
+
 <h2 id="写作动机-Motivation"><a href="#写作动机-Motivation" class="headerlink" title="写作动机 Motivation"></a>写作动机 Motivation</h2><p>这个系列的写作主要有以下几个目的：</p>
 <ol>
 <li>对偶单纯形法是目前线性规划和混合整数规划求解器中的核心模块。为了更好地利用已有的求解器资源，有必要了解其具体运作机理和局限性。</li>
@@ -355,20 +356,20 @@
 <li>对文字与代码结合的写作方式的首次尝试。</li>
 <li>完成一个简易的线性规划求解器，后续可能可以用于自己的一些小项目中。</li>
 </ol>
-<p>基于上述动机的优先级，在本系列的写作/代码中，我将更注重<strong>直观性(intuition)</strong>和<strong>可读性</strong>，而选择性地忽略一些目前主流求解器中必备的、但与对偶单纯形法本身关系不大的计算优化技术。（还有一个主要的原因是这些技术都具有一定的技术壁垒，个人实现的时间成本较高。）</p>
-<p>在本系列的写作中，我所用到的参考资料包括A. Koberstein的<a href="https://www.researchgate.net/profile/Achim_Koberstein/publication/35632487_The_dual_simplex_method_techniques_for_a_fast_and_stable_implementation_Elektronische_Ressource/links/0a85e52ef5144e9031000000/The-dual-simplex-method-techniques-for-a-fast-and-stable-implementation-Elektronische-Ressource.pdf" target="_blank" rel="noopener">博士论文</a>和相关引用文献，以及开源求解器<a href="https://github.com/coin-or/Clp" target="_blank" rel="noopener">Clp</a>、<a href="http://soplex.zib.de/" target="_blank" rel="noopener">SoPlex</a>的代码。要顺畅地理解本系列中的内容，阅读者需要对线性规划理论有一定的了解。</p>
+<p>基于上述动机的优先级，在本系列的写作&#x2F;代码中，我将更注重<strong>直观性(intuition)<strong>和</strong>可读性</strong>，而选择性地忽略一些目前主流求解器中必备的、但与对偶单纯形法本身关系不大的计算优化技术。（还有一个主要的原因是这些技术都具有一定的技术壁垒，个人实现的时间成本较高。）</p>
+<p>在本系列的写作中，我所用到的参考资料包括A. Koberstein的<a target="_blank" rel="noopener" href="https://www.researchgate.net/profile/Achim_Koberstein/publication/35632487_The_dual_simplex_method_techniques_for_a_fast_and_stable_implementation_Elektronische_Ressource/links/0a85e52ef5144e9031000000/The-dual-simplex-method-techniques-for-a-fast-and-stable-implementation-Elektronische-Ressource.pdf">博士论文</a>和相关引用文献，以及开源求解器<a target="_blank" rel="noopener" href="https://github.com/coin-or/Clp">Clp</a>、<a target="_blank" rel="noopener" href="http://soplex.zib.de/">SoPlex</a>的代码。要顺畅地理解本系列中的内容，阅读者需要对线性规划理论有一定的了解。</p>
 <h2 id="写作方式-Format"><a href="#写作方式-Format" class="headerlink" title="写作方式 Format"></a>写作方式 Format</h2><p>对偶单纯形法里用到的许多技术都是为了解决实际算法执行过程中出现的问题而引入的。因此，现有算法实现的效果评估对理解后续算法思路至关重要。为了简化从算法原理到代码实现到获得效果反馈之间的流程，在本系列的写作中，我将采用blog post加上ipython notebook的展示形式：在blog中，我主要对算法的基本思路进行讨论；而在notebook中，我将结合具体代码实现对一些算法细节进行介绍。</p>
 <h2 id="写作计划-Agenda"><a href="#写作计划-Agenda" class="headerlink" title="写作计划 Agenda"></a>写作计划 Agenda</h2><p>在本系列的第一篇文章（也就是本文）中，我将介绍线性规划求解的预备知识，包括问题的定义、解的相关概念等。<br>第二篇文章将介绍对偶单纯形法的基本流程，并结合简单例子分析其几何意义。<br>第三篇文章将介绍初始对偶可行解的寻找方法以及计算过程中数值误差的处理，以进一步完善对偶单纯形法的求解流程，保障求解结果的可靠性。<br>第四篇文章将介绍一系列常用的预处理技术，以进一步提升对偶单纯形法的求解效率。<br>在第五篇文章（最后一篇）中，我将对前述内容进行总结，并针对求解器的设计和使用给出一些个人建议。</p>
-<h2 id="预备知识-Preliminary"><a href="#预备知识-Preliminary" class="headerlink" title="预备知识 Preliminary"></a>预备知识 Preliminary</h2><p><strong>问题(problem)的定义。</strong>线性规划的一般形式为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \min \ &amp; c^T x \\<br>    s.t. \ &amp; Ax = b, \\<br>           &amp; l \leq x \leq u.<br>  \end{aligned}<br>  \label{eq:primal}\tag{1.1}<br>\end{equation}<br>$$</p>
-<p>其中，决策变量$x$是一个$m$维的向量，$A$是一个$n\times m$维的矩阵，其中$n$为约束的个数。下界$l$和上界$u$的取值可以为$\pm \infty$。问题$\eqref{eq:primal}$一般被称为原始问题。根据对偶理论，问题$\eqref{eq:primal}$的对偶问题可以写为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \max \ &amp; b^T \lambda + u^T s_u + l^T s_l \\<br>    s.t. \ &amp; A^T \lambda + s_u + s_l = c, \\<br>           &amp; s_l \geq 0, \ s_u \leq 0.<br>  \end{aligned}<br>  \label{eq:dual}\tag{1.2}<br>\end{equation}<br>$$</p>
+<h2 id="预备知识-Preliminary"><a href="#预备知识-Preliminary" class="headerlink" title="预备知识 Preliminary"></a>预备知识 Preliminary</h2><p><strong>问题(problem)的定义。</strong>线性规划的一般形式为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \min \ &amp; c^T x \\<br>    s.t. \ &amp; Ax &#x3D; b, \\<br>           &amp; l \leq x \leq u.<br>  \end{aligned}<br>  \label{eq:primal}\tag{1.1}<br>\end{equation}<br>$$</p>
+<p>其中，决策变量$x$是一个$m$维的向量，$A$是一个$n\times m$维的矩阵，其中$n$为约束的个数。下界$l$和上界$u$的取值可以为$\pm \infty$。问题$\eqref{eq:primal}$一般被称为原始问题。根据对偶理论，问题$\eqref{eq:primal}$的对偶问题可以写为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \max \ &amp; b^T \lambda + u^T s_u + l^T s_l \\<br>    s.t. \ &amp; A^T \lambda + s_u + s_l &#x3D; c, \\<br>           &amp; s_l \geq 0, \ s_u \leq 0.<br>  \end{aligned}<br>  \label{eq:dual}\tag{1.2}<br>\end{equation}<br>$$</p>
 <p>其中，决策变量$\lambda$和$s$分别为$n$维和$m$维的向量。</p>
-<p><strong>解(solution)的评估</strong>。给定一组解$(x,\lambda,s)$，如何判断其是否可行及是否最优？对于问题$\eqref{eq:primal}$和$\eqref{eq:dual}$，相应解$x$和$(\lambda,s)$的可行性可以直接通过约束的满足情况进行判断。解的最优性则可以通过以下的KKT条件进行判断：<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    &amp; Ax = b, \\<br>    &amp; l \leq x \leq u, \\<br>    &amp; A^T \lambda + s_u + s_l = c, \\<br>    &amp; s_l \geq 0, \ s_u \leq 0, \\<br>    &amp; s_u(x - u) = 0, \ s_l(x - l) = 0.<br>  \end{aligned}<br>  \label{eq:KKT}\tag{1.3}<br>\end{equation}<br>$$</p>
-<p>容易看出，KKT条件$\eqref{eq:KKT}$包括原始和对偶问题的可行性条件，以及互补松弛条件<br>$$s_u(x - u) = 0, \ s_l(x - l) = 0. \label{eq:compSlack}\tag{1.4}$$</p>
-<p><strong>基(basis)的定义。</strong>在单纯形法中，一个基本的概念是基。不妨假设原始问题的可行域$\mathcal{A}=\{Ax = b,l \leq x \leq u\}$是一个多面体。从几何的角度分析可知，原始问题$\eqref{eq:primal}$至少有一个最优解对应着多面体$\mathcal{A}$的顶点。因此，要求解原始问题的最优解，只需要找出多面体$\mathcal{A}$所有顶点中最优的一个即可。而根据线性代数知识，$\mathcal{A}$中的任意一个顶点都可以用一组（广义）基$(B,L,U)$表示：$x_L = l_L, x_U = u_U, x_B = A_B^{-1}(b - A_Lx_L - A_Ux_U)$，其中$B,L,U$为下标集合$\{1,2,\cdots,m\}$的一个分割。（<strong>注：在一般的讨论中，基仅指集合$B$。在本系列中，我称$B$为狭义基。</strong>）因此，对最优顶点的搜索可以转化为对最优基$(B,L,U)$的搜索。单纯形法的基本思路就是采用局部搜索的方式来求解最优基；原始单纯形法和对偶单纯形法的主要区别在于是在原始问题还是在对偶问题的可行域内进行局部搜索。</p>
-<p><strong>基于基的解。</strong>在给定一组基$(B,L,U)$时，利用互补松弛条件$\eqref{eq:compSlack}$，KKT条件$\eqref{eq:KKT}$可以改写为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    &amp; A_B x_B = b - A_Lx_L - A_Ux_U, \ x_L = l_L, \ x_U = u_U, \\<br>    &amp; A_B^T \lambda = c_B, \ s_{l,L} = c_L - A_L^T \lambda, \ s_{u,U} = c_U - A_U^T \lambda, \\<br>    &amp; s_{l,B} = s_{u,B} = s_{u,L} = s_{l,U} = 0; \\<br>    &amp; l_B \leq x_B \leq u_B, \ s_{l,L} \geq 0, \ s_{u,U} \leq 0.<br>  \end{aligned}\label{eq:KKT_decompose}\tag{1.5}<br>\end{equation}<br>$$</p>
+<p><strong>解(solution)的评估</strong>。给定一组解$(x,\lambda,s)$，如何判断其是否可行及是否最优？对于问题$\eqref{eq:primal}$和$\eqref{eq:dual}$，相应解$x$和$(\lambda,s)$的可行性可以直接通过约束的满足情况进行判断。解的最优性则可以通过以下的KKT条件进行判断：<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    &amp; Ax &#x3D; b, \\<br>    &amp; l \leq x \leq u, \\<br>    &amp; A^T \lambda + s_u + s_l &#x3D; c, \\<br>    &amp; s_l \geq 0, \ s_u \leq 0, \\<br>    &amp; s_u(x - u) &#x3D; 0, \ s_l(x - l) &#x3D; 0.<br>  \end{aligned}<br>  \label{eq:KKT}\tag{1.3}<br>\end{equation}<br>$$</p>
+<p>容易看出，KKT条件$\eqref{eq:KKT}$包括原始和对偶问题的可行性条件，以及互补松弛条件<br>$$s_u(x - u) &#x3D; 0, \ s_l(x - l) &#x3D; 0. \label{eq:compSlack}\tag{1.4}$$</p>
+<p><strong>基(basis)的定义。</strong>在单纯形法中，一个基本的概念是基。不妨假设原始问题的可行域$\mathcal{A}&#x3D;\{Ax &#x3D; b,l \leq x \leq u\}$是一个多面体。从几何的角度分析可知，原始问题$\eqref{eq:primal}$至少有一个最优解对应着多面体$\mathcal{A}$的顶点。因此，要求解原始问题的最优解，只需要找出多面体$\mathcal{A}$所有顶点中最优的一个即可。而根据线性代数知识，$\mathcal{A}$中的任意一个顶点都可以用一组（广义）基$(B,L,U)$表示：$x_L &#x3D; l_L, x_U &#x3D; u_U, x_B &#x3D; A_B^{-1}(b - A_Lx_L - A_Ux_U)$，其中$B,L,U$为下标集合$\{1,2,\cdots,m\}$的一个分割。（<strong>注：在一般的讨论中，基仅指集合$B$。在本系列中，我称$B$为狭义基。</strong>）因此，对最优顶点的搜索可以转化为对最优基$(B,L,U)$的搜索。单纯形法的基本思路就是采用局部搜索的方式来求解最优基；原始单纯形法和对偶单纯形法的主要区别在于是在原始问题还是在对偶问题的可行域内进行局部搜索。</p>
+<p><strong>基于基的解。</strong>在给定一组基$(B,L,U)$时，利用互补松弛条件$\eqref{eq:compSlack}$，KKT条件$\eqref{eq:KKT}$可以改写为<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    &amp; A_B x_B &#x3D; b - A_Lx_L - A_Ux_U, \ x_L &#x3D; l_L, \ x_U &#x3D; u_U, \\<br>    &amp; A_B^T \lambda &#x3D; c_B, \ s_{l,L} &#x3D; c_L - A_L^T \lambda, \ s_{u,U} &#x3D; c_U - A_U^T \lambda, \\<br>    &amp; s_{l,B} &#x3D; s_{u,B} &#x3D; s_{u,L} &#x3D; s_{l,U} &#x3D; 0; \\<br>    &amp; l_B \leq x_B \leq u_B, \ s_{l,L} \geq 0, \ s_{u,U} \leq 0.<br>  \end{aligned}\label{eq:KKT_decompose}\tag{1.5}<br>\end{equation}<br>$$</p>
 <p>因此，根据公式$\eqref{eq:KKT_decompose}$中的前三式，基$(B,L,U)$不但可以决定原始问题的解$x$，还可以决定对偶问题的解$(\lambda,s)$；而且，如果这组解$(x,\lambda,s)$同时满足可行性约束$l_B \leq x_B \leq u_B, \ s_{l,L} \geq 0, \ s_{u,U} \leq 0$，则其必为最优解。<strong>注：</strong>特别地，当上下界$l,u$有界时，我们总能通过交换$L$和$U$中的下标来保证$s_{l,L} \geq 0, \ s_{u,U} \leq 0$，从而对于任意$B$，我们都能找到相应的$L$和$U$使得对应的对偶解$(\lambda,s)$可行。这部分地解释了为何在通常情况下对偶方法效率更高。</p>
-<p><strong>数值误差的影响。</strong>通过基$(B,L,U)$来表示解$(x,\lambda,s)$的一个好处是互补松弛条件$\eqref{eq:compSlack}$永远是默认被满足的。此时，根据KKT条件$\eqref{eq:KKT}$的定义，对解$(x,\lambda,s)$的最优性检验可以减弱为可行性检验。同时，对原始解$x$和对偶解$(\lambda,s)$的统一表示在一定程度上能提高整个求解流程对于数值误差的稳健性。下面来看一个简单例子。假设在求解过程中的某一步中，存在某个下标$i\in N = L\cup U$，对应的对偶变量$s_i = s_{l,i} + s_{u,i}$的真实取值在0附近。受到数值误差的影响，实际计算的$s_i$可能是一个微小的正值或者负值。现在，如果要手动维持互补松弛条件，那么相应的原始变量$x_i$的取值很可能会在$l_i$和$u_i$之间来回波动。当这两个值的差异较大时，迭代优化过程会受到严重干扰。而如果我们不严格地维持互补松弛条件，则有可能在迭代优化过程中原始解和对偶解相关性不断减弱，从而导致算法中一些需要同时使用原始解和对偶解的计算失效，进而导致算法不收敛。</p>
-<p>下面，我们进入<a href="https://github.com/hanqiu92/dual_simplex_solve/blob/master/1_preliminary.ipynb" target="_blank" rel="noopener">代码实现部分</a>。</p>
+<p><strong>数值误差的影响。</strong>通过基$(B,L,U)$来表示解$(x,\lambda,s)$的一个好处是互补松弛条件$\eqref{eq:compSlack}$永远是默认被满足的。此时，根据KKT条件$\eqref{eq:KKT}$的定义，对解$(x,\lambda,s)$的最优性检验可以减弱为可行性检验。同时，对原始解$x$和对偶解$(\lambda,s)$的统一表示在一定程度上能提高整个求解流程对于数值误差的稳健性。下面来看一个简单例子。假设在求解过程中的某一步中，存在某个下标$i\in N &#x3D; L\cup U$，对应的对偶变量$s_i &#x3D; s_{l,i} + s_{u,i}$的真实取值在0附近。受到数值误差的影响，实际计算的$s_i$可能是一个微小的正值或者负值。现在，如果要手动维持互补松弛条件，那么相应的原始变量$x_i$的取值很可能会在$l_i$和$u_i$之间来回波动。当这两个值的差异较大时，迭代优化过程会受到严重干扰。而如果我们不严格地维持互补松弛条件，则有可能在迭代优化过程中原始解和对偶解相关性不断减弱，从而导致算法中一些需要同时使用原始解和对偶解的计算失效，进而导致算法不收敛。</p>
+<p>下面，我们进入<a target="_blank" rel="noopener" href="https://github.com/hanqiu92/dual_simplex_solve/blob/master/1_preliminary.ipynb">代码实现部分</a>。</p>
 
       
     </div>
@@ -445,7 +446,7 @@
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
     </div>
@@ -487,9 +488,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -498,9 +501,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blogs/archives">
+                <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -522,7 +525,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blogs/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -577,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写作动机-Motivation"><span class="nav-number">1.</span> <span class="nav-text">写作动机 Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写作方式-Format"><span class="nav-number">2.</span> <span class="nav-text">写作方式 Format</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写作计划-Agenda"><span class="nav-number">3.</span> <span class="nav-text">写作计划 Agenda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预备知识-Preliminary"><span class="nav-number">4.</span> <span class="nav-text">预备知识 Preliminary</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E4%BD%9C%E5%8A%A8%E6%9C%BA-Motivation"><span class="nav-number">1.</span> <span class="nav-text">写作动机 Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E4%BD%9C%E6%96%B9%E5%BC%8F-Format"><span class="nav-number">2.</span> <span class="nav-text">写作方式 Format</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E4%BD%9C%E8%AE%A1%E5%88%92-Agenda"><span class="nav-number">3.</span> <span class="nav-text">写作计划 Agenda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86-Preliminary"><span class="nav-number">4.</span> <span class="nav-text">预备知识 Preliminary</span></a></li></ol></div>
             
 
           </div>

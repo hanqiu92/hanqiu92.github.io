@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -52,9 +52,9 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Stochastic Process,Queuing Theory,">
+  <meta name="keywords" content="Queuing Theory,Stochastic Process," />
 
 
 
@@ -84,26 +84,27 @@
 
 
 <meta name="description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
-<meta name="keywords" content="Stochastic Process,Queuing Theory">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Reflection on Simple Queues">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2016/simple_queue_dynamic_201612/index.html">
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/MM1_queue_state_space.png">
-<meta property="og:updated_time" content="2019-06-26T14:07:49.823Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/MM1_queue_state_space.png">
+<meta property="article:published_time" content="2016-12-17T17:00:00.000Z">
+<meta property="article:modified_time" content="2019-06-26T14:07:49.823Z">
+<meta property="article:author" content="Han Qiu">
+<meta property="article:tag" content="Queuing Theory">
+<meta property="article:tag" content="Stochastic Process">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reflection on Simple Queues">
-<meta name="twitter:description" content="This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite ca">
-<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/images/MM1_queue_state_space.png">
+<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/blogs/images/MM1_queue_state_space.png">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blogs/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -126,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2016/simple_queue_dynamic_201612/">
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2016/simple_queue_dynamic_201612/"/>
 
 
 
@@ -142,7 +143,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
@@ -160,7 +161,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/" class="brand" rel="start">
+      <a href="/blogs/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -188,7 +189,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blogs/." rel="section">
+          <a href="/blogs/.%20" rel="section">
             
             Home
           </a>
@@ -196,7 +197,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/blogs/categories" rel="section">
+          <a href="/blogs/categories%20" rel="section">
             
             Categories
           </a>
@@ -204,7 +205,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blogs/archives" rel="section">
+          <a href="/blogs/archives%20" rel="section">
             
             Archives
           </a>
@@ -212,7 +213,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/blogs/tags" rel="section">
+          <a href="/blogs/tags%20" rel="section">
             
             Tags
           </a>
@@ -220,7 +221,7 @@
       
         
         <li class="menu-item menu-item-scribbles">
-          <a href="/blogs/scribbles" rel="section">
+          <a href="/blogs/scribbles%20" rel="section">
             
             Scribbles
           </a>
@@ -262,8 +263,8 @@
     <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2016/simple_queue_dynamic_201612/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -299,7 +300,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -349,33 +350,34 @@
 
       
         <p>This semester, when I was working on homework of 1.200, there was a frequently asked question: under what situation would the queue system have a steady state? It is claimed that system with finite capacity always have a steady state, but no proof is given in the class. In this post, I will discuss the dynamical system approach for this problem, and suggest several extensions.</p>
-<a id="more"></a>
-<h2 id="Modeling-the-Dynamics"><a href="#Modeling-the-Dynamics" class="headerlink" title="Modeling the Dynamics"></a>Modeling the Dynamics</h2><p>Let us consider the easiest $M$/$M$/1/$k$ queue, where $k$ is a finite number. Following is a picture of the temporal transition (By Gareth Jones - <a href="https://commons.wikimedia.org/w/index.php?curid=17204982" target="_blank" rel="noopener">MM1_queue_state_space.png</a>, CC BY-SA 3.0)</p>
-<p><img src="/blogs/images/MM1_queue_state_space.png" alt="two_segments"></p>
+<span id="more"></span>
+
+<h2 id="Modeling-the-Dynamics"><a href="#Modeling-the-Dynamics" class="headerlink" title="Modeling the Dynamics"></a>Modeling the Dynamics</h2><p>Let us consider the easiest $M$&#x2F;$M$&#x2F;1&#x2F;$k$ queue, where $k$ is a finite number. Following is a picture of the temporal transition (By Gareth Jones - <a target="_blank" rel="noopener" href="https://commons.wikimedia.org/w/index.php?curid=17204982">MM1_queue_state_space.png</a>, CC BY-SA 3.0)</p>
+<p><img src="/blogs/blogs/images/MM1_queue_state_space.png" alt="two_segments"></p>
 <p>The state transition matrix is then given by</p>
-<p>$$A^T = \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ \mu &amp; -(\mu+\lambda) &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; \mu &amp; -\mu \end{pmatrix} $$</p>
-<p>It is taught from the class that to steady state probability $\pi$ can be obtained from solving equation $A\pi = 0$. But why is so?</p>
+<p>$$A^T &#x3D; \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ \mu &amp; -(\mu+\lambda) &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; \mu &amp; -\mu \end{pmatrix} $$</p>
+<p>It is taught from the class that to steady state probability $\pi$ can be obtained from solving equation $A\pi &#x3D; 0$. But why is so?</p>
 <p>Let us think about how to obtain the transition diagram. We consider a small time slice $dt$, and find the first order derivative of transition probabilities between states. That means, the dynamical system on the probability of states can be described by the following linear ODE:</p>
-<p>$$ \frac{d}{dt}\pi = A\pi.$$</p>
+<p>$$ \frac{d}{dt}\pi &#x3D; A\pi.$$</p>
 <p>It is obvious that this system is well defined since operator $A$ projects one probability distribution to another probability distribution. And now, we can analyze the queuing system using the tools for more general differential dynamical systems.</p>
 <p>The general solution of the ODE above is</p>
-<p>$$\pi_t = e^{At} \pi_0.$$</p>
-<p>Clearly, since $\pi_t$ will always satisfy the regularity condition as a probability distribution, $e^{At}$ will not have any eigenvalue with positive real part greater than 1. We can also prove this in a more formal way. Notice that $M = I + A$ is a Markov matrix on the graph of states and it is strongly connected, we know that $M$ is <a href="https://en.wikipedia.org/wiki/Irreducibility_(mathematics" target="_blank" rel="noopener">irreducible</a>. Then by Perron-Frobenius Theorem, we know that there is a maximal eigenvalue $\lambda_{max}$ such that the corresponding eigenvector $\pi^*$ is positive, and any non-negative eigenvector $\pi$ is a multiple of $\pi^*$. But since $A^Te = 0$, we know the left eigenvector $e$ exists and $\lambda_{max}$ must be 1. Then it is clear that the maximal eigenvalue of $e^{At}$ must be 1, the corresponding eigenvector $\pi^*$ exists and must be stable, and $\pi_t\to\pi^*$.</p>
+<p>$$\pi_t &#x3D; e^{At} \pi_0.$$</p>
+<p>Clearly, since $\pi_t$ will always satisfy the regularity condition as a probability distribution, $e^{At}$ will not have any eigenvalue with positive real part greater than 1. We can also prove this in a more formal way. Notice that $M &#x3D; I + A$ is a Markov matrix on the graph of states and it is strongly connected, we know that $M$ is <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Irreducibility_(mathematics">irreducible</a>. Then by Perron-Frobenius Theorem, we know that there is a maximal eigenvalue $\lambda_{max}$ such that the corresponding eigenvector $\pi^*$ is positive, and any non-negative eigenvector $\pi$ is a multiple of $\pi^*$. But since $A^Te &#x3D; 0$, we know the left eigenvector $e$ exists and $\lambda_{max}$ must be 1. Then it is clear that the maximal eigenvalue of $e^{At}$ must be 1, the corresponding eigenvector $\pi^*$ exists and must be stable, and $\pi_t\to\pi^*$.</p>
 <h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><p>It seems that the analysis above uses complicate approach to validate a simple statement. But under the same framework, we can deal with systems with varying arrival and service rate, which is common in practice. For example, let us consider a varying arrival rate $\lambda_t$ along with the transition matrix $A_t$ and the ODE</p>
-<p>$$ \frac{d}{dt}\pi = A_t\pi.$$</p>
+<p>$$ \frac{d}{dt}\pi &#x3D; A_t\pi.$$</p>
 <p>Now, the general solution can be expressed as</p>
-<p>$$\pi_t = e^{\int_0^t A_s ds} \pi_0 = e^{t\bar{A}_t} \pi_0,$$</p>
-<p>where $\bar{A}_t = \frac{1}{t}\int_0^tA_s ds$ is the time average of the transition matrix and is the transition matrix corresponding to average arrival rate $\bar{\lambda}_t = \frac{1}{t}\int_0^t\lambda_s ds$. If $\lambda_t$ is periodic with period $T$, by applying the same technique (informally) on $\bar{A}_T$ we know that there is a stable trajectory $\pi_T^*$ on $S^k \times [0,T]$ and $\pi_{nT+t}\to\pi_T^*(\cdot,t)$ as $n\to\infty$.</p>
-<p>To go one step further, we might be able to consider different arrival/service process. For example, consider a $M$/$D$/1/$k$ queue, in which the service process is deterministic. Now we have two matrices, the transient arrival</p>
-<p>$$A^T = \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -\lambda &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -\lambda &amp; \lambda \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \end{pmatrix} $$</p>
-<p>and the deterministic service with period $T=1/\mu$</p>
-<p>$$B^T = \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -1 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; -1 \end{pmatrix} $$</p>
+<p>$$\pi_t &#x3D; e^{\int_0^t A_s ds} \pi_0 &#x3D; e^{t\bar{A}_t} \pi_0,$$</p>
+<p>where $\bar{A}_t &#x3D; \frac{1}{t}\int_0^tA_s ds$ is the time average of the transition matrix and is the transition matrix corresponding to average arrival rate $\bar{\lambda}_t &#x3D; \frac{1}{t}\int_0^t\lambda_s ds$. If $\lambda_t$ is periodic with period $T$, by applying the same technique (informally) on $\bar{A}_T$ we know that there is a stable trajectory $\pi_T^*$ on $S^k \times [0,T]$ and $\pi_{nT+t}\to\pi_T^*(\cdot,t)$ as $n\to\infty$.</p>
+<p>To go one step further, we might be able to consider different arrival&#x2F;service process. For example, consider a $M$&#x2F;$D$&#x2F;1&#x2F;$k$ queue, in which the service process is deterministic. Now we have two matrices, the transient arrival</p>
+<p>$$A^T &#x3D; \begin{pmatrix} -\lambda &amp; \lambda &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -\lambda &amp; \lambda &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -\lambda &amp; \lambda \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \end{pmatrix} $$</p>
+<p>and the deterministic service with period $T&#x3D;1&#x2F;\mu$</p>
+<p>$$B^T &#x3D; \begin{pmatrix} 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0 \\ 0 &amp; -1 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \\ &amp;&amp;\vdots&amp;&amp;&amp; \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; -1 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; -1 \end{pmatrix} $$</p>
 <p>So within period $T$ the dynamics is</p>
-<p>$$\pi_t = e^{tA} \pi_0,$$</p>
+<p>$$\pi_t &#x3D; e^{tA} \pi_0,$$</p>
 <p>and at time $T$ we have</p>
-<p>$$\pi_T = Be^{TA} \pi_0.$$</p>
-<p>Then, to analyze the long term behavior of this system, we only need to know the spectral property of matrix $F=Be^{TA}$.</p>
-<p>We can also consider queues with infinity capacity. In this case, we need to define transition operator $A$ on $S^{\infty}$, the set of all discrete probability distribution, and analyze the spectrum of $A$. This is somewhat complicate so currently I will not discuss it. But one interesting question is, whether can we extend this notion into general probability distribution case and consider dynamics on the corresponding set/space.</p>
+<p>$$\pi_T &#x3D; Be^{TA} \pi_0.$$</p>
+<p>Then, to analyze the long term behavior of this system, we only need to know the spectral property of matrix $F&#x3D;Be^{TA}$.</p>
+<p>We can also consider queues with infinity capacity. In this case, we need to define transition operator $A$ on $S^{\infty}$, the set of all discrete probability distribution, and analyze the spectrum of $A$. This is somewhat complicate so currently I will not discuss it. But one interesting question is, whether can we extend this notion into general probability distribution case and consider dynamics on the corresponding set&#x2F;space.</p>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this post I briefly review some simple queuing systems from the perspective of dynamical system. It is shown that this framework is powerful and can be generalized in many different settings. Moreover, we might be able to not only focus on steady state but also analyze the transient dynamics, which can be helpful for subsequent simulation design.</p>
 
       
@@ -394,9 +396,9 @@
       
         <div class="post-tags">
           
-            <a href="/blogs/tags/Stochastic-Process/" rel="tag"># Stochastic Process</a>
-          
             <a href="/blogs/tags/Queuing-Theory/" rel="tag"># Queuing Theory</a>
+          
+            <a href="/blogs/tags/Stochastic-Process/" rel="tag"># Stochastic Process</a>
           
         </div>
       
@@ -455,7 +457,7 @@
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
     </div>
@@ -497,9 +499,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -508,9 +512,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blogs/archives">
+                <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -532,7 +536,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blogs/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

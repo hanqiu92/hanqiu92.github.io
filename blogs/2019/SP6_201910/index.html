@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -52,9 +52,9 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Stochastic Process,">
+  <meta name="keywords" content="Stochastic Process," />
 
 
 
@@ -83,25 +83,25 @@
 
 
 
-<meta name="description" content="对于一组独立同分布的随机变量$\{X_n\}$及相应的和$S_n=\sum_{k=1}^nX_k$，中心极限定理指出，在一定的条件下，$\frac{1}{\sqrt{n}}S_n$的分布将随$n\to\infty$趋于一个正态分布。在这篇文章中，我将介绍随机过程理论中一个相似的结论：如果我们将序列$\{S_n\}$视为随机游走，并通过线性插值的方式将其延拓为连续时间过程$\{S_t\}$，那么在一">
-<meta name="keywords" content="Stochastic Process">
+<meta name="description" content="对于一组独立同分布的随机变量$\{X_n\}$及相应的和$S_n&#x3D;\sum_{k&#x3D;1}^nX_k$，中心极限定理指出，在一定的条件下，$\frac{1}{\sqrt{n}}S_n$的分布将随$n\to\infty$趋于一个正态分布。在这篇文章中，我将介绍随机过程理论中一个相似的结论：如果我们将序列$\{S_n\}$视为随机游走，并通过线性插值的方式将其延拓为连续时间过程$\{S">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Stochastic Process Note VI: Donsker&#39;s Theorem">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2019/SP6_201910/index.html">
 <meta property="og:site_name" content="Han&#39;s Blog">
-<meta property="og:description" content="对于一组独立同分布的随机变量$\{X_n\}$及相应的和$S_n=\sum_{k=1}^nX_k$，中心极限定理指出，在一定的条件下，$\frac{1}{\sqrt{n}}S_n$的分布将随$n\to\infty$趋于一个正态分布。在这篇文章中，我将介绍随机过程理论中一个相似的结论：如果我们将序列$\{S_n\}$视为随机游走，并通过线性插值的方式将其延拓为连续时间过程$\{S_t\}$，那么在一">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-21T15:48:39.677Z">
+<meta property="og:description" content="对于一组独立同分布的随机变量$\{X_n\}$及相应的和$S_n&#x3D;\sum_{k&#x3D;1}^nX_k$，中心极限定理指出，在一定的条件下，$\frac{1}{\sqrt{n}}S_n$的分布将随$n\to\infty$趋于一个正态分布。在这篇文章中，我将介绍随机过程理论中一个相似的结论：如果我们将序列$\{S_n\}$视为随机游走，并通过线性插值的方式将其延拓为连续时间过程$\{S">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-15T04:00:00.000Z">
+<meta property="article:modified_time" content="2019-10-21T15:48:39.677Z">
+<meta property="article:author" content="Han Qiu">
+<meta property="article:tag" content="Stochastic Process">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Stochastic Process Note VI: Donsker&#39;s Theorem">
-<meta name="twitter:description" content="对于一组独立同分布的随机变量$\{X_n\}$及相应的和$S_n=\sum_{k=1}^nX_k$，中心极限定理指出，在一定的条件下，$\frac{1}{\sqrt{n}}S_n$的分布将随$n\to\infty$趋于一个正态分布。在这篇文章中，我将介绍随机过程理论中一个相似的结论：如果我们将序列$\{S_n\}$视为随机游走，并通过线性插值的方式将其延拓为连续时间过程$\{S_t\}$，那么在一">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blogs/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/SP6_201910/">
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2019/SP6_201910/"/>
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
@@ -158,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/" class="brand" rel="start">
+      <a href="/blogs/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -186,7 +186,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blogs/." rel="section">
+          <a href="/blogs/.%20" rel="section">
             
             Home
           </a>
@@ -194,7 +194,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/blogs/categories" rel="section">
+          <a href="/blogs/categories%20" rel="section">
             
             Categories
           </a>
@@ -202,7 +202,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blogs/archives" rel="section">
+          <a href="/blogs/archives%20" rel="section">
             
             Archives
           </a>
@@ -210,7 +210,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/blogs/tags" rel="section">
+          <a href="/blogs/tags%20" rel="section">
             
             Tags
           </a>
@@ -218,7 +218,7 @@
       
         
         <li class="menu-item menu-item-scribbles">
-          <a href="/blogs/scribbles" rel="section">
+          <a href="/blogs/scribbles%20" rel="section">
             
             Scribbles
           </a>
@@ -260,8 +260,8 @@
     <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2019/SP6_201910/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -297,7 +297,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -346,54 +346,55 @@
       
 
       
-        <p>对于一组独立同分布的随机变量$\{X_n\}$及相应的和$S_n=\sum_{k=1}^nX_k$，中心极限定理指出，在一定的条件下，$\frac{1}{\sqrt{n}}S_n$的分布将随$n\to\infty$趋于一个正态分布。在这篇文章中，我将介绍随机过程理论中一个相似的结论：如果我们将序列$\{S_n\}$视为随机游走，并通过线性插值的方式将其延拓为连续时间过程$\{S_t\}$，那么在一定的条件下，该连续时间过程的缩放形式$\{\frac{1}{\sqrt{n}}S_{nt}\}$将随$n\to\infty$趋于一个布朗运动$B$。该结论被称为Donsker定理。Donsker定理一定程度上说明了布朗运动的重要性：对于很多关于某个具体随机游走$X$整体轨迹的性质，例如轨迹极值，Donsker定理指出从长远来看其分布可以通过布朗运动$B$的相应性质的分布进行刻画。<br>For a sequence of i.i.d. random variables $\{X_n\}$ and their sums $S_n=\sum_{k=1}^nX_k$, the central limit theorem states that, under certain conditions, the distribution of $\frac{1}{\sqrt{n}}S_n$ converges to a normal distribution as $n\to\infty$. In this post, I will introduce a similar result for stochastic processes: if we regard the sequence $\{S_n\}$ as a random walk and extend it to a continuous-time process $\{S_t\}$ via linear interpolation, then under certain conditions, the scaled process $\{\frac{1}{\sqrt{n}}S_{nt}\}$ converges to a Brownian motion $B$ as $n\to\infty$. This result is called the Donsker’s theorem. Donsker’s theorem to some extent illustrates the importance of Brownian motions in the theory of stochastic processes: for many path-properties of some specific random walks $X$ such as the maximum or minimum of the trajectories, Donsker’s theorem implies that their distributions in the long run can be characterized by the distribution of the corresponding properties of a Brownian motion $B$.</p>
-<a id="more"></a>
-<p>以下，如非特殊注明，我将假定讨论中涉及到的布朗运动$B$是同一个从0开始的（$B_0 = 0$）布朗运动，并记相应的（序列）概率空间为$(\Omega,\mathcal{F},P_0)$、自然滤子为$\{\mathcal{F}_t\}_{t\geq 0}$。为简便起见，我们将所讨论的时间范围约束在区间$[0,1]$上，并考虑相应的连续函数空间$C[0,1]=\{\text{continuous }\omega:[0,1]\to \mathbb{R}\}$；易知$B$的取值几乎必然落在$C[0,1]$中。进一步地，我们在空间$C[0,1]$中引入无穷范数$\Vert \omega \Vert = \sup\{|\omega(t)|: t\in [0,1]\}$，并定义相应的开、闭、连续性等拓扑概念。<br>In the following, unless otherwise specified, I will assume that the Brownian motion $B$ under discussions is the same Brownian motion which starts from 0 ($B_0 = 0$), and denote the corresponding (sequence) probability space as $(\Omega,\mathcal{F},P_0)$ and the natural filtration as $\{\mathcal{F}_t\}_{t\geq 0}$. For the sake of simplicity, we will restrict the time range under discussions to $[0,1]$ and consider the space of corresponding continuous functions $C[0,1]=\{\text{continuous }\omega:[0,1]\to \mathbb{R}\}$; it is obvious that the value of $B$ almost surely lies in $C[0,1]$. Furthermore, we regard the infinite norm $\Vert \omega \Vert = \sup\{|\omega(t)|: t\in [0,1]\}$ as the norm in the space $C[0,1]$, and define the topological concepts such as open, close, and continuity accordingly.</p>
-<h2 id="Donsker定理-Donsker’s-Theorem"><a href="#Donsker定理-Donsker’s-Theorem" class="headerlink" title="Donsker定理 Donsker’s Theorem"></a>Donsker定理 Donsker’s Theorem</h2><p>在这一节中，我将介绍Donsker定理的具体含义、一些应用例子、以及主要证明思路。首先，让我们复习一些下面会用到的术语。一个实值随机变量$X:\Omega\to \mathbb{R}$的<strong>分布函数</strong>是一个实数上的测度$P\circ X^{-1}:\mathcal{L}(\mathbb{R})\to \mathbb{R}$。类似地，一个连续随机过程$X:\Omega\to C[0,1]$的<strong>分布函数</strong>可以看成是一个$C[0,1]$上的测度$P\circ X^{-1}:\mathcal{C}\to R$；其中$\mathcal{C}$是由有限维集合$\{\omega:\omega(t_i)\in A_i\}$组成的$\sigma$-代数。（<strong>注：</strong>可以证明，由$C[0,1]$中开集组成的$\sigma$-代数与$\mathcal{C}$是等价的。）进一步地，我们称一列在空间$\Omega$上的测度$\mu_n$<strong>弱收敛/按分布收敛</strong>于$\mu$，并记做$\mu_n \Rightarrow \mu$，若对任意$\Omega$上的有界连续函数$\varphi$，有$\int\varphi d\mu_n \to \int\varphi d\mu$。<br>In this section, I will introduce the specific meaning of Donsker’s theorem, along with some examples of its applications and the intuition in its proofs. First, let us recall some terminologies that will be useful below. The <strong>distribution function</strong> of a real-valued random variable $X:\Omega\to \mathbb{R}$ is a measure on real numbers $P\circ X^{-1}:\mathcal{L}(\mathbb{ R})\to \mathbb{R}$. Similarly, the <strong>distribution function</strong> of a continuous-time stochastic process $X:\Omega\to C[0,1]$ can be thought of as a measure on $C[0,1]$: $P\circ X^ {-1}:\mathcal{C}\to R$, where $\mathcal{C}$ is the $\sigma$-algebra consisting of all sets in the finite-dimensional form $\{\omega:\omega(t_i)\in A_i\}$. (<strong>Note:</strong> it can be shown that the $\sigma$-algebra consisting of all open sets of $C[0,1]$ is equivalent to this $\mathcal{C}$.) Furthermore, we say a sequence of measures $\mu_n$ in the space $\Omega$ <strong>converges weakly/converges in distributions</strong> to $\mu$ and write $\mu_n \Rightarrow \mu$, if for any bounded continuous function $\varphi$ on $\Omega$, $\int\varphi d\mu_n \to \int\varphi d\mu$.</p>
+        <p>对于一组独立同分布的随机变量$\{X_n\}$及相应的和$S_n&#x3D;\sum_{k&#x3D;1}^nX_k$，中心极限定理指出，在一定的条件下，$\frac{1}{\sqrt{n}}S_n$的分布将随$n\to\infty$趋于一个正态分布。在这篇文章中，我将介绍随机过程理论中一个相似的结论：如果我们将序列$\{S_n\}$视为随机游走，并通过线性插值的方式将其延拓为连续时间过程$\{S_t\}$，那么在一定的条件下，该连续时间过程的缩放形式$\{\frac{1}{\sqrt{n}}S_{nt}\}$将随$n\to\infty$趋于一个布朗运动$B$。该结论被称为Donsker定理。Donsker定理一定程度上说明了布朗运动的重要性：对于很多关于某个具体随机游走$X$整体轨迹的性质，例如轨迹极值，Donsker定理指出从长远来看其分布可以通过布朗运动$B$的相应性质的分布进行刻画。<br>For a sequence of i.i.d. random variables $\{X_n\}$ and their sums $S_n&#x3D;\sum_{k&#x3D;1}^nX_k$, the central limit theorem states that, under certain conditions, the distribution of $\frac{1}{\sqrt{n}}S_n$ converges to a normal distribution as $n\to\infty$. In this post, I will introduce a similar result for stochastic processes: if we regard the sequence $\{S_n\}$ as a random walk and extend it to a continuous-time process $\{S_t\}$ via linear interpolation, then under certain conditions, the scaled process $\{\frac{1}{\sqrt{n}}S_{nt}\}$ converges to a Brownian motion $B$ as $n\to\infty$. This result is called the Donsker’s theorem. Donsker’s theorem to some extent illustrates the importance of Brownian motions in the theory of stochastic processes: for many path-properties of some specific random walks $X$ such as the maximum or minimum of the trajectories, Donsker’s theorem implies that their distributions in the long run can be characterized by the distribution of the corresponding properties of a Brownian motion $B$.</p>
+<span id="more"></span>
+
+<p>以下，如非特殊注明，我将假定讨论中涉及到的布朗运动$B$是同一个从0开始的（$B_0 &#x3D; 0$）布朗运动，并记相应的（序列）概率空间为$(\Omega,\mathcal{F},P_0)$、自然滤子为$\{\mathcal{F}_t\}_{t\geq 0}$。为简便起见，我们将所讨论的时间范围约束在区间$[0,1]$上，并考虑相应的连续函数空间$C[0,1]&#x3D;\{\text{continuous }\omega:[0,1]\to \mathbb{R}\}$；易知$B$的取值几乎必然落在$C[0,1]$中。进一步地，我们在空间$C[0,1]$中引入无穷范数$\Vert \omega \Vert &#x3D; \sup\{|\omega(t)|: t\in [0,1]\}$，并定义相应的开、闭、连续性等拓扑概念。<br>In the following, unless otherwise specified, I will assume that the Brownian motion $B$ under discussions is the same Brownian motion which starts from 0 ($B_0 &#x3D; 0$), and denote the corresponding (sequence) probability space as $(\Omega,\mathcal{F},P_0)$ and the natural filtration as $\{\mathcal{F}_t\}_{t\geq 0}$. For the sake of simplicity, we will restrict the time range under discussions to $[0,1]$ and consider the space of corresponding continuous functions $C[0,1]&#x3D;\{\text{continuous }\omega:[0,1]\to \mathbb{R}\}$; it is obvious that the value of $B$ almost surely lies in $C[0,1]$. Furthermore, we regard the infinite norm $\Vert \omega \Vert &#x3D; \sup\{|\omega(t)|: t\in [0,1]\}$ as the norm in the space $C[0,1]$, and define the topological concepts such as open, close, and continuity accordingly.</p>
+<h2 id="Donsker定理-Donsker’s-Theorem"><a href="#Donsker定理-Donsker’s-Theorem" class="headerlink" title="Donsker定理 Donsker’s Theorem"></a>Donsker定理 Donsker’s Theorem</h2><p>在这一节中，我将介绍Donsker定理的具体含义、一些应用例子、以及主要证明思路。首先，让我们复习一些下面会用到的术语。一个实值随机变量$X:\Omega\to \mathbb{R}$的<strong>分布函数</strong>是一个实数上的测度$P\circ X^{-1}:\mathcal{L}(\mathbb{R})\to \mathbb{R}$。类似地，一个连续随机过程$X:\Omega\to C[0,1]$的<strong>分布函数</strong>可以看成是一个$C[0,1]$上的测度$P\circ X^{-1}:\mathcal{C}\to R$；其中$\mathcal{C}$是由有限维集合$\{\omega:\omega(t_i)\in A_i\}$组成的$\sigma$-代数。（<strong>注：</strong>可以证明，由$C[0,1]$中开集组成的$\sigma$-代数与$\mathcal{C}$是等价的。）进一步地，我们称一列在空间$\Omega$上的测度$\mu_n$<strong>弱收敛&#x2F;按分布收敛</strong>于$\mu$，并记做$\mu_n \Rightarrow \mu$，若对任意$\Omega$上的有界连续函数$\varphi$，有$\int\varphi d\mu_n \to \int\varphi d\mu$。<br>In this section, I will introduce the specific meaning of Donsker’s theorem, along with some examples of its applications and the intuition in its proofs. First, let us recall some terminologies that will be useful below. The <strong>distribution function</strong> of a real-valued random variable $X:\Omega\to \mathbb{R}$ is a measure on real numbers $P\circ X^{-1}:\mathcal{L}(\mathbb{ R})\to \mathbb{R}$. Similarly, the <strong>distribution function</strong> of a continuous-time stochastic process $X:\Omega\to C[0,1]$ can be thought of as a measure on $C[0,1]$: $P\circ X^ {-1}:\mathcal{C}\to R$, where $\mathcal{C}$ is the $\sigma$-algebra consisting of all sets in the finite-dimensional form $\{\omega:\omega(t_i)\in A_i\}$. (<strong>Note:</strong> it can be shown that the $\sigma$-algebra consisting of all open sets of $C[0,1]$ is equivalent to this $\mathcal{C}$.) Furthermore, we say a sequence of measures $\mu_n$ in the space $\Omega$ <strong>converges weakly&#x2F;converges in distributions</strong> to $\mu$ and write $\mu_n \Rightarrow \mu$, if for any bounded continuous function $\varphi$ on $\Omega$, $\int\varphi d\mu_n \to \int\varphi d\mu$.</p>
 <p>在完成了上述准备后，我们可以引入本文的核心结论。<br>With the above definitions being established, we can now introduce the major theorems of this post.</p>
-<p><strong>定理1.1（Donsker定理）：</strong>假设一组独立同分布的随机变量$\{X_n\}$满足$EX_n = 0$，$EX_n^2 = 1$。考虑$S_n = \sum_{k=1}^n X_k$，并通过线性插值的方式将其延拓到整个正实轴$\mathbb{R}^+$上：$S_t = (\lceil t \rceil - t) S_{\lfloor t \rfloor} + (t - \lfloor t \rfloor) S_{\lceil t \rceil}$。为简便起见，不妨用$S_{n\cdot}$表示缩放随机过程$\{S_{nt}\}_{0\leq t\leq 1}$。则<br><strong>Theorem 1.1 (Donsker’s theorem):</strong> Suppose that there is a sequence of independent and identically distributed random variables $\{X_n\}$ such that $EX_n = 0$, $EX_n^2 = 1$. Let $S_n = \sum_{k=1}^n X_k$, and extend this random walk to the entire positive real axis $\mathbb{R}^+$ by linear interpolation: $S_t = (\lceil t \rceil - t) S_{\lfloor t \rfloor} + (t - \lfloor t \rfloor) S_{\lceil t \rceil}$. For the sake of simplicity, we will denote the scaled process $\{S_{nt}\}_{0\leq t\leq 1}$ as $S_{n\cdot}$. Then,</p>
+<p><strong>定理1.1（Donsker定理）：</strong>假设一组独立同分布的随机变量$\{X_n\}$满足$EX_n &#x3D; 0$，$EX_n^2 &#x3D; 1$。考虑$S_n &#x3D; \sum_{k&#x3D;1}^n X_k$，并通过线性插值的方式将其延拓到整个正实轴$\mathbb{R}^+$上：$S_t &#x3D; (\lceil t \rceil - t) S_{\lfloor t \rfloor} + (t - \lfloor t \rfloor) S_{\lceil t \rceil}$。为简便起见，不妨用$S_{n\cdot}$表示缩放随机过程$\{S_{nt}\}_{0\leq t\leq 1}$。则<br><strong>Theorem 1.1 (Donsker’s theorem):</strong> Suppose that there is a sequence of independent and identically distributed random variables $\{X_n\}$ such that $EX_n &#x3D; 0$, $EX_n^2 &#x3D; 1$. Let $S_n &#x3D; \sum_{k&#x3D;1}^n X_k$, and extend this random walk to the entire positive real axis $\mathbb{R}^+$ by linear interpolation: $S_t &#x3D; (\lceil t \rceil - t) S_{\lfloor t \rfloor} + (t - \lfloor t \rfloor) S_{\lceil t \rceil}$. For the sake of simplicity, we will denote the scaled process $\{S_{nt}\}_{0\leq t\leq 1}$ as $S_{n\cdot}$. Then,</p>
 <p>$$\frac{1}{\sqrt{n}}S_{n\cdot} \Rightarrow B. \tag{1.1}$$</p>
 <p>由定理1.1，可以推导出以下有用的推论：<br>We can derive the following useful corollary with theorem 1.1:</p>
 <p><strong>定理1.2：</strong>假设定理1.1中的条件皆成立。若函数$\varphi: C[0,1]\to \mathbb{R}$是$P_0$-a.s.连续的，则<br><strong>Theorem 1.2:</strong> Suppose the conditions in theorem 1.1 hold. If the function $\varphi: C[0,1]\to \mathbb{R}$ is $P_0$-a.s. continuous, then</p>
 <p>$$\varphi(\frac{1}{\sqrt{n}}S_{n\cdot}) \Rightarrow \varphi(B). \tag{1.2}$$</p>
 <p><strong>注：</strong>在定理1.2中，我们并不要求$\varphi$是彻底连续的，原因在于很多有用的序列性质$\varphi$对于轨迹空间$C[0,1]$上的无穷范数并不稳定，会在一些零测的区域出现不连续性。<br><strong>Note:</strong> In theorem 1.2, we do not require $\varphi$ to be always continuous, because many useful properties $\varphi$ on trajectories are not stable with respect to the infinite norm on the space $C[0,1]$ and will not be continuous in some regions of measure zero.</p>
-<h3 id="例子-Examples"><a href="#例子-Examples" class="headerlink" title="例子 Examples"></a>例子 Examples</h3><p><strong>例子1.3：</strong>令$\varphi(\omega) = \omega(1)$。容易看出$\varphi$是连续的，因此根据定理1.2，有<br><strong>Example 1.3:</strong> Let $\varphi(\omega) = \omega(1)$. We can see that $\varphi$ is continuous, so according to theorem 1.2,</p>
+<h3 id="例子-Examples"><a href="#例子-Examples" class="headerlink" title="例子 Examples"></a>例子 Examples</h3><p><strong>例子1.3：</strong>令$\varphi(\omega) &#x3D; \omega(1)$。容易看出$\varphi$是连续的，因此根据定理1.2，有<br><strong>Example 1.3:</strong> Let $\varphi(\omega) &#x3D; \omega(1)$. We can see that $\varphi$ is continuous, so according to theorem 1.2,</p>
 <p>$$\frac{1}{\sqrt{n}}S_n \Rightarrow B_1. \tag{1.3}$$</p>
 <p>此即经典的中心极限定理。<br>This is the classic central limit theorem.</p>
-<p><strong>例子1.4：</strong>令$\varphi(\omega) = \max\{\omega(t): 0\leq t\leq 1\}$。容易看出$\varphi$是连续的，因此根据定理1.2，有<br><strong>Example 1.4:</strong> Let $\varphi(\omega) = \max\{\omega(t): 0\leq t\leq 1\}$. We can see that $\varphi$ is continuous, so according to theorem 1.2,</p>
+<p><strong>例子1.4：</strong>令$\varphi(\omega) &#x3D; \max\{\omega(t): 0\leq t\leq 1\}$。容易看出$\varphi$是连续的，因此根据定理1.2，有<br><strong>Example 1.4:</strong> Let $\varphi(\omega) &#x3D; \max\{\omega(t): 0\leq t\leq 1\}$. We can see that $\varphi$ is continuous, so according to theorem 1.2,</p>
 <p>$$\frac{1}{\sqrt{n}}\max_{0\leq m\leq n}S_m \Rightarrow \max_{0\leq t \leq 1}B_t; \tag{1.4}$$</p>
 <p>而根据反射原理，式(1.4)右端随机变量的分布具有以下解析形式：<br>while according to the reflection principle, the distribution of the random variable at the right-hand side of equation (1.4) has the following analytical form:</p>
-<p>$$P_0(\max_{0\leq t \leq 1}B_t \geq a) = 2P_0(B_1 \geq a), \ \forall a \geq 0. \tag{1.5}$$</p>
-<p><strong>例子1.5：</strong>假设$k$是一个正整数。令$\varphi(\omega) = \int_0^1\omega(t)^k dt$。容易看出$\varphi$是连续的，因此根据定理1.2，有<br><strong>Example 1.5:</strong> Suppose $k$ is a positive integer. Let $\varphi(\omega) = \int_0^1\omega(t)^k dt$. We can see that $\varphi$ is continuous, so according to theorem 1.2,</p>
-<p>$$\int_0^1 (S(nt)/\sqrt{n})^k dt \Rightarrow \int_0^1 B_t^k dt. \tag{1.6}$$</p>
+<p>$$P_0(\max_{0\leq t \leq 1}B_t \geq a) &#x3D; 2P_0(B_1 \geq a), \ \forall a \geq 0. \tag{1.5}$$</p>
+<p><strong>例子1.5：</strong>假设$k$是一个正整数。令$\varphi(\omega) &#x3D; \int_0^1\omega(t)^k dt$。容易看出$\varphi$是连续的，因此根据定理1.2，有<br><strong>Example 1.5:</strong> Suppose $k$ is a positive integer. Let $\varphi(\omega) &#x3D; \int_0^1\omega(t)^k dt$. We can see that $\varphi$ is continuous, so according to theorem 1.2,</p>
+<p>$$\int_0^1 (S(nt)&#x2F;\sqrt{n})^k dt \Rightarrow \int_0^1 B_t^k dt. \tag{1.6}$$</p>
 <p>而通过一些不等式估计，我们可以证明<br>While with some estimations using inequalities, we can prove</p>
-<p>$$\int_0^1 (S(nt)/\sqrt{n})^k dt - n^{-1-k/2}\sum_{m=1}^n S_m^k \to 0; \tag{1.7}$$</p>
+<p>$$\int_0^1 (S(nt)&#x2F;\sqrt{n})^k dt - n^{-1-k&#x2F;2}\sum_{m&#x3D;1}^n S_m^k \to 0; \tag{1.7}$$</p>
 <p>因此有<br>therefore, we have</p>
-<p>$$n^{-1-k/2}\sum_{m=1}^n S_m^k \Rightarrow \int_0^1 B_t^k dt. \tag{1.8}$$</p>
-<h3 id="证明思路-Intuition-in-Proofs"><a href="#证明思路-Intuition-in-Proofs" class="headerlink" title="证明思路 Intuition in Proofs"></a>证明思路 Intuition in Proofs</h3><p>在这一小节中，我将介绍两种定理1.1的证明思路。第一种思路相对自然：对连续时间进行离散采样，先证明离散时间情况下的结论，然后再通过轨迹连续性将其延拓为连续时间情况下的结论。具体来说，我们可以考虑采样点$t_k = k2^{-m},k\in\{0,\cdots,2^m-1\}$。一方面，我们可以对每个$t_k$应用中心极限定理，从而证明随机游走的有限维采样分布弱收敛于布朗运动的有限维采样分布；另一方面，通过布朗运动和随机游走线性延拓的轨迹连续性，证明在$m\to\infty$时，两者的有限维采样分布都强收敛于连续时间分布。具体证明可以参考<a href="https://www.math.utah.edu/~davar/ps-pdf-files/donsker.pdf" target="_blank" rel="noopener">以下课件</a>。<br>In this subsection, I will introduce two approaches in proving theorems 1.1. The first approach is fairly intuitive: we first sample the time at a finite number of points and prove the corresponding discrete-time version of the conclusion, and then extend it to the continuous-time setting via trajectory continuity. Specifically, we can consider the sampling point $t_k = k2^{-m},k\in\{0,\cdots,2^m-1\}$. On the one hand, we can apply the central limit theorem to each $t_k$ to prove that the finite-dimensional sample distribution of the random walk converges (weakly) to the finite-dimensional sample distribution of the Brownian motion. On the other hand, we can use the trajectory continuity of Brownian motions and linear interpolations of random walks to prove that both finite-dimensional sampling distributions converge (strongly) to the corresponding continuous-time distributions as $m\to\infty$. A detailed proof in this direction can be found in <a href="https://www.math.utah.edu/~davar/ps-pdf-files/donsker.pdf" target="_blank" rel="noopener">this lecture note</a>.</p>
+<p>$$n^{-1-k&#x2F;2}\sum_{m&#x3D;1}^n S_m^k \Rightarrow \int_0^1 B_t^k dt. \tag{1.8}$$</p>
+<h3 id="证明思路-Intuition-in-Proofs"><a href="#证明思路-Intuition-in-Proofs" class="headerlink" title="证明思路 Intuition in Proofs"></a>证明思路 Intuition in Proofs</h3><p>在这一小节中，我将介绍两种定理1.1的证明思路。第一种思路相对自然：对连续时间进行离散采样，先证明离散时间情况下的结论，然后再通过轨迹连续性将其延拓为连续时间情况下的结论。具体来说，我们可以考虑采样点$t_k &#x3D; k2^{-m},k\in\{0,\cdots,2^m-1\}$。一方面，我们可以对每个$t_k$应用中心极限定理，从而证明随机游走的有限维采样分布弱收敛于布朗运动的有限维采样分布；另一方面，通过布朗运动和随机游走线性延拓的轨迹连续性，证明在$m\to\infty$时，两者的有限维采样分布都强收敛于连续时间分布。具体证明可以参考<a target="_blank" rel="noopener" href="https://www.math.utah.edu/~davar/ps-pdf-files/donsker.pdf">以下课件</a>。<br>In this subsection, I will introduce two approaches in proving theorems 1.1. The first approach is fairly intuitive: we first sample the time at a finite number of points and prove the corresponding discrete-time version of the conclusion, and then extend it to the continuous-time setting via trajectory continuity. Specifically, we can consider the sampling point $t_k &#x3D; k2^{-m},k\in\{0,\cdots,2^m-1\}$. On the one hand, we can apply the central limit theorem to each $t_k$ to prove that the finite-dimensional sample distribution of the random walk converges (weakly) to the finite-dimensional sample distribution of the Brownian motion. On the other hand, we can use the trajectory continuity of Brownian motions and linear interpolations of random walks to prove that both finite-dimensional sampling distributions converge (strongly) to the corresponding continuous-time distributions as $m\to\infty$. A detailed proof in this direction can be found in <a target="_blank" rel="noopener" href="https://www.math.utah.edu/~davar/ps-pdf-files/donsker.pdf">this lecture note</a>.</p>
 <p>第二种思路，在我看来，则更接近问题本质：首先，引入一组停时序列$\{\tau_n^m\}_{m\geq 0}$将随机游走$\{\frac{1}{\sqrt{n}}S_m\}_{m\geq 0}$弱嵌入到一个布朗运动$B$中（即原始随机过程$\{\frac{1}{\sqrt{n}}S_m\}_{m\geq 0}$与嵌入过程$\{B_{\tau_n^m}\}_{m\geq 0}$的分布相同）；然后，说明在给定条件下，对于任意$t\in[0,1]$，停时序列$\{T_{\tau_n^{nt}}\}_{n\geq 0}$具有强收敛性质，从而证明嵌入过程$\{B_{\tau_n^{nt}}\}_{n\geq 0}$强收敛于$B_t$。上述步骤可以用下面这个表达式表示：<br>The second approach, in my opinion, better addresses the nature of the problem. First, we introduce a collection of stopping time sequences $\{\tau_n^m\}_{m\geq 0}$ to embed randomly walks $\{\frac{1}{\sqrt{n}}S_m\}_{m\geq 0}$ into a Brownian motion $B$ weakly (i.e., the original processes $\{\frac{1}{\sqrt{n}}S_m\}_{m\geq 0}$ and the embedded processes $\{B_{\tau_n^m}\}_{m\geq 0}$ have same distributions). Then, we can show that under certain conditions, for any $t\in[0,1]$, the stopping time sequence $\{T_{\tau_n^{nt}}\}_{n\geq 0}$ converges to $t$; as a result, the embedded process $\{B_{\tau_n^{nt}}\}_{n\geq 0}$ also converges, and to $B_t$. The above steps can be summarized by the following expression:</p>
-<p>$$\frac{1}{\sqrt{n}}S_{nt} =_d B_{\tau_n^{nt}} \to B_t. \tag{1.9}$$</p>
+<p>$$\frac{1}{\sqrt{n}}S_{nt} &#x3D;_d B_{\tau_n^{nt}} \to B_t. \tag{1.9}$$</p>
 <p>相比于第一种思路，这种思路对于时间点的选取更为灵活，因此更容易拓展到较复杂的结果中。例如，当所讨论的目标随机过程不是随机游走时，停时序列$\{T_{\tau_n^{nt}}\}_{n\geq 0}$很可能强收敛到某个关于时间$t$的函数$f(t)$上；此时，应用第一种思路会存在不小的表示上的困难，而第二种思路就不存在这个问题。然而，第二种思路依赖于嵌入停时$\{\tau_n^m\}_{m\geq 0}$的存在性；这不是一个平凡的问题。在下一节中，我将介绍将一个随机游走、甚至是一般随机过程嵌入到一个布朗运动中的可能手段及必要条件。<br>Compared to the first approach, the second approach has higher flexibility in the selection of time points, so it can be applied to more general results. For example, when the stochastic process in question is not a random walk, the stopping time sequence $\{T_{\tau_n^{nt}}\}_{n\geq 0}$ may converge strongly to some function $f(t)$ rather than $t$; in this case, the first approach will have difficulty in finding appropriate time points to sample, while the second approach will not. However, the second approach relies on the existence of embedding stopping times $\{\tau_n^m\}_{m\geq 0}$, which is not a trivial problem. In the next section, I will introduce viable methods and necessary conditions to embed a random walk, or even a general stochastic process, into a Brownian motion.</p>
-<h2 id="Skorokhod嵌入定理-Skorokhod’s-Embedding-Theorems"><a href="#Skorokhod嵌入定理-Skorokhod’s-Embedding-Theorems" class="headerlink" title="Skorokhod嵌入定理 Skorokhod’s Embedding Theorems"></a>Skorokhod嵌入定理 Skorokhod’s Embedding Theorems</h2><p>首先，让我们考虑一个的简单例子。假设给定两个实数$x_- &lt; 0 &lt; x_+$。对于布朗运动$B$，考虑停时$T=\inf\{t: B_t \not\in (x_-,x_+)\}$。根据布朗运动的性质，$T$是几乎完全有界的，因此可选停时定理指出$B_T$是一个鞅。又由于$B_T$的取值只能为$x_-$或$x_+$，故$B_T$是一个满足中心二元分布$Binary(x_-,x_+)$的随机变量，即$P(B_T = x_-) = \frac{-x_-}{x_+-x_-}, P(B_T=x_+) = \frac{x_+}{x_+-x_-}$。进一步地，我们可以构造停时序列$\{T_n\}$使得各$T_{n+1}-T_n$独立且与$T$同分布；此时，根据布朗运动的强马尔科夫性，对应的序列$\{B_{T_n}\}$与$\{S_n=\sum_{i=1}^n X_n\}$同分布，其中$X_n$为独立且与$B_T$同分布的随机变量。这意味着$\{B_{T_n}\}$为一个随机游走。特别地，若$x_-=-1,x_+=1$，则相应的$\{B_{T_n}\}$为一个简单随机游走。<br>First, let us consider a simple example. Assume a Brownian motion $B$ and two real numbers $x_- &lt; 0 &lt; x_+$ are given, and consider the stopping time $T=\inf\{t: B_t \not\in (x_-,x_+)\}$. According to the property of Brownian motions, $T$ is almost surely bounded, so the optional stopping time theorem implies that $B_T$ is a martingale. Since $B_T$ can only take values in $\{x_-,x_+\}$, $B_T$ follows a centered binary distribution $Binary(x_-,x_+)$, i.e., $P(B_T = x_-) = \frac{-x_-}{x_+-x_-}, P(B_T=x _+) = \frac{x_+}{x_+-x_-}$. Furthermore, we can construct a stopping time sequence $\{T_n\}$ such that each $T_{n+1}-T_n$ is independent and has the same distribution as $T$; therefore, according to the strong Markov property of Brownian motions, the corresponding sequence $\{B_{T_n}\}$ has the same distribution as $\{S_n=\sum_{i=1}^n X_n \}$, where each $X_n$ is an independent random variable that has the same distribution as $B_T$. This means that $\{B_{T_n}\}$ is a random walk. In particular, if $x_-=-1, x_+=1$, then $\{B_{T_n}\}$ is a simple random walk.</p>
-<p>根据上面的讨论，我们可知：对于任一满足$X_n \sim X$, i.i.d, $EX=0$的随机游走$\{S_n = \sum_{k=1}^n X_k\}$，如果我们能够对$X$找到一个对应的停时$T$使得$B_T =_d X$，则根据布朗运动的强马尔科夫性，可以构造出一个停时序列$\{T_n\}$使得$\{B_{T_n}\}=_d \{S_n\}$。因此，我们只需要考虑对一般的满足$EX=0$随机变量$X$构造相应的嵌入停时$T$的问题。<br>Based on the above discussion, we know that: for any random walk $\{S_n = \sum_{k=1}^ n X_k\}$ that satisfies $X_n \sim X$, i.i.d. and $EX=0$, if we can find a corresponding stopping time $T$ for $X$ such that $B_T =_d X$, then according to the strong Markov property of Brownian motions, we can construct a stopping time sequence $\{T_n\}$ satisfying $\{B_{T_n}\}=_d \{S_n\}$. Therefore, we only need to consider the problem of finding an embedding stopping time $T$ for a general random variable $X$ with $EX=0$.</p>
+<h2 id="Skorokhod嵌入定理-Skorokhod’s-Embedding-Theorems"><a href="#Skorokhod嵌入定理-Skorokhod’s-Embedding-Theorems" class="headerlink" title="Skorokhod嵌入定理 Skorokhod’s Embedding Theorems"></a>Skorokhod嵌入定理 Skorokhod’s Embedding Theorems</h2><p>首先，让我们考虑一个的简单例子。假设给定两个实数$x_- &lt; 0 &lt; x_+$。对于布朗运动$B$，考虑停时$T&#x3D;\inf\{t: B_t \not\in (x_-,x_+)\}$。根据布朗运动的性质，$T$是几乎完全有界的，因此可选停时定理指出$B_T$是一个鞅。又由于$B_T$的取值只能为$x_-$或$x_+$，故$B_T$是一个满足中心二元分布$Binary(x_-,x_+)$的随机变量，即$P(B_T &#x3D; x_-) &#x3D; \frac{-x_-}{x_+-x_-}, P(B_T&#x3D;x_+) &#x3D; \frac{x_+}{x_+-x_-}$。进一步地，我们可以构造停时序列$\{T_n\}$使得各$T_{n+1}-T_n$独立且与$T$同分布；此时，根据布朗运动的强马尔科夫性，对应的序列$\{B_{T_n}\}$与$\{S_n&#x3D;\sum_{i&#x3D;1}^n X_n\}$同分布，其中$X_n$为独立且与$B_T$同分布的随机变量。这意味着$\{B_{T_n}\}$为一个随机游走。特别地，若$x_-&#x3D;-1,x_+&#x3D;1$，则相应的$\{B_{T_n}\}$为一个简单随机游走。<br>First, let us consider a simple example. Assume a Brownian motion $B$ and two real numbers $x_- &lt; 0 &lt; x_+$ are given, and consider the stopping time $T&#x3D;\inf\{t: B_t \not\in (x_-,x_+)\}$. According to the property of Brownian motions, $T$ is almost surely bounded, so the optional stopping time theorem implies that $B_T$ is a martingale. Since $B_T$ can only take values in $\{x_-,x_+\}$, $B_T$ follows a centered binary distribution $Binary(x_-,x_+)$, i.e., $P(B_T &#x3D; x_-) &#x3D; \frac{-x_-}{x_+-x_-}, P(B_T&#x3D;x _+) &#x3D; \frac{x_+}{x_+-x_-}$. Furthermore, we can construct a stopping time sequence $\{T_n\}$ such that each $T_{n+1}-T_n$ is independent and has the same distribution as $T$; therefore, according to the strong Markov property of Brownian motions, the corresponding sequence $\{B_{T_n}\}$ has the same distribution as $\{S_n&#x3D;\sum_{i&#x3D;1}^n X_n \}$, where each $X_n$ is an independent random variable that has the same distribution as $B_T$. This means that $\{B_{T_n}\}$ is a random walk. In particular, if $x_-&#x3D;-1, x_+&#x3D;1$, then $\{B_{T_n}\}$ is a simple random walk.</p>
+<p>根据上面的讨论，我们可知：对于任一满足$X_n \sim X$, i.i.d, $EX&#x3D;0$的随机游走$\{S_n &#x3D; \sum_{k&#x3D;1}^n X_k\}$，如果我们能够对$X$找到一个对应的停时$T$使得$B_T &#x3D;_d X$，则根据布朗运动的强马尔科夫性，可以构造出一个停时序列$\{T_n\}$使得$\{B_{T_n}\}&#x3D;_d \{S_n\}$。因此，我们只需要考虑对一般的满足$EX&#x3D;0$随机变量$X$构造相应的嵌入停时$T$的问题。<br>Based on the above discussion, we know that: for any random walk $\{S_n &#x3D; \sum_{k&#x3D;1}^ n X_k\}$ that satisfies $X_n \sim X$, i.i.d. and $EX&#x3D;0$, if we can find a corresponding stopping time $T$ for $X$ such that $B_T &#x3D;_d X$, then according to the strong Markov property of Brownian motions, we can construct a stopping time sequence $\{T_n\}$ satisfying $\{B_{T_n}\}&#x3D;_d \{S_n\}$. Therefore, we only need to consider the problem of finding an embedding stopping time $T$ for a general random variable $X$ with $EX&#x3D;0$.</p>
 <p>现在，根据上面的例子我们知道，如果$X$是一个中心二元分布$X\sim Binary(x_-,x_+)$，则停时$T$是容易构造的。那么，对于一般的$X$，我们可以试图将其表示为一个中心二元分布的混合分布，即<br>From the above example, we know that if $X$ is a centered binary distribution $X\sim Binary(x_-,x_+)$, then we have a simple way to construct the embedding stopping time $T$. Now, for any $X$ in general, we can also try to represent it as a mixture of centered binary distributions, i.e.,</p>
-<p>$$P(X\leq x) = \int_{x_-,x_+} [\frac{-x_-}{x_+-x_-}P(x_- \leq x) + \frac{x_+}{x_+-x_-}P(x_+ \leq x)] dF(x_-,x_+). \tag{2.1}$$</p>
+<p>$$P(X\leq x) &#x3D; \int_{x_-,x_+} [\frac{-x_-}{x_+-x_-}P(x_- \leq x) + \frac{x_+}{x_+-x_-}P(x_+ \leq x)] dF(x_-,x_+). \tag{2.1}$$</p>
 <p>在这种表示下，我们就可以使用上述例子中的方法引入对应的嵌入停时$T$了。然而，此时$T$中引入了$(x_-,x_+)$中的随机性，而由于这种随机性与布朗运动$B$自身的随机性独立，因此$T$不是适应于自然滤子$\{\mathcal{F}_n\}$的。<br>Under this form, we can use the same method in the above example to construct the stopping time $T$. However, in this case, we’ve introduced some randomness from $(x_-, x_+)$ to $T$, and because this randomness is independent of the Brownian motion $B$, $T$ is not adapted to the natural filtration $\{\mathcal{F}_n\}$.</p>
 <p>为了解决上述适应性问题，Dubins提出了一种巧妙的思路：构造二分鞅。具体来说，对于给定的$X$，首先考虑条件期望值<br>To resolve this problem of adaptivity, Dubins proposed a clever idea: to construct binary martingales. Specifically, for a given $X$, we first consider the conditional expectations</p>
-<p>$$x_+ = E(X|X &gt; 0), x_- = E(X|X &lt; 0); \tag{2.2}$$</p>
-<p>根据上述例子，若令$T_1=\inf\{t: B_t \not\in (x_-,x_+)\}$，则$B_{T_1}$服从$\{x_-,x_+\}$上的中心二元分布。接下来，不妨假设$B_{T_1} = x_+$。我们进一步引入条件期望值$x_{++} = E(X|X &gt; x_+), x_{+-} = E(X|0 &lt; X &lt; x_+)$，并考虑停时$T_2=\inf\{t &gt; T_1: B_t \not\in (x_{+-},x_{++})\}$。根据布朗运动的强马尔科夫性，$E(B_{T_2}|\mathcal{F}_{T_1}) = B_{T_1} = x_+$，因此在$B_{T_1} = x_+$的条件下，$B_{T_2}$服从$\{x_{+-},x_{++}\}$上的以$x_+$为中心的二元分布。同理，对情况$B_{T_1} = x_-$，我们也可以构造出相应的停时$T_2$。以此类推，我们可以定义$T_3,T_4,\cdots$，使得$B_{T_n}$是一个取值分布在$2^n$个点上的中心离散分布。可以证明，当$X$满足一定的条件时，随着$n$的增长$T_n$以a.s.收敛到一个几乎有界的停时$T$，且$B_T$与$X$具有同样的分布。同时，易知在这种构造方式下$T$是适应于$\{\mathcal{F}_n\}$的。<br>According to the above example, if we let $T_1=\inf\{t: B_t \not\in (x_-,x_+)\}$, then $B_{T_1}$ follows the centered binary distribution on $\{x_-,x_+\}$. Next, suppose WLOG that $B_{T_1} = x_+$. We can then introduce the conditional expectations $x_{++} = E(X|X &gt; x_+), x_{+-} = E(X|0 &lt; X ​​&lt; x_+)$, and consider the stopping time $T_2=\inf\{t &gt; T_1: B_t \not\in (x_{+-},x_{++})\}$. According to the strong Markov property of Brownian motions, $E(B_{T_2}|\mathcal{F}_{T_1}) = B_{T_1} = x_+$ , so under the event $\{B_{T_1} = x_+\}$, $B_{T_2}$ follows the centered (with respect to $x_+$) binary distribution on $\{x_{+-},x_{++}\}$. Similarly, for the case $B_{T_1} = x_-$, we can also construct an embedding stopping time $T_2$. Now, we can define $T_3, T_4, \cdots$ by induction such that $B_{T_n}$ is a centered discrete distribution with $2^n$ possible values. It can be shown that when $X$ satisfies certain conditions, as $n$ grows $T_n$ converges almost surely to a bounded stopping time $T$, where $B_T$ has the same distribution as $X$. Moreover, it is obvious that this $T$ is adapted to $\{\mathcal{F}_n\}$.</p>
+<p>$$x_+ &#x3D; E(X|X &gt; 0), x_- &#x3D; E(X|X &lt; 0); \tag{2.2}$$</p>
+<p>根据上述例子，若令$T_1&#x3D;\inf\{t: B_t \not\in (x_-,x_+)\}$，则$B_{T_1}$服从$\{x_-,x_+\}$上的中心二元分布。接下来，不妨假设$B_{T_1} &#x3D; x_+$。我们进一步引入条件期望值$x_{++} &#x3D; E(X|X &gt; x_+), x_{+-} &#x3D; E(X|0 &lt; X &lt; x_+)$，并考虑停时$T_2&#x3D;\inf\{t &gt; T_1: B_t \not\in (x_{+-},x_{++})\}$。根据布朗运动的强马尔科夫性，$E(B_{T_2}|\mathcal{F}_{T_1}) &#x3D; B_{T_1} &#x3D; x_+$，因此在$B_{T_1} &#x3D; x_+$的条件下，$B_{T_2}$服从$\{x_{+-},x_{++}\}$上的以$x_+$为中心的二元分布。同理，对情况$B_{T_1} &#x3D; x_-$，我们也可以构造出相应的停时$T_2$。以此类推，我们可以定义$T_3,T_4,\cdots$，使得$B_{T_n}$是一个取值分布在$2^n$个点上的中心离散分布。可以证明，当$X$满足一定的条件时，随着$n$的增长$T_n$以a.s.收敛到一个几乎有界的停时$T$，且$B_T$与$X$具有同样的分布。同时，易知在这种构造方式下$T$是适应于$\{\mathcal{F}_n\}$的。<br>According to the above example, if we let $T_1&#x3D;\inf\{t: B_t \not\in (x_-,x_+)\}$, then $B_{T_1}$ follows the centered binary distribution on $\{x_-,x_+\}$. Next, suppose WLOG that $B_{T_1} &#x3D; x_+$. We can then introduce the conditional expectations $x_{++} &#x3D; E(X|X &gt; x_+), x_{+-} &#x3D; E(X|0 &lt; X ​​&lt; x_+)$, and consider the stopping time $T_2&#x3D;\inf\{t &gt; T_1: B_t \not\in (x_{+-},x_{++})\}$. According to the strong Markov property of Brownian motions, $E(B_{T_2}|\mathcal{F}_{T_1}) &#x3D; B_{T_1} &#x3D; x_+$ , so under the event $\{B_{T_1} &#x3D; x_+\}$, $B_{T_2}$ follows the centered (with respect to $x_+$) binary distribution on $\{x_{+-},x_{++}\}$. Similarly, for the case $B_{T_1} &#x3D; x_-$, we can also construct an embedding stopping time $T_2$. Now, we can define $T_3, T_4, \cdots$ by induction such that $B_{T_n}$ is a centered discrete distribution with $2^n$ possible values. It can be shown that when $X$ satisfies certain conditions, as $n$ grows $T_n$ converges almost surely to a bounded stopping time $T$, where $B_T$ has the same distribution as $X$. Moreover, it is obvious that this $T$ is adapted to $\{\mathcal{F}_n\}$.</p>
 <p>综合上述讨论，我们可得以下目标结果：<br>In summary, we can derive the next two results:</p>
-<p><strong>定理2.1（Skorokhod第一嵌入定理）：</strong>若随机变量$X$满足$EX=0$，$EX^2 &lt;\infty$，则对一个给定的布朗运动$B$及相应的自然滤子$\{\mathcal{F}_t\}$，存在一个停时$T$使得$B_T =_d X$，且$ET = EX^2$。<br><strong>Theorem 2.1 (Skorokhod’s first embedding theorem):</strong> If the random variable $X$ satisfies $EX=0$, $EX^2 &lt;\infty$, then for a given Brownian motion $B$ and the corresponding natural filtration $\{\mathcal{F}_t\}$, there is a stopping time $T$ such that $B_T =_d X$, and $ET = EX^2$.</p>
-<p><strong>定理2.2（Skorokhod第二嵌入定理）：</strong>假设独立同分布随机变量$X_n$满足$EX_n = 0$，$EX_n^2 &lt; \infty$，并记$S_n = \sum_{k=1}^n X_k$，则对一个给定的布朗运动$B$及相应的自然滤子$\{\mathcal{F}_t\}$，存在一列停时$0=T_0 \leq T_1 \leq T_2 \leq \cdots$使得$\{B_{T_n}\}=_d \{S_n\}$，且各$T_{n+1} - T_n$是独立同分布的随机变量。<br><strong>Theorem 2.2 (Skorokhod’s second embedding theorem):</strong> If random variables $X_n$ are i.i.d. and satisfy $EX_n = 0$, $EX_n^2 &lt; \infty$, and $S_n = \sum_{k=1}^n X_k$, then for a given Brownian motion $B$ and the corresponding natural filtration $\{\mathcal{F}_t\}$, there is a sequence of stopping times $0=T_0 \leq T_1 \leq T_2 \leq \cdots$ such that $\{B_{T_n}\}=_d \{S_n\}$, and $T_{n+1} - T_n$ are i.i.d.</p>
+<p><strong>定理2.1（Skorokhod第一嵌入定理）：</strong>若随机变量$X$满足$EX&#x3D;0$，$EX^2 &lt;\infty$，则对一个给定的布朗运动$B$及相应的自然滤子$\{\mathcal{F}_t\}$，存在一个停时$T$使得$B_T &#x3D;_d X$，且$ET &#x3D; EX^2$。<br><strong>Theorem 2.1 (Skorokhod’s first embedding theorem):</strong> If the random variable $X$ satisfies $EX&#x3D;0$, $EX^2 &lt;\infty$, then for a given Brownian motion $B$ and the corresponding natural filtration $\{\mathcal{F}_t\}$, there is a stopping time $T$ such that $B_T &#x3D;_d X$, and $ET &#x3D; EX^2$.</p>
+<p><strong>定理2.2（Skorokhod第二嵌入定理）：</strong>假设独立同分布随机变量$X_n$满足$EX_n &#x3D; 0$，$EX_n^2 &lt; \infty$，并记$S_n &#x3D; \sum_{k&#x3D;1}^n X_k$，则对一个给定的布朗运动$B$及相应的自然滤子$\{\mathcal{F}_t\}$，存在一列停时$0&#x3D;T_0 \leq T_1 \leq T_2 \leq \cdots$使得$\{B_{T_n}\}&#x3D;_d \{S_n\}$，且各$T_{n+1} - T_n$是独立同分布的随机变量。<br><strong>Theorem 2.2 (Skorokhod’s second embedding theorem):</strong> If random variables $X_n$ are i.i.d. and satisfy $EX_n &#x3D; 0$, $EX_n^2 &lt; \infty$, and $S_n &#x3D; \sum_{k&#x3D;1}^n X_k$, then for a given Brownian motion $B$ and the corresponding natural filtration $\{\mathcal{F}_t\}$, there is a sequence of stopping times $0&#x3D;T_0 \leq T_1 \leq T_2 \leq \cdots$ such that $\{B_{T_n}\}&#x3D;_d \{S_n\}$, and $T_{n+1} - T_n$ are i.i.d.</p>
 <h2 id="鞅的中心极限定理-Central-Limit-Theorems-for-Martingales"><a href="#鞅的中心极限定理-Central-Limit-Theorems-for-Martingales" class="headerlink" title="鞅的中心极限定理 Central Limit Theorems for Martingales"></a>鞅的中心极限定理 Central Limit Theorems for Martingales</h2><p>在这一节中，我将介绍Donsker定理在鞅的场景下的几个推广结果。为此，我们首先需要引入关于鞅的停时嵌入定理。对于鞅，该问题比随机游走的场景要稍微复杂一些，但我们仍然可以通过布朗运动的强马尔科夫性和归纳法得到以下结果：<br>In this final section, I will introduce several generalizations of Donsker’s theorem for martingales. To do so, we first need to introduce the embedding stopping time theorem for martingales. The embedding problem for martingales is slightly more difficult than the one for random walks, but we can still apply the strong Markov property of Brownian motions and the induction principle to obtain the following result:</p>
-<p><strong>定理3.1：</strong>若鞅序列$\{S_n\}$是平方可积的，且$S_0 = 0$，则对一个给定的布朗运动$B$及相应的自然滤子$\{\mathcal{F}_t\}$，存在一列停时$0=T_0 \leq T_1 \leq T_2 \leq \cdots$使得$(S_0,\cdots,S_m) =_d (B_{T_0},\cdots,B_{T_m})$对任意整数$m\geq 0$成立。<br><strong>Theorem 3.1:</strong> If the martingale sequence $\{S_n\}$ is square-integrable, and $S_0 = 0$, then for a given Brownian motion $B$ and the corresponding natural filtration $\{\mathcal{F}_t\}$, there is a sequence of stopping times $0=T_0 \leq T_1 \leq T_2 \leq \cdots$ such that $(S_0, \cdots,S_m) =_d (B_{T_0},\cdots,B_{T_m})$ holds for any integer $m\geq 0$.</p>
-<p>接下来，为了介绍后续结果，需要引入一些新的定义。我们称$\{X_{n,m},\mathcal{F}_{n,m}\}_{1\leq m\leq n}$为一个鞅差矩阵，若$X_{n,m}\in \mathcal{F}_{n,m}$及$E(X_{n,m}|\mathcal{F}_{n,m-1})=0$对任意$1\leq m \leq n$成立，其中$\mathcal{F}_{n,0} = \{\emptyset,\Omega\}$是平凡的$\sigma$-代数。进一步地，令$S_{n,m} = \sum_{k=1}^m X_{n,k}$，并记$S_{n,t}$为相应的线性插值延拓：$S_{n,t} = (\lceil t \rceil - t) S_{n,\lfloor t \rfloor} + (t - \lfloor t \rfloor) S_{n,\lceil t \rceil}$。最后，考虑以下随机变量$V_{n,m} = \sum_{k=1}^m E(X_{n,k}^2|\mathcal{F}_{n,k-1})$。<br>Next, in order to introduce the following results, we need to make some new definitions. We call $\{X_{n,m},\mathcal{F}_{n,m}\}_{1\leq m\leq n}$ a martingale difference array, if for any $1\leq m \leq n$, $X_{n,m}\in \mathcal{F}_{n,m}$ and $E(X_{n,m}|\mathcal{F}_{n,m-1})=0$, where $\mathcal{F}_{n,0} = \{\emptyset,\Omega\}$ is the trivial $\sigma$-algebra. We let $S_{n,m} = \sum_{k=1}^m X_{n,k}$, and denote $S_{n,t}$ as its linear interpolation on $\mathbb{R}^+$: $S_{n,t} = (\lceil t \rceil - t) S_{n,\lfloor t \rfloor} + (t - \lfloor t \rfloor) S_{ n, \lceil t \rceil}$. Finally, we let $V_{n,m} = \sum_{k=1}^m E(X_{n,k}^2|\mathcal{F}_{n, k-1})$.</p>
+<p><strong>定理3.1：</strong>若鞅序列$\{S_n\}$是平方可积的，且$S_0 &#x3D; 0$，则对一个给定的布朗运动$B$及相应的自然滤子$\{\mathcal{F}_t\}$，存在一列停时$0&#x3D;T_0 \leq T_1 \leq T_2 \leq \cdots$使得$(S_0,\cdots,S_m) &#x3D;_d (B_{T_0},\cdots,B_{T_m})$对任意整数$m\geq 0$成立。<br><strong>Theorem 3.1:</strong> If the martingale sequence $\{S_n\}$ is square-integrable, and $S_0 &#x3D; 0$, then for a given Brownian motion $B$ and the corresponding natural filtration $\{\mathcal{F}_t\}$, there is a sequence of stopping times $0&#x3D;T_0 \leq T_1 \leq T_2 \leq \cdots$ such that $(S_0, \cdots,S_m) &#x3D;_d (B_{T_0},\cdots,B_{T_m})$ holds for any integer $m\geq 0$.</p>
+<p>接下来，为了介绍后续结果，需要引入一些新的定义。我们称$\{X_{n,m},\mathcal{F}_{n,m}\}_{1\leq m\leq n}$为一个鞅差矩阵，若$X_{n,m}\in \mathcal{F}_{n,m}$及$E(X_{n,m}|\mathcal{F}_{n,m-1})&#x3D;0$对任意$1\leq m \leq n$成立，其中$\mathcal{F}_{n,0} &#x3D; \{\emptyset,\Omega\}$是平凡的$\sigma$-代数。进一步地，令$S_{n,m} &#x3D; \sum_{k&#x3D;1}^m X_{n,k}$，并记$S_{n,t}$为相应的线性插值延拓：$S_{n,t} &#x3D; (\lceil t \rceil - t) S_{n,\lfloor t \rfloor} + (t - \lfloor t \rfloor) S_{n,\lceil t \rceil}$。最后，考虑以下随机变量$V_{n,m} &#x3D; \sum_{k&#x3D;1}^m E(X_{n,k}^2|\mathcal{F}_{n,k-1})$。<br>Next, in order to introduce the following results, we need to make some new definitions. We call $\{X_{n,m},\mathcal{F}_{n,m}\}_{1\leq m\leq n}$ a martingale difference array, if for any $1\leq m \leq n$, $X_{n,m}\in \mathcal{F}_{n,m}$ and $E(X_{n,m}|\mathcal{F}_{n,m-1})&#x3D;0$, where $\mathcal{F}_{n,0} &#x3D; \{\emptyset,\Omega\}$ is the trivial $\sigma$-algebra. We let $S_{n,m} &#x3D; \sum_{k&#x3D;1}^m X_{n,k}$, and denote $S_{n,t}$ as its linear interpolation on $\mathbb{R}^+$: $S_{n,t} &#x3D; (\lceil t \rceil - t) S_{n,\lfloor t \rfloor} + (t - \lfloor t \rfloor) S_{ n, \lceil t \rceil}$. Finally, we let $V_{n,m} &#x3D; \sum_{k&#x3D;1}^m E(X_{n,k}^2|\mathcal{F}_{n, k-1})$.</p>
 <p>现在，通过定理3.1，并应用定理1.1中的证明技巧，我们可以证明：<br>Now, by applying theorem 3.1 and the techniques in the proof of theorem 1.1, we can prove:</p>
 <p><strong>定理3.2：</strong>假设$\{X_{n,m},\mathcal{F}_{n,m}\}$是一个鞅差矩阵，且满足以下两个条件：<br>(1) 对任意$t\in[0,1]$，$V_{n,[nt]}$按概率收敛到$t$；<br>(2) 对给定$n$，存在$\varepsilon_n&gt;0$使得$|X_{n,m}|\leq \varepsilon_n$对任意$m$成立，且$\varepsilon_n\to 0$；<br>则有<br><strong>Theorem 3.2:</strong> Suppose $\{X_{n,m},\mathcal{F}_{n,m}\}$ is a martingale difference array and satisfies the following two conditions:<br>(1) For any $t\in[0,1]$, $V_{n,[nt]} \to t$ in probability;<br>(2) For a given $n$, there exists a $\varepsilon_n&gt;0$ such that $|X_{n,m}|\leq \varepsilon_n$ holds for any $m$, and $\varepsilon_n\to 0$ as $n\to \infty$;<br>Then, we have<br>$$S_{n,n\cdot} \Rightarrow B. \tag{3.1}$$</p>
 <p>在定理3.2中，我们要求序列$\{X_{n,m}\}_{m\geq 0}$的一致有界性。对于随机变量来说，该性质是很强的。事实上，我们可以将其放松为中心极限定理中的Lindeberg-Feller条件：该条件只要求各$X_{n,m}$对$V_{n,n}$的贡献一致地小。<br>In theorem 3.2, we require the uniform boundedness of $\{X_{n,m}\}_{m\geq 0}$, which is very strong for random variables. As for the central limit theorem, we can relax this requirement to the Lindeberg-Feller condition, which only requires that the part $X_{n,m}$ contributed to $V_{n,n}$ is uniformly small.</p>
-<p><strong>定理3.3：</strong>假设$\{X_{n,m},\mathcal{F}_{n,m}\}$是一个鞅差矩阵，且满足以下两个条件：<br>(1) 对任意$t\in[0,1]$，$V_{n,[nt]}$按概率收敛到$t$；<br>(2) （Lindeberg-Feller条件）对任意$\varepsilon&gt;0$，$\sum_{m=1}^nE(X^2_{n,m}1_{\{|X_{n,m}|&gt;\varepsilon\}}|\mathcal{F}_{n,m-1})$按概率收敛到$0$；<br>则有<br><strong>Theorem 3.3:</strong> Suppose $\{X_{n,m},\mathcal{F}_{n,m}\}$ is a martingale difference array and satisfies the following two conditions:<br>(1) For any $t\in[0,1]$, $V_{n,[nt]} \to t$ in probability;<br>(2) (Lindeberg-Feller Condition) For any $\varepsilon&gt;0$, $\sum_{m=1}^nE(X^2_{n,m}1_{\{|X_{n,m}|&gt;\varepsilon\}}|\mathcal{F}_{n,m-1})\to 0$ in probability;<br>Then, we have<br>$$S_{n,n\cdot} \Rightarrow B. \tag{3.2}$$</p>
-<p>若进一步假设定理3.3中的鞅差矩阵具有形式$X_{n,m} = \frac{1}{\sqrt{n}}X_m$，$\mathcal{F}_{n,m} = \mathcal{F}_m$，则可得以下关于单个鞅序列的定理：<br>If we further assume that the martingale difference array in theorem 3.3 has the following form $X_{n,m} = \frac{1}{\sqrt{n}}X_m$, $\mathcal{F}_{n, m} = \mathcal{F}_m$, then we can derive the following theorem for a single sequence:</p>
-<p><strong>定理3.4：</strong>假设序列$\{X_{n},\mathcal{F}_{n}\}$满足$X_{n}\in \mathcal{F}_{n}$和$E(X_{n}|\mathcal{F}_{n-1})=0$对任意$n\geq 1$成立，其中$\mathcal{F}_{0} = \{\emptyset,\Omega\}$；易知此时$S_n=\sum_{k=1}^n X_{k}$形成一个鞅序列。现在，记$V_m = \sum_{k=1}^mE(X_k^2|\mathcal{F}_{k-1})$。若以下两个条件成立：<br>(1) 对任意$t\in[0,1]$，$\frac{1}{n}V_{[nt]}$按概率收敛到$t$；<br>(2) 对任意$\varepsilon&gt;0$，$\frac{1}{n}\sum_{m=1}^nE(X^2_{m}1_{\{|X_{m}|&gt;\varepsilon\sqrt{n}\}})$按概率收敛到$0$；<br>则有<br><strong>Theorem 3.4:</strong> Suppose sequence $\{X_{n},\mathcal{F}_{n}\}$ satisfies that $X_{n}\in \mathcal{F}_{n}$ and $E(X_{n}|\mathcal{F}_{n-1})=0$ for any $n\geq 1$, where $\mathcal{F}_{0} = \{\emptyset,\Omega\}$. It is clear then that $S_n=\sum_{k=1}^n X_{k}$ is a martingale. Now, denote $V_m = \sum_{k=1}^mE(X_k^2|\mathcal{F}_{k-1})$. If the following two conditions holds:<br>(1) For any $t\in[0,1]$, $\frac{1}{n}V_{[nt]}\to t$ in probability;<br>(2) For any $\varepsilon&gt;0$, $\frac{1}{n}\sum_{m=1}^nE(X^2_{m}1_{\{|X_{m}|&gt;\varepsilon\sqrt{n}\}})\to 0$ in probability;<br>Then, we have<br>$$\frac{1}{\sqrt{n}}S_{n\cdot} \Rightarrow B. \tag{3.3}$$</p>
+<p><strong>定理3.3：</strong>假设$\{X_{n,m},\mathcal{F}_{n,m}\}$是一个鞅差矩阵，且满足以下两个条件：<br>(1) 对任意$t\in[0,1]$，$V_{n,[nt]}$按概率收敛到$t$；<br>(2) （Lindeberg-Feller条件）对任意$\varepsilon&gt;0$，$\sum_{m&#x3D;1}^nE(X^2_{n,m}1_{\{|X_{n,m}|&gt;\varepsilon\}}|\mathcal{F}_{n,m-1})$按概率收敛到$0$；<br>则有<br><strong>Theorem 3.3:</strong> Suppose $\{X_{n,m},\mathcal{F}_{n,m}\}$ is a martingale difference array and satisfies the following two conditions:<br>(1) For any $t\in[0,1]$, $V_{n,[nt]} \to t$ in probability;<br>(2) (Lindeberg-Feller Condition) For any $\varepsilon&gt;0$, $\sum_{m&#x3D;1}^nE(X^2_{n,m}1_{\{|X_{n,m}|&gt;\varepsilon\}}|\mathcal{F}_{n,m-1})\to 0$ in probability;<br>Then, we have<br>$$S_{n,n\cdot} \Rightarrow B. \tag{3.2}$$</p>
+<p>若进一步假设定理3.3中的鞅差矩阵具有形式$X_{n,m} &#x3D; \frac{1}{\sqrt{n}}X_m$，$\mathcal{F}_{n,m} &#x3D; \mathcal{F}_m$，则可得以下关于单个鞅序列的定理：<br>If we further assume that the martingale difference array in theorem 3.3 has the following form $X_{n,m} &#x3D; \frac{1}{\sqrt{n}}X_m$, $\mathcal{F}_{n, m} &#x3D; \mathcal{F}_m$, then we can derive the following theorem for a single sequence:</p>
+<p><strong>定理3.4：</strong>假设序列$\{X_{n},\mathcal{F}_{n}\}$满足$X_{n}\in \mathcal{F}_{n}$和$E(X_{n}|\mathcal{F}_{n-1})&#x3D;0$对任意$n\geq 1$成立，其中$\mathcal{F}_{0} &#x3D; \{\emptyset,\Omega\}$；易知此时$S_n&#x3D;\sum_{k&#x3D;1}^n X_{k}$形成一个鞅序列。现在，记$V_m &#x3D; \sum_{k&#x3D;1}^mE(X_k^2|\mathcal{F}_{k-1})$。若以下两个条件成立：<br>(1) 对任意$t\in[0,1]$，$\frac{1}{n}V_{[nt]}$按概率收敛到$t$；<br>(2) 对任意$\varepsilon&gt;0$，$\frac{1}{n}\sum_{m&#x3D;1}^nE(X^2_{m}1_{\{|X_{m}|&gt;\varepsilon\sqrt{n}\}})$按概率收敛到$0$；<br>则有<br><strong>Theorem 3.4:</strong> Suppose sequence $\{X_{n},\mathcal{F}_{n}\}$ satisfies that $X_{n}\in \mathcal{F}_{n}$ and $E(X_{n}|\mathcal{F}_{n-1})&#x3D;0$ for any $n\geq 1$, where $\mathcal{F}_{0} &#x3D; \{\emptyset,\Omega\}$. It is clear then that $S_n&#x3D;\sum_{k&#x3D;1}^n X_{k}$ is a martingale. Now, denote $V_m &#x3D; \sum_{k&#x3D;1}^mE(X_k^2|\mathcal{F}_{k-1})$. If the following two conditions holds:<br>(1) For any $t\in[0,1]$, $\frac{1}{n}V_{[nt]}\to t$ in probability;<br>(2) For any $\varepsilon&gt;0$, $\frac{1}{n}\sum_{m&#x3D;1}^nE(X^2_{m}1_{\{|X_{m}|&gt;\varepsilon\sqrt{n}\}})\to 0$ in probability;<br>Then, we have<br>$$\frac{1}{\sqrt{n}}S_{n\cdot} \Rightarrow B. \tag{3.3}$$</p>
 
       
     </div>
@@ -470,7 +471,7 @@
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
     </div>
@@ -512,9 +513,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -523,9 +526,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blogs/archives">
+                <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -547,7 +550,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blogs/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -602,7 +605,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Donsker定理-Donsker’s-Theorem"><span class="nav-number">1.</span> <span class="nav-text">Donsker定理 Donsker’s Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例子-Examples"><span class="nav-number">1.1.</span> <span class="nav-text">例子 Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证明思路-Intuition-in-Proofs"><span class="nav-number">1.2.</span> <span class="nav-text">证明思路 Intuition in Proofs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Skorokhod嵌入定理-Skorokhod’s-Embedding-Theorems"><span class="nav-number">2.</span> <span class="nav-text">Skorokhod嵌入定理 Skorokhod’s Embedding Theorems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鞅的中心极限定理-Central-Limit-Theorems-for-Martingales"><span class="nav-number">3.</span> <span class="nav-text">鞅的中心极限定理 Central Limit Theorems for Martingales</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Donsker%E5%AE%9A%E7%90%86-Donsker%E2%80%99s-Theorem"><span class="nav-number">1.</span> <span class="nav-text">Donsker定理 Donsker’s Theorem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90-Examples"><span class="nav-number">1.1.</span> <span class="nav-text">例子 Examples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%81%E6%98%8E%E6%80%9D%E8%B7%AF-Intuition-in-Proofs"><span class="nav-number">1.2.</span> <span class="nav-text">证明思路 Intuition in Proofs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Skorokhod%E5%B5%8C%E5%85%A5%E5%AE%9A%E7%90%86-Skorokhod%E2%80%99s-Embedding-Theorems"><span class="nav-number">2.</span> <span class="nav-text">Skorokhod嵌入定理 Skorokhod’s Embedding Theorems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9E%85%E7%9A%84%E4%B8%AD%E5%BF%83%E6%9E%81%E9%99%90%E5%AE%9A%E7%90%86-Central-Limit-Theorems-for-Martingales"><span class="nav-number">3.</span> <span class="nav-text">鞅的中心极限定理 Central Limit Theorems for Martingales</span></a></li></ol></div>
             
 
           </div>

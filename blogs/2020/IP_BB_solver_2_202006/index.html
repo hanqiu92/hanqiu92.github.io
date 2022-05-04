@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -52,9 +52,9 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Integer Programming,">
+  <meta name="keywords" content="Integer Programming," />
 
 
 
@@ -84,24 +84,24 @@
 
 
 <meta name="description" content="在这篇文章中，我将介绍问题拆分(branching)和结点选取(node selection)阶段的常用方法。">
-<meta name="keywords" content="Integer Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Develop Your Own Branch &amp; Bound Solver II: Branching &amp; Node Selection Methods">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_2_202006/index.html">
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在这篇文章中，我将介绍问题拆分(branching)和结点选取(node selection)阶段的常用方法。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-06-13T01:43:19.118Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-15T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T01:43:19.118Z">
+<meta property="article:author" content="Han Qiu">
+<meta property="article:tag" content="Integer Programming">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Develop Your Own Branch &amp; Bound Solver II: Branching &amp; Node Selection Methods">
-<meta name="twitter:description" content="在这篇文章中，我将介绍问题拆分(branching)和结点选取(node selection)阶段的常用方法。">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blogs/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_2_202006/">
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_2_202006/"/>
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
@@ -158,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/" class="brand" rel="start">
+      <a href="/blogs/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -186,7 +186,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blogs/." rel="section">
+          <a href="/blogs/.%20" rel="section">
             
             Home
           </a>
@@ -194,7 +194,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/blogs/categories" rel="section">
+          <a href="/blogs/categories%20" rel="section">
             
             Categories
           </a>
@@ -202,7 +202,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blogs/archives" rel="section">
+          <a href="/blogs/archives%20" rel="section">
             
             Archives
           </a>
@@ -210,7 +210,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/blogs/tags" rel="section">
+          <a href="/blogs/tags%20" rel="section">
             
             Tags
           </a>
@@ -218,7 +218,7 @@
       
         
         <li class="menu-item menu-item-scribbles">
-          <a href="/blogs/scribbles" rel="section">
+          <a href="/blogs/scribbles%20" rel="section">
             
             Scribbles
           </a>
@@ -260,8 +260,8 @@
     <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2020/IP_BB_solver_2_202006/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -297,7 +297,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -347,7 +347,8 @@
 
       
         <p>在这篇文章中，我将介绍问题拆分(branching)和结点选取(node selection)阶段的常用方法。</p>
-<a id="more"></a>
+<span id="more"></span>
+
 <h2 id="基本动机-Motivation"><a href="#基本动机-Motivation" class="headerlink" title="基本动机 Motivation"></a>基本动机 Motivation</h2><p>在这一小节中，我将介绍各类问题拆分和结点选取方法背后的主要motivation。<br>对于一个求解算法，其最终目标是找到问题最优解；但是，MIP问题的复杂度很高，在有限的时间和计算资源内往往不能够达成这一目标。因此，需要根据不同的求解需求，对目标进行相应的简化。下面列举了（通过B&amp;B方法）求解MIP问题中一些常见的(子)目标以及对应的应用场景示例（其中，问题的优化方向假设为最小化）：</p>
 <ol>
 <li>优化可行解。寻找和改进可行解是优化算法的一个基本要求，此处不再赘述。对于一个最小化问题，任意可行解对应的目标值都可被认为是对最优目标值的上界估计；因此，该目标可被理解为对目标值的上界估计的优化。</li>
@@ -355,7 +356,7 @@
 <li>优化目标值的上下界差距(optimality gap)。相比于单纯对上界估计或下界估计进行优化，同时优化两侧估计可以更好地缩减optimality gap，从而对解的质量以及后续优化空间有更好的评估。在许多场景中，所求解的MIP问题是一个大问题中的子任务，其optimality gap等求解信息可以用于提高大问题的求解质量。例如，假设我们需要在一台机器上同时求解多个MIP问题，那么通过比较各问题的optimality gap大小以及相对重要性，我们可以对计算资源进行动态分配，从而改进整体优化效果。</li>
 </ol>
 <p>下面，我将介绍如何设计问题拆分和结点选取方法来实现上述目标。</p>
-<h2 id="问题拆分方法-Branching-Method"><a href="#问题拆分方法-Branching-Method" class="headerlink" title="问题拆分方法 Branching Method"></a>问题拆分方法 Branching Method</h2><p>问题拆分阶段的任务是将一个MIP问题拆分成多个子问题。<br>首先，我们从优化可行解的角度考虑。在B&amp;B流程中，解是通过求解子问题的LP松弛问题来获得的，因此若想要得到整数可行解，则需要LP问题的可行域是（部分）“规整”(integral)的。但是，要直接判断拆分生成的子问题可行域的“规整性”是不平凡(nontrivial)的。一种常用的近似/启发式方法是most infeasible branching方法：该方法在当前不满足整数约束的变量中，选出距离整数最远的一个进行上下界拆分。然而，实践经验表明，这种朴素的想法效果不佳：拆分子问题后，可能会有其他变量变得距离整数很远，解的整体integrality并没有上升。（不过，该思路倒是可以应用在专门寻找可行解的primal heuristic中。）</p>
+<h2 id="问题拆分方法-Branching-Method"><a href="#问题拆分方法-Branching-Method" class="headerlink" title="问题拆分方法 Branching Method"></a>问题拆分方法 Branching Method</h2><p>问题拆分阶段的任务是将一个MIP问题拆分成多个子问题。<br>首先，我们从优化可行解的角度考虑。在B&amp;B流程中，解是通过求解子问题的LP松弛问题来获得的，因此若想要得到整数可行解，则需要LP问题的可行域是（部分）“规整”(integral)的。但是，要直接判断拆分生成的子问题可行域的“规整性”是不平凡(nontrivial)的。一种常用的近似&#x2F;启发式方法是most infeasible branching方法：该方法在当前不满足整数约束的变量中，选出距离整数最远的一个进行上下界拆分。然而，实践经验表明，这种朴素的想法效果不佳：拆分子问题后，可能会有其他变量变得距离整数很远，解的整体integrality并没有上升。（不过，该思路倒是可以应用在专门寻找可行解的primal heuristic中。）</p>
 <p>接下来，我们从优化下界估计的角度设计问题拆分方法。由于在拆分生成子结点后，父结点的下界估计等于各子结点的下界估计的最小值，因此，一种简单的想法是对每个可能的拆分选项（例如，对哪个变量$j$的上下界进行拆分），通过求解LP松弛问题计算相应子结点的下界估计，然后选择对父结点下界估计优化效果最好的拆分选项。这种方法叫做full strong branching，它的主要缺点在于计算量很大，而且大部分计算结果后续无法复用（选定一个拆分选项后，其他拆分选项对应的子问题将不可能再出现在B&amp;B树中）。注意到LP求解所使用的单纯形法的效果是随迭代次数增加而递减的，少量迭代步数后即可大致判断最优目标值的大小；基于此，我们可以通过限制LP松弛问题求解中单纯形法的迭代次数来降低full strong branching的计算量。这种近似方法大致体现了一般strong branching方法的思路。</p>
 <p><strong>思考题：</strong>full strong branching可以看成是一种贪心算法，因为它只考虑了当前拆分步骤的影响。我们是否可以对（可能存在的）全局最优算法进行近似？</p>
 <p>即使采取了上述近似方法，求解LP松弛问题的计算成本仍然很高。那么，是否有其他方法可以避开LP求解呢？</p>
@@ -363,7 +364,7 @@
 <li>一方面，由于父结点的下界估计已知，对子结点的下界估计等价于估计父子结点LP松弛问题的最优目标值差异；</li>
 <li>另一方面，由于问题拆分行为通常只改变一个变量的上下界，故拆分后父子结点的问题是非常相似的。</li>
 </ul>
-<p>基于以上两点，我们可以参考LP中的灵敏度分析方法，通过变量上下界约束对应的对偶信息以及变量的变化值进行估计。但是在问题拆分阶段中，由于变量$j$的边界$[l_j,u_j]$太松，LP松弛问题给出的对偶信息并不可用。只有显式改变变量上下界，让变量值$x_j$处于边界上，才能得到可用的对偶信息；但这又要求重新求解LP，没有解决计算效率的问题。<br>为解决上述困难，我们可以进一步利用历史拆分中的最优目标值差异信息来近似出一个“对偶”信息。具体来说，假设在B&amp;B求解历史中，对于变量$j$，曾经发生过$n_j^+$次变量下界调整（即向上branch），其中第$i$次调整的变量值变化为$\Delta x_j^i = \lceil x_j^i \rceil - x_j^i$，相应目标值变化为$\Delta Z^i$；那么我们考虑以下对偶估计<br>$$<br>\Phi_j^+ = \frac{1}{n_j^+} \sum_{i=1}^{n_j^+} \frac{\Delta Z^i}{\Delta x_j^i}<br>$$<br>同理可得该变量向下branch的对偶估计$\Phi_j^-$。这种估计方法被称为pseudo cost branching，而相应的对偶估计被称为pseudo cost。相比于(full) strong branching，这种方法所需的计算量明显更少；不过，当历史拆分信息较少时，pseudo cost估计的准确性较低，导致算法效率可能比strong branching要差。基于这一认知，我们可以进一步设计混合strong和pseudo cost思路的拆分方法，以更好地平衡算法和计算效率。在下面的代码实现中，我将尝试几种这样的方法，并将其与strong和pseudo cost方法进行比较。</p>
+<p>基于以上两点，我们可以参考LP中的灵敏度分析方法，通过变量上下界约束对应的对偶信息以及变量的变化值进行估计。但是在问题拆分阶段中，由于变量$j$的边界$[l_j,u_j]$太松，LP松弛问题给出的对偶信息并不可用。只有显式改变变量上下界，让变量值$x_j$处于边界上，才能得到可用的对偶信息；但这又要求重新求解LP，没有解决计算效率的问题。<br>为解决上述困难，我们可以进一步利用历史拆分中的最优目标值差异信息来近似出一个“对偶”信息。具体来说，假设在B&amp;B求解历史中，对于变量$j$，曾经发生过$n_j^+$次变量下界调整（即向上branch），其中第$i$次调整的变量值变化为$\Delta x_j^i &#x3D; \lceil x_j^i \rceil - x_j^i$，相应目标值变化为$\Delta Z^i$；那么我们考虑以下对偶估计<br>$$<br>\Phi_j^+ &#x3D; \frac{1}{n_j^+} \sum_{i&#x3D;1}^{n_j^+} \frac{\Delta Z^i}{\Delta x_j^i}<br>$$<br>同理可得该变量向下branch的对偶估计$\Phi_j^-$。这种估计方法被称为pseudo cost branching，而相应的对偶估计被称为pseudo cost。相比于(full) strong branching，这种方法所需的计算量明显更少；不过，当历史拆分信息较少时，pseudo cost估计的准确性较低，导致算法效率可能比strong branching要差。基于这一认知，我们可以进一步设计混合strong和pseudo cost思路的拆分方法，以更好地平衡算法和计算效率。在下面的代码实现中，我将尝试几种这样的方法，并将其与strong和pseudo cost方法进行比较。</p>
 <p><strong>思考题：</strong>上述拆分方法与决策树算法中的各种split heuristic有什么异同之处？</p>
 <h2 id="结点选取方法-Node-Selection-Methods"><a href="#结点选取方法-Node-Selection-Methods" class="headerlink" title="结点选取方法 Node Selection Methods"></a>结点选取方法 Node Selection Methods</h2><p>结点选择阶段的任务是从一系列未处理的子问题中选出一个处理。<br>首先，从优化下界估计的角度，由于全局下界估计由当前下界估计最小的子问题决定，一种贪心的做法是从这些子问题中选择一个进行处理（否则，全局下界估计必然不会受到影响）。这种方法被称为best first search (bfs)，它的主要缺点在于搜索方向倾向于宽度搜索，因此在优化可行解这一侧的进度会比较差。</p>
 <p>接下来，我们从优化可行解的角度设计结点选取方法。在上面的介绍中我曾提到，LP最优解的整数可行性与问题可行域的“规整性”有很强的联系。因此，一种朴素的寻找可行解的思路是从一个结点开始不断往下选取其子结点（相当于增加变量上下界约束），直到所有整数变量的上下界都被严格控制住为止；此时，如果LP问题仍然可行，那么所得最优解必然是整数可行的。这种结点选取方法被称为deep first search (dfs)，它有以下两个缺点：</p>
@@ -371,10 +372,10 @@
 <li>无法预判LP可行性，有可能搜索到很深的位置后发现LP不可行，又需要从上层结点重新开始，导致全局搜索效率低；</li>
 <li>搜索过程中未考虑解的质量，导致就算找到了可行解，其目标值与最优目标值的差距仍可能很大。</li>
 </ol>
-<p>我们可以通过上面介绍的pseudo cost在结点选取方法中考虑可行解质量。具体来说，对于一个LP解中每个不满足整数约束的变量，我们可以通过pseudo cost来估计其（向上/下）取整对目标值的影响。然后，我们可以在现有LP解的目标值上加上所有这些影响之和，作为对该子问题的最优整数解的目标值的估计；这种估计被称为estimate。接下来，在结点选取中，我们可以选择estimate最小的一个子问题进行处理。这种方法被称为best estimate search (be)。相比于bfs方法，be方法更容易找到可行解；而相比于dfs方法，be方法通常能得到更好的下界估计。</p>
-<p>上述讨论主要关注所选取结点的质量，即如何通过更少的结点处理达到更好的求解效果；但是在实际求解过程中，结点处理的计算效率也很重要。具体来说，根据单纯形法的相关知识，单纯形法的迭代次数与基(basis)的初始位置有关；而相似LP问题的最优基往往相近。因此，如果要从一个LP问题的最优基出发求解另一个LP问题，那么两个问题越相似，求解所需迭代次数通常越小。这意味着，在B&amp;B求解流程中，相邻几次选取的结点/子问题的相似性对计算效率有重要影响。根据前述介绍可知，dfs方法选取的相邻结点一般是父子结点或者兄弟结点，而bfs/be方法选取的相邻结点的相似性则通常没有保证，因此dfs方法的计算效率通常比bfs/be方法要高，在一定时间内可以遍历更多结点。基于这一认知，我们可以考虑在bfs/be方法中加入局部的深度搜索，以结合dfs方法的计算效率和bfs/be方法的算法效率。具体来说，对每个选中的结点，我们先用dfs方法来快速探索该结点附近的子问题，直到超过一定深度或者无法继续（没有可行的子结点）为止；然后再用bfs/be方法选择下一个结点。这种方法被称为plunging。</p>
+<p>我们可以通过上面介绍的pseudo cost在结点选取方法中考虑可行解质量。具体来说，对于一个LP解中每个不满足整数约束的变量，我们可以通过pseudo cost来估计其（向上&#x2F;下）取整对目标值的影响。然后，我们可以在现有LP解的目标值上加上所有这些影响之和，作为对该子问题的最优整数解的目标值的估计；这种估计被称为estimate。接下来，在结点选取中，我们可以选择estimate最小的一个子问题进行处理。这种方法被称为best estimate search (be)。相比于bfs方法，be方法更容易找到可行解；而相比于dfs方法，be方法通常能得到更好的下界估计。</p>
+<p>上述讨论主要关注所选取结点的质量，即如何通过更少的结点处理达到更好的求解效果；但是在实际求解过程中，结点处理的计算效率也很重要。具体来说，根据单纯形法的相关知识，单纯形法的迭代次数与基(basis)的初始位置有关；而相似LP问题的最优基往往相近。因此，如果要从一个LP问题的最优基出发求解另一个LP问题，那么两个问题越相似，求解所需迭代次数通常越小。这意味着，在B&amp;B求解流程中，相邻几次选取的结点&#x2F;子问题的相似性对计算效率有重要影响。根据前述介绍可知，dfs方法选取的相邻结点一般是父子结点或者兄弟结点，而bfs&#x2F;be方法选取的相邻结点的相似性则通常没有保证，因此dfs方法的计算效率通常比bfs&#x2F;be方法要高，在一定时间内可以遍历更多结点。基于这一认知，我们可以考虑在bfs&#x2F;be方法中加入局部的深度搜索，以结合dfs方法的计算效率和bfs&#x2F;be方法的算法效率。具体来说，对每个选中的结点，我们先用dfs方法来快速探索该结点附近的子问题，直到超过一定深度或者无法继续（没有可行的子结点）为止；然后再用bfs&#x2F;be方法选择下一个结点。这种方法被称为plunging。</p>
 <p><strong>思考题：</strong>在并行(parallel)计算场景中，应该如何利用单纯形法迭代次数对子问题相似性敏感这一性质设计结点选取方法？这与上述串行(sequential)场景中的结点选取方法存在什么异同点？</p>
-<p>接下来，我将在<a href="https://github.com/hanqiu92/branch_bound_solve/blob/master/2_branching_and_selection.ipynb" target="_blank" rel="noopener">这个notebook</a>中给出上述方法的代码实现。</p>
+<p>接下来，我将在<a target="_blank" rel="noopener" href="https://github.com/hanqiu92/branch_bound_solve/blob/master/2_branching_and_selection.ipynb">这个notebook</a>中给出上述方法的代码实现。</p>
 
       
     </div>
@@ -451,7 +452,7 @@
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
     </div>
@@ -493,9 +494,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -504,9 +507,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blogs/archives">
+                <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -528,7 +531,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blogs/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -583,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本动机-Motivation"><span class="nav-number">1.</span> <span class="nav-text">基本动机 Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题拆分方法-Branching-Method"><span class="nav-number">2.</span> <span class="nav-text">问题拆分方法 Branching Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结点选取方法-Node-Selection-Methods"><span class="nav-number">3.</span> <span class="nav-text">结点选取方法 Node Selection Methods</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%8A%A8%E6%9C%BA-Motivation"><span class="nav-number">1.</span> <span class="nav-text">基本动机 Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8B%86%E5%88%86%E6%96%B9%E6%B3%95-Branching-Method"><span class="nav-number">2.</span> <span class="nav-text">问题拆分方法 Branching Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E7%82%B9%E9%80%89%E5%8F%96%E6%96%B9%E6%B3%95-Node-Selection-Methods"><span class="nav-number">3.</span> <span class="nav-text">结点选取方法 Node Selection Methods</span></a></li></ol></div>
             
 
           </div>

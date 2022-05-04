@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -52,9 +52,9 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Behavior Modeling,Reinforcement Learning,">
+  <meta name="keywords" content="Reinforcement Learning,Behavior Modeling,Game Theory," />
 
 
 
@@ -84,24 +84,26 @@
 
 
 <meta name="description" content="Counterfactual regret minimization（下称CFR）是目前针对不完全信息博弈问题的一类主流求解方法，在棋牌类游戏中有较为广泛和成功的应用。理解这类算法的思路和性质，将有助于后续对一般的不完全信息博弈问题的研究。在这篇文章中，我将对近期对CFR的学习做一个简单的整理，便于后续回顾。内容主要包括：  对原始的CFR算法及其经典变种的简单实现，以及实现过程中遇到的一些问题点">
-<meta name="keywords" content="Behavior Modeling,Reinforcement Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Counterfactual Regret Minimization (CFR)">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2021/CFR_202103/index.html">
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="Counterfactual regret minimization（下称CFR）是目前针对不完全信息博弈问题的一类主流求解方法，在棋牌类游戏中有较为广泛和成功的应用。理解这类算法的思路和性质，将有助于后续对一般的不完全信息博弈问题的研究。在这篇文章中，我将对近期对CFR的学习做一个简单的整理，便于后续回顾。内容主要包括：  对原始的CFR算法及其经典变种的简单实现，以及实现过程中遇到的一些问题点">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-04-06T13:09:18.404Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-02-27T05:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-28T02:02:19.858Z">
+<meta property="article:author" content="Han Qiu">
+<meta property="article:tag" content="Reinforcement Learning">
+<meta property="article:tag" content="Behavior Modeling">
+<meta property="article:tag" content="Game Theory">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Counterfactual Regret Minimization (CFR)">
-<meta name="twitter:description" content="Counterfactual regret minimization（下称CFR）是目前针对不完全信息博弈问题的一类主流求解方法，在棋牌类游戏中有较为广泛和成功的应用。理解这类算法的思路和性质，将有助于后续对一般的不完全信息博弈问题的研究。在这篇文章中，我将对近期对CFR的学习做一个简单的整理，便于后续回顾。内容主要包括：  对原始的CFR算法及其经典变种的简单实现，以及实现过程中遇到的一些问题点">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blogs/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -124,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2021/CFR_202103/">
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2021/CFR_202103/"/>
 
 
 
@@ -140,7 +142,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
@@ -158,7 +160,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/" class="brand" rel="start">
+      <a href="/blogs/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -186,7 +188,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blogs/." rel="section">
+          <a href="/blogs/.%20" rel="section">
             
             Home
           </a>
@@ -194,7 +196,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/blogs/categories" rel="section">
+          <a href="/blogs/categories%20" rel="section">
             
             Categories
           </a>
@@ -202,7 +204,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blogs/archives" rel="section">
+          <a href="/blogs/archives%20" rel="section">
             
             Archives
           </a>
@@ -210,7 +212,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/blogs/tags" rel="section">
+          <a href="/blogs/tags%20" rel="section">
             
             Tags
           </a>
@@ -218,7 +220,7 @@
       
         
         <li class="menu-item menu-item-scribbles">
-          <a href="/blogs/scribbles" rel="section">
+          <a href="/blogs/scribbles%20" rel="section">
             
             Scribbles
           </a>
@@ -260,8 +262,8 @@
     <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2021/CFR_202103/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -297,7 +299,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -350,53 +352,54 @@
 <ul>
 <li>对原始的CFR算法及其经典变种的简单实现，以及实现过程中遇到的一些问题点和注意点；</li>
 <li>对CFR算法思路的一些个人理解，以及后续拓展方向的思考；</li>
-<li>通过一个简单的测试问题（Leduc纸牌游戏），对实现的算法的效果进行仿真评估；相应的代码仓库地址在<a href="https://github.com/hanqiu92/leduc_cfr" target="_blank" rel="noopener">这里</a>。</li>
+<li>通过一个简单的测试问题（Leduc纸牌游戏），对实现的算法的效果进行仿真评估；相应的代码仓库地址在<a target="_blank" rel="noopener" href="https://github.com/hanqiu92/leduc_cfr">这里</a>。</li>
 </ul>
-<a id="more"></a>
+<span id="more"></span>
+
 <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>在不完全信息（imperfect information）的博弈问题中，系统的一些参与方对系统中的信息并不是完全感知的；例如，在许多牌类游戏中，一个玩家并不知道其他玩家的手牌信息。一个值得思考的问题是：不完全信息博弈问题的解决方法，与完全信息博弈问题的解决方法，有何异同？</p>
 <p><strong>答：</strong>对于完全信息博弈（perfect information game）问题，当系统状态的演化方程（transition）已知时，一种自然的求解方法，是通过暴力搜索的方式，对未来可能发生的情况（包括对手的响应策略）进行仿真推演，从而选择当下较优的行为动作（action）；在该类求解方法中，一种较为知名的是蒙特卡洛树搜索（MCTS），该方法近年来在围棋等游戏中取得了很好的效果。但是，这类方法较难直接应用到不完全信息博弈中。其中一个主要难点在于仿真的执行问题：由于我们并不清楚对手具体掌握了哪些信息，因此无法仅通过系统演化方程和现有信息，对对手的策略进行仿真推演。</p>
 <p>针对上述问题，一种可能的解决思路是：首先，遍历每种与当前信息相容（consistent）的完全信息情况，利用系统演化方程对其进行仿真推演，估计选择不同动作所产生的后果（outcome）的价值；然后，通过某种方式对每种完全信息情况赋予一定权重（例如，在牌类游戏中，根据对手历史行为信息，估计对手手牌的可能情况与相应概率），进而对各行为动作在不同完全信息情况下的价值进行累加，得到期望价值；最后，根据该期望价值，生成行为策略。</p>
 <p>在某种程度上，我们可以认为，CFR的做法基本与上述思路一致，只是在后果的价值评估、权重计算、行为策略生成等步骤上给出了更为明确的计算过程。</p>
 <h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><p>在这一节中，我将主要介绍CFR及其基础变种的具体步骤和实现细节。为了更好地进行描述和讨论，我将首先引入一些常用记号（notation）来表示前一节中提到的基本元素。</p>
 <ul>
-<li>在某个系统状态下，我们用$h \in \mathcal{H}$（对应history）代表系统的完全信息（特别地，包含所有历史信息），用$I \in \mathcal{I}$（对应Information）代表当前参与者（agent）$p \in \mathcal{P} = \{1,\cdots,N\}$（对应player）的现有信息。特别地，对于给定的完全信息$h$和当前参与者$p$，其相应的现有信息$I$可以通过函数$I(h) = I(h,p(h))$表示。反之，与现有信息$I$相合的所有完全信息$h$组成的集合可用$\mathcal{H}(I)$表示。</li>
-<li>我们用函数$f$代表系统状态的演化规律：具体来说，对于当前系统状态$h$，如果相应的当前参与者$p$选取的动作是$a \in \mathcal{A}$（对应action），那么下一阶段的系统状态可以用$h’ = f(h,a)$来表示。</li>
-<li>对于每种系统终态$z \in \mathcal{Z} \subset \mathcal{H}$，各系统参与者所获得的收益可以用向量$u(z) \in \mathbb{R}^N$表示，其中$N$是系统参与者的数量。特别地，对于两人零和博弈，向量$u(z)$的自由度为$2-1=1$，因此可以直接使用参与者1的收益进行替代。</li>
+<li>在某个系统状态下，我们用$h \in \mathcal{H}$（对应history）代表系统的完全信息（特别地，包含所有历史信息），用$I \in \mathcal{I}$（对应Information）代表当前参与者（agent）$p \in \mathcal{P} &#x3D; \{1,\cdots,N\}$（对应player）的现有信息。特别地，对于给定的完全信息$h$和当前参与者$p$，其相应的现有信息$I$可以通过函数$I(h) &#x3D; I(h,p(h))$表示。反之，与现有信息$I$相合的所有完全信息$h$组成的集合可用$\mathcal{H}(I)$表示。</li>
+<li>我们用函数$f$代表系统状态的演化规律：具体来说，对于当前系统状态$h$，如果相应的当前参与者$p$选取的动作是$a \in \mathcal{A}$（对应action），那么下一阶段的系统状态可以用$h’ &#x3D; f(h,a)$来表示。</li>
+<li>对于每种系统终态$z \in \mathcal{Z} \subset \mathcal{H}$，各系统参与者所获得的收益可以用向量$u(z) \in \mathbb{R}^N$表示，其中$N$是系统参与者的数量。特别地，对于两人零和博弈，向量$u(z)$的自由度为$2-1&#x3D;1$，因此可以直接使用参与者1的收益进行替代。</li>
 <li>系统参与者$p$的行为策略用函数$\sigma_p: \mathcal{I} \times \mathcal{A} \to \mathbb{R}$表示：对于每种可能的现有信息$I$，$\sigma_p(I)$对应行为动作集合$\mathcal{A}(I)$上一个概率分布。</li>
-<li>给定系统参与者$p$的策略$\sigma_p$和系统规律$(f,I(\cdot))$，对任一完全信息$h$，我们可以根据系统演化规律$f$复现出从系统初态$h_0$到当前状态$h$的过程中，参与者$p$所作出的所有行为动作$(I_1,a_1),\cdots,(I_m,a_m)$，从而计算出$p$对$h$这一事件的发生的概率贡献：$\pi^{\sigma}_p(h) = \prod_{m} \sigma_p(I_m,a_m)$。<ul>
-<li>相应地，给定所有系统参与者的策略$\sigma=\{\sigma_p\}$，我们可以计算出，所有系统参与者对$h$这一事件的发生的概率贡献$\pi^{\sigma}(h) = \prod_{p’\in \mathcal{P}}\pi^{\sigma}_{p’}(h)$，以及除$p$外其他系统参与者的贡献$\pi^{\sigma}_{-p}(h) = \pi^{\sigma}(h) / \pi^{\sigma}_p(h)$。</li>
-<li>进一步地，我们可以将$p$的策略$\sigma_p$对“从系统状态$h$到一个后续系统状态$h’$的发生概率”的贡献值定义为$\pi^{\sigma}_p(h,h’) = \pi^{\sigma}_p(h’)/\pi^{\sigma}_p(h)$。其他参与者的贡献值则可相应定义为$\pi^{\sigma}_{-p}(h,h’) = \pi^{\sigma}_{-p}(h’)/\pi^{\sigma}_{-p}(h)$。</li>
+<li>给定系统参与者$p$的策略$\sigma_p$和系统规律$(f,I(\cdot))$，对任一完全信息$h$，我们可以根据系统演化规律$f$复现出从系统初态$h_0$到当前状态$h$的过程中，参与者$p$所作出的所有行为动作$(I_1,a_1),\cdots,(I_m,a_m)$，从而计算出$p$对$h$这一事件的发生的概率贡献：$\pi^{\sigma}_p(h) &#x3D; \prod_{m} \sigma_p(I_m,a_m)$。<ul>
+<li>相应地，给定所有系统参与者的策略$\sigma&#x3D;\{\sigma_p\}$，我们可以计算出，所有系统参与者对$h$这一事件的发生的概率贡献$\pi^{\sigma}(h) &#x3D; \prod_{p’\in \mathcal{P}}\pi^{\sigma}_{p’}(h)$，以及除$p$外其他系统参与者的贡献$\pi^{\sigma}_{-p}(h) &#x3D; \pi^{\sigma}(h) &#x2F; \pi^{\sigma}_p(h)$。</li>
+<li>进一步地，我们可以将$p$的策略$\sigma_p$对“从系统状态$h$到一个后续系统状态$h’$的发生概率”的贡献值定义为$\pi^{\sigma}_p(h,h’) &#x3D; \pi^{\sigma}_p(h’)&#x2F;\pi^{\sigma}_p(h)$。其他参与者的贡献值则可相应定义为$\pi^{\sigma}_{-p}(h,h’) &#x3D; \pi^{\sigma}_{-p}(h’)&#x2F;\pi^{\sigma}_{-p}(h)$。</li>
 </ul>
 </li>
-<li>最后，在给定了各系统参与者的策略$\sigma$的情况下，系统状态$h$的预期收益向量可表示为$$u^{\sigma}(h) = \sum_{z \in \mathcal{Z}} \pi^{\sigma}(h,z) u(z).$$ 在实际计算中，我们可以通过递归的方式简化计算量，避免对$z$的重复遍历：$$u^{\sigma}(h) = \sum_{a \in \mathcal{A}} \sigma_{p(h)}(I(h),a) \cdot u^{\sigma}(f(h,a)).$$</li>
+<li>最后，在给定了各系统参与者的策略$\sigma$的情况下，系统状态$h$的预期收益向量可表示为$$u^{\sigma}(h) &#x3D; \sum_{z \in \mathcal{Z}} \pi^{\sigma}(h,z) u(z).$$ 在实际计算中，我们可以通过递归的方式简化计算量，避免对$z$的重复遍历：$$u^{\sigma}(h) &#x3D; \sum_{a \in \mathcal{A}} \sigma_{p(h)}(I(h),a) \cdot u^{\sigma}(f(h,a)).$$</li>
 </ul>
 <h3 id="CFR"><a href="#CFR" class="headerlink" title="CFR"></a>CFR</h3><p>假设在第$t$次迭代中，各参与者的行为策略$\sigma^t$已经给定。一次CFR迭代的计算流程包括以下几步：</p>
 <ol>
-<li>计算本次迭代的regret：$$r_t(I,a) = \sum_{h \in \mathcal{H}(I)} \pi_{-p(h)}^{\sigma^t}(h) [u^{\sigma^t}(f(h,a)) - u^{\sigma^t}(h)].$$ 在实际计算中，通常通过深度优先搜索（DFS）加递归的方式遍历所有$h$并更新$r_t(I,a)$：$$r_t(I(h),a) \gets r_t(I(h),a) + \pi_{-p(h)}^{\sigma^t}(h) [u^{\sigma^t}(f(h,a)) - u^{\sigma^t}(h)].$$ 这种计算方式的好处是，可以在前向传播（即$h+a\to h’$）的过程中迭代计算概率$\pi_{-p(h)}(h)$，在后向传播（即$h’ \to (h,a)$）的过程中迭代计算$u(h)$和$r(I,a)$，这样通过一次DFS就能完成全部计算，节省计算量。</li>
-<li>更新累计regret：$$R_t(I,a) = R_{t-1}(I,a) + r_t(I,a).$$</li>
-<li>根据累计regret做regret matching，产生下一次迭代的行为策略：$$\sigma^{t+1}_{p(I)}(I,a) = \frac{R_t^+(I,a)}{\sum_a R_t^+(I,a)},$$其中$R_t^+(I,a) = \max(R_t(I,a),0).$</li>
+<li>计算本次迭代的regret：$$r_t(I,a) &#x3D; \sum_{h \in \mathcal{H}(I)} \pi_{-p(h)}^{\sigma^t}(h) [u^{\sigma^t}(f(h,a)) - u^{\sigma^t}(h)].$$ 在实际计算中，通常通过深度优先搜索（DFS）加递归的方式遍历所有$h$并更新$r_t(I,a)$：$$r_t(I(h),a) \gets r_t(I(h),a) + \pi_{-p(h)}^{\sigma^t}(h) [u^{\sigma^t}(f(h,a)) - u^{\sigma^t}(h)].$$ 这种计算方式的好处是，可以在前向传播（即$h+a\to h’$）的过程中迭代计算概率$\pi_{-p(h)}(h)$，在后向传播（即$h’ \to (h,a)$）的过程中迭代计算$u(h)$和$r(I,a)$，这样通过一次DFS就能完成全部计算，节省计算量。</li>
+<li>更新累计regret：$$R_t(I,a) &#x3D; R_{t-1}(I,a) + r_t(I,a).$$</li>
+<li>根据累计regret做regret matching，产生下一次迭代的行为策略：$$\sigma^{t+1}_{p(I)}(I,a) &#x3D; \frac{R_t^+(I,a)}{\sum_a R_t^+(I,a)},$$其中$R_t^+(I,a) &#x3D; \max(R_t(I,a),0).$</li>
 </ol>
-<p>在完成整个（多步）CFR迭代流程后，我们进一步对此前各步策略取平均（average policy），作为最终产出的策略形式：<br>$$\bar{\sigma}^{T}(I,a) = \frac{\sum_{t \leq T} \sum_{h\in \mathcal{H}(I)} \pi_{p(h)}^{\sigma^t}(h) \cdot \sigma^{t}_{p(h)}(I,a)}{\sum_{t \leq T} \sum_{h\in \mathcal{H}(I)} \pi_{p(h)}^{\sigma^t}(h)}$$<br>在实际计算中，为了简化计算量，在迭代过程中我们通常只维护上述表达式中的分子部分$\tilde{\sigma}^T(I,a)$；当需要用到策略$\bar{\sigma}^{T}$时，我们只需要进行一步归一化即可：$\bar{\sigma}^{T}(I,a) = \frac{\tilde{\sigma}^T(I,a)}{\sum_{a\in \mathcal{A}(I)}\tilde{\sigma}^T(I,a)}$。<br>而$\tilde{\sigma}^T(I,a)$同样可以通过迭代的方式进行更新：具体来说，在上面的单步CFR迭代流程中，在第1步遍历$h$计算当次迭代的regret时，我们同时计算平均策略的变动量$$\Delta\tilde{\sigma}^{t}(I(h),a) \gets \Delta\tilde{\sigma}^{t}(I(h),a) + \pi_{p(h)}^{\sigma^t}(h) \cdot \sigma^{t}_{p(h)}(I(h),a);$$ 然后在第2步更新累计regret时，我们同时更新平均策略$$\tilde{\sigma}^t(I,a) = \tilde{\sigma}^{t-1}(I,a) + \Delta\tilde{\sigma}^{t}(I,a).$$</p>
+<p>在完成整个（多步）CFR迭代流程后，我们进一步对此前各步策略取平均（average policy），作为最终产出的策略形式：<br>$$\bar{\sigma}^{T}(I,a) &#x3D; \frac{\sum_{t \leq T} \sum_{h\in \mathcal{H}(I)} \pi_{p(h)}^{\sigma^t}(h) \cdot \sigma^{t}_{p(h)}(I,a)}{\sum_{t \leq T} \sum_{h\in \mathcal{H}(I)} \pi_{p(h)}^{\sigma^t}(h)}$$<br>在实际计算中，为了简化计算量，在迭代过程中我们通常只维护上述表达式中的分子部分$\tilde{\sigma}^T(I,a)$；当需要用到策略$\bar{\sigma}^{T}$时，我们只需要进行一步归一化即可：$\bar{\sigma}^{T}(I,a) &#x3D; \frac{\tilde{\sigma}^T(I,a)}{\sum_{a\in \mathcal{A}(I)}\tilde{\sigma}^T(I,a)}$。<br>而$\tilde{\sigma}^T(I,a)$同样可以通过迭代的方式进行更新：具体来说，在上面的单步CFR迭代流程中，在第1步遍历$h$计算当次迭代的regret时，我们同时计算平均策略的变动量$$\Delta\tilde{\sigma}^{t}(I(h),a) \gets \Delta\tilde{\sigma}^{t}(I(h),a) + \pi_{p(h)}^{\sigma^t}(h) \cdot \sigma^{t}_{p(h)}(I(h),a);$$ 然后在第2步更新累计regret时，我们同时更新平均策略$$\tilde{\sigma}^t(I,a) &#x3D; \tilde{\sigma}^{t-1}(I,a) + \Delta\tilde{\sigma}^{t}(I,a).$$</p>
 <p>在这一小节的最后，我们简单地分析CFR这一算法的计算复杂度。首先，在第1步的计算中，需要遍历所有$h$的所有动作选项$a$，因此时间复杂度是$O(|\mathcal{H}|\cdot|\mathcal{A}|)$；而空间复杂度则是$O(|\mathcal{I}|\cdot|\mathcal{A}|)$。而在第2和第3步的计算中，时间和空间复杂度都是$O(|\mathcal{I}|\cdot|\mathcal{A}|)$。因此，算法的整体时间复杂度是$O(|\mathcal{H}|\cdot|\mathcal{A}|\cdot T)$，空间复杂度是$O(|\mathcal{I}|\cdot|\mathcal{A}| \cdot T)$，其中$T$是算法的迭代步数。可以看出，当问题的状态空间$\mathcal{H}$和可观测空间$\mathcal{I}$很大时，算法在计算上是不太可行的。</p>
 <h3 id="CFR-1"><a href="#CFR-1" class="headerlink" title="CFR+"></a>CFR+</h3><p>CFR+算法在CFR的基础上做了一些微小的改造，却能取得很大的收敛效率提升。一次CFR+迭代的计算流程包括以下几步：</p>
 <ol>
 <li>计算本次迭代的regret和平均策略变动量，并更新累计regret和平均策略：通过深度优先搜索（DFS）加递归的方式遍历所有$h$，并计算<br>$$\begin{aligned}<br>R(I(h),a) &amp; \gets R(I(h),a) + \pi_{-p(h)}^{\sigma^t}(h) [u^{\sigma^t}(f(h,a)) - u^{\sigma^t}(h)]; \\<br>\tilde{\sigma}(I(h),a) &amp; \gets \tilde{\sigma}(I(h),a) + \pi_{p(h)}^{\sigma^t}(h) \cdot \sigma^{t}_{p(h)}(I(h),a). \\<br> \end{aligned}$$</li>
 <li>对累计regret取正值$R(I,a) \gets \max(R(I,a),0)$，并对累计平均策略做折减$\tilde{\sigma}(I,a) \gets \frac{t}{t+1} \cdot \tilde{\sigma}(I,a)$。</li>
-<li>根据累计regret做regret matching，产生下一次迭代的行为策略：$$\sigma^{t+1}_{p(I)}(I,a) = \frac{R(I,a)}{\sum_a R(I,a)}.$$</li>
+<li>根据累计regret做regret matching，产生下一次迭代的行为策略：$$\sigma^{t+1}_{p(I)}(I,a) &#x3D; \frac{R(I,a)}{\sum_a R(I,a)}.$$</li>
 </ol>
-<p>容易看出，CFR+算法与CFR算法的主要区别在于增加了第2步的处理。其中，对平均策略做折减等价于，在对各迭代步的策略进行平均时，给近期迭代步的策略更高的权重（事实上，权重=第几次迭代）；直观上，由于越到后期，策略表现效果越好，因此在对策略做平均时，给近期策略更高的权重有利于平均策略更快地收敛。</p>
+<p>容易看出，CFR+算法与CFR算法的主要区别在于增加了第2步的处理。其中，对平均策略做折减等价于，在对各迭代步的策略进行平均时，给近期迭代步的策略更高的权重（事实上，权重&#x3D;第几次迭代）；直观上，由于越到后期，策略表现效果越好，因此在对策略做平均时，给近期策略更高的权重有利于平均策略更快地收敛。</p>
 <h3 id="external-sampling-MCCFR"><a href="#external-sampling-MCCFR" class="headerlink" title="(external sampling) MCCFR"></a>(external sampling) MCCFR</h3><p>当$\mathcal{H}$或$\mathcal{I}$很大时，CFR和CFR+单次迭代的复杂度较高，在计算上不太可行。一种自然的提高计算效率的想法是通过蒙特卡洛方法对$h \in \mathcal{H}$进行采样，然后根据这些采样得到的$h$对regret $R$和策略$\bar{\sigma}$进行更新。这类基于蒙特卡洛采样的CFR方法统称为MCCFR，而通过不同的蒙特卡洛采样方式可以得到不同的MCCFR实现方式。在这篇文章中，我将介绍一种最容易实现的MCCFR方法：external sampling MCCFR。在这种方法中，对$h$的采样是通过对除一个目标参与者$p_0$外的其他参与者的行为进行采样实现的。具体来说，一次external sampling MCCFR迭代的计算流程包括以下几步：对于给定的目标参与者$p_0$，</p>
 <ol>
 <li>计算本次迭代的regret和平均策略变动量，并更新累计regret和平均策略：<ol>
-<li>通过深度优先搜索（DFS）的方式遍历$h$：当$p(h) = p_0$时，遍历所有$a$；否则，按照策略$\sigma^t_{p(h)}(I(h))$随机选择一个$a^*(h)$。</li>
-<li>计算$u^{\sigma^t}(h)$：当$p(h) = p_0$时，按照CFR的方式，令$u^{\sigma^t}(h) = \sum_{a \in \mathcal{A}} \sigma^t_{p(h)}(I(h),a) \cdot u^{\sigma^t}(f(h,a))$；否则，直接令$u^{\sigma^t}(h) = u^{\sigma^t}(f(h,a^{*}(h)))$为采样的$a^{*}$对应的期望收益。</li>
-<li>更新regret和平均策略：当$p(h) = p_0$时，更新regret$$R(I(h),a) \gets R(I(h),a) + \pi_{-p(h)}^{\sigma^t}(h) [u^{\sigma^t}(f(h,a)) - u^{\sigma^t}(h)];$$ 否则，更新平均策略$$\tilde{\sigma}(I(h),a) \gets \tilde{\sigma}(I(h),a) + \frac{\pi_{p(h)}^{\sigma^t}(h)}{\pi_{-p_0}^{\sigma^t}(h)} \cdot \sigma^{t}_{p(h)}(I(h),a).$$</li>
+<li>通过深度优先搜索（DFS）的方式遍历$h$：当$p(h) &#x3D; p_0$时，遍历所有$a$；否则，按照策略$\sigma^t_{p(h)}(I(h))$随机选择一个$a^*(h)$。</li>
+<li>计算$u^{\sigma^t}(h)$：当$p(h) &#x3D; p_0$时，按照CFR的方式，令$u^{\sigma^t}(h) &#x3D; \sum_{a \in \mathcal{A}} \sigma^t_{p(h)}(I(h),a) \cdot u^{\sigma^t}(f(h,a))$；否则，直接令$u^{\sigma^t}(h) &#x3D; u^{\sigma^t}(f(h,a^{*}(h)))$为采样的$a^{*}$对应的期望收益。</li>
+<li>更新regret和平均策略：当$p(h) &#x3D; p_0$时，更新regret$$R(I(h),a) \gets R(I(h),a) + \pi_{-p(h)}^{\sigma^t}(h) [u^{\sigma^t}(f(h,a)) - u^{\sigma^t}(h)];$$ 否则，更新平均策略$$\tilde{\sigma}(I(h),a) \gets \tilde{\sigma}(I(h),a) + \frac{\pi_{p(h)}^{\sigma^t}(h)}{\pi_{-p_0}^{\sigma^t}(h)} \cdot \sigma^{t}_{p(h)}(I(h),a).$$</li>
 </ol>
 </li>
-<li>根据累计regret做regret matching，产生下一次迭代的行为策略：$$\sigma^{t+1}_{p(I)}(I,a) = \frac{R(I,a)}{\sum_a R(I,a)}.$$</li>
+<li>根据累计regret做regret matching，产生下一次迭代的行为策略：$$\sigma^{t+1}_{p(I)}(I,a) &#x3D; \frac{R(I,a)}{\sum_a R(I,a)}.$$</li>
 </ol>
 <p>同样，在迭代过程中，我们可以仿照CFR+，引入折减系数$\frac{t}{t+1}$以提高策略收敛效率。</p>
-<p>在上述MCCFR的计算过程中，需要特别注意的是平均策略的更新方式：我们仅在$p(h) \neq p_0$的时候更新平均策略，且更新步骤中增加了权重$\frac{1}{\pi_{-p_0}^{\sigma^t}(h)}$。这是因为，由于采样的原因，在原本的平均策略更新值$$\sum_{h\in \mathcal{H}(I)} \pi_{p(h)}^{\sigma^t}(h) \cdot \sigma^{t}_{p(h)}(I,a)$$中，有许多$h$未被遍历到，故直接按照原方式进行累加会导致结果有偏。在这里，我们的解决方案是使用importance sampling：在上述累加式中，对每一项除以其采样概率，从而得到在期望意义上无偏的估计量。特别地，在external sampling中，状态$h$的采样概率恰好是$\pi_{-p_0}^{\sigma^t}(h)$。进一步地，在两人博弈、且chance node的行为概率完全均匀的场景中，对于$p(h) \neq p_0$，权重$w=\frac{\pi_{p(h)}^{\sigma^t}(h)}{\pi_{-p_0}^{\sigma^t}(h)}$恰好等价于1，故此时平均策略的更新公式可以进一步化简。</p>
+<p>在上述MCCFR的计算过程中，需要特别注意的是平均策略的更新方式：我们仅在$p(h) \neq p_0$的时候更新平均策略，且更新步骤中增加了权重$\frac{1}{\pi_{-p_0}^{\sigma^t}(h)}$。这是因为，由于采样的原因，在原本的平均策略更新值$$\sum_{h\in \mathcal{H}(I)} \pi_{p(h)}^{\sigma^t}(h) \cdot \sigma^{t}_{p(h)}(I,a)$$中，有许多$h$未被遍历到，故直接按照原方式进行累加会导致结果有偏。在这里，我们的解决方案是使用importance sampling：在上述累加式中，对每一项除以其采样概率，从而得到在期望意义上无偏的估计量。特别地，在external sampling中，状态$h$的采样概率恰好是$\pi_{-p_0}^{\sigma^t}(h)$。进一步地，在两人博弈、且chance node的行为概率完全均匀的场景中，对于$p(h) \neq p_0$，权重$w&#x3D;\frac{\pi_{p(h)}^{\sigma^t}(h)}{\pi_{-p_0}^{\sigma^t}(h)}$恰好等价于1，故此时平均策略的更新公式可以进一步化简。</p>
 <h2 id="思路解析"><a href="#思路解析" class="headerlink" title="思路解析"></a>思路解析</h2><p>在上一节中，我介绍了CFR系列算法的实现细节。在这一节中，我将简单介绍CFR算法的目标和设计思路。</p>
 <p>首先，对于一个不完全信息博弈问题，常见的求解目标包括：</p>
 <ol>
@@ -418,14 +421,14 @@
 </ol>
 <p>在这一节的最后，我们来进行一些扩展讨论：在理解了CFR算法的大致思路后，我们可以如何将其迁移到其他应用场景？</p>
 <ol>
-<li>理论层面：CFR中对各$I$独立进行regret最小化的思路，对于什么问题是可行的，而在哪些场景中会存在漏洞？这些漏洞可以通过什么方式解决？例如，在近期一篇<a href="https://arxiv.org/pdf/2004.00603.pdf" target="_blank" rel="noopener">关于相关均衡的文章</a>中，作者引入了一种新的regret的概念，然后用类似CFR的思路提出了一种求解相关均衡的方法，并证明了其收敛性。</li>
+<li>理论层面：CFR中对各$I$独立进行regret最小化的思路，对于什么问题是可行的，而在哪些场景中会存在漏洞？这些漏洞可以通过什么方式解决？例如，在近期一篇<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2004.00603.pdf">关于相关均衡的文章</a>中，作者引入了一种新的regret的概念，然后用类似CFR的思路提出了一种求解相关均衡的方法，并证明了其收敛性。</li>
 <li>计算层面：CFR的主要计算瓶颈来源于其对regret的表示缺乏泛化能力，故在计算中需要遍历$I$，导致时间和空间的复杂度很高。那么，我们能否剥离出CFR的核心步骤，并将其融入一些其他的具有泛化能力的求解框架中？特别地，注意到regret的形式与RL中的advantage有一定的相似性，因此或许可以对现有RL算法进行一些针对性的改造，以复现CFR的优秀的收敛效果。特别地，近期的deep CFR就是一次很好的尝试。</li>
 </ol>
-<h2 id="研究前沿"><a href="#研究前沿" class="headerlink" title="研究前沿"></a>研究前沿</h2><p>在经典的CFR方法的基础上，近期又出现了许多改进工作，进一步提高了CFR系列方法的计算可行性。在这篇文章的最后，我将对<a href="http://reports-archive.adm.cs.cmu.edu/anon/2020/CMU-CS-20-132.pdf" target="_blank" rel="noopener">Noam Brown的博士论文</a>中提到的一些改进方法进行简单总结：</p>
+<h2 id="研究前沿"><a href="#研究前沿" class="headerlink" title="研究前沿"></a>研究前沿</h2><p>在经典的CFR方法的基础上，近期又出现了许多改进工作，进一步提高了CFR系列方法的计算可行性。在这篇文章的最后，我将对<a target="_blank" rel="noopener" href="http://reports-archive.adm.cs.cmu.edu/anon/2020/CMU-CS-20-132.pdf">Noam Brown的博士论文</a>中提到的一些改进方法进行简单总结：</p>
 <ol>
 <li>discounted CFR (DCFR)：在上面关于CFR+的介绍中，我们已经知道，通过对历史平均策略信息进行折减、以更多利用当前策略的信息，可以提高算法的收敛效果。<ul>
 <li>在此基础上，一种自然的拓展思路是对历史累计的regret也进行折减。</li>
-<li>另外，CFR+中的折减方法相对固定；通过设计新的折减方法（例如，考虑折减系数$t^{\alpha}/(t^{\alpha}+1)$，其中$\alpha$是超参数），可以进一步提高收敛效率。</li>
+<li>另外，CFR+中的折减方法相对固定；通过设计新的折减方法（例如，考虑折减系数$t^{\alpha}&#x2F;(t^{\alpha}+1)$，其中$\alpha$是超参数），可以进一步提高收敛效率。</li>
 </ul>
 </li>
 <li>warm start：在一些场景下，可能刚开始已经存在较好的行为策略$\sigma_0$（例如，启发式方法）；此时，可以考虑使用这些策略对regret取值进行warm start，从而节省部分CFR的前期计算量。在上述文章中，作者证明了，当所初始化的regret取值满足一定的不等式条件时，基于该regret取值进行CFR迭代的效果等价于通过CFR迭代$T(\sigma_0)$步后继续进行CFR迭代的效果。基于此认知，作者进一步提出了一套高效的基于现有策略$\sigma_0$初始化regret的方法。</li>
@@ -460,9 +463,11 @@
       
         <div class="post-tags">
           
+            <a href="/blogs/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+          
             <a href="/blogs/tags/Behavior-Modeling/" rel="tag"># Behavior Modeling</a>
           
-            <a href="/blogs/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+            <a href="/blogs/tags/Game-Theory/" rel="tag"># Game Theory</a>
           
         </div>
       
@@ -521,7 +526,7 @@
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
     </div>
@@ -563,9 +568,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -574,9 +581,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blogs/archives">
+                <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -598,7 +605,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blogs/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -653,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题背景"><span class="nav-number">1.</span> <span class="nav-text">问题背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法实现"><span class="nav-number">2.</span> <span class="nav-text">算法实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CFR"><span class="nav-number">2.1.</span> <span class="nav-text">CFR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CFR-1"><span class="nav-number">2.2.</span> <span class="nav-text">CFR+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#external-sampling-MCCFR"><span class="nav-number">2.3.</span> <span class="nav-text">(external sampling) MCCFR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路解析"><span class="nav-number">3.</span> <span class="nav-text">思路解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#研究前沿"><span class="nav-number">4.</span> <span class="nav-text">研究前沿</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">问题背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">算法实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CFR"><span class="nav-number">2.1.</span> <span class="nav-text">CFR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CFR-1"><span class="nav-number">2.2.</span> <span class="nav-text">CFR+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#external-sampling-MCCFR"><span class="nav-number">2.3.</span> <span class="nav-text">(external sampling) MCCFR</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E8%A7%A3%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">思路解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A0%94%E7%A9%B6%E5%89%8D%E6%B2%BF"><span class="nav-number">4.</span> <span class="nav-text">研究前沿</span></a></li></ol></div>
             
 
           </div>

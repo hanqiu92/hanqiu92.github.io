@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -52,9 +52,9 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Integer Programming,">
+  <meta name="keywords" content="Integer Programming," />
 
 
 
@@ -84,24 +84,24 @@
 
 
 <meta name="description" content="在这篇文章中，我将对本系列之前的内容进行总结，并针对MIP的求解方法设计及求解器的使用给出一些个人理解和建议。">
-<meta name="keywords" content="Integer Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Develop Your Own Branch &amp; Bound Solver IV: Summary">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_4_202007/index.html">
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在这篇文章中，我将对本系列之前的内容进行总结，并针对MIP的求解方法设计及求解器的使用给出一些个人理解和建议。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-06-29T02:25:13.231Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-18T04:00:00.000Z">
+<meta property="article:modified_time" content="2020-06-29T02:25:13.231Z">
+<meta property="article:author" content="Han Qiu">
+<meta property="article:tag" content="Integer Programming">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to Develop Your Own Branch &amp; Bound Solver IV: Summary">
-<meta name="twitter:description" content="在这篇文章中，我将对本系列之前的内容进行总结，并针对MIP的求解方法设计及求解器的使用给出一些个人理解和建议。">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blogs/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_4_202007/">
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2020/IP_BB_solver_4_202007/"/>
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
@@ -158,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/" class="brand" rel="start">
+      <a href="/blogs/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -186,7 +186,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blogs/." rel="section">
+          <a href="/blogs/.%20" rel="section">
             
             Home
           </a>
@@ -194,7 +194,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/blogs/categories" rel="section">
+          <a href="/blogs/categories%20" rel="section">
             
             Categories
           </a>
@@ -202,7 +202,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blogs/archives" rel="section">
+          <a href="/blogs/archives%20" rel="section">
             
             Archives
           </a>
@@ -210,7 +210,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/blogs/tags" rel="section">
+          <a href="/blogs/tags%20" rel="section">
             
             Tags
           </a>
@@ -218,7 +218,7 @@
       
         
         <li class="menu-item menu-item-scribbles">
-          <a href="/blogs/scribbles" rel="section">
+          <a href="/blogs/scribbles%20" rel="section">
             
             Scribbles
           </a>
@@ -260,8 +260,8 @@
     <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2020/IP_BB_solver_4_202007/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -297,7 +297,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -347,8 +347,9 @@
 
       
         <p>在这篇文章中，我将对本系列之前的内容进行总结，并针对MIP的求解方法设计及求解器的使用给出一些个人理解和建议。</p>
-<a id="more"></a>
-<h2 id="分支定界法的基本原理-How-does-B-amp-B-work"><a href="#分支定界法的基本原理-How-does-B-amp-B-work" class="headerlink" title="分支定界法的基本原理 How does B&amp;B work?"></a>分支定界法的基本原理 How does B&amp;B work?</h2><p>对于一个（最小化）混合整数规划(MIP)问题<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \min \ &amp; c^T x \\<br>    s.t. \ &amp; Ax = b, \\<br>           &amp; l \leq x \leq u, \\<br>           &amp; x \in \mathbb{R}^{m_1} \times \mathbb{Z}^{m_2},<br>  \end{aligned}<br>  \label{eq:basic}\tag{1.1}<br>\end{equation}<br>$$</p>
+<span id="more"></span>
+
+<h2 id="分支定界法的基本原理-How-does-B-amp-B-work"><a href="#分支定界法的基本原理-How-does-B-amp-B-work" class="headerlink" title="分支定界法的基本原理 How does B&amp;B work?"></a>分支定界法的基本原理 How does B&amp;B work?</h2><p>对于一个（最小化）混合整数规划(MIP)问题<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \min \ &amp; c^T x \\<br>    s.t. \ &amp; Ax &#x3D; b, \\<br>           &amp; l \leq x \leq u, \\<br>           &amp; x \in \mathbb{R}^{m_1} \times \mathbb{Z}^{m_2},<br>  \end{aligned}<br>  \label{eq:basic}\tag{1.1}<br>\end{equation}<br>$$</p>
 <p>其对应的线性规划松弛(LP relaxation)问题是指放松问题\eqref{eq:basic}中的整数约束所得的规划问题。该问题可以通过单纯形法或内点法进行高效求解；所得的最优解虽然不一定是原MIP问题的可行解，但是相应的目标值可以作为MIP问题最优目标值的一个下界估计。<br>分支定界法(B&amp;B)的基本原理是将上述LP松弛估计的思路与分治法(divide and conquer)进行结合，不断将原MIP问题切割成子问题并求解，以获得更准确的目标值下界估计和更好的可行解，直至找到最优解为止。具体来说，B&amp;B流程不断重复以下步骤：</p>
 <ol>
 <li>对于一个MIP子问题，求解其LP松弛问题，得到解$x$，并根据相应的目标值更新全局的目标值下界估计；</li>
@@ -357,28 +358,28 @@
 <li>如果没有达到停止条件、且仍有未处理的子问题，则从中选择一个，然后回到步骤1。</li>
 </ol>
 <p>我们也可以从一个更一般(general)的视角——“外部逼近”(outer approximation)——来理解B&amp;B方法。具体来说，对于一个困难的优化问题<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \min \ &amp; f(x) \\<br>    s.t. \ &amp; x \in P, \\<br>  \end{aligned}<br>  \label{eq:general}\tag{1.2}<br>\end{equation}<br>$$</p>
-<p>外部逼近的基本想法是将可行域$P$拆分为$\cup_{i=1}^{N} P_i$，对每个$P_i$找到一个容易计算的超集$\bar{P}_i \supset P_i$并在$\bar{P}_i$上求解优化问题，然后对各部分求解结果进行整合产生对原问题最优目标值的估计。通过不断切分$P_i$并降低$P_i$与$\bar{P}_i$之间的差距，我们可以令$\bar{P} = \cup_{i=1}^{N} \bar{P}_i$逐步逼近$P$，从而获得更准确的估计。特别地，如果在该“外部逼近”框架中，我们进一步通过切割变量取值范围来拆分可行域$P_i$，并令$\bar{P}_i$为$P_i$的relaxation，那么我们就得到了B&amp;B方法。由于B&amp;B方法只在坐标轴方向（变量取值范围）进行切分，相比一般的割平面效率不高；其他一些外部逼近方法，例如半正定规划(SDP)，可能可以给出更好的逼近效果。</p>
-<h2 id="MIP求解器的高效使用-How-to-use-MIP-solvers-efficiently"><a href="#MIP求解器的高效使用-How-to-use-MIP-solvers-efficiently" class="headerlink" title="MIP求解器的高效使用 How to use MIP solvers efficiently?"></a>MIP求解器的高效使用 How to use MIP solvers efficiently?</h2><h3 id="求解器的选用-Selection-of-Solvers"><a href="#求解器的选用-Selection-of-Solvers" class="headerlink" title="求解器的选用 Selection of Solvers"></a>求解器的选用 Selection of Solvers</h3><p>对于MIP问题，商用求解器（Gurobi/Cplex）通常比开源求解器（CBC）速度快1~2个数量级，而且接口、文档以及社区支持也更完善。因此，如果不需要考虑成本或者预算较多，可以直接选择商用求解器。<br>商用和开源求解器在MIP上的差距比在LP上的差距更大，主要有以下几点原因：</p>
+<p>外部逼近的基本想法是将可行域$P$拆分为$\cup_{i&#x3D;1}^{N} P_i$，对每个$P_i$找到一个容易计算的超集$\bar{P}_i \supset P_i$并在$\bar{P}_i$上求解优化问题，然后对各部分求解结果进行整合产生对原问题最优目标值的估计。通过不断切分$P_i$并降低$P_i$与$\bar{P}_i$之间的差距，我们可以令$\bar{P} &#x3D; \cup_{i&#x3D;1}^{N} \bar{P}_i$逐步逼近$P$，从而获得更准确的估计。特别地，如果在该“外部逼近”框架中，我们进一步通过切割变量取值范围来拆分可行域$P_i$，并令$\bar{P}_i$为$P_i$的relaxation，那么我们就得到了B&amp;B方法。由于B&amp;B方法只在坐标轴方向（变量取值范围）进行切分，相比一般的割平面效率不高；其他一些外部逼近方法，例如半正定规划(SDP)，可能可以给出更好的逼近效果。</p>
+<h2 id="MIP求解器的高效使用-How-to-use-MIP-solvers-efficiently"><a href="#MIP求解器的高效使用-How-to-use-MIP-solvers-efficiently" class="headerlink" title="MIP求解器的高效使用 How to use MIP solvers efficiently?"></a>MIP求解器的高效使用 How to use MIP solvers efficiently?</h2><h3 id="求解器的选用-Selection-of-Solvers"><a href="#求解器的选用-Selection-of-Solvers" class="headerlink" title="求解器的选用 Selection of Solvers"></a>求解器的选用 Selection of Solvers</h3><p>对于MIP问题，商用求解器（Gurobi&#x2F;Cplex）通常比开源求解器（CBC）速度快1~2个数量级，而且接口、文档以及社区支持也更完善。因此，如果不需要考虑成本或者预算较多，可以直接选择商用求解器。<br>商用和开源求解器在MIP上的差距比在LP上的差距更大，主要有以下几点原因：</p>
 <ol>
 <li>对LP问题的研究有较长的历史，相关求解算法非常成熟；相比之下，人们对MIP问题的理解仍然不够深入。</li>
-<li>MIP问题的复杂度和难度比LP问题高很多，（暂时）不存在单一最好的(single best)解法；因此，要在不同类型和场景的问题中都取得较好的效果，求解器往往需要从多个求解角度引入大量定制化(customized)/专门化(specialized)的技术，而这些工作需要更多的时间和金钱资源的投入。</li>
+<li>MIP问题的复杂度和难度比LP问题高很多，（暂时）不存在单一最好的(single best)解法；因此，要在不同类型和场景的问题中都取得较好的效果，求解器往往需要从多个求解角度引入大量定制化(customized)&#x2F;专门化(specialized)的技术，而这些工作需要更多的时间和金钱资源的投入。</li>
 </ol>
 <p>不过，这也意味着对于特定类型问题，求解器不一定能给出最高效的解决方案；好的业务理解和问题建模往往更重要。</p>
 <h3 id="求解器配置的选用-Selection-of-Solver-Configurations"><a href="#求解器配置的选用-Selection-of-Solver-Configurations" class="headerlink" title="求解器配置的选用 Selection of Solver Configurations"></a>求解器配置的选用 Selection of Solver Configurations</h3><p>上面提到，MIP求解器通常实现了多样化的求解技术、并提供了大量求解流程的控制配置，以应对不同类型问题的求解需求。然而，对于某个具体问题，求解器由于缺少先验信息，只能在求解过程中根据实际表现动态调整配置；这种做法不但在求解过程前期存在效率损失，而且不一定能在短时间内找到合理的求解配置。因此，即使通过调用求解器来解决MIP问题，我们也可以通过优化求解器配置来取得更好的效果。具体来说，</p>
 <ul>
-<li>一方面，我们可以结合对问题结构和求解需求的理解来选择合适的求解器的配置。例如，对于可满足性问题(SAT)等主要关注可行性的问题，在node selection阶段选用dfs/be等关注可行解的方法要优于bfs等关注下界估计的方法。</li>
+<li>一方面，我们可以结合对问题结构和求解需求的理解来选择合适的求解器的配置。例如，对于可满足性问题(SAT)等主要关注可行性的问题，在node selection阶段选用dfs&#x2F;be等关注可行解的方法要优于bfs等关注下界估计的方法。</li>
 <li>另一方面，对于需要反复求解的任务，我们可以先设计一组小规模的测试问题对不同求解器配置的效果进行评估，然后选出效果较好的几组配置用于后续主求解流程中。</li>
 </ul>
 <h3 id="其他建模与求解技巧-Other-Modeling-and-Solving-Techniques"><a href="#其他建模与求解技巧-Other-Modeling-and-Solving-Techniques" class="headerlink" title="其他建模与求解技巧 Other Modeling and Solving Techniques"></a>其他建模与求解技巧 Other Modeling and Solving Techniques</h3><p>除了对求解器的配置进行优化，我们还可以基于对问题的理解，改进问题形式(formulation)，或者定制新的求解方式与求解器进行搭配：</p>
 <ul>
-<li>通过理论分析，给出更强/理想的问题形式。例如，在描述受0-1变量控制的连续变量时，可尽量避免big-M的使用。</li>
+<li>通过理论分析，给出更强&#x2F;理想的问题形式。例如，在描述受0-1变量控制的连续变量时，可尽量避免big-M的使用。</li>
 <li>结合B&amp;B流程的特点，调整问题形式以提高求解器的效率。例如，引入lift变量以改善branching步骤的算法效率。</li>
 <li>启发式方法与求解器的结合。很多MIP问题背后有非常直观的业务逻辑，但相应的数学规划形式却比较复杂。根据个人经验，这类问题比较适合通过启发式方法来寻找解，然后通过求解器对启发式方法的效果进行校核。另外，注意到B&amp;B等基于LP的方法属于外部逼近方法，而启发式搜索方法属于内部逼近方法，两种不同视角可能可以结合，形成更高效的求解方案。</li>
 </ul>
 <h2 id="MIP求解器的开发-How-to-develop-an-MIP-solver"><a href="#MIP求解器的开发-How-to-develop-an-MIP-solver" class="headerlink" title="MIP求解器的开发 How to develop an MIP solver?"></a>MIP求解器的开发 How to develop an MIP solver?</h2><p>基于某些原因，使用者可能需要从头开始实现一个MIP求解器。不过，正如上面所提到的，如果要满足市场所需的通用性，MIP求解器通常需要实现大量专门化的求解技术，这对于没有充分的资源和业务经验支持的个人或者小团队来说是十分困难的。因此，至少在开发前期阶段，开发者需要有一定的侧重点，专注于求解器的某几项核心功能。我个人认为一种较合理的开发思路是先以某一类业务问题为切入点，基于一套可扩展的框架实现核心求解逻辑；后续再逐步引入专门化功能，扩大求解器的应用面。</p>
-<p>在实现核心求解逻辑时，开发者可以参考借鉴已有的开源工作，例如<a href="https://github.com/coin-or/Cbc" target="_blank" rel="noopener">CBC</a>、<a href="https://scipopt.org/" target="_blank" rel="noopener">SCIP</a>等，也可以参考我在本系列中的尝试。特别地，我认为有以下几个需要特别注意的工程设计问题：</p>
+<p>在实现核心求解逻辑时，开发者可以参考借鉴已有的开源工作，例如<a target="_blank" rel="noopener" href="https://github.com/coin-or/Cbc">CBC</a>、<a target="_blank" rel="noopener" href="https://scipopt.org/">SCIP</a>等，也可以参考我在本系列中的尝试。特别地，我认为有以下几个需要特别注意的工程设计问题：</p>
 <ul>
-<li>数据结构设计：在求解器中，类和数据结构的形式对计算和存储性能有重要影响，而且一旦确定，后续修改成本很高。因此，有必要根据求解器的主要应用方向设计类和数据结构的形式。例如，在SCIP中，约束（行）与变量（列）被认为是不同的对象，有独立的数据结构和处理逻辑；这是因为在MIP问题中通常有大量包含组合结构的约束，通过独立的处理逻辑可以利用这些组合结构来提高branching和domain propagation的效率。但与此同时，这种数据结构形式将会为LP松弛问题的求解增加一定的计算开销，因为LP求解器通常需要将行和列作为同一类对象进行处理。由于SCIP在设计之初更多是为了解决SAT/CIP等与布尔逻辑判定相关的问题，而对于这类问题，LP求解模块的重要性相对更低，故对约束使用独立的数据结构管理是更合适的。</li>
+<li>数据结构设计：在求解器中，类和数据结构的形式对计算和存储性能有重要影响，而且一旦确定，后续修改成本很高。因此，有必要根据求解器的主要应用方向设计类和数据结构的形式。例如，在SCIP中，约束（行）与变量（列）被认为是不同的对象，有独立的数据结构和处理逻辑；这是因为在MIP问题中通常有大量包含组合结构的约束，通过独立的处理逻辑可以利用这些组合结构来提高branching和domain propagation的效率。但与此同时，这种数据结构形式将会为LP松弛问题的求解增加一定的计算开销，因为LP求解器通常需要将行和列作为同一类对象进行处理。由于SCIP在设计之初更多是为了解决SAT&#x2F;CIP等与布尔逻辑判定相关的问题，而对于这类问题，LP求解模块的重要性相对更低，故对约束使用独立的数据结构管理是更合适的。</li>
 <li>模块设计与可扩展性：随着新求解技术的不断引入，对技术的动态管理和控制会变得越来越复杂，很多地方需要加入具体求解技术选取的判断逻辑。此时，如果模块间的边界或者交互形式不清晰，前述判断逻辑可能较难实现或者容易出bug。例如，在本系列的实现中，约束相关信息没有专门的管理对象，而是在solver、propagator等多个类中都保存有独立备份；这导致后续较难对割生成技术进行支持，因为生成割平面后需要对问题约束信息进行改动，而这种改动在当前实现中是不可控的。</li>
 </ul>
 
@@ -457,7 +458,7 @@
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
     </div>
@@ -499,9 +500,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -510,9 +513,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blogs/archives">
+                <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -534,7 +537,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blogs/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -589,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支定界法的基本原理-How-does-B-amp-B-work"><span class="nav-number">1.</span> <span class="nav-text">分支定界法的基本原理 How does B&amp;B work?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIP求解器的高效使用-How-to-use-MIP-solvers-efficiently"><span class="nav-number">2.</span> <span class="nav-text">MIP求解器的高效使用 How to use MIP solvers efficiently?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求解器的选用-Selection-of-Solvers"><span class="nav-number">2.1.</span> <span class="nav-text">求解器的选用 Selection of Solvers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求解器配置的选用-Selection-of-Solver-Configurations"><span class="nav-number">2.2.</span> <span class="nav-text">求解器配置的选用 Selection of Solver Configurations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他建模与求解技巧-Other-Modeling-and-Solving-Techniques"><span class="nav-number">2.3.</span> <span class="nav-text">其他建模与求解技巧 Other Modeling and Solving Techniques</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIP求解器的开发-How-to-develop-an-MIP-solver"><span class="nav-number">3.</span> <span class="nav-text">MIP求解器的开发 How to develop an MIP solver?</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E5%AE%9A%E7%95%8C%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86-How-does-B-amp-B-work"><span class="nav-number">1.</span> <span class="nav-text">分支定界法的基本原理 How does B&amp;B work?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIP%E6%B1%82%E8%A7%A3%E5%99%A8%E7%9A%84%E9%AB%98%E6%95%88%E4%BD%BF%E7%94%A8-How-to-use-MIP-solvers-efficiently"><span class="nav-number">2.</span> <span class="nav-text">MIP求解器的高效使用 How to use MIP solvers efficiently?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3%E5%99%A8%E7%9A%84%E9%80%89%E7%94%A8-Selection-of-Solvers"><span class="nav-number">2.1.</span> <span class="nav-text">求解器的选用 Selection of Solvers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3%E5%99%A8%E9%85%8D%E7%BD%AE%E7%9A%84%E9%80%89%E7%94%A8-Selection-of-Solver-Configurations"><span class="nav-number">2.2.</span> <span class="nav-text">求解器配置的选用 Selection of Solver Configurations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%BB%BA%E6%A8%A1%E4%B8%8E%E6%B1%82%E8%A7%A3%E6%8A%80%E5%B7%A7-Other-Modeling-and-Solving-Techniques"><span class="nav-number">2.3.</span> <span class="nav-text">其他建模与求解技巧 Other Modeling and Solving Techniques</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MIP%E6%B1%82%E8%A7%A3%E5%99%A8%E7%9A%84%E5%BC%80%E5%8F%91-How-to-develop-an-MIP-solver"><span class="nav-number">3.</span> <span class="nav-text">MIP求解器的开发 How to develop an MIP solver?</span></a></li></ol></div>
             
 
           </div>

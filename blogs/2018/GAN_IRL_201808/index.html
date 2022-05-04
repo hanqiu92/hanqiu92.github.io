@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -52,9 +52,9 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Behavior Modeling,Reinforcement Learning,">
+  <meta name="keywords" content="Reinforcement Learning,Behavior Modeling," />
 
 
 
@@ -84,24 +84,25 @@
 
 
 <meta name="description" content="IntroductionInverse reinforcement learning (IRL) is the dual of reinforcement learning (RL) and aims at recovering the reward function that the agent optimizes with. Compared with supervised learning">
-<meta name="keywords" content="Behavior Modeling,Reinforcement Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A Discussion on GAN-based IRL Methods">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2018/GAN_IRL_201808/index.html">
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="IntroductionInverse reinforcement learning (IRL) is the dual of reinforcement learning (RL) and aims at recovering the reward function that the agent optimizes with. Compared with supervised learning">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-15T15:39:19.900Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-08-31T16:06:00.000Z">
+<meta property="article:modified_time" content="2019-07-15T15:39:19.900Z">
+<meta property="article:author" content="Han Qiu">
+<meta property="article:tag" content="Reinforcement Learning">
+<meta property="article:tag" content="Behavior Modeling">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Discussion on GAN-based IRL Methods">
-<meta name="twitter:description" content="IntroductionInverse reinforcement learning (IRL) is the dual of reinforcement learning (RL) and aims at recovering the reward function that the agent optimizes with. Compared with supervised learning">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blogs/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -124,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2018/GAN_IRL_201808/">
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2018/GAN_IRL_201808/"/>
 
 
 
@@ -140,7 +141,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
@@ -158,7 +159,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/" class="brand" rel="start">
+      <a href="/blogs/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -186,7 +187,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blogs/." rel="section">
+          <a href="/blogs/.%20" rel="section">
             
             Home
           </a>
@@ -194,7 +195,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/blogs/categories" rel="section">
+          <a href="/blogs/categories%20" rel="section">
             
             Categories
           </a>
@@ -202,7 +203,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blogs/archives" rel="section">
+          <a href="/blogs/archives%20" rel="section">
             
             Archives
           </a>
@@ -210,7 +211,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/blogs/tags" rel="section">
+          <a href="/blogs/tags%20" rel="section">
             
             Tags
           </a>
@@ -218,7 +219,7 @@
       
         
         <li class="menu-item menu-item-scribbles">
-          <a href="/blogs/scribbles" rel="section">
+          <a href="/blogs/scribbles%20" rel="section">
             
             Scribbles
           </a>
@@ -260,8 +261,8 @@
     <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2018/GAN_IRL_201808/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -297,7 +298,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -348,36 +349,37 @@
       
         <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Inverse reinforcement learning (IRL) is the dual of reinforcement learning (RL) and aims at recovering the reward function that the agent optimizes with. Compared with supervised learning (behavior cloning, BC), IRL imposes more restrictive regularity conditions on the set of policies and is more appropriate in cases with inadequate expert demonstrations and for robust estimations. For example, consider a routing problem on a grid network: the optimal actions taken by the agent are geographically correlated. In this case, compared with BC, IRL has a higher chance of recovering the internal reward structure and leads to more consistent actions across space.</p>
 <p>In this post, I will briefly introduce several recent works using the generative adversarial network (GAN) for IRL and discuss their connections.</p>
-<a id="more"></a>
+<span id="more"></span>
+
 <h2 id="Equivalence-of-IRL-formulations"><a href="#Equivalence-of-IRL-formulations" class="headerlink" title="Equivalence of IRL formulations"></a>Equivalence of IRL formulations</h2><p>In the literature, there are two IRL formulations:</p>
 <p>$$\min_r [\max_{\pi} E_{\rho_{\pi}} (r(s,a) - \log(a|s)) - E_{\rho_{\pi_E}} r(s,a)],$$</p>
 <p>or</p>
 <p>$$\max_r E_{\rho_{\pi_E}} \log p(a|s),$$</p>
 <p>where $\rho_{\pi}(s,a)$ in the first formulation is the expected (discounted) occurrence of state-action $(s,a)$ pair when we sample with policy $\pi$ and in the second formulation refers to the sampling process of the expert demonstrations, and $p(a|s)$ is the action choice probability under the assumption that $\pi_E$ follows the entropy-regularized optimal policy. The first formulation above means that we should find a reward $r$ such that the expected total value from expert policy $\pi_E$ is closest to the entropy-regularized optimal policy $\pi_H$, while the second formulation is to maximize the log likelihood of expert demonstrations with $r$. Next, we show that the two formulations are equivalent when the two sampling processes $\rho$ are consistent (this seems trivial but DO have important implications in how each paper builds up their specific IRL algorithms).</p>
 <p>Assume we are given with some reward function $r$. We denote the value function under the entropy-regularized optimal policy as $V$; that is, we have</p>
-<p>$$\max_{\pi} E_{\rho_{\pi}} (r(s,a) - \log p(a|s)) = \sum_s p_0(s) V(s).$$</p>
+<p>$$\max_{\pi} E_{\rho_{\pi}} (r(s,a) - \log p(a|s)) &#x3D; \sum_s p_0(s) V(s).$$</p>
 <p>Now, we can show that</p>
-<p>$$\begin{aligned} Q(s,a) &amp; = r(s,a) + \gamma \sum_{s’} p(s’|s,a) V(s’) \\<br>e^{V(s)} &amp; = \sum_a e^{Q(s,a)} \\<br>p(a|s) &amp; = e^{Q(s,a) - V(s)}, \end{aligned}$$</p>
+<p>$$\begin{aligned} Q(s,a) &amp; &#x3D; r(s,a) + \gamma \sum_{s’} p(s’|s,a) V(s’) \\<br>e^{V(s)} &amp; &#x3D; \sum_a e^{Q(s,a)} \\<br>p(a|s) &amp; &#x3D; e^{Q(s,a) - V(s)}, \end{aligned}$$</p>
 <p>where $\gamma$ is the discount factor. Such characterization is also available in Ziebart (2010).</p>
 <p>(Note: If one is familiar with discrete choice modeling, she will find that the form of dynamic MNL model is quite similar with the above characterization of entropy-regularized optimal action.)</p>
 <p>So if $\pi_E$ follows the entropy-regularized optimal policy, we have</p>
-<p>$$\begin{aligned} E_{\rho_{\pi_E}} \log p(a|s) &amp; = E_{\rho_{\pi_E}} Q(a,s) - E_{\rho_{\pi_E}} V(s) \\<br>&amp; = E_{\rho_{\pi_E}} r(a,s) + \gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) - E_{\rho_{\pi_E}} V(s). \\ \end{aligned}$$</p>
+<p>$$\begin{aligned} E_{\rho_{\pi_E}} \log p(a|s) &amp; &#x3D; E_{\rho_{\pi_E}} Q(a,s) - E_{\rho_{\pi_E}} V(s) \\<br>&amp; &#x3D; E_{\rho_{\pi_E}} r(a,s) + \gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) - E_{\rho_{\pi_E}} V(s). \\ \end{aligned}$$</p>
 <p>Therefore, we remain to show that</p>
-<p>$$\gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) - E_{\rho_{\pi_E}} V(s) = -\sum_s p_0(s) V(s)$$</p>
+<p>$$\gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) - E_{\rho_{\pi_E}} V(s) &#x3D; -\sum_s p_0(s) V(s)$$</p>
 <p>when the $\rho_E$ in the two formulations refer to the same thing. The major implication of such equivalence is that the expert demonstrations should be sampled exactly as dictated by the expected discounted occurrence. Why is this so important? Notice that when the problem under discussion is an infinite time MDP, we cannot sample each single expert trajectory into distant future and there must be some stopping mechanisms. The above equivalence restricts our choices: we should stop according to the discount factor $\gamma$. That is, for each sampled trajectory $\tau$ with length $T+1$ (a $(s,a)$ pair is of length $1$), we have probability</p>
-<p>$$p(\tau) = (1-\gamma) \gamma^T p_0(s_0)\pi_E(a_0|s_0) p(s_1|s_0,a_0)\cdots p(s_T|s_{T-1},a_{T-1})\pi_E(a_T|s_T).$$</p>
+<p>$$p(\tau) &#x3D; (1-\gamma) \gamma^T p_0(s_0)\pi_E(a_0|s_0) p(s_1|s_0,a_0)\cdots p(s_T|s_{T-1},a_{T-1})\pi_E(a_T|s_T).$$</p>
 <p>The expected discounted occurrence of state-action pair $(s,a)$, in both formulations, is the same as</p>
-<p>$$\rho_{\pi_E}(s,a) = \sum_{T}\sum_{\tau:l(\tau)=T,\tau_{-1} = (s,a)} p(\tau),$$</p>
-<p>where $l(\tau)$ is the length of the trajectory $\tau$ and $\tau_{-1}$ is the last state-action pair in the trajectory. If we further define $p(\tau,s) = \gamma p(\tau)p(s|\tau_{-1})$ for $l(\tau) &gt; 0$ and $p(\tau,s) = p_0(s)$ for for $l(\tau) = 0$, we have, on one hand,</p>
-<p>$$\begin{aligned}\gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) &amp; = \gamma \sum_{s,a} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T,\tau_{-1} = (s,a)} p(\tau) \sum_{s’} p(s’|s,a) V(s’) \\<br>&amp; = \sum_{s,a} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T,\tau_{-1} = (s,a)}\sum_{s’} p(\tau,s’) V(s’)\\<br>&amp; = \sum_{s’}\sum_{T &gt; 0}\sum_{\tau:l(\tau)=T} p(\tau,s’) V(s’), \end{aligned}$$</p>
+<p>$$\rho_{\pi_E}(s,a) &#x3D; \sum_{T}\sum_{\tau:l(\tau)&#x3D;T,\tau_{-1} &#x3D; (s,a)} p(\tau),$$</p>
+<p>where $l(\tau)$ is the length of the trajectory $\tau$ and $\tau_{-1}$ is the last state-action pair in the trajectory. If we further define $p(\tau,s) &#x3D; \gamma p(\tau)p(s|\tau_{-1})$ for $l(\tau) &gt; 0$ and $p(\tau,s) &#x3D; p_0(s)$ for for $l(\tau) &#x3D; 0$, we have, on one hand,</p>
+<p>$$\begin{aligned}\gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) &amp; &#x3D; \gamma \sum_{s,a} \sum_{T &gt; 0}\sum_{\tau:l(\tau)&#x3D;T,\tau_{-1} &#x3D; (s,a)} p(\tau) \sum_{s’} p(s’|s,a) V(s’) \\<br>&amp; &#x3D; \sum_{s,a} \sum_{T &gt; 0}\sum_{\tau:l(\tau)&#x3D;T,\tau_{-1} &#x3D; (s,a)}\sum_{s’} p(\tau,s’) V(s’)\\<br>&amp; &#x3D; \sum_{s’}\sum_{T &gt; 0}\sum_{\tau:l(\tau)&#x3D;T} p(\tau,s’) V(s’), \end{aligned}$$</p>
 <p>and, on the other hand,</p>
-<p>$$\begin{aligned}E_{\rho_{\pi_E}} V(s) &amp; = \sum_{s,a} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T,\tau_{-1} = (s,a)} p(\tau) V(s) \\<br>&amp; = \sum_{s} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T-1}p(\tau,s)\sum_{a} \pi_E(a|s)  V(s) \\<br>&amp; = \sum_{s} \sum_{T &gt; 0}\sum_{\tau:l(\tau)=T-1} p(\tau,s) V(s) \\<br>&amp; = \sum_{s} \sum_{T \geq 0}\sum_{\tau:l(\tau)=T} p(\tau,s) V(s). \end{aligned}$$</p>
+<p>$$\begin{aligned}E_{\rho_{\pi_E}} V(s) &amp; &#x3D; \sum_{s,a} \sum_{T &gt; 0}\sum_{\tau:l(\tau)&#x3D;T,\tau_{-1} &#x3D; (s,a)} p(\tau) V(s) \\<br>&amp; &#x3D; \sum_{s} \sum_{T &gt; 0}\sum_{\tau:l(\tau)&#x3D;T-1}p(\tau,s)\sum_{a} \pi_E(a|s)  V(s) \\<br>&amp; &#x3D; \sum_{s} \sum_{T &gt; 0}\sum_{\tau:l(\tau)&#x3D;T-1} p(\tau,s) V(s) \\<br>&amp; &#x3D; \sum_{s} \sum_{T \geq 0}\sum_{\tau:l(\tau)&#x3D;T} p(\tau,s) V(s). \end{aligned}$$</p>
 <p>Therefore, we have</p>
-<p>$$\gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) - E_{\rho_{\pi_E}} V(s) = -\sum_{s} \sum_{\tau:l(\tau)=0} p(\tau,s) V(s) = -\sum_s p_0(s) V(s). $$</p>
+<p>$$\gamma E_{\rho_{\pi_E}} \sum_{s’} p(s’|s,a) V(s’) - E_{\rho_{\pi_E}} V(s) &#x3D; -\sum_{s} \sum_{\tau:l(\tau)&#x3D;0} p(\tau,s) V(s) &#x3D; -\sum_s p_0(s) V(s). $$</p>
 <p>Now we have shown that the (min-max) performance gap formulation and the maximum log likelihood formulation are consistent. Next, we illustrate how to obtain a GAN-based IRL method with the min-max formulation.</p>
 <h2 id="A-GAN-based-IRL-method"><a href="#A-GAN-based-IRL-method" class="headerlink" title="A GAN-based IRL method"></a>A GAN-based IRL method</h2><p>Assume in the min-max formulation, the inner problem is solved by RL and we have the entropy-regularized optimal policy $\pi_H$ for some $r$. For the outer problem</p>
 <p>$$\min_r E_{\rho_{\pi_H}} r(s,a) - E_{\rho_{\pi_E}} r(s,a),$$</p>
-<p>If we consider transformation $D(s,a) = \sigma (r(s,a) - \log\pi_H(a|s)) \in (0,1)$ with $\sigma$ being the sigmoid function, the equation above can be written as</p>
+<p>If we consider transformation $D(s,a) &#x3D; \sigma (r(s,a) - \log\pi_H(a|s)) \in (0,1)$ with $\sigma$ being the sigmoid function, the equation above can be written as</p>
 <p>$$\min_r E_{\rho_{\pi_H}} [\log D(s,a) - \log(1 - D(s,a))] - E_{\rho_{\pi_E}} [\log D(s,a) - \log(1 - D(s,a))],$$</p>
 <p>or</p>
 <p>$$\max_D [E_{\rho_{\pi_H}} \log(1 - D(s,a)) + E_{\rho_{\pi_E}} \log D(s,a)] - [E_{\rho_{\pi_H}} \log D(s,a) + E_{\rho_{\pi_E}} (1 - \log D(s,a))].$$</p>
@@ -385,14 +387,14 @@
 <p>$$E_{\rho_{\pi_H}} \log(1 - D(s,a)) + E_{\rho_{\pi_E}} \log D(s,a).$$</p>
 <p>Now we recover the GAIL method (Ho &amp; Ermon (2016)) and AIRL method (Fu et al. (2017))! In fact, with the min-max structure, we can iterate between finding the optimal $\pi_H$ and the best discriminator $D$; this is what we mean by “GAN-based”.</p>
 <p>Now we finally have enough knowledge to comment on some recent works on GAN-based IRL methods.</p>
-<h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2><p>Ho &amp; Ermon (2016) is the first to “rediscover” the duality between RL and IRL and show that RL under IRL leads to a policy that matches the expected discounted occurrence $\rho$ with the expert demonstrations $\pi_E$ under some regularization $\psi$. They then choose a specific $\psi$ which reduces the occurrence matching problem to the above binary classification problem. However, in GAIL the RL step finds a policy with respect to $r = \log D$, while in our’s and AIRL the reward is $r = \log D - \log (1 - D)$. Such difference comes from the fact that GAIL actually is not an IRL method and the quasi-reward $r = \log D$ is only used as a helper to obtain policy $\pi$.</p>
+<h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2><p>Ho &amp; Ermon (2016) is the first to “rediscover” the duality between RL and IRL and show that RL under IRL leads to a policy that matches the expected discounted occurrence $\rho$ with the expert demonstrations $\pi_E$ under some regularization $\psi$. They then choose a specific $\psi$ which reduces the occurrence matching problem to the above binary classification problem. However, in GAIL the RL step finds a policy with respect to $r &#x3D; \log D$, while in our’s and AIRL the reward is $r &#x3D; \log D - \log (1 - D)$. Such difference comes from the fact that GAIL actually is not an IRL method and the quasi-reward $r &#x3D; \log D$ is only used as a helper to obtain policy $\pi$.</p>
 <p>Two later works, Finn et al. (2016) and Fu et al. (2017), do develop IRL methods; but their theoretical developments are problematic. They try to tackle the problem from the max log likelihood side, but directly assume that trajectory $\tau$ has the probability</p>
 <p>$$p(\tau) \propto e^{\sum_t \gamma^t r(s_t,a_t)}.$$</p>
-<p>If we look at the form of the value function $V$ above or read Ziebart (2010) carefully, we should see that this assumption is consistent with the entropy-regularized optimal behavior only when the underlying MDP is deterministic and has no discount ($\gamma = 1$). Therefore, their setup is more likely to assume that the expert follows the entropy-regularized myopic behavior $\pi’$. (This might be the reality, though.)</p>
+<p>If we look at the form of the value function $V$ above or read Ziebart (2010) carefully, we should see that this assumption is consistent with the entropy-regularized optimal behavior only when the underlying MDP is deterministic and has no discount ($\gamma &#x3D; 1$). Therefore, their setup is more likely to assume that the expert follows the entropy-regularized myopic behavior $\pi’$. (This might be the reality, though.)</p>
 <p>Finally, I will go through the development of AIRL as there is much ambiguity in the original paper. They first show that the gradient to the LL is</p>
 <p>$$E_{\rho_{\pi_E}} \partial r(s,a) - E_{\rho_{\pi’}} \partial r(s,a),$$</p>
 <p>and then consider the following approximation</p>
-<p>$$\begin{aligned}E_{\rho_{\pi’}} \partial r(s,a) &amp; = E_{0.5\rho_{\pi_H} + 0.5\rho_{\pi_E}} \frac{\rho_{\pi’}}{0.5\rho_{\pi_H} + 0.5\rho_{\pi_E}}\partial r(s,a) \\<br>&amp; \approx E_{0.5\rho_{\pi_H} + 0.5\rho_{\pi_E}} \frac{\rho_{\pi’}}{0.5\rho_{\pi_H} + 0.5\rho_{\pi’}}\partial r(s,a).\end{aligned}$$</p>
+<p>$$\begin{aligned}E_{\rho_{\pi’}} \partial r(s,a) &amp; &#x3D; E_{0.5\rho_{\pi_H} + 0.5\rho_{\pi_E}} \frac{\rho_{\pi’}}{0.5\rho_{\pi_H} + 0.5\rho_{\pi_E}}\partial r(s,a) \\<br>&amp; \approx E_{0.5\rho_{\pi_H} + 0.5\rho_{\pi_E}} \frac{\rho_{\pi’}}{0.5\rho_{\pi_H} + 0.5\rho_{\pi’}}\partial r(s,a).\end{aligned}$$</p>
 <p>This then leads to the above binary classification formulation. We can now see that in our development, by dropping the part $[E_{\rho_{\pi_H}} \log D(s,a) + E_{\rho_{\pi_E}} (1 - \log D(s,a))]$, we introduce the risk of interpreting expert demonstrations in myopic ways.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>Ziebart, B. D. (2010). Modeling purposeful adaptive behavior with the principle of maximum causal entropy. PhD thesis, Carnegie Mellon University.</p>
 <p>Finn, C., Christiano, P., Abbeel, P., &amp; Levine, S. (2016). A connection between generative adversarial networks, inverse reinforcement learning, and energy-based models. arXiv preprint arXiv:1611.03852.</p>
@@ -415,9 +417,9 @@
       
         <div class="post-tags">
           
-            <a href="/blogs/tags/Behavior-Modeling/" rel="tag"># Behavior Modeling</a>
-          
             <a href="/blogs/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+          
+            <a href="/blogs/tags/Behavior-Modeling/" rel="tag"># Behavior Modeling</a>
           
         </div>
       
@@ -476,7 +478,7 @@
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
     </div>
@@ -518,9 +520,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -529,9 +533,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blogs/archives">
+                <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -553,7 +557,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blogs/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

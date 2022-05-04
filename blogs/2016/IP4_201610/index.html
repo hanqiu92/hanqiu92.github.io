@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 
 
@@ -24,8 +24,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -44,7 +44,7 @@
 
   
   
-  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -52,9 +52,9 @@
 
 
 
-<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Integer Programming,">
+  <meta name="keywords" content="Integer Programming," />
 
 
 
@@ -84,24 +84,24 @@
 
 
 <meta name="description" content="Cuts are important tools to strengthen your formulation and improve computation efficiency. In this post, I will introduce two kind of cuts: geometric cuts, which consider the geometric property of th">
-<meta name="keywords" content="Integer Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Integer Programming Note IV: Cuts">
 <meta property="og:url" content="http://hanqiu92.github.io/blogs/2016/IP4_201610/index.html">
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="Cuts are important tools to strengthen your formulation and improve computation efficiency. In this post, I will introduce two kind of cuts: geometric cuts, which consider the geometric property of th">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-06-01T11:16:10.294Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-10-04T16:05:00.000Z">
+<meta property="article:modified_time" content="2019-06-01T11:16:10.294Z">
+<meta property="article:author" content="Han Qiu">
+<meta property="article:tag" content="Integer Programming">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Integer Programming Note IV: Cuts">
-<meta name="twitter:description" content="Cuts are important tools to strengthen your formulation and improve computation efficiency. In this post, I will introduce two kind of cuts: geometric cuts, which consider the geometric property of th">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blogs/',
+    root: '',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2016/IP4_201610/">
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2016/IP4_201610/"/>
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 6.1.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
@@ -158,7 +158,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blogs/" class="brand" rel="start">
+      <a href="/blogs/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Han's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -186,7 +186,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blogs/." rel="section">
+          <a href="/blogs/.%20" rel="section">
             
             Home
           </a>
@@ -194,7 +194,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/blogs/categories" rel="section">
+          <a href="/blogs/categories%20" rel="section">
             
             Categories
           </a>
@@ -202,7 +202,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blogs/archives" rel="section">
+          <a href="/blogs/archives%20" rel="section">
             
             Archives
           </a>
@@ -210,7 +210,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/blogs/tags" rel="section">
+          <a href="/blogs/tags%20" rel="section">
             
             Tags
           </a>
@@ -218,7 +218,7 @@
       
         
         <li class="menu-item menu-item-scribbles">
-          <a href="/blogs/scribbles" rel="section">
+          <a href="/blogs/scribbles%20" rel="section">
             
             Scribbles
           </a>
@@ -260,8 +260,8 @@
     <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2016/IP4_201610/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Han Qiu">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/blogs/images/pics/1.JPG">
     </span>
 
@@ -297,7 +297,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -347,18 +347,19 @@
 
       
         <p>Cuts are important tools to strengthen your formulation and improve computation efficiency. In this post, I will introduce two kind of cuts: geometric cuts, which consider the geometric property of the polyhedron and have general application, and implicit cuts, which are more problem specific but potentially can lead to very strong formulation.</p>
-<a id="more"></a>
-<h2 id="Geometric-cuts-Gomory-cut-and-split-cut"><a href="#Geometric-cuts-Gomory-cut-and-split-cut" class="headerlink" title="Geometric cuts: Gomory cut and split cut"></a>Geometric cuts: Gomory cut and split cut</h2><p>Assume that we are given $P=\{x\in Z^n: Ax\leqslant b\}$ with $A\in R^{m\times n}$ and $b\in R^m$. If we can find a hyperplane $\{x: c^Tx\leqslant d\}\supseteq P$ with $c\in Z^n$ and $d\notin Z$, based on the integrality we immediately know $\{x: c^Tx\leqslant \lfloor d \rfloor\}$ is also a valid constraint for $P$. Sometimes (e.g. extreme point is not integral and the local boundary is not very flat), adding proper Gomory cuts can lead to much stronger formulation.</p>
-<p>Notice that by Farkas’ lemma, $\{x: c^Tx\leqslant d\}\supseteq P$ is equivalent to $\exists \mu\in R^m_+$ s.t. $c=A^T\mu, d\geqslant b^T\mu$. So a general idea to construct Gomory cut is to find $\mu\in R^m_+$ s.t. $A^T\mu\in Z^n$, and add cut</p>
+<span id="more"></span>
+
+<h2 id="Geometric-cuts-Gomory-cut-and-split-cut"><a href="#Geometric-cuts-Gomory-cut-and-split-cut" class="headerlink" title="Geometric cuts: Gomory cut and split cut"></a>Geometric cuts: Gomory cut and split cut</h2><p>Assume that we are given $P&#x3D;\{x\in Z^n: Ax\leqslant b\}$ with $A\in R^{m\times n}$ and $b\in R^m$. If we can find a hyperplane $\{x: c^Tx\leqslant d\}\supseteq P$ with $c\in Z^n$ and $d\notin Z$, based on the integrality we immediately know $\{x: c^Tx\leqslant \lfloor d \rfloor\}$ is also a valid constraint for $P$. Sometimes (e.g. extreme point is not integral and the local boundary is not very flat), adding proper Gomory cuts can lead to much stronger formulation.</p>
+<p>Notice that by Farkas’ lemma, $\{x: c^Tx\leqslant d\}\supseteq P$ is equivalent to $\exists \mu\in R^m_+$ s.t. $c&#x3D;A^T\mu, d\geqslant b^T\mu$. So a general idea to construct Gomory cut is to find $\mu\in R^m_+$ s.t. $A^T\mu\in Z^n$, and add cut</p>
 <p>$$\mu^TAx\leqslant \lfloor \mu^Tb \rfloor.$$</p>
-<p>For mixed integer case $P=\{(x,y)\in Z^{n_1}\times R^{n_2} : Ax+By\leqslant b\}$, again by Farkas’ lemma all valid cuts (for the LP relaxation) are in form</p>
+<p>For mixed integer case $P&#x3D;\{(x,y)\in Z^{n_1}\times R^{n_2} : Ax+By\leqslant b\}$, again by Farkas’ lemma all valid cuts (for the LP relaxation) are in form</p>
 <p>$$\mu^TAx+\mu^TBy\leqslant \mu^Tb$$</p>
-<p>for some $\mu\in R^m_+$. A way to avoid the messy continuous variables $y$ is to focus on $\mu$ s.t. $\mu^TB=0$. That is, in case of $\mu\in R^m_+: \mu^TB=0, \mu^TA\in R^n$, we have</p>
+<p>for some $\mu\in R^m_+$. A way to avoid the messy continuous variables $y$ is to focus on $\mu$ s.t. $\mu^TB&#x3D;0$. That is, in case of $\mu\in R^m_+: \mu^TB&#x3D;0, \mu^TA\in R^n$, we have</p>
 <p>$$\mu^TAx\leqslant \lfloor \mu^Tb \rfloor.$$</p>
-<p>Gomory cut only considers improvement on the boundary. Split cut takes a step ahead by splitting the polyhedron into two (or more) and construct shared boundary cut (or even Gomory cut) for both parts. Again, consider mixed integer case: $P=\{(x,y)\in Z^{n_1}\times R^{n_2} : Ax+By\leqslant b\}$ with $A\in R^{m\times n_1}, B\in R^{m\times n_2}, b\in R^m$. We first use split $\Pi x\leqslant \Pi_0$ and $\Pi x\geqslant \Pi_0+1$ with $\Pi\in Z^{n_1}$ and $\Pi_0\in Z$ to separate $P$. Then, by Farkas’ lemma, a valid cut $ c^Tx+d^Ty\leqslant h$ for system $Ax+By\leqslant b, \Pi x\leqslant \Pi_0$ is in form</p>
-<p>$$\begin{aligned} \begin{pmatrix} A^T&amp; \Pi^T\\ B^T&amp; 0 \end{pmatrix} \begin{pmatrix}\mu \\ \alpha \end{pmatrix} &amp; = \begin{pmatrix}c \\ d \end{pmatrix} \\ \begin{pmatrix} b^T&amp; \Pi_0 \end{pmatrix} \begin{pmatrix}\mu \\ \alpha \end{pmatrix} &amp; \leqslant  h \end{aligned} $$</p>
+<p>Gomory cut only considers improvement on the boundary. Split cut takes a step ahead by splitting the polyhedron into two (or more) and construct shared boundary cut (or even Gomory cut) for both parts. Again, consider mixed integer case: $P&#x3D;\{(x,y)\in Z^{n_1}\times R^{n_2} : Ax+By\leqslant b\}$ with $A\in R^{m\times n_1}, B\in R^{m\times n_2}, b\in R^m$. We first use split $\Pi x\leqslant \Pi_0$ and $\Pi x\geqslant \Pi_0+1$ with $\Pi\in Z^{n_1}$ and $\Pi_0\in Z$ to separate $P$. Then, by Farkas’ lemma, a valid cut $ c^Tx+d^Ty\leqslant h$ for system $Ax+By\leqslant b, \Pi x\leqslant \Pi_0$ is in form</p>
+<p>$$\begin{aligned} \begin{pmatrix} A^T&amp; \Pi^T\\ B^T&amp; 0 \end{pmatrix} \begin{pmatrix}\mu \\ \alpha \end{pmatrix} &amp; &#x3D; \begin{pmatrix}c \\ d \end{pmatrix} \\ \begin{pmatrix} b^T&amp; \Pi_0 \end{pmatrix} \begin{pmatrix}\mu \\ \alpha \end{pmatrix} &amp; \leqslant  h \end{aligned} $$</p>
 <p>with $\mu \in R^m_+$ and $\alpha \in R_+$. Similarly, for the other system, the same cut should satisfy</p>
-<p>$$\begin{aligned} \begin{pmatrix} A^T&amp; -\Pi^T\\ B^T&amp; 0 \end{pmatrix} \begin{pmatrix}\lambda \\ \beta \end{pmatrix} &amp; = \begin{pmatrix}c \\ d \end{pmatrix} \\ \begin{pmatrix} b^T&amp; -\Pi_0-1 \end{pmatrix} \begin{pmatrix}\lambda \\ \beta \end{pmatrix} &amp; \leqslant  h \end{aligned} $$</p>
+<p>$$\begin{aligned} \begin{pmatrix} A^T&amp; -\Pi^T\\ B^T&amp; 0 \end{pmatrix} \begin{pmatrix}\lambda \\ \beta \end{pmatrix} &amp; &#x3D; \begin{pmatrix}c \\ d \end{pmatrix} \\ \begin{pmatrix} b^T&amp; -\Pi_0-1 \end{pmatrix} \begin{pmatrix}\lambda \\ \beta \end{pmatrix} &amp; \leqslant  h \end{aligned} $$</p>
 <p>with $\lambda \in R^m_+$ and $\beta \in R_+$. And the remaining task is to find non-negative $\alpha,\beta,\mu,\lambda$ that satisfy above equations.</p>
 <p>Following same ideas, these geometric cuts can also be extended to nonlinear settings, even though the formulations are usually more complex. But if you have a good outer approximation (which will be introduced in next post), above characterization can again be applied.</p>
 <h2 id="Implicit-cuts"><a href="#Implicit-cuts" class="headerlink" title="Implicit cuts"></a>Implicit cuts</h2><p>For many problems (especially combinatoric ones), we can construct simple formulations easily, but these formulations are usually weak. One possible problem is that the formulation is constructed in aggregate level and has to use a large big-$M$. For example, consider single source fixed charge uncapacitated multi-commodity flow problem. Assume root source $r$ has outflow $f_r$ and sink $s_i$ has inflow $f_{s_i}$, and if an arc $(u,v)$ has positive flow, there is a fixed charge $c_{uv}$. Now, it seems straightforward to use continuous variables $y_{uv}$ to model the flow in arc $(u,v)$ and binary variables $x_{uv}$ to model whether there is positive flow. Unfortunately, in this case the connection between $y_{uv}$ and $x_{uv}$ is weak:</p>
@@ -366,7 +367,7 @@
 <p>An easy way to strengthen this formulation is to decompose each $y_{uv}$ into sum of $y_{uv}^i$, which is the flow in arc $(u,v)$ for pair $(r,s_i)$. Then we have much stronger bound on $x_{uv}$:</p>
 <p>$$y_{uv}^i\leqslant |f_{s_i}|x_{uv}, \forall i.$$</p>
 <p>Such decomposition technique can be applied to a wide range of combinatorial problems.</p>
-<p>Another technique I want to discuss is to impose redundancy. Assume you have a problem in $P=\{x: Ax\leqslant b, f(x)\leqslant g\}$. If you have an good (e.g., ideal) extended formulation for $\{f(x)\leqslant g\}$, it will be beneficial to add some redundant cut based on $\{Ax\leqslant b\}$ and auxillary variables $y$. For example, suppose for variables $x_{ij}\in\{0,1\}$ and $p_k\in [0,1]$, we want to use auxiliary variables $u_{ijk}$ to model $x_{ij}p_k$ with constraints $\sum_j x_{ij}\leqslant 1$. An ideal formulation of $u_{ijk}$ is</p>
+<p>Another technique I want to discuss is to impose redundancy. Assume you have a problem in $P&#x3D;\{x: Ax\leqslant b, f(x)\leqslant g\}$. If you have an good (e.g., ideal) extended formulation for $\{f(x)\leqslant g\}$, it will be beneficial to add some redundant cut based on $\{Ax\leqslant b\}$ and auxillary variables $y$. For example, suppose for variables $x_{ij}\in\{0,1\}$ and $p_k\in [0,1]$, we want to use auxiliary variables $u_{ijk}$ to model $x_{ij}p_k$ with constraints $\sum_j x_{ij}\leqslant 1$. An ideal formulation of $u_{ijk}$ is</p>
 <p>$$\begin{aligned} 0\leqslant u_{ijk}\leqslant p_k\\ p_k+x_{ij}-1\leqslant u_{ijk}\leqslant x_{ij} \end{aligned}$$</p>
 <p>Then, by multiplying $p_k$ and $1-p_k$ to $\sum_j x_{ij}\leqslant 1$, we have redundant cuts</p>
 <p>$$\begin{aligned} \sum_j u_{ijk}&amp;\leqslant p_k\\  \sum_ju_{ijk}-\sum_j x_{ij}&amp;\geqslant p_k-1 \end{aligned}$$</p>
@@ -450,7 +451,7 @@
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+          <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
     </div>
@@ -492,9 +493,11 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/blogs/images/pics/1.JPG" alt="Han Qiu">
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="" />
             
-              <p class="site-author-name" itemprop="name">Han Qiu</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -503,9 +506,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blogs/archives">
+                <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -527,7 +530,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blogs/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
