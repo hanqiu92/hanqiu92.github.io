@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Queuing Theory,Stochastic Process," />
+  <meta name="keywords" content="Reinforcement Learning,Behavior Modeling," />
 
 
 
@@ -83,22 +83,19 @@
 
 
 
-<meta name="description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
+<meta name="description" content="最近，我对Judgement under Uncertainty: Heuristics and Biases这本经典的研究人类决策行为的书籍进行了学习。在这份笔记中，我将对该书中的主要结论进行整理，并尝试从决策学习算法设计的角度进行分析解释。希望通过这些整理和分析，我们能够一方面更好地认识到人们决策行为中的局限性和相应的校正方法，另一方面为自动化决策算法的设计和优化提供新的思路。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Case Study: Delay in Mexico City">
-<meta property="og:url" content="http://hanqiu92.github.io/blogs/2016/mexico_city_delay_201610/index.html">
+<meta property="og:title" content="Notes on &quot;Judgement under Uncertainty: Heuristics and Biases&quot;">
+<meta property="og:url" content="http://hanqiu92.github.io/blogs/2022/decision_heuristics_202206/index.html">
 <meta property="og:site_name" content="Han&#39;s Blog">
-<meta property="og:description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
+<meta property="og:description" content="最近，我对Judgement under Uncertainty: Heuristics and Biases这本经典的研究人类决策行为的书籍进行了学习。在这份笔记中，我将对该书中的主要结论进行整理，并尝试从决策学习算法设计的角度进行分析解释。希望通过这些整理和分析，我们能够一方面更好地认识到人们决策行为中的局限性和相应的校正方法，另一方面为自动化决策算法的设计和优化提供新的思路。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mexico_city_map.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mm1.png">
-<meta property="article:published_time" content="2016-10-23T04:00:00.000Z">
-<meta property="article:modified_time" content="2019-06-26T14:08:01.067Z">
+<meta property="article:published_time" content="2022-06-04T04:00:00.000Z">
+<meta property="article:modified_time" content="2022-05-26T07:06:24.366Z">
 <meta property="article:author" content="Han Qiu">
-<meta property="article:tag" content="Queuing Theory">
-<meta property="article:tag" content="Stochastic Process">
+<meta property="article:tag" content="Reinforcement Learning">
+<meta property="article:tag" content="Behavior Modeling">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/blogs/images/mexico_city_map.png">
 
 
 
@@ -128,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2016/mexico_city_delay_201610/"/>
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2022/decision_heuristics_202206/"/>
 
 
 
 
 
-  <title>Case Study: Delay in Mexico City | Han's Blog</title>
+  <title>Notes on "Judgement under Uncertainty: Heuristics and Biases" | Han's Blog</title>
   
 
 
@@ -261,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2016/mexico_city_delay_201610/">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2022/decision_heuristics_202206/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -278,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Case Study: Delay in Mexico City</h1>
+          <h1 class="post-title" itemprop="name headline">Notes on "Judgement under Uncertainty: Heuristics and Biases"</h1>
         
 
         <div class="post-meta">
@@ -290,8 +287,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-23T12:00:00+08:00">
-                2016-10-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-06-04T12:00:00+08:00">
+                2022-06-04
               </time>
             
 
@@ -313,8 +310,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blogs/categories/Case-Study/" itemprop="url" rel="index">
-                    <span itemprop="name">Case Study</span>
+                  <a href="/blogs/categories/Study-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Study Notes</span>
                   </a>
                 </span>
 
@@ -350,37 +347,82 @@
       
 
       
-        <p>This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about how to model and solve this problem. In last several days, I realized the tools we needed were no more than high school arithmetics.</p>
+        <!-- motivation -->
+
+<p>最近，我对<a target="_blank" rel="noopener" href="https://www.amazon.com/Judgment-Under-Uncertainty-Heuristics-Biases/dp/0521284147">Judgement under Uncertainty: Heuristics and Biases</a>这本经典的研究人类决策行为的书籍进行了学习。在这份笔记中，我将对该书中的主要结论进行整理，并尝试从决策学习算法设计的角度进行分析解释。希望通过这些整理和分析，我们能够一方面更好地认识到人们决策行为中的局限性和相应的校正方法，另一方面为自动化决策算法的设计和优化提供新的思路。</p>
 <span id="more"></span>
 
-<h2 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h2><p>Here is the actual experience: we were in a taxi going to airport via Cto. Interior. We encountered a heavy rain, and several lower points were flooded (indicated as red circles in the following pic).</p>
-<p><img src="/blogs/blogs/images/mexico_city_map.png" alt="mexico city map"></p>
-<p>During the trip, Google Maps kept refreshing the estimated travel time, and the estimated delay for going through those bottlenecks were always increasing. When we arrived, we cost nearly one more hour than the initial estimated travel time.</p>
-<p>So how can Google Maps be such inaccurate? And if provided with the information that the capacity in these points will be low for several hours, can we have better estimates?</p>
-<h2 id="A-queuing-model-without-knowledge-in-queues"><a href="#A-queuing-model-without-knowledge-in-queues" class="headerlink" title="A queuing model without knowledge in queues"></a>A queuing model without knowledge in queues</h2><p>It is almost straightforward to think about a queuing model. To simplify, we consider a serial connection of M&#x2F;M&#x2F;1 units and free flow road segments (which can also be seen as M&#x2F;M&#x2F;1 unit with $\mu\to\infty$). Following is a visualization of M&#x2F;M&#x2F;1 unit (By Tsaitgaist - <a target="_blank" rel="noopener" href="https://commons.wikimedia.org/w/index.php?curid=7037566">Mm1.png</a>, CC BY-SA 3.0).</p>
-<p><img src="/blogs/blogs/images/mm1.png" alt="M/M/1"></p>
-<p>With elementary understanding of queuing theory, I only considered stable case ($\lambda &lt; \ mu$) at first and got into trouble. When the process become stationary, it is impossible to have increasing travel time! In this case, we are actually more likely in an unstable situation: if the capacity remains low forever, the length of the queue will surely explode.</p>
-<p>So we just make our first assumption: $\lambda &gt; \mu$. Now, when the difference between $\lambda$ and $\mu$ is not trivial, even with Poisson process as input, we can well assume them as deterministic (constant), since it is unlikely the queue will be empty and we can avoid the nasty analysis in stable case. Or we can argue like this: as $T\to\infty$, total arrival $\sim Poi(\lambda T)$ and total serviced $\sim Poi(\mu T)$, so when $T$ is large enough, the probability to have total serviced amount greater than total arrival is extremely low.</p>
-<p>Now we introduce another parameter $\theta$ to describe enter and exit ratios for each road segments between two flooded points. This is quite realistic since people can leave or enter the expressway through ramps. Also, without some inflows we will never have enough arrival to block the next M&#x2F;M&#x2F;1 units!</p>
-<p>So what is the arrival rate for the middle M&#x2F;M&#x2F;1 units? We have $(1-\theta)\mu$ from last unit, and $\theta\lambda$ new inflows. The arrival rate is just the sum of the two. We can also calculate a delay rate $\rho$, which represent how fast delay increases:</p>
-<p>$$\rho &#x3D; \frac{\theta(\lambda - \mu)}{\mu}$$</p>
-<p>Now we can summarize our model: we have $n$ M&#x2F;M&#x2F;1 units (with same $\lambda$ and $\mu$) with $n-1$ road segments (with same $\theta$ and travel time $T_t$) connecting them in a serial way. We further assume that as we enter this system, every unit already has delay time $T_d$. We further use $T_T$ to denote the sum of $T_t$ and $T_d$.</p>
-<h2 id="Calculations"><a href="#Calculations" class="headerlink" title="Calculations"></a>Calculations</h2><p>Now it is time to do some high school arithmetics.</p>
-<p>Step 0. Upon arrived at the first M&#x2F;M&#x2F;1 unit, we are at time $T_1 &#x3D; 0$, and the queue delay time is $D_1 &#x3D; T_d$.</p>
-<p>Step 1. When arrived at the second M&#x2F;M&#x2F;1 unit, we are at time $T_2 &#x3D; T_1 + D_1 + T_t &#x3D; T_T$, and the queue delay time at his unit is $D_2 &#x3D; T_d + \rho T_2 &#x3D; T_d + \rho T_T &#x3D; (1+\rho)T_T - T_t$.</p>
-<p>Step 2. When arrived at the third M&#x2F;M&#x2F;1 unit, we are at time $T_3 &#x3D; T_2 + D_2 + T_t &#x3D; (2+\rho)T_T$, and the queue delay time at his unit is $D_3 &#x3D; T_d + \rho T_3 &#x3D; (1+\rho)^2 T_T - T_t$.</p>
-<p>…</p>
-<p>So with induction, it is easy to find total travel time is $T &#x3D; \frac{(1+\rho)^n-1}{\rho}T_T - T_t$. And the naive initial estimated travel time is $T’ &#x3D; nT_T - T_t$.</p>
-<p>Now let’s replace them with some actual values. First we estimate those parameters:</p>
-<p>$$\lambda &#x3D; 3\text{ lanes}\times 60\text{ km&#x2F;h} \times 20\text{ veh&#x2F;km} &#x3D; 60\text{ veh&#x2F;min}$$</p>
-<p>$$\mu &#x3D; 1\text{ lanes}\times 4\text{ km&#x2F;h} \times 300\text{ veh&#x2F;km} &#x3D; 20\text{ veh&#x2F;min}$$</p>
-<p>$$\theta &#x3D; 0.5$$</p>
-<p>So</p>
-<p>$$\rho &#x3D; \frac{0.5\times 40}{20} &#x3D; 1$$</p>
-<p>Let $n &#x3D; 3$ (as in the Mexico City map), we then have $T &#x3D; 7T_T - T_t$, while $T’ &#x3D; 3T_T - T_t$; delay is more than 4&#x2F;3 of the initial estimated travel time! And this is quite similar to what we experienced that afternoon.</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>So what can we learn from this case study? First, never trust Google Maps in similar situation (which you might only encounter in Mexico City…) and do not take expressway.</p>
-<p>Second, stationary results of queuing theory has its limits for application. As we can see, these results are not really useful for this problem, since we are focusing on short term dynamics. We can also explain why so many people find the famous nonlinear time-utilization plot counterintuitive: as utilization $\lambda&#x2F;\mu\to 1$, the time required to get to the stationary status increase nonlinearly, and in short term dynamics (which is what most people can visualize in their minds) such relationship does not hold! For those who are interested in the asymptotic behavior of the system when $\lambda&#x2F;\mu\to 1$, you might find the key word <a target="_blank" rel="noopener" href="https://www.google.com/#q=heavy+traffic+approximation">heavy traffic approximation</a> useful.</p>
-<p>So when should we apply those stationary results? The answer is in planning process, when the arrival variance is large and expected service time is almost infinity. In other cases, simulation is always the safest way to start.</p>
+<h2 id="证据-Evidences"><a href="#证据-Evidences" class="headerlink" title="证据 Evidences"></a>证据 Evidences</h2><p>首先，在这一节中，我将对书中描述的数种决策偏差现象进行归纳整理。</p>
+<ol>
+<li>代表性：人们倾向于关注那些更能代表<strong>总体分布</strong>或<strong>样本生成流程</strong>的证据和样本上，并使用这种关注度的强弱作为概率判断的基础。<ul>
+<li>证据（条件）信息 &gt; 基率（先验）信息：人们在进行推理和归因时，倾向于过度关注证据&#x2F;个体的信息，而忽略基率&#x2F;共识性的信息。</li>
+<li>证据内容 &gt; 证据质量：人们在利用同样的证据对不同的预测周期的任务进行推理时，结果无显著差异，说明推理结果不会随证据可信度下降而回归到先验概率上。</li>
+<li>原因基率 &gt; 偶然基率：与结论有更强因果关联的先验信息更容易被人们纳入推理过程中。</li>
+<li>原因推理（从因到果） &gt; 诊断推理（从果到因）：对于随机性的结果，人们倾向于挖掘新的解释原因（过度归因&#x2F;后知之明），而非诊断现有推理流程的问题（进行模型的回归）。</li>
+<li>总体统计量 &gt; 样本规模：<ul>
+<li>小数定律：人们倾向于认为小样本也需要具备大样本的统计性质，例如错误地认为布朗运动时均值回归的（赌徒谬误）。</li>
+<li>表面随机性&#x2F;局部同质性定律：人们倾向于赋予具有局部同质性的样本&#x2F;证据更大的关注度和权重，例如认为在随机抽样中“纯随机序列”（每个子序列都是打散的）出现的基率大于其他序列。</li>
+<li>多源同质信息 &gt; 单源信息（效度错觉，illusion of validity）：当给出更多来源的证据时，这些信息的一致性和极端性，会提高人们对预测的信心程度，即便从概率论的角度更多的证据反而会削弱事件发生的概率。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>便利性：人们更容易联想到那些<strong>与记忆关联紧密</strong>或<strong>反事实仿真难度低</strong>的证据和样本上，并使用这种注意力的强弱作为概率判断的基础。<ul>
+<li>个人经历 &gt; 他人经历（自我中心偏差）：<ul>
+<li>刻板印象&#x2F;虚假共识：人们通过对对抗性证据的选择性记忆和利用，会实现刻板印象和虚假共识的自我证实和强化。</li>
+<li>控制错觉（illusion of control）：人们在过度归因的基础上，倾向于进一步将随机事件的结果归因于自身能力。</li>
+</ul>
+</li>
+<li>消除（undo）异常事件 &gt; 引入（do）异常事件：在反事实判断中，人们更倾向于将异常事件恢复为正常事件，而非引入新的异常事件。</li>
+<li>少量因果显著性高事件 &gt; 大量因果显著性低事件：人们倾向于低估由缓慢和累积性变化导致的事件的可能性。</li>
+<li>正例 &gt; 负例（伪相关）：人们倾向于仅根据正例、甚至是极端取值的正例判断相关性。</li>
+</ul>
+</li>
+<li>锚定效应：对于序列形式的推理，人们在后面阶段的推理结果倾向于锚定在前面阶段的推理结果的一定波动范围内。<ul>
+<li>过度自信：对于不确定性估计问题，人们给出的主观分布区间往往过窄，锚定在预期值附近的小范围内。而且，估计问题越难，过度自信越严重。</li>
+<li>复合概率中，多阶段概率 ≈ 单阶段概率：对于中间阶段的推理预测，人们往往仅专注于最可能事件，而忽略不太可能发生的事件；特别地，对于（概率）连乘积，人们往往会低估其衰减的速度。</li>
+<li>对后验概率的修正速度 &lt; 贝叶斯推理：在使用新息对后验概率进行修正的过程中，人们会更为保守，即后验概率会锚定在先验概率的一定范围内；而且，新息的信息量越高，人们的保守性越大，即修正速度越慢。</li>
+</ul>
+</li>
+</ol>
+<h2 id="解释-Explanations"><a href="#解释-Explanations" class="headerlink" title="解释 Explanations"></a>解释 Explanations</h2><p>在接下来这一节中，我将尝试从学习算法的角度，对前面介绍的偏差现象进行分析和解释。</p>
+<ol>
+<li>代表性与模式识别：在人们对信息进行提取和过滤的过程中，有限的计算容量和一定的泛化性需求要求人们更多采用一种相似性&#x2F;差异性模式识别的处理方式，即找到信息中最典型和具有代表性的部分并加以应用。这种类似于机器学习方法（特别是决策树）的处理方式，会导致人们对于除样本特征外的其他附加信息相对不敏感（例如，数据样本的分布）。<ul>
+<li>忽视先验信息：因为人们对训练数据集中的样本分布不敏感（虽然该信息会通过样本权重隐性地被考虑到），因此一旦出现数据集的偏移（dataset shift），已有的输入特征与输出结果之间的映射将无法有效地考虑新任务的先验信息。</li>
+<li>忽视样本规模：同样因为模式识别的信息处理机制，人们往往会忽略样本规模的影响，而专注于样本本身所需具备的特征。</li>
+<li>忽视样本质量：为简化计算和提高泛化性，人们往往对（看起来）相似的任务共享一组特征提取和映射方法，即使同一组特征对于这些任务来说推理质量有一定差异。</li>
+<li>过度重视原因推理：这可能是由于在人们历史的成功学习经验中，基于原因推理的做法比基于诊断推理的做法更典型，进而导致对原因推理这种模式的过度依赖。具体为何原因推理会更加典型，则可以由第3点中的泛化性能来解释。</li>
+<li>效度错觉（illusion of validity）：由于人们更善于使用学习的模式、而非信息整合（回归）的模式，因此接收到更多一致的信息时，会倾向于强化现有观念。</li>
+</ul>
+</li>
+<li>便利性与计算复杂度：由于人们对于历史信息的存储容量和检索速度、以及对反事实判断的推理速度是有限的，在信息存储、检索、以及仿真评估等行为中更便于获取的信息将得到更多的关注。<ul>
+<li>自我中心偏差：人们对自身相关信息的自然偏好，将挤占其他信息的存储空间和检索资源。</li>
+<li>反事实判断：人们更偏好消除异常，是因为消除异常动作是二元的，而引入异常动作是连续的，计算复杂度更高。</li>
+<li>虚假共识：人们更倾向于处于舒适区中，与自己认可的人与事进行交互，进而导致历史经验中会有更多倾向自身行为的偏差。</li>
+<li>坚定信念：人们倾向于从对抗性的证据中，挑选倾向于支持自己信念的证据，即选择偏差（confirmation bias）。</li>
+<li>伪相关：客观因素使人们难以收集负例的样本（例如，对于面试的判断准确性问题，人们很难验证“面试判断不通过”候选人的实际表现水平是否也很低），自然会让判断向正例样本倾斜。</li>
+</ul>
+</li>
+<li>锚定效应与泛化性能：在人们的长期学习过程中，由于任务环境往往是非平稳的（每个任务都有自己独特的上下文信息），而且观测样本的信噪比不高（样本与任务之间的关联通常是模糊的），因此学习机制需要较为保守，保证不因为过度激进的迭代而导致泛化性能的下降。<ul>
+<li>原因推理的优势：因为增加新的解释模型相比采用诊断式的思路来调整模型对原有场景的应用质量会影响更小，泛化性能下降的风险更低，因此人们更偏好采用原因推理。</li>
+<li>保守的后验修正速度：在行为研究中，为了能够快速得到结论，实验设计本身存在一定的偏差：任务本身倾向于变得更容易，即观测样本的信噪比高、提供的信息增量大；而因为人们仍然维持一个普适且相对稳定的迭代速率，故相比之下该速率会显得保守。</li>
+</ul>
+</li>
+</ol>
+<h2 id="意义-Implications"><a href="#意义-Implications" class="headerlink" title="意义 Implications"></a>意义 Implications</h2><p>最终，在这一节中，我们讨论上面这些分析结论能够给我们提供什么指导。</p>
+<ol>
+<li>对于人们的决策行为的校正与优化，<ul>
+<li>首先，决策任务的信息传递方式可以进行更精细的设计，以避免特定类型的偏差。这里，也可以通过利用特定类型的偏差来诱导特定行为（即nudging）。</li>
+<li>其次，为提升决策质量，需要引导人们扩大输入信息来源和增加对信息质量的评估，并在决策时综合使用直觉和统计方法进行信息的提取和整合。另外，还可以进一步引入机器规则对人们的决策结果进行校正。</li>
+<li>再次，对于长周期的、可重复的任务，可通过引入反馈和训练机制，锻炼人们的决策直觉。</li>
+</ul>
+</li>
+<li>对于自动化决策算法的设计，我们可以更好地预期和理解通用学习流程的局限性，因此有必要根据具体的应用场景进行相应优化。特别地，<ul>
+<li>由于对经典模式的依赖容易导致代表性偏差，当面对新的任务时，需要适当增加对该任务中各模式特征的先验分布形态和置信程度的评估和利用。换句话说，根据历史经验习得的经典规律，在新场景中是否适用是需要评估验证的。</li>
+<li>由于对历史经验的依赖容易导致便利性偏差，当面对新的任务时，可以考虑借助任务属性这类先验信息，动态调整对历史样本的参考权重。另外，在可以收集数据反馈的情况下，可以针对信息密度低的位置加大数据采集频率。换句话说，如果在新任务中有一些历史经验无法应用的地方，可以通过试错法来获取反馈，从而优化长期的决策效果。</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
@@ -398,9 +440,9 @@
       
         <div class="post-tags">
           
-            <a href="/blogs/tags/Queuing-Theory/" rel="tag"># Queuing Theory</a>
+            <a href="/blogs/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
           
-            <a href="/blogs/tags/Stochastic-Process/" rel="tag"># Stochastic Process</a>
+            <a href="/blogs/tags/Behavior-Modeling/" rel="tag"># Behavior Modeling</a>
           
         </div>
       
@@ -413,8 +455,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blogs/2016/IP5_201610/" rel="next" title="Integer Programming Note V: Decomposition">
-                <i class="fa fa-chevron-left"></i> Integer Programming Note V: Decomposition
+              <a href="/blogs/2022/regret_minimization_theory_202205/" rel="next" title="Regret Minimization Methods">
+                <i class="fa fa-chevron-left"></i> Regret Minimization Methods
               </a>
             
           </div>
@@ -422,10 +464,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blogs/2016/latent_class_category_variable_201611/" rel="prev" title="Case Study: Latent Classes in Quebec Energy Consumption">
-                Case Study: Latent Classes in Quebec Energy Consumption <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -593,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-description"><span class="nav-number">1.</span> <span class="nav-text">Problem description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-queuing-model-without-knowledge-in-queues"><span class="nav-number">2.</span> <span class="nav-text">A queuing model without knowledge in queues</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calculations"><span class="nav-number">3.</span> <span class="nav-text">Calculations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%81%E6%8D%AE-Evidences"><span class="nav-number">1.</span> <span class="nav-text">证据 Evidences</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A-Explanations"><span class="nav-number">2.</span> <span class="nav-text">解释 Explanations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%84%8F%E4%B9%89-Implications"><span class="nav-number">3.</span> <span class="nav-text">意义 Implications</span></a></li></ol></div>
             
 
           </div>
@@ -754,9 +792,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://hanqiu92.github.io/blogs/2016/mexico_city_delay_201610/';
-          this.page.identifier = '2016/mexico_city_delay_201610/';
-          this.page.title = 'Case Study: Delay in Mexico City';
+          this.page.url = 'http://hanqiu92.github.io/blogs/2022/decision_heuristics_202206/';
+          this.page.identifier = '2022/decision_heuristics_202206/';
+          this.page.title = 'Notes on \"Judgement under Uncertainty: Heuristics and Biases\"';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://hanqiu92.disqus.com/embed.js';

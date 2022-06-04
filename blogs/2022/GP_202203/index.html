@@ -91,7 +91,7 @@
 <meta property="og:description" content="高斯过程（Gaussian Process，下称GP）是机器学习&#x2F;贝叶斯学习中的一种常见建模方法。由于GP不但能给出预测值，还能给出预测的不确定性，因此在许多实际场景（包括参数优化等）都有广泛的应用。近期，随着深度神经网络（Neural Network，下称NN）的兴起，也逐渐出现一些将GP与NN相结合的工作，一定程度上提升了GP的可用性（applicability）。在这篇文章中，我将">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-03-10T05:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-12T09:43:17.886Z">
+<meta property="article:modified_time" content="2022-05-08T09:01:28.993Z">
 <meta property="article:author" content="Han Qiu">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
@@ -346,7 +346,7 @@
       
 
       
-        <p>高斯过程（Gaussian Process，下称GP）是机器学习&#x2F;贝叶斯学习中的一种常见建模方法。由于GP不但能给出预测值，还能给出预测的不确定性，因此在许多实际场景（包括参数优化等）都有广泛的应用。近期，随着深度神经网络（Neural Network，下称NN）的兴起，也逐渐出现一些将GP与NN相结合的工作，一定程度上提升了GP的可用性（applicability）。在这篇文章中，我将对近期对GP及其扩展的学习做一个简单的整理，便于后续回顾。</p>
+        <p>高斯过程（Gaussian Process，下称GP）是机器学习&#x2F;贝叶斯学习中的一种常见建模方法。由于GP不但能给出预测值，还能给出预测的不确定性，因此在许多实际场景（包括参数优化等）都有广泛的应用。近期，随着深度神经网络（Neural Network，下称NN）的兴起，也逐渐出现一些将GP与NN相结合的工作，一定程度上提升了GP的可用性（applicability）。在这篇文章中，我将对近期对GP及其扩展的学习做一个简单的整理。</p>
 <span id="more"></span>
 
 <h2 id="基础思路-Basic-Approach"><a href="#基础思路-Basic-Approach" class="headerlink" title="基础思路 Basic Approach"></a>基础思路 Basic Approach</h2><h3 id="引子-Motivating-Example"><a href="#引子-Motivating-Example" class="headerlink" title="引子 Motivating Example"></a>引子 Motivating Example</h3><p>首先，作为一个引子，让我们考虑以下建模问题：我们希望根据一批观测数据$D &#x3D; \{(x,y)\}$，拟合出定义在一个有限集合$S$上的实值函数$f: S \to \mathbb{R}$。例如，$S$可以取值为一系列正整数$S&#x3D;\{1,\cdots,N\}$。由于$S$是有限的，函数$f$可以完全被其在$S$上的取值所参数化$\theta &#x3D; f(S)$，因此上述拟合问题可以转化为一个参数估计问题。一种常见的参数估计方式是先定义出损失函数，然后通过梯度下降等优化方法找到最小化损失函数的参数。例如，在上面的例子中，我们可以考虑均方误差作为损失$L &#x3D; E_{(x,y)\sim D} (y - \theta^T e(x))^2$。而在GP中，我们采用的参数估计方法是贝叶斯方法：首先假设参数$\theta$服从某个先验分布$p(\theta)$，并假设观测值$y$与函数值$f(x)&#x3D;\theta^T e(x)$服从某个生成关系$p(y|x,\theta)$；然后，我们估计参数的后验分布</p>
@@ -537,7 +537,7 @@
               
                 <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
