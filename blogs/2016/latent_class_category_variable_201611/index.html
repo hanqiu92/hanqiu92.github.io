@@ -90,15 +90,15 @@
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="Last semester, in course 1.202 Demand Modeling, there is an interesting case study of Quebec energy consumption. Exploratory data analysis indicates that there are potential market segments, and subse">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/latent_class_1.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/latent_class_2.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/latent_class_3.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/latent_class_1.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/latent_class_2.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/latent_class_3.png">
 <meta property="article:published_time" content="2016-11-06T04:00:00.000Z">
-<meta property="article:modified_time" content="2019-07-15T15:39:42.827Z">
+<meta property="article:modified_time" content="2022-07-06T06:15:37.737Z">
 <meta property="article:author" content="Han Qiu">
 <meta property="article:tag" content="Behavior Modeling">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/blogs/images/latent_class_1.png">
+<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/images/latent_class_1.png">
 
 
 
@@ -358,10 +358,10 @@
 <p>where $X_j&#x3D;(X_{p,i},X_{o,i,j})$.</p>
 <p>If we know the whole dataset comes from a single class, the estimation is simple: we use write the log likelihood function and optimize it using standard optimization package. But in many cases this might not be true.</p>
 <p>For example, in the Quebec energy case, we observe the following:</p>
-<p><img src="/blogs/blogs/images/latent_class_1.png" alt="two_segments"></p>
+<p><img src="/blogs/images/latent_class_1.png" alt="two_segments"></p>
 <p>There are clearly two classes. If we separate them and plot histograms of other attributes respectively, we find that for some variables the difference is quite significant, which indicating a potential market segments.</p>
-<p><img src="/blogs/blogs/images/latent_class_2.png" alt="segment_1"></p>
-<p><img src="/blogs/blogs/images/latent_class_3.png" alt="segment_2"></p>
+<p><img src="/blogs/images/latent_class_2.png" alt="segment_1"></p>
+<p><img src="/blogs/images/latent_class_3.png" alt="segment_2"></p>
 <p>So, in more general cases, how can we discover such patterns if exploration is not always feasible? Moreover, how can we make sure our segmentation will improve the model performance?</p>
 <h2 id="An-initial-approach"><a href="#An-initial-approach" class="headerlink" title="An initial approach"></a>An initial approach</h2><p>Our target is to separate the dataset to improve our objective function; so why not look at the final gradients? Even though the sum of gradients will be close to 0, they might not be homogenous small and uniformly distributed. If we can find some hyperplanes to separate the dataset in such a way that the sum of gradients in each region is significant, we can then improve our estimates on each subset by driving the parameters into different directions.</p>
 <p>As an initial approach, we will consider the simplest case: regression tree on categorical variables. In each iteration, we solve the MLE problem, obtain the gradient at each data point, and then for each categorical variable, we search for a cutoff value that best ‘separate’ the set of gradients, or, that makes the difference between the sum of two subset greatest. Finally, we compare these differences across variables and select the most influential one. We will stop once the improvement is negligible.</p>
@@ -500,7 +500,7 @@
               
                 <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

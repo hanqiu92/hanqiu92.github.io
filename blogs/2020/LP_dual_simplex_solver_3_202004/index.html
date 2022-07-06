@@ -90,13 +90,13 @@
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在这篇文章中，我将介绍初始对偶可行基的寻找方法以及迭代过程中数值误差的处理，以进一步完善对偶单纯形法的求解流程，保障求解结果的可靠性。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/dual_simplex/BFRT_impl.png">
+<meta property="og:image" content="http://hanqiu92.github.io/images/dual_simplex/BFRT_impl.png">
 <meta property="article:published_time" content="2020-04-01T04:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-03T03:12:41.873Z">
+<meta property="article:modified_time" content="2022-07-06T06:15:45.204Z">
 <meta property="article:author" content="Han Qiu">
 <meta property="article:tag" content="Linear Programming">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/images/dual_simplex/BFRT_impl.png">
+<meta name="twitter:image" content="http://hanqiu92.github.io/images/dual_simplex/BFRT_impl.png">
 
 
 
@@ -383,7 +383,7 @@
 <p>其次，我将分析对偶步长对对偶目标值和梯度的影响。根据上述讨论，对于一个给定的对偶步长$\alpha_{dual} \geq 0$，可以计算出为了保持对偶可行性所必须要翻转的所有下标的集合$\mathcal{J}_{flip}$。又根据上一篇blog中的内容，每翻转一个下标$j$的类型，对偶梯度会下降$(u_j - l_j) |\delta s_j|$；因此，翻转所有下标后的对偶梯度为$\Delta x_i - \sum_{j\in\mathcal{J}_{flip}} (u_j - l_j) |\delta s_j|$。由于集合$\mathcal{J}_{flip}$是随$\alpha_{dual}$单调递增的，而初始的对偶梯度$\Delta x_i &gt; 0$，因此可以不断扩大对偶步长$\alpha_{dual}$来优化对偶目标值，直到对应的对偶梯度小于0。不妨记该临界对偶步长和相应的下标为$\alpha_{dual}^+&#x3D;\alpha_{j^+}^+$和$j^+$，并以此作为最终选取的对偶步长$\alpha_{dual}$的上界。$\alpha_{dual}^+$的取值可以通过二分法的方式确定，也可以通过对$\alpha_j^+$进行排序、然后做线搜索确定，但后者的时间复杂度是$O(n\log n)$，在大多数场景下效率更低。</p>
 <p>接下来，需要选择一个列$j_*$，使得对偶步长$\alpha_{dual} &#x3D; \alpha_j &lt; \alpha_{dual}^+$尽可能大的同时，值$|\delta s_j|$尽可能高于阈值$\varepsilon_{pivot}$。注意到$|\delta s_j|$的大小对应区间$[\alpha_j^-,\alpha_j^+]$的宽度，一种简单的选法是从所有满足$\alpha_j &lt; \alpha_{dual}^+$的列中选取$\alpha_j^-$最大的一个。这种做法的问题在于，即使在临界范围$|\delta s_j| \approx \varepsilon_{pivot}$，区间宽度$2\varepsilon_{dual}&#x2F;|\delta s_j|$的量级相比$\alpha_j$仍小不少，因此最后选中的$|\delta s_{j_*}|$可能还是很小。在本系列的实现中，我考虑了另一种简单思路：从所有$\alpha_j$落在区间$[\alpha_{j^+},\alpha_{dual}^+)$的列$j$中，选出$|\delta s_j|$最大的一个：<br>$$j_* &#x3D; \arg\max_{j\in \{ j|\alpha_j \in [\alpha_{j^+},\alpha_{dual}^+) \} } |\delta s_j|. \tag{2.3}<br>$$ 这种选取方式通过将对对偶步长的要求从优化目标转为约束，能够一定程度上提高最后的$|\delta s_{j_*}|$的大小；同时，该方法还能够保证$j^+$是一个可选选项。</p>
 <p>下面，我将通过一个例子来进一步解释上面的流程。下图展示了一个ratio test问题，其中每个列对应的区间为$[\alpha_j^-,\alpha_j^+]$。不妨假设已有$j^+ &#x3D; 4$。在所有满足$\alpha_j &lt; \alpha_{dual}^+$的列$j$中，列$j&#x3D;6$对应的对偶步长$\alpha_j$最大，但是其区间宽度也较大，意味着$|\delta s_j|$比较小。若按代码中实现的选取方法，则先选出区间$[\alpha_{j^+},\alpha_{dual}^+)$覆盖的列$\{1,3,4,6,7\}$，然后从中选出区间宽度最小的一个$j&#x3D;7$。在此例子中，$j&#x3D;7$恰好也对应$\alpha_j^-$最大的列，故上述两种选择方法等价。</p>
-<img width=450 src="/blogs/images/dual_simplex/BFRT_impl.png">
+<img width=450 src="/images/dual_simplex/BFRT_impl.png">
 
 <p>有些时候，按照上述流程所确定的对偶步长$\alpha_{dual}$会很小；一种可能的原因是随着迭代次数增加，数值误差积累，导致对偶变量的取值非常接近容忍度$\varepsilon_{dual}$。在这种情况下，当前DS迭代步难以取得进展，甚至可能陷入死循环(cycling)中。一种有效的解决方法是扩大对偶步长至某个阈值，并对原问题的目标系数$c$进行偏移(shift)来恢复对偶变量的可行性（注意到对偶变量$s &#x3D; c - A^T\lambda$）。在大多数情况下，做shift能够有效提高数值稳定性，但是可能会导致DS的最终结果对于原问题是对偶不可行的，因此需要在DS流程结束后引入primal simplex(PS)迭代（一般只需少数几次迭代即可）。</p>
 <h3 id="随机扰动-Random-Perturbation"><a href="#随机扰动-Random-Perturbation" class="headerlink" title="随机扰动 Random Perturbation"></a>随机扰动 Random Perturbation</h3><p>在各种教材和文献中，随机扰动(perturbation)一般被认为是用来缓解退化(degeneracy)现象的。对于DS迭代过程，degeneracy指存在下标$j\in L\cup U$使得$s_j &#x3D; 0$；这会导致当前迭代步的对偶步长为0，而且如果ratio test阶段选择了不合适的下标，迭代过程可能会进入死循环(cycling)。虽然历史上人们提出了多种degeneracy的处理方法，但目前看来，逻辑最为简单的手段是结合perturb和shift。关于degeneracy的更多讨论可以参考A. Koberstein<a target="_blank" rel="noopener" href="https://www.researchgate.net/profile/Achim_Koberstein/publication/35632487_The_dual_simplex_method_techniques_for_a_fast_and_stable_implementation_Elektronische_Ressource/links/0a85e52ef5144e9031000000/The-dual-simplex-method-techniques-for-a-fast-and-stable-implementation-Elektronische-Ressource.pdf">论文</a>的第6章。</p>
@@ -534,7 +534,7 @@
               
                 <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

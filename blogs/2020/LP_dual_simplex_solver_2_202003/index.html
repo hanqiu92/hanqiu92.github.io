@@ -90,13 +90,13 @@
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在这篇文章中，我将介绍对偶单纯形法(Dual Simplex, DS)的基本流程，并结合一个简单的例子分析其几何含义。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/dual_simplex/BFRT_geometry.png">
+<meta property="og:image" content="http://hanqiu92.github.io/images/dual_simplex/BFRT_geometry.png">
 <meta property="article:published_time" content="2020-03-15T04:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-03T03:04:32.382Z">
+<meta property="article:modified_time" content="2022-07-06T06:15:41.671Z">
 <meta property="article:author" content="Han Qiu">
 <meta property="article:tag" content="Linear Programming">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/images/dual_simplex/BFRT_geometry.png">
+<meta name="twitter:image" content="http://hanqiu92.github.io/images/dual_simplex/BFRT_geometry.png">
 
 
 
@@ -366,7 +366,7 @@
 <li>在选好$i$和$j$（即下一组基$(B’,L’,U’)$）后，我们需要对解$(x,\lambda,s)$的取值进行更新。根据上述讨论，对偶变量$\lambda$和$s$可以直接通过对偶步长$\alpha_{dual}$进行更新：<br>$$<br>  \begin{aligned}<br> \lambda &amp; \gets \lambda + \alpha_{dual}\cdot \delta \lambda; \\<br> s &amp; \gets s + \alpha_{dual}\cdot \delta s. \\<br>  \end{aligned}\tag{1.9}<br>$$ 而对于原始变量$x$，$x_{N&#x2F;\{j\}},(N&#x3D;L\cup U)$的变化值$\Delta x_{N&#x2F;\{j\}}$和$x_i$的变化值$\Delta x_i$可以直接根据新基$(B’,L’,U’)$确定，因此只需要计算$x_{B}$和$x_{j}$。根据系统\eqref{eq:KKT_decompose}，$x_B$和$x_j$的变化值需要满足以下条件<br>$$<br>A_B \Delta x_B + A_j \Delta x_j + A_{N&#x2F;\{j\}} \Delta x_{N&#x2F;\{j\}} &#x3D; 0 \tag{1.10}<br>$$ 因此，可以首先令<br>$$<br> x_B \gets x_B - A_B^{-1}A_{N&#x2F;\{j\}} \Delta x_{N&#x2F;\{j\}}; \tag{1.11}<br>$$ 然后，按以下方式计算原始步长$\alpha_{primal}$，并更新$x_B$和$x_j$：<br>$$<br>  \begin{aligned}<br> \delta x_B &amp; &#x3D; A_B^{-1}A_j; \\<br> \alpha_{primal} &amp; &#x3D; -(e_i^T A_B^{-1}A_{N&#x2F;\{j\}} \Delta x_{N&#x2F;\{j\}}+\Delta x_i) &#x2F; e_i^T\delta x_B; \\<br> x_j &amp; \gets x_j + \alpha_{primal}; \\<br> x_B &amp; \gets x_B - \alpha_{primal}\cdot \delta x_B.<br>  \end{aligned}\tag{1.12}<br>$$</li>
 </ol>
 <h2 id="几何理解-Geometric-Understanding"><a href="#几何理解-Geometric-Understanding" class="headerlink" title="几何理解 Geometric Understanding"></a>几何理解 Geometric Understanding</h2><p>下面，我将通过一个toy problem，介绍DS算法和BFRT技术在几何上的意义。考虑以下原始问题<br>$$<br>\begin{equation}<br>  \begin{aligned}<br>    \min_x \ &amp; x_3 \\<br>    s.t. \ &amp; x_1 + x_2 + \frac{10}{3} x_3 &#x3D; 3, \\<br>           &amp; 0 \leq x_1,x_2,x_3 \leq 1.<br>  \end{aligned}<br>  \label{eq:toy}\tag{1.13}<br>\end{equation}<br>$$ 下图对问题\eqref{eq:toy}进行了可视化：其中，红色虚线构成的平面对应线性约束$x_1 + x_2 + \frac{10}{3} x_3 &#x3D; 3$，而蓝色实线构成的立方体对应边界约束$0 \leq x_1,x_2,x_3 \leq 1$。从图中容易看出，问题\eqref{eq:toy}的可行域是由点$(0,0,0.9)$,$(1,0,0.6)$,$(1,1,0.3)$,$(0,1,0.6)$所围成的四边形，而最优解是点$(1,1,0.3)$。那么，DS算法是如何找到该最优解的呢？</p>
-<img width=450 src="/blogs/images/dual_simplex/BFRT_geometry.png">
+<img width=450 src="/images/dual_simplex/BFRT_geometry.png">
 
 <p>首先，根据定义，基$(B,L,U)$对应的原始$x$是超平面$Ax&#x3D;b$与立方体表面$x_L&#x3D;l_L,x_U&#x3D;u_U$的交点。因此，可以认为，包括DS在内的单纯形法的目标是在保持$x$在超平面$Ax&#x3D;b$上的同时，寻找最优相交表面$x_L&#x3D;l_L,x_U&#x3D;u_U$。特别地，在问题\eqref{eq:toy}中$|B|&#x3D;1$，因此每组基对应的表面是一条直线（两个固定维度加一个可变维度）；最优解$(1,1,0.3)$对应的基和直线分别是$B&#x3D;\{3\},U&#x3D;\{1,2\}$和$x_1&#x3D;1,x_2&#x3D;1$。</p>
 <p>由于在DS过程中需要保证解的对偶可行性，下面，我将分析对偶变量$s$和对偶可行性的几何意义。假设给定基$(B,L,U)$，则通过简单计算可知，$s_B &#x3D; 0$，且$s_j \ (j\in L\cup U)$代表原始变量$x$在超平面$Ax&#x3D;b$上沿着$dx_{(L\cup U)&#x2F;\{j\}} &#x3D; 0, dx_j &#x3D; 1$方向移动时，目标函数$c^T x$的增量。对应到问题\eqref{eq:toy}中，对于基$B&#x3D;\{3\},L&#x3D;\{1,2\}$和对应的解$(0,0,0.9)$，根据系统\eqref{eq:KKT_decompose}可以算得$s&#x3D;(-0.3,-0.3,0)$；容易看出，$s_1$和$s_2$正分别是在超平面$x_1 + x_2 + \frac{10}{3} x_3 &#x3D; 3$上从点$(0,0,0.9)$出发，沿着方向$(1,0,?)$和$(0,1,?)$到点$(1,0,0.6)$和点$(0,1,0.6)$时，目标函数$x_3$的变动值。在搞清楚$s$的意义后，对偶可行性$s_{L} \geq 0, \ s_{U} \leq 0$也就容易理解了：对偶可行性对应的是（在不考虑$x_B$的可行性情况下的）原始最优性，即不存在局部优化方向。例如，在问题\eqref{eq:toy}中，对于基$B&#x3D;\{3\},L&#x3D;\{1,2\}$和对应的解$(0,0,0.9)$，$s&#x3D;(-0.3,-0.3,0)$指出通过令$x_1$从$l_1$变成$u_1$可以提高目标函数值，因此这组基是对偶不可行的。进一步地，从图上容易看出，除了最优解$(1,1,0.3)$外，其他对偶可行解都在直线$x_1+x_2&#x3D;3$上。</p>
@@ -508,7 +508,7 @@
               
                 <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

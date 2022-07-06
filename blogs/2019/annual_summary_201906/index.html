@@ -90,15 +90,15 @@
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="In the past year, I have been in the ride-hailing industry and have encountered many interesting problems. In this post, I would like to summarize my experience in formulating and tackling these probl">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/yearly_summaries/opt_result_201906.png">
+<meta property="og:image" content="http://hanqiu92.github.io/images/yearly_summaries/opt_result_201906.png">
 <meta property="article:published_time" content="2019-06-23T04:00:00.000Z">
-<meta property="article:modified_time" content="2020-06-21T14:39:16.191Z">
+<meta property="article:modified_time" content="2022-07-06T06:15:29.621Z">
 <meta property="article:author" content="Han Qiu">
 <meta property="article:tag" content="Behavior Modeling">
 <meta property="article:tag" content="Integer Programming">
 <meta property="article:tag" content="Shared Mobility">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/images/yearly_summaries/opt_result_201906.png">
+<meta name="twitter:image" content="http://hanqiu92.github.io/images/yearly_summaries/opt_result_201906.png">
 
 
 
@@ -387,7 +387,7 @@
 <p>To model noises in the estimations, we consider the following $\sim 10%$ perturbation for each input $r_{ij}$ or $c_{ij}$</p>
 <p>$$x’ &#x3D; e^z\cdot x, z\sim N(0,0.1).$$</p>
 <p>The following figure shows the simulation results averaged over 20 runs; it is shown that the dual approach (2.3), which corresponds the data point above the tick “all”, is not robust to estimation noises (with a $2%$ loss compared with the background optimal solution).</p>
-<img width=500 src="/blogs/images/yearly_summaries/opt_result_201906.png">
+<img width=500 src="/images/yearly_summaries/opt_result_201906.png">
 
 <p>A simple way to improve the robustness of approach (2.3) is to do clustering. As an illustration, in the same simulation experiment, I first apply PCA to map the $(r_i,c_i)$ tuple for each user $i$ into a three-dimensional vector, and then apply k-means clustering to map the users into $N_G$ groups, where $N_G \in \{10,50,100,500,1000,5000\}$. In the same figure above, we can see that by selecting an appropriate $N_G$ (in our case, $N_G &#x3D; 500$), we can do slightly better than the direct dual approach. (<strong>Remark:</strong> one should notice that this quantitative result on $N_G$ is case-dependent; for example, one can investigate what would happen if the estimations of costs $c$ are much less noisy, e.g., with a $\sim 1%$ perturbation.)</p>
 <p>Though the above case is simple, the techniques considered can be readily applied to more complex settings. For example, when a dual solution $\lambda$ is determined, the operator can provide personalized recommendations in an online manner: when a user $i$ submits a request, the operator can make a choice from available options immediately by maximizing $r_{ij} - \sum_k \lambda_k c_{ij}^{k}$. Moreover, if we further notice that the dual approach (2.3) resembles the following stochastic program</p>
@@ -559,7 +559,7 @@
               
                 <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

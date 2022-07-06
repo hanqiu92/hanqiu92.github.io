@@ -90,20 +90,20 @@
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="随着数据收集能力的提升和控制手段的复杂化，在实际业务中，常常会遇到对多维、异质化的处置效应(treatment effect)的估计问题。近年来，学界在这个方向上提出了一些新的方法和工具；其中一个较为知名的工作是Susan Athey等人提出的generalized random forest(grf)。不过，这些工具与当前业界常用的工具（例如XGBoost，下称为xgb）存在一定差距：  未针对">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case1_base_part_treat.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case2_base_full_treat.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case3_two_treats.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case4_base_two_treats.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case5_base_two_reverse_treats.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case6_base_two_weak_treats.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case7_three_treats.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case1_base_part_treat.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case2_base_full_treat.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case3_two_treats.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case4_base_two_treats.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case5_base_two_reverse_treats.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case6_base_two_weak_treats.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mbst/case7_three_treats.png">
 <meta property="article:published_time" content="2020-11-08T05:00:00.000Z">
-<meta property="article:modified_time" content="2020-11-08T07:24:30.561Z">
+<meta property="article:modified_time" content="2022-07-06T06:14:36.877Z">
 <meta property="article:author" content="Han Qiu">
 <meta property="article:tag" content="Behavior Modeling">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/blogs/images/mbst/case1_base_part_treat.png">
+<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/images/mbst/case1_base_part_treat.png">
 
 
 
@@ -422,13 +422,13 @@
 <li>从$\varepsilon_y$来看（越小代表越好，下同），mbst &lt; 校正后投影mbst &#x3D; xgb &lt; 投影mbst &#x3D; 多阶段xgb &lt; grf；</li>
 <li>而从处置效应对应的$\varepsilon_{\theta}$和$\rho_{\theta}$来看，各种投影mbst表现相似，与多阶段xgb一同表现最好，而mbst稍差一些；grf和xgb表现最差。</li>
 </ul>
-<p><img src="/blogs/blogs/images/mbst/case1_base_part_treat.png" alt="base_part_treat"></p>
+<p><img src="/blogs/images/mbst/case1_base_part_treat.png" alt="base_part_treat"></p>
 <h3 id="实验2：1倍基础效应-1倍处置效应"><a href="#实验2：1倍基础效应-1倍处置效应" class="headerlink" title="实验2：1倍基础效应+1倍处置效应"></a>实验2：1倍基础效应+1倍处置效应</h3><p>本实验主要观察当处置效应与基础效应量级相似时，各方法在预测最终结果$y$上的表现。</p>
 <ul>
 <li>从$\varepsilon_y$来看（越小代表越好，下同），mbst &lt; 校正后投影mbst &#x3D; 多阶段xgb &lt; 投影mbst &lt; xgb &lt; grf；</li>
 <li>从处置效应对应的$\varepsilon_{\theta}$和$\rho_{\theta}$来看，各种投影mbst表现相似，与mbst一同表现最好，而多阶段xgb稍差一些；grf和xgb表现最差。</li>
 </ul>
-<p><img src="/blogs/blogs/images/mbst/case2_base_full_treat.png" alt="base_full_treat"></p>
+<p><img src="/blogs/images/mbst/case2_base_full_treat.png" alt="base_full_treat"></p>
 <h3 id="实验3：1倍处置效应-1-0-5倍处置效应-2"><a href="#实验3：1倍处置效应-1-0-5倍处置效应-2" class="headerlink" title="实验3：1倍处置效应(1)+0.5倍处置效应(2)"></a>实验3：1倍处置效应(1)+0.5倍处置效应(2)</h3><p>本实验主要观察当存在多个影响效果不同的处置效应时，各方法在各处置效应上的表现。</p>
 <ul>
 <li>从$\varepsilon_y$来看（越小代表越好，下同），mbst &lt; 校正后投影mbst &lt; 投影mbst &#x3D; 多阶段xgb &lt; grf &lt; xgb；</li>
@@ -440,7 +440,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/blogs/blogs/images/mbst/case3_two_treats.png" alt="two_treats"></p>
+<p><img src="/blogs/images/mbst/case3_two_treats.png" alt="two_treats"></p>
 <h3 id="实验4：1倍基础效应-1倍处置效应-1-0-5倍处置效应-2"><a href="#实验4：1倍基础效应-1倍处置效应-1-0-5倍处置效应-2" class="headerlink" title="实验4：1倍基础效应+1倍处置效应(1)+0.5倍处置效应(2)"></a>实验4：1倍基础效应+1倍处置效应(1)+0.5倍处置效应(2)</h3><p>从本实验开始，后续实验都是作为前三个实验的延伸，进一步观察不同效应组合下各方法表现的相对好坏以及规律。</p>
 <ul>
 <li>从$\varepsilon_y$来看（越小代表越好，下同），mbst &lt; 校正后投影mbst &lt; 投影mbst &#x3D; 多阶段xgb &lt; grf &lt; xgb；</li>
@@ -451,7 +451,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/blogs/blogs/images/mbst/case4_base_two_treats.png" alt="base_two_treats"></p>
+<p><img src="/blogs/images/mbst/case4_base_two_treats.png" alt="base_two_treats"></p>
 <h3 id="实验5：1倍基础效应-0-5倍处置效应-1-1倍处置效应-2"><a href="#实验5：1倍基础效应-0-5倍处置效应-1-1倍处置效应-2" class="headerlink" title="实验5：1倍基础效应+0.5倍处置效应(1)+1倍处置效应(2)"></a>实验5：1倍基础效应+0.5倍处置效应(1)+1倍处置效应(2)</h3><p>本实验的处置效应设计与实验4的处置效应正好量级相反。</p>
 <ul>
 <li>从$\varepsilon_y$来看（越小代表越好，下同），mbst &lt; 校正后投影mbst &lt; 多阶段xgb &lt; 投影mbst &lt; grf &lt; xgb；</li>
@@ -462,7 +462,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/blogs/blogs/images/mbst/case5_base_two_reverse_treats.png" alt="base_two_reverse_treats"></p>
+<p><img src="/blogs/images/mbst/case5_base_two_reverse_treats.png" alt="base_two_reverse_treats"></p>
 <h3 id="实验6：1倍基础效应-0-5倍处置效应-1-0-25倍处置效应-2"><a href="#实验6：1倍基础效应-0-5倍处置效应-1-0-25倍处置效应-2" class="headerlink" title="实验6：1倍基础效应+0.5倍处置效应(1)+0.25倍处置效应(2)"></a>实验6：1倍基础效应+0.5倍处置效应(1)+0.25倍处置效应(2)</h3><ul>
 <li>从$\varepsilon_y$来看（越小代表越好，下同），mbst &lt; 校正后投影mbst &lt; 多阶段xgb &lt; 投影mbst &lt; grf &lt; xgb；</li>
 <li>从处置效应对应的$\varepsilon_{\theta}$和$\rho_{\theta}$来看，<ul>
@@ -471,7 +471,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/blogs/blogs/images/mbst/case6_base_two_weak_treats.png" alt="base_two_weak_treats"></p>
+<p><img src="/blogs/images/mbst/case6_base_two_weak_treats.png" alt="base_two_weak_treats"></p>
 <h3 id="实验7：0-25倍处置效应-1-1倍处置效应-2-0-5倍处置效应-3"><a href="#实验7：0-25倍处置效应-1-1倍处置效应-2-0-5倍处置效应-3" class="headerlink" title="实验7：0.25倍处置效应(1)+1倍处置效应(2)+0.5倍处置效应(3)"></a>实验7：0.25倍处置效应(1)+1倍处置效应(2)+0.5倍处置效应(3)</h3><ul>
 <li>从$\varepsilon_y$来看（越小代表越好，下同），mbst &lt; 校正后投影mbst &lt; 投影mbst &lt; 多阶段xgb &lt; grf &lt; xgb；</li>
 <li>从处置效应对应的$\varepsilon_{\theta}$和$\rho_{\theta}$来看，<ul>
@@ -480,7 +480,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/blogs/blogs/images/mbst/case7_three_treats.png" alt="three_treats"></p>
+<p><img src="/blogs/images/mbst/case7_three_treats.png" alt="three_treats"></p>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>根据上述实验可以看出，至少对于所测试的场景：</p>
 <ul>
 <li>mbst的表现一致最好，因此在计算和开发成本可以接受的情况下，尽量选用mbst；</li>
@@ -626,7 +626,7 @@
               
                 <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

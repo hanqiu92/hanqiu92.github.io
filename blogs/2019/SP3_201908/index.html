@@ -90,13 +90,13 @@
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="在上一篇文章中，我介绍了如何根据关于条件期望的结构性信息（具体来说，条件期望的单调性）来推导一些理论性质和计算一些随机变量的期望值。在这一篇文章中，我将更进一步，讨论如何利用关于条件概率测度$P$的结构性信息。具体来说，我将关注具有以下形式的$P$ In the previous post, I discussed how to use structural information about c">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/SP/markov_property.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/SP/markov_property.png">
 <meta property="article:published_time" content="2019-08-18T04:00:00.000Z">
-<meta property="article:modified_time" content="2019-09-25T13:20:23.520Z">
+<meta property="article:modified_time" content="2022-07-06T06:15:10.218Z">
 <meta property="article:author" content="Han Qiu">
 <meta property="article:tag" content="Stochastic Process">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/blogs/images/SP/markov_property.png">
+<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/images/SP/markov_property.png">
 
 
 
@@ -395,7 +395,7 @@
 <p>$$E_{\mu} (Y\circ \theta_m|\mathcal{F}_m) &#x3D; E_{X_m}Y. \tag{2.1.1}$$</p>
 <p>这里，我尝试通过下图对定理2.1的含义给出一个直观的诠释。下图展示了一条序列空间$\Omega_o$中的样本轨迹$\omega$，其中右上角关于真实样本$\omega$（黑色线）的括号部分对应式(2.1.1)的左端，而左上角关于虚拟样本$\omega’$（红色线）的括号部分对应式(2.1.1)的右端。马尔科夫性质（定理2.1）说明，红黑两线在括号截取的部分应在统计意义上完全一致（<strong>注：</strong>但从单个样本轨迹的角度来看不一定一致，如下图所示）。这意味着轨迹$\omega$在时间$n &lt; m$的部分对$n &gt; m$的部分没有影响，即马尔科夫链是不具有记忆性的。</p>
 <p>Here, I will try to give an intuitive interpretation of theorem 2.1 with the following figure. The following figure shows a sample trajectory $\omega$ (the black line) in the sequence space $\Omega_o$, where the bracket in the upper right corner on the real sample $\omega$ (the black line) corresponds to the left-hand side of the equation (2.1.1), and the brackets on the artificial sample $\omega’$ (the red line) in the upper left corner corresponds to the right-hand side of the equation (2.1.1). The Markov property (theorem 2.1) shows that the parts within the brackets from the red and black lines should be statistically identical (<strong>Note:</strong> But the two sample trajectories are not necessarily identical, as shown in the following figure). This means that the part of the trajectory $\omega$ at time $n &lt; m$ does not affect the part of $n &gt; m$, i.e., the Markov chain is memoryless.</p>
-<p><img src="/blogs/blogs/images/SP/markov_property.png" alt="markov_property"></p>
+<p><img src="/blogs/images/SP/markov_property.png" alt="markov_property"></p>
 <p>下面，我简单介绍一下该定理的证明思路。证明的主要目标是说明下式对任意满足条件的$Y$和$A\in \mathcal{F}_m$成立：</p>
 <p>Next, I will introduce the basic ideas behind the proof of the theorem. The main target is to show for any regular $Y$ and $A\in \mathcal{F}_m$ that the following equation holds:</p>
 <p>$$E_{\mu} (Y\circ \theta_m \cdot 1_{A}) &#x3D; E_{\mu} (E_{X_m}Y \cdot 1_{A}). \tag{2.1.2}$$</p>
@@ -693,7 +693,7 @@
               
                 <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

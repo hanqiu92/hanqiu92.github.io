@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/blogs/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Reinforcement Learning,Behavior Modeling," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近，我对一系列经典的研究人类决策行为的书籍进行了学习，并尝试从决策学习算法设计的角度进行分析解释。在下面这一系列文章中，希望通过对上述这些学习和分析进行整理，我们能够一方面更好地认识到人们决策行为中的局限性和相应的校正方法，另一方面为自动化决策算法的设计和优化提供新的思路。 在这份笔记中，我将对Choice, Values, and Frames这本关注价值判断的书中的主要结论进行整理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Decision Behavior Note II: Value Estimation">
+<meta property="og:url" content="http://hanqiu92.github.io/blogs/2022/decision_bahavior_value_202207/index.html">
+<meta property="og:site_name" content="Han&#39;s Blog">
+<meta property="og:description" content="最近，我对一系列经典的研究人类决策行为的书籍进行了学习，并尝试从决策学习算法设计的角度进行分析解释。在下面这一系列文章中，希望通过对上述这些学习和分析进行整理，我们能够一方面更好地认识到人们决策行为中的局限性和相应的校正方法，另一方面为自动化决策算法的设计和优化提供新的思路。 在这份笔记中，我将对Choice, Values, and Frames这本关注价值判断的书中的主要结论进行整理。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-06T04:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-06T06:10:13.336Z">
+<meta property="article:author" content="Han Qiu">
+<meta property="article:tag" content="Reinforcement Learning">
+<meta property="article:tag" content="Behavior Modeling">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2022/decision_bahavior_value_202207/"/>
+
+
+
+
+
+  <title>Decision Behavior Note II: Value Estimation | Han's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blogs/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Han's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Thoughts on the normative and descriptive perspectives of human decision-making behavior.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blogs/.%20" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blogs/categories%20" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blogs/archives%20" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blogs/tags%20" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-scribbles">
+          <a href="/blogs/scribbles%20" rel="section">
+            
+            Scribbles
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2022/decision_bahavior_value_202207/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blogs/images/pics/1.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Han's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Decision Behavior Note II: Value Estimation</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-07-06T12:00:00+08:00">
+                2022-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blogs/categories/Study-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Study Notes</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- motivation -->
+
+<p>最近，我对一系列经典的研究人类决策行为的书籍进行了学习，并尝试从决策学习算法设计的角度进行分析解释。在下面这一系列文章中，希望通过对上述这些学习和分析进行整理，我们能够一方面更好地认识到人们决策行为中的局限性和相应的校正方法，另一方面为自动化决策算法的设计和优化提供新的思路。</p>
+<p>在这份笔记中，我将对<a target="_blank" rel="noopener" href="https://www.amazon.com/Choices-Values-Frames-Daniel-Kahneman/dp/0521627494">Choice, Values, and Frames</a>这本关注价值判断的书中的主要结论进行整理。</p>
+<span id="more"></span>
+
+<h2 id="证据-Evidences"><a href="#证据-Evidences" class="headerlink" title="证据 Evidences"></a>证据 Evidences</h2><p>首先，在这一节中，我将对书中描述的数种决策偏差现象进行归纳整理。</p>
+<h3 id="普遍行为-General-Behavior"><a href="#普遍行为-General-Behavior" class="headerlink" title="普遍行为 General Behavior"></a>普遍行为 General Behavior</h3><ul>
+<li>风险和损失规避：人们对损失比收益更敏感，同时对确定性事件的边际变化比概率性事件更敏感。</li>
+<li>参照框架与禀赋效应：人们对事物的价值评估会受到该事物所处状态的影响；特别地，人们通常会对已拥有的事物给出更高的价值，进而更倾向于维持现状。</li>
+<li>偏好反转：对于一组选项，人们的选择偏好与对各选项对应的现金等价物的排序不一致。</li>
+<li>权衡对比：当此前决策的选项的取值范围与某个选项更为相似时，当前决策会更偏向于选择该选项。</li>
+<li>极端规避：根据损失规避现象，在选择对比时，单个选项的某个维度的劣势会比其他维度的优势更为显著，因此当给出中间选项时，会大幅削弱更极端选项的选择概率；而当给出更极端选项时，中间选项的选择概率会有所提高。</li>
+<li>跨期选择的改善偏好：当所关注的是序列（而非单点事件）的选择决策时，人们并不总是按照贴现效用（即缺乏耐心）的方式进行决策，反而会有改善偏好（即希望序列是不断改善的）或是平均分配偏好。</li>
+<li>多样化寻求：相比多次重复选择场景，人们在单次批量选择场景中，存在明显的寻求多样化的倾向。</li>
+</ul>
+<h3 id="具体应用-Specific-Applications"><a href="#具体应用-Specific-Applications" class="headerlink" title="具体应用 Specific Applications"></a>具体应用 Specific Applications</h3><ul>
+<li>市场营销与消费者行为：<ul>
+<li>非理性的消费者选择行为：过度关注沉默成本、低价场景下的过度价格搜寻、偏好预先支付（人们为了避免后续消费的心理核算成本，会更愿意将相关消费集中到一个预先支付账户中）、以及偏好事先承诺（作为一种自我控制的方式）等。</li>
+<li>定价的非对称弹性：人们会使用近期的价格作为参照物，基于公平性原则进行价值判断，因此降价比涨价更容易。而实际使用的参照物会受到表述框架的影响，因此取消打折比涨价更方便。</li>
+</ul>
+</li>
+<li>劳动供给与组织管理：<ul>
+<li>纽约出租车司机的劳动供给负弹性：新手司机以天为单位设定固定收入目标，当一天的收入达到目标后就会下线。仅考虑单天收入这一框架很可能是对长期收入优化的一种启发式方案，同时能够有效地避免自我控制问题。随着司机经验的增长，这种日内窄框架现象会逐渐消失，收入弹性转为正值。</li>
+<li>薪资决策的非对称弹性：人们会使用近期的薪资作为参照物，基于公平性原则进行价值判断，因此降薪比涨薪更困难。而实际使用的参照物会受到表述框架的影响，因此取消奖金比降薪更方便。</li>
+<li>过度乐观或悲观的组织决策：一方面，由于代表性和便利性偏差，管理者在判断单个项目的成功概率时，倾向于过度关注历史的成功案例，因此会过度乐观；另外，不同群体对项目的竞争会导致赢家诅咒，进一步扩大了乐观的幅度。另一方面，由于风险规避和窄框架效应，对于多组独立的项目，管理者倾向于进行单点评估而非进行整合评估，从而会在整体上过度悲观。</li>
+</ul>
+</li>
+<li>金融：<ul>
+<li>股权溢价之谜：因为股票波动性高，损失规避导致人们要求更高的溢价，而短周期的心理核算和评估则使人们对于波动性的影响更敏感。</li>
+<li>货币幻觉：人们在决策时会同时考虑货币的名义价值和实际价值，从而导致多方面的决策偏差，包括在通胀或通缩的情况下过度关注名义收入的变化水平和稳定性。</li>
+<li>处置效应：人们更倾向于卖出盈利的股票、而保留亏损的股票，即使股票市场中通常是动量主导的。</li>
+</ul>
+</li>
+<li>政治与司法：<ul>
+<li>司法实践中的禀赋效应：判决结果很大程度上会尊重既定的财富分配事实；这类影响在判例法国家中更明显，因为判决主要由法官根据一些基础的评价原则（例如公平性）来确定，而非严格的法条。</li>
+<li>政治选择中的参照效应（预测参考点的变化会影响选择行为）和禀赋效应（在任者有默认优势）。</li>
+<li>争议冲突解决中的过度自信（双方都认为自己更有优势）、确定性效应（低估不确定性结果的价值，例如商誉）和损失规避（双方都不愿意接受让步造成的损失）。</li>
+</ul>
+</li>
+</ul>
+<h2 id="解释-Explanations"><a href="#解释-Explanations" class="headerlink" title="解释 Explanations"></a>解释 Explanations</h2><p>在接下来这一节中，我将先回顾经典的解释理论，然后从学习算法的角度进行更进一步的分析。</p>
+<h3 id="经典理论-Classic-Theories"><a href="#经典理论-Classic-Theories" class="headerlink" title="经典理论 Classic Theories"></a>经典理论 Classic Theories</h3><p>在书中，对前述异常行为表现的解释主要通过前景理论及其扩展来完成。在前景理论发展的前期，主要关注的是对期望效用理论进行扩展，以更好地对人们单次决策的效用和行为进行建模；而后续随着实证数据的积累，该理论框架逐渐扩展到更一般的场景，例如序列决策、包含历史经验和未来预期的决策等等。前景理论认为，人们的选择和价值判断行为可分为两个大的阶段：编辑和评估。在编辑阶段，人们根据决策问题的上下文信息，对各选项的预期价值和发生概率进行编辑处理，以简化决策复杂度。在评估阶段，人们根据编辑阶段简化得到的概率判断和价值判断结果，作出整体的价值评估和选择行为。下面，我们将按照这两个阶段对该理论的相关细节进行整理。</p>
+<h4 id="评估阶段-Evaluation-Phase"><a href="#评估阶段-Evaluation-Phase" class="headerlink" title="评估阶段 Evaluation Phase"></a>评估阶段 Evaluation Phase</h4><p>这一阶段的相关理论可以简单归纳为：建立了一套基于参照点的效用判断、以及基于不确定事件的概率判断的价值评估体系。具体来说，对于单期的价值评估问题，给定事件的一系列发生概率$p$和对应的回报$x$，人们的预期价值可以表示为决策权重函数$w$和效用值函数$v$两部分的线性加和，即$V(\{x,p\}_j) &#x3D; \sum_j w(p_j) \cdot v(x_j)$。而对于多期价值判断，人们的预期价值需要进一步考虑贴现函数$\phi$的影响，$U(\{x,p,t\}_{ij}) &#x3D; \sum_i V(\{x_i,p_i\}_j) \cdot \phi(t_i)$。</p>
+<ul>
+<li>对于效用值函数($v$)，人们所观察到的定性结论是：人们对于收益的评估是边际递减且幅度小的，而对于损失的评估是边际递增且幅度大的，从而导致人们更偏好确定的收益和不确定的损失。基于这些定性结论，通常可以使用一个分段S形函数来建模$v$。</li>
+<li>对于决策权重函数($w$)，人们所观察到的定性结论包括：该函数应该满足次可加性、次确定性、次比率性，且权重在0和1附近比较陡，在中间比较平缓。对于以概率为输入的权重函数，一种可选的定量形式是$w(p)&#x3D;e^{-\beta(-\ln p)^{\alpha}}$。而对于以不确定事件为输入的权重函数，可以考虑扩展为两阶段模型$W(S)&#x3D;w(P(S))$，其中概率判断函数$P$服从“支持理论”，即$P(A|\mathcal{A})&#x3D;s(A)&#x2F;\sum_{A’ \in \mathcal{A}} s(A’)$，其中支持度得分$s$满足次可加性。最后，累积前景理论进一步将决策权重函数的定义域从概率判断$p$转为累积概率$\sum p$，以满足合并一致性这一假设：$w_n&#x3D;w(\sum_{i&#x3D;1}^{n+1} p_i) - w(\sum_{i&#x3D;1}^n p_i)$；同时，该理论也对正回报值和负回报值所对应的概率&#x2F;累积概率进行了拆分处理，考虑了不同（参数下）的决策权重函数。</li>
+<li>对于贴现函数($\phi$)，人们所观察到的定性结论包括：共同差异效应（一组选项在不同评估周期下可能会发生偏好反转）、延迟-提前不对称（补偿“推延收益发生时间”的金额要高于支付“提前收益发生时间”的金额）等。一种定量的建模方式是将贴现函数从简单指数函数形式$\phi(t) &#x3D; \gamma^t$扩展为双曲函数$(1+\alpha t)^{-\beta&#x2F;\alpha}$。</li>
+</ul>
+<h4 id="编辑阶段-Editing-Phase"><a href="#编辑阶段-Editing-Phase" class="headerlink" title="编辑阶段 Editing Phase"></a>编辑阶段 Editing Phase</h4><p>这一阶段的相关理论所讨论的是决策问题的展示形式如何影响人们的信息处理结果以及相应的价值评估结果。其主要内容可以归为以下三个类别：</p>
+<ol>
+<li>决策问题背景的影响：主要基于心理核算理论这一框架，在该框架中，先根据不同的预算类别和评估频率对决策问题进行分类，然后使用该分类下的预算状态作为评估阶段的参照点。<ul>
+<li>心理账户：人们通常使用分类别的预算来实现自我控制和类别间的支出平衡。通过对选项的表述进行包装，可以使人们将其置于不同的心理账户中，从而产生评估差异。</li>
+<li>评估频次：在同等的波动水平下，评估周期越短，账户状态的随机性越强，进而风险规避行为越显著。</li>
+</ul>
+</li>
+<li>决策问题形式的影响：主要关注对比评估（选择场景）与单独评估（评价场景）这两种形式之间的偏好反转。<ul>
+<li>显著性假说：显著的特征在对比评估任务中占的比重要高于单独评估任务。这可能是因为两种任务的决策处理机制不同：在选择任务中，人们更多使用定性推理和排序启发式；而在评价任务中，人们需要进行定量估计。</li>
+<li>相对无知假说：在对比任务中，人们的选择会受到自己和他人对不同选项的认知水平的影响，当存在不同事件或个体之间的认知水平对比时，人们会更倾向于选择高认知水平水平的选项；而这种倾向在评价任务中会被大幅弱化。</li>
+<li>可评估性假说：当各选项中同时包含有易于评估和难以评估（即很难根据取值来判断其优劣水平）的属性时，对比任务比评价任务能够更好地激发人们对难以评估属性的关注度。</li>
+<li>相比多次重复选择任务，在单次批量选择任务中，人们面对一个决策复杂度更高的问题，当偏好较弱、选择困难时，多样化是一种简化复杂度的启发式；另外，当偏好存在不确定性时，多样化可以降低选择结果的后悔风险。</li>
+</ul>
+</li>
+<li>决策问题上下文信息的影响：主要关注人们对历史经验的回忆与对未来结果的预期中，决策启发式所产生的偏差。<ul>
+<li>在参考历史经验时，人们往往会遵循峰-尾规则，即通过该段经验中的峰值体验和结束体验来进行整体评估，而对开始体验以及时长不敏感，故在评估时主要依据的是少数具有代表性的“显著时点”。</li>
+<li>在预测未来体验时，人们往往更多关注状态转换的关键节点以及对应的效用变化，忽视了状态转换后个人对于新状态的适应性能力（例如乏味效应）以及对应的效用变化。另外，人们也可能不具备预测体验变化的能力、或者在做决定时忽略了对这些预测结果的参考，例如人们基本无法预测禀赋效应对其价值偏好的影响。</li>
+<li>在跨期选择中，人们对序列选项的改善偏好可能是由于人们会预期到自身能够不断修正未来效用评估的锚点，因此在损失规避的作用下，改善序列的累积效用会优于衰退序列。</li>
+</ul>
+</li>
+<li>前述因素的交叉影响。<ul>
+<li>在参考历史经验时，一段正向体验经历可能在后续持续产生正向体验效用（禀赋效应），也可能使得后续的正向经历的体验效用有所衰减（对比效应）。实证证据显示，这两种效应的相对强弱与决策问题的形式有关：在选择任务中，禀赋效应更强；而在评估任务中，对比效应更强。</li>
+</ul>
+</li>
+</ol>
+<h3 id="基于学习算法的视角-Learning-based-Perspectives"><a href="#基于学习算法的视角-Learning-based-Perspectives" class="headerlink" title="基于学习算法的视角 Learning-based Perspectives"></a>基于学习算法的视角 Learning-based Perspectives</h3><p>经典理论为解释前述异常行为提供了一套相对准确的描述性的框架，但是并未能提供相应的规范性基础。在这一节中，我将提出和讨论数个基于学习算法的假说，以支持现有的描述性结论。</p>
+<ol>
+<li>现有研究表明，长周期强化学习或多任务元学习任务具有较大的难度，当收益反馈较为稀疏时，需要很长的学习时间来收敛到可用策略。一种提升学习效率的技术手段，是引入辅助收益反馈来缩短反馈周期，并通过奖励塑形（reward shaping）来对需要重点关注的状态进行标记，强化相应的学习动作。这种对收益反馈的改造，在长期的学习和优化过程中逐渐固化成习惯，进而可能成为了许多观察到的价值评估异象的重点来源。特别地，在下面的讨论中，让我们考虑以下的决策问题框架：agent需要在一个长周期的噪声环境中，尽可能提高其生存概率和生存质量（通过资产价值表示），其中生存这一状态比资产价值更为重要。<ul>
+<li>损失规避：假设agent在每个阶段都有两个选项：维持现状，或者进行风险尝试，该尝试有50%的几率使得当前的资产价值翻倍、有50%的几率使得资产价值归零并结束生存状态。这两个选项虽然从资产价值的角度是等价的，但是从实际效用的角度并不一致——资产价值下行的负向作用会更显著。因此，如果人们长期处于一种“下行带来的影响更大”的状态下，则会逐渐为损失方向的变化赋予更高的影响权重，从而引发了习惯性的损失规避行为。</li>
+<li>非线性决策权重&amp;确定性偏好：假设agent在每个阶段有两个选项：选项1有$x$的概率维持现状、$(1-x)$的概率结束生存状态，而选项2有$(x-p)$的概率维持现状、$(1-x-p)$的概率结束生存状态。通过逻辑分析容易看出，选项1一定比选项2更优；但是，如果我们通过试错法等学习的方式来寻找最优选项，这种相对优势可能需要很长时间才能发现，特别是在差异$p$很小的情况下。通过统计分析可知，在尝试次数$n$比较大时，两个选项的平均差异渐近服从正态分布$N(p,2x(1-x))$，故当选项1的确定性越强、$x \to \{0,1\}$时，学习策略的收敛速度越快。因此，人们的确定性偏好有可能反映了对学习和计算成本的评估。另外，当$x&#x3D;1$且$p$很小时，一种提升学习效率的方式是使用策略回放机制，对结束生存状态的样本赋予更大的学习权重。这种优化技巧可以等效于在原始学习算法中放大了$p$的值，故可以作为人们在概率处理上的非线性决策权重的一种可能解释。</li>
+<li>折现系数非常量&amp;当期高敏感度：考虑两个跨期选项：选项1在第$t$期维持现状、在$t+1$期以$p_1$的概率结束生存状态，而选项2在第$t$期以$p_2$的概率结束生存状态。现在，假设agent在当期需要同时考虑$n$个不同时期$t$下的选择决策。如果在学习时为这些子决策设置等价的权重，人们往往需要关于$n$的指数级别的尝试样本才能收敛到较优的策略，学习效率很低。通过reward shaping操作，为当期设置更为显著的时间折减系数，人们可以聚焦在短期内更重要的决策上，更快地产出有效的行为策略。</li>
+</ul>
+</li>
+<li>当决策任务较为复杂、需要对多源的信息进行整合处理以及评估时，在有限的计算和信息处理能力下，人们只能利用启发式方法进行化简归约，而具体启发式的选择与应用又取决于问题的框架以及人们的历史经验。在下面的分析中，很多元素与本系列第一篇中的分析存在相似之处。<ul>
+<li>非线性决策权重&amp;确定性偏好：对不确定性事件的概率判断很大程度上是由启发式确定的，其影响包括，得到的概率估计容易被锚定到题设的暗示水平上。</li>
+<li>折现系数非常量&amp;当期高敏感度：当需要同时考虑对比多期的效用价值时，时间折减系数按函数形式$\gamma^t$的计算复杂度是很高的，使用一种分段线性的近似形式可以有效减少计算成本，虽然这通常会低估了远期的时间折减系数。</li>
+<li>心理账户&amp;评估周期：相比直接考虑所有历史事件，只考虑近期的、与当前事件有关的历史事件是一种成本更低的信息处理方式。固定周期更新的心理账户可以看作是这样一种信息索引构造和提取的机制；与此同时，通过预算账户这种形式组织历史经验，也能够更好地与预算控制、生存保障这些基本目标关联起来。</li>
+<li>多样化倾向：在学习策略中，探索是一个重要环节，可以帮助策略跳出局部最优行为。然而，当需要同时作出多个选项时，重复随机采样这一动作的计算成本是比较高的，使用代表性生成选择方案来匹配探索概率分布是一个更高效的方式，而这一行为的结果是会提高人们的多样化倾向。</li>
+</ul>
+</li>
+</ol>
+<h2 id="意义-Implications"><a href="#意义-Implications" class="headerlink" title="意义 Implications"></a>意义 Implications</h2><p>最终，在这一节中，我们讨论上面这些分析结论能够给我们提供什么指导。</p>
+<ol>
+<li>对于人们的决策行为的校正与优化，<ul>
+<li>在编辑阶段，一方面可以引导人们认识到决策中所参考的框架、并克服其限制，另一方面可以通过外部手段来化解框架所引入的偏差。例如，针对选择和评价等问题形式的影响，可以在设计决策问题时综合使用多种问题形式，并对结果进行整合处理；针对心理账户和评估频次等问题背景的影响，可以通过显式引入评估周期和账户类别等信息来缓解个人背景与决策目标之间的不一致性问题。</li>
+<li>在评估阶段，一方面可以通过多决策对冲或组合评估等技术方式来缓解单决策上的过度损失规避，另一方面可以通过鼓励和锻炼对不确定性事件进行概率的量化评估和计算，来避免由直觉判断引起的确定性偏好行为。</li>
+<li>特别地，对于意义重大的决策，需要引导人们克服对低成本的启发式的过度依赖，并更多采用严谨的量化计算方法。</li>
+</ul>
+</li>
+<li>对于自动化决策算法的设计，我们可以更好地预期和理解通用学习流程的局限性。特别地，<ul>
+<li>通过长周期强化学习或多任务元学习训练得到的策略，往往由于需要兼顾多个子任务上的效果，其行为表现与单任务上的最优策略有一定差异。例如，正如前面所提到的，长周期强化学习的最优策略可能为了提高生存率，对损失项进行了reward shaping，从而在单任务中更倾向于损失规避行为；多任务元学习的最优策略为了避免陷入局部最优，会引入部分随机探索行为，但是这些探索行为的比重在单个任务上可能会过高。因此，如果要优化策略在单点子任务上的表现，需要根据子任务的属性信息进行针对性优化。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blogs/tags/Reinforcement-Learning/" rel="tag"># Reinforcement Learning</a>
+          
+            <a href="/blogs/tags/Behavior-Modeling/" rel="tag"># Behavior Modeling</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blogs/2022/decision_behavior_prob_202206/" rel="next" title="Decision Behavior Note I: Probability Judgement">
+                <i class="fa fa-chevron-left"></i> Decision Behavior Note I: Probability Judgement
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blogs/archives%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blogs/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blogs/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://hanqiu92.github.io" target="_blank" title="Homepage">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Homepage</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hanqiu92" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-github"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:qiuhan9212@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%81%E6%8D%AE-Evidences"><span class="nav-number">1.</span> <span class="nav-text">证据 Evidences</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%AE%E9%81%8D%E8%A1%8C%E4%B8%BA-General-Behavior"><span class="nav-number">1.1.</span> <span class="nav-text">普遍行为 General Behavior</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E5%BA%94%E7%94%A8-Specific-Applications"><span class="nav-number">1.2.</span> <span class="nav-text">具体应用 Specific Applications</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A-Explanations"><span class="nav-number">2.</span> <span class="nav-text">解释 Explanations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E7%90%86%E8%AE%BA-Classic-Theories"><span class="nav-number">2.1.</span> <span class="nav-text">经典理论 Classic Theories</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%84%E4%BC%B0%E9%98%B6%E6%AE%B5-Evaluation-Phase"><span class="nav-number">2.1.1.</span> <span class="nav-text">评估阶段 Evaluation Phase</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E9%98%B6%E6%AE%B5-Editing-Phase"><span class="nav-number">2.1.2.</span> <span class="nav-text">编辑阶段 Editing Phase</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E7%9A%84%E8%A7%86%E8%A7%92-Learning-based-Perspectives"><span class="nav-number">2.2.</span> <span class="nav-text">基于学习算法的视角 Learning-based Perspectives</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%84%8F%E4%B9%89-Implications"><span class="nav-number">3.</span> <span class="nav-text">意义 Implications</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qiu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blogs/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blogs/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blogs/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blogs/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blogs/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://hanqiu92.github.io/blogs/2022/decision_bahavior_value_202207/';
+          this.page.identifier = '2022/decision_bahavior_value_202207/';
+          this.page.title = 'Decision Behavior Note II: Value Estimation';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hanqiu92.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

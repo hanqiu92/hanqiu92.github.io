@@ -90,15 +90,15 @@
 <meta property="og:site_name" content="Han&#39;s Blog">
 <meta property="og:description" content="This June, when traveling in Mexico, I encountered one of the most unexpected congestion in my life. The horrible performance of Google Maps was annoying and during the summer I kept thinking about ho">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mexico_city_map.png">
-<meta property="og:image" content="http://hanqiu92.github.io/blogs/blogs/images/mm1.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mexico_city_map.png">
+<meta property="og:image" content="http://hanqiu92.github.io/blogs/images/mm1.png">
 <meta property="article:published_time" content="2016-10-23T04:00:00.000Z">
-<meta property="article:modified_time" content="2019-06-26T14:08:01.067Z">
+<meta property="article:modified_time" content="2022-07-06T06:15:49.672Z">
 <meta property="article:author" content="Han Qiu">
 <meta property="article:tag" content="Queuing Theory">
 <meta property="article:tag" content="Stochastic Process">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/blogs/images/mexico_city_map.png">
+<meta name="twitter:image" content="http://hanqiu92.github.io/blogs/images/mexico_city_map.png">
 
 
 
@@ -354,11 +354,11 @@
 <span id="more"></span>
 
 <h2 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h2><p>Here is the actual experience: we were in a taxi going to airport via Cto. Interior. We encountered a heavy rain, and several lower points were flooded (indicated as red circles in the following pic).</p>
-<p><img src="/blogs/blogs/images/mexico_city_map.png" alt="mexico city map"></p>
+<p><img src="/blogs/images/mexico_city_map.png" alt="mexico city map"></p>
 <p>During the trip, Google Maps kept refreshing the estimated travel time, and the estimated delay for going through those bottlenecks were always increasing. When we arrived, we cost nearly one more hour than the initial estimated travel time.</p>
 <p>So how can Google Maps be such inaccurate? And if provided with the information that the capacity in these points will be low for several hours, can we have better estimates?</p>
 <h2 id="A-queuing-model-without-knowledge-in-queues"><a href="#A-queuing-model-without-knowledge-in-queues" class="headerlink" title="A queuing model without knowledge in queues"></a>A queuing model without knowledge in queues</h2><p>It is almost straightforward to think about a queuing model. To simplify, we consider a serial connection of M&#x2F;M&#x2F;1 units and free flow road segments (which can also be seen as M&#x2F;M&#x2F;1 unit with $\mu\to\infty$). Following is a visualization of M&#x2F;M&#x2F;1 unit (By Tsaitgaist - <a target="_blank" rel="noopener" href="https://commons.wikimedia.org/w/index.php?curid=7037566">Mm1.png</a>, CC BY-SA 3.0).</p>
-<p><img src="/blogs/blogs/images/mm1.png" alt="M/M/1"></p>
+<p><img src="/blogs/images/mm1.png" alt="M/M/1"></p>
 <p>With elementary understanding of queuing theory, I only considered stable case ($\lambda &lt; \ mu$) at first and got into trouble. When the process become stationary, it is impossible to have increasing travel time! In this case, we are actually more likely in an unstable situation: if the capacity remains low forever, the length of the queue will surely explode.</p>
 <p>So we just make our first assumption: $\lambda &gt; \mu$. Now, when the difference between $\lambda$ and $\mu$ is not trivial, even with Poisson process as input, we can well assume them as deterministic (constant), since it is unlikely the queue will be empty and we can avoid the nasty analysis in stable case. Or we can argue like this: as $T\to\infty$, total arrival $\sim Poi(\lambda T)$ and total serviced $\sim Poi(\mu T)$, so when $T$ is large enough, the probability to have total serviced amount greater than total arrival is extremely low.</p>
 <p>Now we introduce another parameter $\theta$ to describe enter and exit ratios for each road segments between two flooded points. This is quite realistic since people can leave or enter the expressway through ramps. Also, without some inflows we will never have enough arrival to block the next M&#x2F;M&#x2F;1 units!</p>
@@ -516,7 +516,7 @@
               
                 <a href="/blogs/archives%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
