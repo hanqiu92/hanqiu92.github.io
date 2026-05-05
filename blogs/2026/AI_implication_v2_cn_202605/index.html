@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/blogs/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blogs/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/blogs/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/blogs/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blogs/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Management,Optimization," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="近半年来，随着Claude Code &#x2F; OpenClaw等agent工具的诞生，AI agent的执行能力有了显著提升，引起了业界的广泛关注。这些工具在工作场景中的快速落地，也催生了相关从业者的焦虑。在这篇文章中，我将描述个人对AI工具变革下商业组织行为变化的观察，推导未来发展的趋势，并分析个体在长期值得发展的方向。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Agent发展与劳动价值">
+<meta property="og:url" content="http://hanqiu92.github.io/blogs/2026/AI_implication_v2_cn_202605/index.html">
+<meta property="og:site_name" content="Han&#39;s Blog">
+<meta property="og:description" content="近半年来，随着Claude Code &#x2F; OpenClaw等agent工具的诞生，AI agent的执行能力有了显著提升，引起了业界的广泛关注。这些工具在工作场景中的快速落地，也催生了相关从业者的焦虑。在这篇文章中，我将描述个人对AI工具变革下商业组织行为变化的观察，推导未来发展的趋势，并分析个体在长期值得发展的方向。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-05-04T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-05T01:30:03.698Z">
+<meta property="article:author" content="Han Qiu">
+<meta property="article:tag" content="Management">
+<meta property="article:tag" content="Optimization">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hanqiu92.github.io/blogs/2026/AI_implication_v2_cn_202605/"/>
+
+
+
+
+
+  <title>AI Agent发展与劳动价值 | Han's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blogs/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Han's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Thoughts on the normative and descriptive perspectives of human decision-making behavior.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blogs/." rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blogs/categories" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blogs/archives" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blogs/tags" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-scribbles">
+          <a href="/blogs/scribbles" rel="section">
+            
+            Scribbles
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://hanqiu92.github.io/blogs/blogs/2026/AI_implication_v2_cn_202605/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blogs/images/pics/1.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Han's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AI Agent发展与劳动价值</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2026-05-04T12:00:00+08:00">
+                2026-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blogs/categories/Comment/" itemprop="url" rel="index">
+                    <span itemprop="name">Comment</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>近半年来，随着Claude Code &#x2F; OpenClaw等agent工具的诞生，AI agent的执行能力有了显著提升，引起了业界的广泛关注。这些工具在工作场景中的快速落地，也催生了相关从业者的焦虑。在这篇文章中，我将描述个人对AI工具变革下商业组织行为变化的观察，推导未来发展的趋势，并分析个体在长期值得发展的方向。</p>
+<span id="more"></span>
+
+<h2 id="现状观察"><a href="#现状观察" class="headerlink" title="现状观察"></a>现状观察</h2><p>一方面，在个体生产侧，我们已经看到agent工具所带来的<strong>显著效率提升</strong>。特别是在软件工程领域，agent已经可以大量、高效地覆盖功能实现与调试工作；而如果进一步能够准确地补足相关上下文，agent甚至可以分担较为复杂的架构设计与自动化开发任务。对于个人执行者来说，工作能力要求正在从完成开发任务本身扩展到架构设计与项目管理，主要包括：定义任务的目标与边界；为agent提供工作所需的上下文；评估agent的产出并给出迭代方向。相应地，用人标准也在发生变化：招聘考核正从手写算法题这类偏重执行的任务，转向对agent协作能力（提示结构、上下文约束以及对模型输出质量的判别）的考察。在行业与岗位形态上，同样可以观察到，信息化和数字化程度较高的领域，正在快速经历岗位结构和工作流程的变革。</p>
+<p>另一方面，在组织产出侧，交付质量与运营效率<strong>并未出现明显改善</strong>。在工程交付上，由于代码生成速度远快于审核，代码质量容易下滑。随之而来的，是花在修复低质量代码上的时间显著增加，且资深成员的负担往往更重。这类问题通常与任务上下文信息给得不充分有关：agent将难以有效把握和处理现有代码中的遗留边界情况。而在团队协作上，随着agent显著提升了文本创建和更新速度，团队成员也更容易高估自己的工作带宽，主动扩展项目并行度，分在每个具体项目上的时间随之减少。当各成员在同一项目上的注意力下降后，项目上下文信息对齐自然也更容易变慢，整体上会拖慢项目推进节奏。</p>
+<h2 id="未来发展"><a href="#未来发展" class="headerlink" title="未来发展"></a>未来发展</h2><p>对于员工个体，正如上一节所提到的，agent协作能力逐渐成为基本要求。进一步地，随着代码&#x2F;文本等信息载体的传输效率变高，<strong>信息创造与挖掘</strong>的相对价值将会提升，创造力和识别优化点的能力也将变得更为重要。与此同时，主动性和自驱力仍然是职业发展中的核心竞争力。另一方面，从管理侧看，当团队中agent占比提升时，传统的团队管理技能（绩效管理、职业发展引导、情绪激励）的价值将被削弱。与之相对，项目管理能力仍然重要：为agent集群提供规范化的流程和执行边界，将有助于保障交付进度与质量。</p>
+<p>组织形态上，hybrid团队将更加常见，但agent的职责仍将局限于执行成本高但重复性强的工作流，而并非对完整岗位的普遍替代，主要原因是<strong>信任成本</strong>：agent无法对尾部场景的执行风险完全负责。人类则可以将更多时间聚焦在需要外部上下文信息输入的设计与沟通工作上。但组织结构受到的影响相对模糊：虽然目前有观点认为，随着员工效率提升，中间层的重要度下降，组织会趋于扁平化；但由于人的管理宽幅和沟通带宽有限，层级缩减后常出现两种倾向：组织<strong>小型化</strong>，或是决策与执行更分散（即<strong>去中心化</strong>）。小型化会迫使组织更聚焦主营业务、压缩边缘投入；而去中心化则会显著增加子团队之间的沟通成本。若组织的目标愿景不变，且内部沟通效率没有重大突破，组织结构调整虽可能经历一段时间的反复，但从长期看，往往仍会向接近当下的层级组织结构收敛。</p>
+<p>在行业层级，agent对信息密集型行业的冲击和重塑最为明显，而在实体行业侧的价值或许仍需一段时间才能充分显现。短期内，这种行业间的异质性会加剧劳动市场的结构性错配，社会也将承接一定的兜底成本。中长期看，数据中心与算力投资陆续落地后，相关<strong>资本折旧与运营成本</strong>可能在数年内抬升算力价格，自动化替代的边际激励相对回落，岗位被替代与收缩的节奏随之放缓，劳动市场将获得更多调整时间。</p>
+<h2 id="个人发展思考"><a href="#个人发展思考" class="headerlink" title="个人发展思考"></a>个人发展思考</h2><p>如前两节所提到的，在agent能力快速提升的现在，个体的能力要求已经从执行层面转变为设计层面（定义边界与质量评估）。在此基础上，还有哪些值得关注的发展方向呢？</p>
+<p>首先，是进一步提升agent本身的工作效率。agent的强项在于可以高效利用通用的上下文信息进行深度思考和迭代，但弱点在于对<strong>项目特有的上下文信息</strong>进行检索和处理的能力仍存不足。这一弱点可以通过引入上下文管理系统来缓解；具体而言，可以从以下几方面着手：</p>
+<ol>
+<li>可以引入针对性的skills来为agent提供先验归纳偏置，降低无效尝试的概率。</li>
+<li>将对历史对话的总结与经验沉淀流程化，实现在固定场景下的自我纠错机制：对于agent在过去遇到的问题，经人工提示得以解决后，相关经验可以直接沿用于后续同类问题，减少agent重复犯错的概率。</li>
+<li>引入分层文档存储结构和多步记忆压缩机制，并通过渐进式披露等方式优化上下文检索效率，让agent能够更快速地聚焦在具体项目的上下文上。</li>
+</ol>
+<p>其次，可以优化与agent协作的策略。针对不同类型的任务，可采用不同的agent交互方式以最大化效率。对于执行链路清晰且重复性强的任务，可直接抽象出工作流，使用agent替代日常执行。而对于需求模糊、需要不断澄清上下文的任务，将agent视为一个提供建议和不同视角的合作者，更有利于员工在深度思考的同时拓宽视野，更快收敛到更合适的解决方案。进一步地，结合上文提到的经验沉淀机制，可以逐步迭代出一套<strong>任务分解与agent调度策略</strong>，即如何将任务拆分成若干子任务、并在各子任务中采用不同的agent协作方式。一个具体的例子是：一个算法任务通常可以拆分为算法迭代与工程落地两阶段。前一阶段以人的思路为主线，用agent进行公式推导和算法可行性评估，收敛算法设计；后一阶段再切换到以agent为主的实现，人通过skills等方式约束代码风格与边界，保证交付质量。</p>
+<p>最后，沿用类似的思路，我们也可以借鉴agent的上下文管理策略，优化自己的<strong>注意力分配策略</strong>。一方面，应避免多线并行和注意力频繁切换；可为固定项目定义相应的沟通机制，并分配固定的交互时段。另一方面，应定期回顾自身的时间分配，降低阶段性低价值事项的优先级，并通过资源配置来释放时间带宽，例如将重复且繁重的事务外包给agent。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blogs/tags/Management/" rel="tag"># Management</a>
+          
+            <a href="/blogs/tags/Optimization/" rel="tag"># Optimization</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blogs/2024/AI_implication_cn_202404/" rel="next" title="AI工具的历史意义思考">
+                <i class="fa fa-chevron-left"></i> AI工具的历史意义思考
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/blogs/images/pics/1.JPG"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blogs/archives%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blogs/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blogs/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://hanqiu92.github.io" target="_blank" title="Homepage">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Homepage</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hanqiu92" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-github"></i>Github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:qiuhan9212@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E7%8A%B6%E8%A7%82%E5%AF%9F"><span class="nav-number">1.</span> <span class="nav-text">现状观察</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E5%8F%91%E5%B1%95"><span class="nav-number">2.</span> <span class="nav-text">未来发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E5%8F%91%E5%B1%95%E6%80%9D%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">个人发展思考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Han Qiu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blogs/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blogs/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blogs/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blogs/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blogs/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blogs/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://hanqiu92.github.io/blogs/2026/AI_implication_v2_cn_202605/';
+          this.page.identifier = '2026/AI_implication_v2_cn_202605/';
+          this.page.title = 'AI Agent发展与劳动价值';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hanqiu92.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
